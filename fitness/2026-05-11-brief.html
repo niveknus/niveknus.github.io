@@ -170,13 +170,78 @@
 
   .footnote { font-size: 11px; color: #6B7280; margin-top: 12px; line-height: 1.5; }
 
-  /* Targets footer */
-  .targets {
-    padding: 14px 18px;
+  /* Progress meta (below weight progress bar) */
+  .progress-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 11px;
+    color: #9CA3AF;
+  }
+  .progress-meta-row .delta-good { color: #6EE7B7; }
+  .progress-meta-row .delta-warn { color: #FCD34D; }
+  .progress-meta-row .sep { color: #3F4350; }
+
+  /* Week strip */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 2px;
+  }
+  .day-cell {
+    text-align: center;
+    padding: 8px 2px 10px;
+    border-radius: 8px;
+    border: 0.5px solid transparent;
+  }
+  .day-letter {
+    font-size: 11px;
+    color: #9CA3AF;
+    margin-bottom: 6px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .day-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #60A5FA;
+    margin: 0 auto 6px;
+  }
+  .day-dot.is-rest {
+    background: transparent;
+    border: 1px solid #3F4350;
+    width: 5px;
+    height: 5px;
+    margin-bottom: 7px;
+  }
+  .day-text {
+    font-size: 11px;
+    color: #9CA3AF;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .day-cell.is-today {
     background: #1C2028;
+    border-color: #2A2E36;
+  }
+  .day-cell.is-today .day-letter { color: #F3F4F6; }
+  .day-cell.is-today .day-text   { color: #F3F4F6; }
+
+  /* Targets section */
+  .targets-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+    background: #1C2028;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 4px;
   }
   .target { text-align: center; }
   .target-label { font-size: 11px; color: #9CA3AF; }
@@ -271,9 +336,61 @@
         ✓
         Full session, no adjustments
       </div>
-      <div class="adjustment-why">All recovery signals green. HRV 24% above 7d baseline, RHR 5 below avg, Body Battery 81. Show up ready.</div>
+      <div class="adjustment-why">Sleep solid (7h22m, score 89). HRV 53 ms — 24% above 7d baseline. RHR 58 (5 below avg). Body Battery wake 81. All acute signals green — full class is on.</div>
     </div>
   </div>
+
+  
+  
+  <div class="section">
+    <div class="section-label">This week</div>
+    <div class="week-grid">
+      
+      <div class="day-cell is-today">
+        <div class="day-letter">M</div>
+        <div class="day-dot"></div>
+        <div class="day-text">ND class</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">T</div>
+        <div class="day-dot"></div>
+        <div class="day-text">Lift A</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">W</div>
+        <div class="day-dot"></div>
+        <div class="day-text">Walk</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">T</div>
+        <div class="day-dot"></div>
+        <div class="day-text">Lift B</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">F</div>
+        <div class="day-dot"></div>
+        <div class="day-text">Pkl</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">S</div>
+        <div class="day-dot"></div>
+        <div class="day-text">Baldwin</div>
+      </div>
+      
+      <div class="day-cell">
+        <div class="day-letter">S</div>
+        <div class="day-dot is-rest"></div>
+        <div class="day-text">Rest</div>
+      </div>
+      
+    </div>
+  </div>
+  
 
   
   <div class="section">
@@ -289,7 +406,13 @@
         <span class="weight-meta">Goal 165 · ~17 wks</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width: 1%;"></div></div>
-      <div class="progress-meta">34.5 lbs to goal</div>
+      <div class="progress-meta-row">
+        
+        <span class="delta-good">↓ 0.5 lb lost (from 200 start)</span>
+        <span class="sep">·</span>
+        
+        <span>34.5 lb to goal</span>
+      </div>
     </div>
 
     
@@ -329,15 +452,18 @@
       </div>
     </div>
 
-    <div class="footnote">*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,807 cal → ~1.75 lb/wk is the truer ceiling.</div>
+    <div class="footnote">Only 1 Withings reading so far — actual deficit math activates once a weekly trend exists.</div>
   </div>
 
   
-  <div class="targets">
-    <div class="target"><div class="target-label">Steps</div><div class="target-value">10k</div></div>
-    <div class="target"><div class="target-label">Protein</div><div class="target-value">180 g</div></div>
-    <div class="target"><div class="target-label">Calories</div><div class="target-value">1,800</div></div>
-    <div class="target"><div class="target-label">Water</div><div class="target-value">3 L</div></div>
+  <div class="section">
+    <div class="section-label">Today&rsquo;s targets</div>
+    <div class="targets-grid">
+      <div class="target"><div class="target-label">Steps</div><div class="target-value">10k</div></div>
+      <div class="target"><div class="target-label">Protein</div><div class="target-value">180 g</div></div>
+      <div class="target"><div class="target-label">Calories</div><div class="target-value">1,800</div></div>
+      <div class="target"><div class="target-label">Water</div><div class="target-value">3 L</div></div>
+    </div>
   </div>
 
 </div>
