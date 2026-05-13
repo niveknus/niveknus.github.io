@@ -23,6 +23,42 @@
     overflow: hidden;
   }
 
+  /* Stale banner — fires when freshness.json status == STALE.
+     Intentionally loud: full-bleed red strip across the top of the card so
+     it cannot be missed in the Telegram preview. */
+  .stale-banner {
+    background: #7F1D1D;
+    border-bottom: 1px solid #B91C1C;
+    color: #FFFFFF;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .stale-icon {
+    font-size: 18px;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+  .stale-text { flex: 1; }
+  .stale-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: #FFFFFF;
+  }
+  .stale-sub {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #FECACA;
+  }
+  .stale-age {
+    color: #FCA5A5;
+    font-weight: 500;
+  }
+
   /* Header */
   .header {
     padding: 18px;
@@ -265,6 +301,9 @@
 </head>
 <body>
 <div class="card">
+
+  
+  
 
   
   <div class="header">
