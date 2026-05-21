@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Coach Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { color-scheme: light; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8f9fa;
+  color: #1a1a2e;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.header h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; }
+.header .date { font-size: 13px; color: #6b7280; }
+.header .freshness {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.freshness.fresh { background: #d1fae5; color: #065f46; }
+.freshness.stale { background: #fee2e2; color: #991b1b; }
+.freshness.loading { background: #e5e7eb; color: #6b7280; }
+.header .brief-link {
+  margin-left: auto;
+  font-size: 13px;
+  color: #2563eb;
+  text-decoration: none;
+}
+.header .brief-link:hover { text-decoration: underline; }
+
+/* Loading / Error */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+/* KPI cards */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+}
+.kpi-card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.kpi-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.kpi-card .unit {
+  font-size: 13px;
+  font-weight: 400;
+  color: #9ca3af;
+  margin-left: 2px;
+}
+.kpi-card .sub {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+.kpi-card .badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+.bg-green { background: #d1fae5; color: #065f46; }
+.bg-yellow { background: #fef3c7; color: #92400e; }
+.bg-red { background: #fee2e2; color: #991b1b; }
+
+/* Cut progress banner */
+.cut-banner {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cut-stat { text-align: center; min-width: 90px; }
+.cut-stat .num { font-size: 26px; font-weight: 700; color: #ea580c; }
+.cut-stat .lbl { font-size: 11px; color: #9a3412; font-weight: 500; }
+.cut-divider { width: 1px; height: 40px; background: #fdba74; }
+@media (max-width: 600px) {
+  .cut-divider { display: none; }
+  .cut-banner { gap: 12px; }
+}
+
+/* Chart grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media (max-width: 700px) {
+  .chart-grid { grid-template-columns: 1fr; }
+}
+.chart-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+.chart-card h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+/* Workout list */
+.workout-list { list-style: none; }
+.workout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+}
+.workout-item:last-child { border-bottom: none; }
+.workout-name { font-weight: 600; color: #374151; }
+.workout-meta { color: #6b7280; font-size: 12px; }
+.workout-load {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+</head>
+<body>
+
+<div id="loading" class="loading-screen">
+  <div class="spinner"></div>
+  <div style="font-size:14px;color:#6b7280;">Loading Garmin data...</div>
+</div>
+
+<div id="dashboard" style="display:none;">
+  <div class="header">
+    <h1>Fitness Coach</h1>
+    <span class="date" id="snapshot-date"></span>
+    <span class="freshness loading" id="freshness-badge">...</span>
+    <a href="index.html" class="brief-link">Today's Brief &rarr;</a>
+  </div>
+
+  <div id="error-area"></div>
+
+  <!-- Cut Progress -->
+  <div class="cut-banner">
+    <div class="cut-stat">
+      <div class="num" id="cut-current">--</div>
+      <div class="lbl">Current (lbs)</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-goal">165</div>
+      <div class="lbl">Goal (lbs)</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-delta">--</div>
+      <div class="lbl">To Go (lbs)</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-weeks">--</div>
+      <div class="lbl">Weeks @ 2lb/wk</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-rate">--</div>
+      <div class="lbl">Actual lb/wk</div>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">Training Readiness</div>
+      <div class="value" id="kpi-readiness">--</div>
+      <div class="badge" id="kpi-readiness-badge">--</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Body Battery</div>
+      <div class="value" id="kpi-battery">--</div>
+      <div class="sub" id="kpi-battery-sub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Sleep Score</div>
+      <div class="value" id="kpi-sleep">--</div>
+      <div class="sub" id="kpi-sleep-sub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">HRV</div>
+      <div class="value" id="kpi-hrv">--<span class="unit">ms</span></div>
+      <div class="badge" id="kpi-hrv-badge">--</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Resting HR</div>
+      <div class="value" id="kpi-rhr">--<span class="unit">bpm</span></div>
+      <div class="sub" id="kpi-rhr-sub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">VO2 Max</div>
+      <div class="value" id="kpi-vo2">--</div>
+      <div class="sub">ml/kg/min</div>
+    </div>
+  </div>
+
+  <!-- Charts row 1 -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>7-Day Recovery Trends</h3>
+      <canvas id="chart-recovery" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Weight Trend (30 Days)</h3>
+      <canvas id="chart-weight" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Charts row 2 -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Training Load (This Week vs Last)</h3>
+      <canvas id="chart-load" height="180"></canvas>
+      <h3 style="margin-top:16px;">Recent Workouts</h3>
+      <ul class="workout-list" id="workout-list"></ul>
+    </div>
+    <div class="chart-card">
+      <h3>Sleep Breakdown (Last Night)</h3>
+      <canvas id="chart-sleep" height="180"></canvas>
+      <div style="margin-top:16px;">
+        <h3>7-Day Steps</h3>
+        <canvas id="chart-steps" height="140"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts row 3 -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Body Composition Trend</h3>
+      <canvas id="chart-bodycomp" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>7-Day Stress & Calories</h3>
+      <canvas id="chart-stress" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="footer">
+    Fitness Coach Dashboard &middot; Data from Garmin Connect &middot; Built with Chart.js
+  </div>
+</div>
+
+<script>
+// ── Config ──
+const DIGEST_URL = 'latest-digest.json';
+
+// ── Helpers ──
+function fmt(n, d=0) { return n != null ? Number(n).toFixed(d) : '--'; }
+function shortDate(s) {
+  const d = new Date(s + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+function dayLabel(s) {
+  const d = new Date(s + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { weekday: 'short' });
+}
+function scoreColor(v, good=80, mid=60) {
+  if (v >= good) return '#059669';
+  if (v >= mid) return '#d97706';
+  return '#dc2626';
+}
+function scoreBg(v, good=80, mid=60) {
+  if (v >= good) return 'bg-green';
+  if (v >= mid) return 'bg-yellow';
+  return 'bg-red';
+}
+
+// ── Data fetching (simple fetch — no MCP needed) ──
+async function fetchDigest() {
+  const resp = await fetch(DIGEST_URL);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status} fetching ${DIGEST_URL}`);
+  return resp.json();
+}
+
+// ── Render ──
+async function render() {
+  let digest;
+  try {
+    digest = await fetchDigest();
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('error-area').innerHTML =
+      '<div class="error-banner">' + e.message + '</div>';
+    return;
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+
+  const ln = digest.last_night;
+  const r7 = digest.rolling_7d;
+  const bc = digest.body_composition;
+  const tl = digest.training_load;
+
+  // Header
+  document.getElementById('snapshot-date').textContent =
+    'Data through ' + shortDate(digest.calendar.snapshot_end);
+  const fb = document.getElementById('freshness-badge');
+  const now = new Date();
+  const snapDate = new Date(digest.calendar.snapshot_end + 'T23:59:59');
+  const hoursOld = (now - snapDate) / 3600000;
+  if (hoursOld < 36) {
+    fb.textContent = 'FRESH';
+    fb.className = 'freshness fresh';
+  } else {
+    fb.textContent = 'STALE (' + Math.round(hoursOld) + 'h)';
+    fb.className = 'freshness stale';
+  }
+
+  // ── Cut Progress ──
+  if (bc && bc.status === 'ok') {
+    document.getElementById('cut-current').textContent = fmt(bc.most_recent.weight_lbs, 1);
+    document.getElementById('cut-goal').textContent = fmt(bc.goal_weight_lbs, 0);
+    document.getElementById('cut-delta').textContent = fmt(bc.delta_to_goal_lbs, 1);
+    document.getElementById('cut-weeks').textContent = fmt(bc.weeks_to_goal_at_2lb_per_week, 1);
+    const rate = bc.actual_rate_lb_per_wk;
+    const rateEl = document.getElementById('cut-rate');
+    rateEl.textContent = (rate > 0 ? '+' : '') + fmt(rate, 1);
+    rateEl.style.color = (rate <= 0 && rate >= -3) ? '#059669' : (rate > 0 ? '#dc2626' : '#d97706');
+  }
+
+  // ── KPIs ──
+  const readiness = ln.training_readiness;
+  const kpiR = document.getElementById('kpi-readiness');
+  kpiR.textContent = readiness.score;
+  kpiR.style.color = scoreColor(readiness.score, 75, 50);
+  const rb = document.getElementById('kpi-readiness-badge');
+  rb.textContent = readiness.level;
+  rb.className = 'badge ' + scoreBg(readiness.score, 75, 50);
+
+  const bb = ln.body_battery;
+  document.getElementById('kpi-battery').innerHTML = bb.at_wake_time + '<span class="unit">wake</span>';
+  document.getElementById('kpi-battery-sub').textContent =
+    'Now: ' + bb.most_recent_value + ' · High: ' + bb.highest_value;
+
+  const slp = ln.sleep;
+  const kpiS = document.getElementById('kpi-sleep');
+  kpiS.textContent = slp.sleep_score;
+  kpiS.style.color = scoreColor(slp.sleep_score);
+  document.getElementById('kpi-sleep-sub').textContent =
+    slp.sleep_time_hours.toFixed(1) + 'h · ' + slp.sleep_score_qualifier;
+
+  const hrv = ln.hrv;
+  document.getElementById('kpi-hrv').innerHTML = hrv.last_night_avg + '<span class="unit">ms</span>';
+  const hb = document.getElementById('kpi-hrv-badge');
+  hb.textContent = hrv.status;
+  hb.className = 'badge ' + (hrv.status === 'BALANCED' ? 'bg-green' : hrv.status === 'LOW' ? 'bg-red' : 'bg-yellow');
+
+  document.getElementById('kpi-rhr').innerHTML = ln.cardio.resting_heart_rate + '<span class="unit">bpm</span>';
+  document.getElementById('kpi-rhr-sub').textContent = '7d avg: ' + ln.cardio.resting_hr_7d_avg;
+
+  document.getElementById('kpi-vo2').textContent = fmt(ln.training_status.vo2_max, 1);
+
+  // ── Chart: 7-Day Recovery Trends ──
+  const days = r7.daily_signals;
+  const labels7 = days.map(d => dayLabel(d.date));
+  new Chart(document.getElementById('chart-recovery'), {
+    type: 'line',
+    data: {
+      labels: labels7,
+      datasets: [
+        {
+          label: 'Sleep Score',
+          data: days.map(d => d.sleep_score),
+          borderColor: '#6366f1',
+          tension: 0.3,
+          fill: false,
+          yAxisID: 'y',
+          pointRadius: 4,
+          pointBackgroundColor: '#6366f1',
+        },
+        {
+          label: 'HRV (ms)',
+          data: days.map(d => d.hrv_last_night_avg),
+          borderColor: '#059669',
+          tension: 0.3,
+          fill: false,
+          yAxisID: 'y',
+          pointRadius: 4,
+          pointBackgroundColor: '#059669',
+        },
+        {
+          label: 'Resting HR',
+          data: days.map(d => d.resting_heart_rate),
+          borderColor: '#dc2626',
+          tension: 0.3,
+          fill: false,
+          yAxisID: 'y2',
+          pointRadius: 4,
+          pointBackgroundColor: '#dc2626',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+      scales: {
+        y: { position: 'left', title: { display: true, text: 'Score / ms', font: { size: 11 } }, min: 20, grid: { color: '#f3f4f6' } },
+        y2: { position: 'right', title: { display: true, text: 'BPM', font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+
+  // ── Chart: Weight Trend ──
+  if (bc && bc.trend_30d && bc.trend_30d.length > 0) {
+    const wt = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
+    new Chart(document.getElementById('chart-weight'), {
+      type: 'line',
+      data: {
+        labels: wt.map(d => shortDate(d.date)),
+        datasets: [
+          {
+            label: 'Weight (lbs)',
+            data: wt.map(d => d.weight_lbs),
+            borderColor: '#ea580c',
+            backgroundColor: '#ea580c15',
+            tension: 0.3,
+            fill: true,
+            pointRadius: 5,
+            pointBackgroundColor: '#ea580c',
+          },
+          {
+            label: 'Goal',
+            data: wt.map(() => bc.goal_weight_lbs),
+            borderColor: '#9ca3af',
+            borderDash: [6, 4],
+            pointRadius: 0,
+            fill: false,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+        scales: {
+          y: {
+            title: { display: true, text: 'lbs', font: { size: 11 } },
+            grid: { color: '#f3f4f6' },
+            suggestedMin: Math.min(bc.goal_weight_lbs - 2, Math.min(...wt.map(d => d.weight_lbs)) - 2),
+            suggestedMax: Math.max(...wt.map(d => d.weight_lbs)) + 2
+          }
+        }
+      }
+    });
+  }
+
+  // ── Chart: Training Load ──
+  const thisW = tl.this_iso_week;
+  const prevW = tl.previous_iso_week;
+  new Chart(document.getElementById('chart-load'), {
+    type: 'bar',
+    data: {
+      labels: ['Last Week', 'This Week'],
+      datasets: [{
+        label: 'Training Load',
+        data: [prevW.sum_activity_training_load, thisW.sum_activity_training_load],
+        backgroundColor: ['#a78bfa', '#7c3aed'],
+        borderRadius: 6,
+        barThickness: 50,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            afterLabel: function(ctx) {
+              const count = ctx.dataIndex === 0 ? prevW.activity_count : thisW.activity_count;
+              return count + ' activities';
+            }
+          }
+        }
+      },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Load', font: { size: 11 } }, grid: { color: '#f3f4f6' } } }
+    }
+  });
+
+  // Workout list
+  const wl = document.getElementById('workout-list');
+  if (digest.workouts && digest.workouts.length > 0) {
+    [...digest.workouts].sort((a, b) => b.start_time_local.localeCompare(a.start_time_local)).forEach(w => {
+      const li = document.createElement('li');
+      li.className = 'workout-item';
+      const dt = new Date(w.start_time_local.replace(' ', 'T'));
+      li.innerHTML = `<div><div class="workout-name">${w.activity_name}</div><div class="workout-meta">${dt.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})} · ${Math.round(w.duration_minutes)} min · ${w.calories} cal</div></div><div class="workout-load">${fmt(w.training_load, 1)} TL</div>`;
+      wl.appendChild(li);
+    });
+  } else {
+    wl.innerHTML = '<li class="workout-item" style="color:#9ca3af;">No workouts this week</li>';
+  }
+
+  // ── Chart: Sleep Breakdown ──
+  new Chart(document.getElementById('chart-sleep'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Deep', 'Light', 'REM', 'Awake'],
+      datasets: [{
+        data: [slp.deep_sleep_minutes, slp.light_sleep_minutes, slp.rem_sleep_minutes, slp.awake_minutes],
+        backgroundColor: ['#1e40af', '#60a5fa', '#a78bfa', '#fbbf24'],
+        borderWidth: 2, borderColor: '#fff',
+      }]
+    },
+    options: {
+      responsive: true, cutout: '55%',
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx => { const m = ctx.raw; return ctx.label + ': ' + (m >= 60 ? Math.floor(m/60)+'h ':'') + Math.round(m%60)+'m'; } } }
+      }
+    }
+  });
+
+  // ── Chart: Steps ──
+  new Chart(document.getElementById('chart-steps'), {
+    type: 'bar',
+    data: {
+      labels: labels7,
+      datasets: [{
+        label: 'Steps',
+        data: days.map(d => d.steps),
+        backgroundColor: days.map(d => d.steps >= 10000 ? '#059669' : d.steps >= 5000 ? '#f59e0b' : '#ef4444'),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: '#f3f4f6' }, ticks: { font: { size: 10 } } },
+        x: { ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+
+  // ── Chart: Body Composition ──
+  if (bc && bc.trend_30d && bc.trend_30d.length > 0) {
+    const bcd = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
+    new Chart(document.getElementById('chart-bodycomp'), {
+      type: 'line',
+      data: {
+        labels: bcd.map(d => shortDate(d.date)),
+        datasets: [
+          { label: 'Body Fat %', data: bcd.map(d => d.body_fat_pct), borderColor: '#dc2626', backgroundColor: '#dc262610', tension: 0.3, fill: true, yAxisID: 'y', pointRadius: 5, pointBackgroundColor: '#dc2626' },
+          { label: 'Muscle Mass (lbs)', data: bcd.map(d => d.muscle_mass_lbs), borderColor: '#2563eb', tension: 0.3, fill: false, yAxisID: 'y2', pointRadius: 5, pointBackgroundColor: '#2563eb' }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+        scales: {
+          y: { position: 'left', title: { display: true, text: 'Body Fat %', font: { size: 11 } }, grid: { color: '#f3f4f6' } },
+          y2: { position: 'right', title: { display: true, text: 'Muscle (lbs)', font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // ── Chart: Stress & Calories ──
+  new Chart(document.getElementById('chart-stress'), {
+    type: 'line',
+    data: {
+      labels: labels7,
+      datasets: [
+        { label: 'Stress Avg', data: days.map(d => d.stress_avg), borderColor: '#dc2626', tension: 0.3, fill: false, yAxisID: 'y', pointRadius: 4, pointBackgroundColor: '#dc2626' },
+        { label: 'Active Calories', data: days.map(d => d.active_calories), borderColor: '#f97316', backgroundColor: '#f9731615', tension: 0.3, fill: true, yAxisID: 'y2', pointRadius: 4, pointBackgroundColor: '#f97316' }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+      scales: {
+        y: { position: 'left', title: { display: true, text: 'Stress', font: { size: 11 } }, grid: { color: '#f3f4f6' } },
+        y2: { position: 'right', title: { display: true, text: 'Calories', font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+render();
+</script>
+</body>
+</html>
