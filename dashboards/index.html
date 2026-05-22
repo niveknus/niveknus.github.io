@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Dashboards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #12151b;
+    --border: #1f2533;
+    --text: #e0e4ec;
+    --text-muted: #8891a4;
+    --text-dim: #4e5768;
+    --accent: #7c6aef;
+    --green: #3ecf8e;
+    --amber: #f0b429;
+    --blue: #4da6ff;
+    --cyan: #22d3ee;
+    --red: #ef6b6b;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
+  .container { max-width: 880px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .header { margin-bottom: 2.5rem; }
+  h1 { font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--text-muted); font-size: 0.9rem; font-weight: 300; line-height: 1.6; }
+  .nav-links { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .section-label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.35rem; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; gap: 0.6rem; position: relative; overflow: hidden; }
+  a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card.disabled { opacity: 0.45; pointer-events: none; }
+  .card-top { display: flex; align-items: center; gap: 0.65rem; }
+  .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .card-title { font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .card-desc { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.55; }
+  .card-footer { display: flex; align-items: center; gap: 0.75rem; margin-top: auto; padding-top: 0.4rem; }
+  .badge { font-family: var(--mono); font-size: 0.65rem; padding: 0.2em 0.55em; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+  .badge.active { background: rgba(62, 207, 142, 0.1); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+  .badge.blocked { background: rgba(240, 180, 41, 0.1); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+  .badge.hold { background: rgba(77, 166, 255, 0.1); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+  .badge.backlog { background: rgba(255,255,255,0.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.08); }
+  .badge.full { background: rgba(124, 106, 239, 0.08); color: var(--accent); border: 1px solid rgba(124, 106, 239, 0.15); }
+  .badge.light { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.06); }
+  .card-date { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); margin-left: auto; }
+  .coming-soon { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.05em; }
+  .footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); line-height: 1.8; }
+  @media (max-width: 640px) { .container { padding: 2rem 1rem 3rem; } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 Project Dashboards</h1>
+    <p class="subtitle">Visual dashboards for active projects. Generated from Markdown project files in the Second Brain vault. These are the HTML presentation layer — the Markdown stays the source of truth.</p>
+    <div class="nav-links">
+      <a href="../projects/">← Portfolio</a>
+      <a href="../fitness/">Fitness Brief</a>
+    </div>
+  </div>
+
+  <div class="section-label">Active Projects</div>
+  <div class="grid">
+    <a class="card" href="second-brain.html">
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #7c6aef, #9b7aff);">🧠</div><div class="card-title">Second Brain</div></div>
+      <div class="card-desc">LLM-maintained personal knowledge base. 69 wiki pages, ~547 sources, semantic search manifest, GitHub MCP access from all platforms.</div>
+      <div class="card-footer"><span class="badge active">Active</span><span class="badge full">Full</span><span class="card-date">Sprint 12 · Session 9</span></div>
+    </a>
+    <a class="card" href="fitness-coach.html">
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #00d68f, #00a870);">💪</div><div class="card-title">Fitness Coach</div></div>
+      <div class="card-desc">Adaptive fitness coach for the 200 → 165 lb cut. Daily Garmin pull, morning Telegram brief, evening adherence loop, GitHub Pages live dashboard.</div>
+      <div class="card-footer"><span class="badge active">Active</span><span class="badge full">Full</span><span class="card-date">Sprint 8 · 2026-05-21</span></div>
+    </a>
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255, 176, 32, 0.15);">📧</div><div class="card-title">Personal Assistant</div></div>
+      <div class="card-desc">Daily morning briefings via Telegram. Email triage, calendar digest, weather, Todoist tasks. Cloud Routine live.</div>
+      <div class="card-footer"><span class="badge active">Active</span><span class="badge full">Full</span></div>
+    </div>
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(240, 180, 41, 0.15);">🌸</div><div class="card-title">Flourish Counseling Rebuild</div></div>
+      <div class="card-desc">Domain recovery and web presence rebuild. Multi-phase effort involving registrar transfer, DNS, and new site build.</div>
+      <div class="card-footer"><span class="badge blocked">Blocked</span><span class="badge full">Full</span></div>
+    </div>
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(77, 166, 255, 0.15);">💼</div><div class="card-title">Work Brain</div></div>
+      <div class="card-desc">Obsidian vault template for work knowledge management in an AS9100/ITAR environment.</div>
+      <div class="card-footer"><span class="badge hold">On Hold</span><span class="badge light">Light</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Backlog</div>
+  <div class="grid">
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">🧭</div><div class="card-title">Life Coach</div></div>
+      <div class="card-desc">Broader life coaching layer — goals, habits, personal development, monthly check-ins.</div>
+      <div class="card-footer"><span class="badge backlog">Backlog</span><span class="badge full">Full</span></div>
+    </div>
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">📈</div><div class="card-title">Career Coach</div></div>
+      <div class="card-desc">Career progression tracking, resume, skills development, promotion planning.</div>
+      <div class="card-footer"><span class="badge backlog">Backlog</span><span class="badge light">Light</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Side Projects</div>
+  <div class="grid">
+    <div class="card disabled">
+      <span class="coming-soon">dashboard pending</span>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">🖥️</div><div class="card-title">Home Server (Mac Mini)</div></div>
+      <div class="card-desc">Mac Mini M4 arriving ~05/26. Self-hosted runner, media server, local AI inference.</div>
+      <div class="card-footer"><span class="badge active">Active</span><span class="badge light">Light</span></div>
+    </div>
+  </div>
+
+  <div class="footer">Source: niveknus/second-brain (private) · Published to niveknus.github.io/dashboards/<br>Markdown → HTML presentation layer · Updated 2026-05-22</div>
+</div>
+</body>
+</html>
