@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Assistant — Project Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0d11;
+  --surface: #111419;
+  --surface-raised: #181c24;
+  --border: #222836;
+  --border-accent: #2e3648;
+  --text: #e0e4ec;
+  --text-muted: #8891a4;
+  --text-dim: #525d72;
+  --accent: #ff8c42;
+  --accent-glow: rgba(255, 140, 66, 0.1);
+  --accent-border: rgba(255, 140, 66, 0.25);
+  --green: #3ecf8e;
+  --green-bg: rgba(62, 207, 142, 0.08);
+  --amber: #f0b429;
+  --amber-bg: rgba(240, 180, 41, 0.08);
+  --blue: #4da6ff;
+  --blue-bg: rgba(77, 166, 255, 0.08);
+  --red: #ef6b6b;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', system-ui, sans-serif;
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+.topnav { border-bottom: 1px solid var(--border); padding: .75rem 0; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.topnav a { font-family: var(--mono); font-size: .75rem; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.topnav a:hover { color: var(--accent); }
+.topnav .back { display: flex; align-items: center; gap: .4rem; }
+.topnav .back::before { content: '←'; font-size: .85rem; }
+.topnav .nav-right { display: flex; gap: 1.25rem; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.header-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; flex-wrap: wrap; }
+.project-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #ff8c42, #ff6b1a); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; color: #fff; }
+.status-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .75rem; border-radius: 100px; font-size: .75rem; font-weight: 500; font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; background: var(--green-bg); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+.status-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.header-desc { color: var(--text-muted); font-size: .92rem; max-width: 720px; line-height: 1.65; }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.meta-item { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); }
+.meta-item span { color: var(--text-muted); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: .5; }
+.stat-label { font-size: .72rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin-bottom: .5rem; }
+.stat-value { font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.stat-sub { font-size: .78rem; color: var(--text-muted); margin-top: .2rem; }
+
+.section { margin-bottom: 2.5rem; }
+.section-header { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; }
+.section-header h2 { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+.section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+
+.arch-diagram { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; overflow-x: auto; }
+.arch-layers { display: flex; flex-direction: column; gap: .5rem; min-width: 600px; }
+.arch-layer { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; align-items: center; padding: .75rem 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-raised); }
+.arch-layer-name { font-family: var(--mono); font-size: .75rem; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+.arch-layer-content { font-size: .85rem; color: var(--text-muted); }
+.arch-layer-content code { font-family: var(--mono); font-size: .78rem; background: rgba(255, 140, 66, 0.1); color: var(--accent); padding: .1em .4em; border-radius: 3px; }
+.arch-arrow { text-align: center; color: var(--text-dim); font-size: .85rem; padding: .25rem 0; }
+
+.schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; }
+.sched-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.15rem; }
+.sched-label { font-family: var(--mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin-bottom: .3rem; }
+.sched-val { font-size: .92rem; font-weight: 500; color: var(--text); }
+.sched-note { font-size: .72rem; color: var(--text-muted); margin-top: .15rem; }
+
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 7px; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 0; }
+.timeline-dot { position: absolute; left: -1.5rem; top: 1.1rem; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); z-index: 1; }
+.timeline-item:first-child .timeline-dot { background: var(--accent); box-shadow: 0 0 8px rgba(255, 140, 66, 0.4); }
+
+details.sprint-entry { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
+details.sprint-entry[open] { border-color: var(--border-accent); }
+details.sprint-entry summary { padding: 1rem 1.25rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+details.sprint-entry summary::-webkit-details-marker { display: none; }
+details.sprint-entry summary::before { content: '▸'; color: var(--text-dim); font-size: .8rem; transition: transform .2s; flex-shrink: 0; }
+details.sprint-entry[open] summary::before { transform: rotate(90deg); }
+.sprint-date { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); min-width: 90px; }
+.sprint-title { font-size: .88rem; font-weight: 500; color: var(--text); }
+.sprint-tag { font-family: var(--mono); font-size: .68rem; padding: .15em .5em; border-radius: 4px; }
+.sprint-tag.feature { background: var(--green-bg); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+.sprint-tag.infra { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.sprint-tag.ops { background: var(--accent-glow); color: var(--accent); border: 1px solid var(--accent-border); }
+.sprint-body { padding: 0 1.25rem 1.25rem; }
+.sprint-body ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.sprint-body li { font-size: .83rem; color: var(--text-muted); line-height: 1.55; padding-left: 1.2rem; position: relative; }
+.sprint-body li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+.next-items { display: flex; flex-direction: column; gap: .75rem; }
+.next-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.next-priority { font-family: var(--mono); font-size: .7rem; font-weight: 500; padding: .2em .5em; border-radius: 4px; flex-shrink: 0; margin-top: .15rem; }
+.next-priority.p1 { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.next-priority.p2 { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.next-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+.next-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: .75rem; color: var(--text-dim); font-family: var(--mono); }
+
+@media (max-width: 640px) {
+  .container { padding: 1.25rem 1rem 3rem; }
+  h1 { font-size: 1.35rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 1.3rem; }
+  .arch-diagram { padding: 1rem; }
+  .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<nav class="topnav">
+  <a href="./" class="back">All Dashboards</a>
+  <div class="nav-right">
+    <a href="../projects/">Portfolio</a>
+    <a href="../fitness/">Fitness Brief</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-top">
+    <div class="project-icon">🤖</div>
+    <h1>Personal Assistant</h1>
+    <span class="status-badge">Active</span>
+  </div>
+  <p class="header-desc">Claude as a persistent personal and executive assistant — managing tasks via Todoist, calendar via Google Calendar, daily morning briefings via Telegram, email triage via Gmail, and smart scheduling from any device. Cloud routines run without a laptop.</p>
+  <div class="header-meta">
+    <div class="meta-item">Last session <span>2026-05-15</span></div>
+    <div class="meta-item">Sprint <span>2 (complete)</span></div>
+    <div class="meta-item">Delivery <span>Telegram Bot</span></div>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Integrations</div>
+    <div class="stat-value">4</div>
+    <div class="stat-sub">Calendar · Todoist · Gmail · Telegram</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Morning Briefing</div>
+    <div class="stat-value">7:30 AM</div>
+    <div class="stat-sub">Cloud Routine → Telegram daily</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Access Points</div>
+    <div class="stat-value">3</div>
+    <div class="stat-sub">Web · Desktop · Android app</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Email Cleanup</div>
+    <div class="stat-value">11</div>
+    <div class="stat-sub">senders unsubscribed via Gmail</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Sprints Shipped</div>
+    <div class="stat-value">3</div>
+    <div class="stat-sub">Sprint 1, Sprint 2, Email Triage</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Labels</div>
+    <div class="stat-value">3</div>
+    <div class="stat-sub">Action-Required · Receipts · Newsletters</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">⚙</div>
+    <h2>Architecture</h2>
+  </div>
+  <div class="arch-diagram">
+    <div class="arch-layers">
+      <div class="arch-layer">
+        <div class="arch-layer-name">Calendar</div>
+        <div class="arch-layer-content">Google Calendar MCP — full CRUD. Read schedule, create events, smart time suggestions, conflict detection. <code>🤖 PA:</code> prefix on managed events.</div>
+      </div>
+      <div class="arch-arrow">↕ integrated with</div>
+      <div class="arch-layer">
+        <div class="arch-layer-name">Tasks</div>
+        <div class="arch-layer-content">Todoist MCP at <code>ai.todoist.net/mcp</code> — tasks, projects, labels, priorities, reminders. Mobile quick-capture via Todoist app. Pro plan for reminder push notifications.</div>
+      </div>
+      <div class="arch-arrow">↕ triaged by</div>
+      <div class="arch-layer">
+        <div class="arch-layer-name">Email</div>
+        <div class="arch-layer-content">Gmail MCP — inbox triage, label management, mass unsubscribe via <code>List-Unsubscribe</code> headers. 3-label taxonomy: Action-Required, Receipts, Newsletters-Keep.</div>
+      </div>
+      <div class="arch-arrow">↓ delivered via</div>
+      <div class="arch-layer">
+        <div class="arch-layer-name">Delivery</div>
+        <div class="arch-layer-content">claude.ai Remote Routine (cloud-hosted, no laptop). Morning briefing at 7:30 AM → Telegram Bot API. Full network access enabled for outbound API calls.</div>
+      </div>
+      <div class="arch-arrow">↓ accessible from</div>
+      <div class="arch-layer">
+        <div class="arch-layer-name">Mobile</div>
+        <div class="arch-layer-content">claude.ai Android app — Calendar + Todoist MCPs are cloud-connected at account level. Phone is a fully capable scheduling terminal. No laptop required.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--blue-bg);color:var(--blue)">📅</div>
+    <h2>Scheduling Preferences</h2>
+  </div>
+  <div class="schedule-grid">
+    <div class="sched-card">
+      <div class="sched-label">Work Days</div>
+      <div class="sched-val">Mon–Thu only</div>
+      <div class="sched-note">Fridays off</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-label">Off-Limits</div>
+      <div class="sched-val">8 AM – 6 PM</div>
+      <div class="sched-note">Work hours (M–Th)</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-label">Workout Block</div>
+      <div class="sched-val">6 – 7:30 PM</div>
+      <div class="sched-note">Mon–Thu evenings</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-label">Pickleball</div>
+      <div class="sched-val">Fri 8 – 10:30 AM</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-label">Best Windows</div>
+      <div class="sched-val">Fri / Weekends</div>
+      <div class="sched-note">Weekday eves after 7:30 PM</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-label">Booking Rule</div>
+      <div class="sched-val">Always confirm</div>
+      <div class="sched-note">Never auto-book</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">✓</div>
+    <h2>Sprint History</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-15</span>
+          <span class="sprint-title">Email Triage + Mass Unsubscribe</span>
+          <span class="sprint-tag ops">Ops</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            <li>First-pass Gmail triage (unread + last 90 days) — identified ~30+ promotional senders</li>
+            <li>Extracted 3 action items to Todoist: Wealthfront beneficiary, Tesla Premium Connectivity, Best Buy reward certificate</li>
+            <li>Simplified label taxonomy from 5 → 3 labels (Action-Required, Receipts, Newsletters-Keep)</li>
+            <li>Mass unsubscribe via Chrome automation — 11 senders unsubscribed via native List-Unsubscribe</li>
+            <li>Confirmed Unroll.me is ineffective; replaced by Gmail's native mechanism</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-02</span>
+          <span class="sprint-title">Sprint 2 — Cloud Delivery, Scheduling, Reminders</span>
+          <span class="sprint-tag feature">Feature</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            <li>Migrated morning briefing from Cowork scheduled task → claude.ai Remote Routine (cloud-hosted, no laptop)</li>
+            <li>Set up Telegram bot, configured Bot API delivery, enabled full network access</li>
+            <li>Confirmed claude.ai Android app has full MCP access — phone is a fully capable scheduling terminal</li>
+            <li>Built Smart Scheduling Assistant — conversational, uses Calendar + Todoist MCPs</li>
+            <li>Upgraded to Todoist Pro, built Reminders feature with push notifications to Android</li>
+            <li>Built Weekly Review routine — Sunday 7 PM, pulls tasks + calendar + open loops</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-01</span>
+          <span class="sprint-title">Sprint 1 — Architecture, Integrations, Morning Briefing</span>
+          <span class="sprint-tag infra">Infra</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            <li>Confirmed Google Calendar MCP with full CRUD, connected Gmail MCP</li>
+            <li>Evaluated and rejected Google Keep, Google Tasks, gkeepapi, TickTick</li>
+            <li>Found and connected Todoist official MCP — full read/write confirmed</li>
+            <li>Built and scheduled morning briefing — daily 7:30 AM, Calendar + Todoist digest</li>
+            <li>Fixed timezone bug — now reads offset from Calendar datetime strings (travel-resilient)</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">→</div>
+    <h2>Recommended Next Work</h2>
+  </div>
+  <div class="next-items">
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Remaining Unsubscribes</div>
+        <div class="next-desc">4 senders (Samsung, Lowe's, Instacart, Google) lack List-Unsubscribe headers. Unsubscribe manually if still noisy.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Recurring Email Triage</div>
+        <div class="next-desc">Decide on Sunday 6 PM mini-triage as part of Weekly Review. Depends on Gmail MCP permissions for full automation.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Reminders Polish</div>
+        <div class="next-desc">Verify Todoist push notifications arriving on Android. Disable battery optimization for Todoist app.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Interactive Scheduling via Telegram</div>
+        <div class="next-desc">Investigate Channels for two-way Telegram → Claude scheduling from phone (future sprint).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Generated from Projects/Personal Assistant/00_Project Dashboard.md · Last updated 2026-05-22</div>
+
+</div>
+</body>
+</html>

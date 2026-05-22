@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flourish Counseling Rebuild — Project Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0a0e;
+  --surface: #13111a;
+  --surface-raised: #1a1722;
+  --border: #28223a;
+  --border-accent: #362e4e;
+  --text: #e4dff0;
+  --text-muted: #9088a8;
+  --text-dim: #5e5478;
+  --accent: #e85d75;
+  --accent-glow: rgba(232, 93, 117, 0.1);
+  --accent-border: rgba(232, 93, 117, 0.25);
+  --green: #3ecf8e;
+  --green-bg: rgba(62, 207, 142, 0.08);
+  --amber: #f0b429;
+  --amber-bg: rgba(240, 180, 41, 0.08);
+  --blue: #4da6ff;
+  --blue-bg: rgba(77, 166, 255, 0.08);
+  --red: #ef6b6b;
+  --red-bg: rgba(239, 107, 107, 0.08);
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+.topnav { border-bottom: 1px solid var(--border); padding: .75rem 0; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.topnav a { font-family: var(--mono); font-size: .75rem; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.topnav a:hover { color: var(--accent); }
+.topnav .back { display: flex; align-items: center; gap: .4rem; }
+.topnav .back::before { content: '←'; font-size: .85rem; }
+.topnav .nav-right { display: flex; gap: 1.25rem; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.header-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; flex-wrap: wrap; }
+.project-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #e85d75, #c94060); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; color: #fff; }
+.status-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .75rem; border-radius: 100px; font-size: .75rem; font-weight: 500; font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+.status-badge.blocked { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.status-badge.blocked::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.header-desc { color: var(--text-muted); font-size: .92rem; max-width: 720px; line-height: 1.65; }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.meta-item { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); }
+.meta-item span { color: var(--text-muted); }
+
+.phase-tracker { display: flex; align-items: center; gap: 0; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.phase-box { flex: 1; min-width: 180px; padding: 1.15rem 1.25rem; border: 1px solid var(--border); position: relative; }
+.phase-box:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.phase-box:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.phase-box:not(:first-child) { border-left: none; }
+.phase-box.current { background: var(--accent-glow); border-color: var(--accent-border); }
+.phase-box.current + .phase-box { border-left: 1px solid var(--border); }
+.phase-num { font-family: var(--mono); font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-dim); margin-bottom: .25rem; }
+.phase-box.current .phase-num { color: var(--accent); }
+.phase-name { font-size: .92rem; font-weight: 600; color: var(--text); }
+.phase-box.current .phase-name { color: #fff; }
+.phase-status { font-family: var(--mono); font-size: .68rem; margin-top: .3rem; }
+.phase-box.current .phase-status { color: var(--accent); }
+.phase-box:not(.current) .phase-status { color: var(--text-dim); }
+.phase-arrow { font-size: 1rem; color: var(--text-dim); padding: 0 .35rem; flex-shrink: 0; }
+
+.section { margin-bottom: 2.5rem; }
+.section-header { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; }
+.section-header h2 { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+.section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+
+.domain-table { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.domain-table table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+.domain-table th { font-family: var(--mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); padding: .75rem 1.15rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 400; }
+.domain-table td { padding: .6rem 1.15rem; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.domain-table tr:last-child td { border-bottom: none; }
+.domain-table td:first-child { color: var(--text); font-weight: 500; }
+.domain-table code { font-family: var(--mono); font-size: .78rem; background: rgba(232, 93, 117, 0.1); color: var(--accent); padding: .1em .35em; border-radius: 3px; }
+
+.evidence-timeline { display: flex; flex-direction: column; gap: .6rem; }
+.evidence-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.ev-date { font-family: var(--mono); font-size: .72rem; color: var(--text-dim); min-width: 80px; padding-top: .15rem; flex-shrink: 0; }
+.ev-content { flex: 1; }
+.ev-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+.ev-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+.ev-tag { font-family: var(--mono); font-size: .62rem; padding: .12em .45em; border-radius: 3px; margin-left: .5rem; vertical-align: middle; }
+.ev-tag.evidence { background: var(--green-bg); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+.ev-tag.action { background: var(--accent-glow); color: var(--accent); border: 1px solid var(--accent-border); }
+.ev-tag.response { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.ev-tag.reserve { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+
+.reserve-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }
+.reserve-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.15rem; }
+.reserve-num { font-family: var(--mono); font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; color: var(--amber); margin-bottom: .3rem; }
+.reserve-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .25rem; }
+.reserve-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.5; }
+
+.next-items { display: flex; flex-direction: column; gap: .75rem; }
+.next-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.next-priority { font-family: var(--mono); font-size: .7rem; font-weight: 500; padding: .2em .5em; border-radius: 4px; flex-shrink: 0; margin-top: .15rem; }
+.next-priority.p0 { background: var(--red-bg); color: var(--red); border: 1px solid rgba(239, 107, 107, 0.2); }
+.next-priority.p1 { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.next-priority.p2 { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.next-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+.next-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: .75rem; color: var(--text-dim); font-family: var(--mono); }
+
+@media (max-width: 640px) {
+  .container { padding: 1.25rem 1rem 3rem; }
+  h1 { font-size: 1.35rem; }
+  .phase-tracker { flex-direction: column; }
+  .phase-box { border-radius: var(--radius) !important; border-left: 1px solid var(--border) !important; }
+  .phase-box:not(:first-child) { margin-top: .5rem; }
+  .phase-arrow { display: none; }
+  .reserve-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<nav class="topnav">
+  <a href="./" class="back">All Dashboards</a>
+  <div class="nav-right">
+    <a href="../projects/">Portfolio</a>
+    <a href="../fitness/">Fitness Brief</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-top">
+    <div class="project-icon">🌸</div>
+    <h1>Flourish Counseling Rebuild</h1>
+    <span class="status-badge blocked">Blocked — Awaiting BV Response</span>
+  </div>
+  <p class="header-desc">Get Crissy full, independent control of her domain (<code style="font-family:var(--mono);font-size:.85rem;background:rgba(232,93,117,0.1);color:var(--accent);padding:.1em .4em;border-radius:3px;">flourishcounseling.co</code>), professional email, and a self-maintained website — completely separate from Brighter Vision. Three phases: domain recovery, email setup, site rebuild.</p>
+  <div class="header-meta">
+    <div class="meta-item">Last session <span>2026-05-15</span></div>
+    <div class="meta-item">Phase <span>1 of 3</span></div>
+    <div class="meta-item">Domain expires <span>2027-03-01</span></div>
+  </div>
+</div>
+
+<div class="phase-tracker">
+  <div class="phase-box current">
+    <div class="phase-num">Phase 1</div>
+    <div class="phase-name">Secure the Domain</div>
+    <div class="phase-status">In progress — Round 2 sent</div>
+  </div>
+  <div class="phase-box">
+    <div class="phase-num">Phase 2</div>
+    <div class="phase-name">Set Up Email</div>
+    <div class="phase-status">Needs DNS control</div>
+  </div>
+  <div class="phase-box">
+    <div class="phase-num">Phase 3</div>
+    <div class="phase-name">Rebuild Website</div>
+    <div class="phase-status">Needs email working</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">🔍</div>
+    <h2>Domain Facts on Record</h2>
+  </div>
+  <div class="domain-table">
+    <table>
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Domain</td><td><code>flourishcounseling.co</code></td></tr>
+        <tr><td>Current Registrar</td><td>GoDaddy (transferred from Tucows via BV, April 12 2026)</td></tr>
+        <tr><td>DNS</td><td>Cloudflare — <code>ARA.NS.CLOUDFLARE.COM</code> / <code>SRI.NS.CLOUDFLARE.COM</code></td></tr>
+        <tr><td>Created</td><td>March 1, 2019</td></tr>
+        <tr><td>Expires</td><td>March 1, 2027</td></tr>
+        <tr><td>WHOIS Updated</td><td>April 12, 2026</td></tr>
+        <tr><td>Registrant</td><td>Hidden behind privacy proxy</td></tr>
+        <tr><td>Lock Flags</td><td><code>clientTransferProhibited</code> + <code>serverTransferProhibited</code> (registry-level)</td></tr>
+        <tr><td>Registrar History</td><td>eNom (2019–2021) → Tucows (2021–Apr 2026) → GoDaddy (Apr 2026–)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">📋</div>
+    <h2>Evidence Timeline</h2>
+  </div>
+  <div class="evidence-timeline">
+    <div class="evidence-item">
+      <div class="ev-date">Apr 2025</div>
+      <div class="ev-content">
+        <div class="ev-title">Sarah diGiovanna (BV) admits managing domain for Crissy <span class="ev-tag evidence">Evidence</span></div>
+        <div class="ev-desc">"We manage your domain, flourishcounseling.co, for you on our end, so we would be happy to transfer it to you so you can manage it instead." Written admission of beneficial ownership.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">Aug 2025</div>
+      <div class="ev-content">
+        <div class="ev-title">BV provides EPP code, schedules cancellation <span class="ev-tag evidence">Evidence</span></div>
+        <div class="ev-desc">Alejandro Alvarez provides EPP code and states domain "scheduled for cancellation on 3/1/26." Cancellation was never executed — domain auto-renewed at Tucows on March 2, 2026.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">Mar 2 2026</div>
+      <div class="ev-content">
+        <div class="ev-title">Domain auto-renews at Tucows <span class="ev-tag evidence">Evidence</span></div>
+        <div class="ev-desc">DomainTools confirms <code>autoRenewPeriod</code> flag set by .co registry. Expiry extended to 2027-03-01. Domain was never released to the public pool.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">Apr 12 2026</div>
+      <div class="ev-content">
+        <div class="ev-title">Registrar transfer: Tucows → GoDaddy <span class="ev-tag evidence">Evidence</span></div>
+        <div class="ev-desc">DomainTools logs <code>transferPeriod</code> + <code>renewPeriod</code> flags — fingerprint of an authorized registrar transfer. Nameservers changed from BV hosting to Cloudflare. Drop-catch is impossible under the record.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">May 8</div>
+      <div class="ev-content">
+        <div class="ev-title">Round 1 email sent + GoDaddy account created <span class="ev-tag action">Action</span></div>
+        <div class="ev-desc">Follow-up email with 4 documentation questions + explicit GoDaddy account-to-account push offer (Customer 718162366). Fastest resolution path if BV cooperates.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">May 13</div>
+      <div class="ev-content">
+        <div class="ev-title">BV doubles down on drop-catch story <span class="ev-tag response">Response</span></div>
+        <div class="ev-desc">Alejandro reasserts domain expired 3/1/26 and was drop-caught. Confirms BV uses OpenSRS/Tucows (useful admission). Claims BV "does not use GoDaddy." Completely ignores account push offer.</div>
+      </div>
+    </div>
+    <div class="evidence-item">
+      <div class="ev-date">May 15</div>
+      <div class="ev-content">
+        <div class="ev-title">Round 2 sent — escalation + Tucows→GoDaddy card played <span class="ev-tag action">Action</span></div>
+        <div class="ev-desc">Plays first reserve card: public registry evidence of Tucows→GoDaddy transfer. Requests escalation past tier-1 to technical support or manager. Response window through May 22.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">🃏</div>
+    <h2>Reserve Cards (for Attorney Letter)</h2>
+  </div>
+  <div class="reserve-cards">
+    <div class="reserve-card">
+      <div class="reserve-num">Card 1 — Played in Round 2</div>
+      <div class="reserve-title">Tucows → GoDaddy Transfer</div>
+      <div class="reserve-desc">Registry record proves authorized transfer, not a drop-catch. Cited as public evidence in Round 2 email.</div>
+    </div>
+    <div class="reserve-card">
+      <div class="reserve-num">Card 2 — Held in Reserve</div>
+      <div class="reserve-title">Sarah's April 2025 Admission</div>
+      <div class="reserve-desc">Written acknowledgment that BV manages the domain for Crissy and would "be happy to transfer it." Ownership is not arguable.</div>
+    </div>
+    <div class="reserve-card">
+      <div class="reserve-num">Card 3 — Held in Reserve</div>
+      <div class="reserve-title">Billing While Disclaiming Access</div>
+      <div class="reserve-desc">Crissy paid BV through April 2026. BV now claims they "don't have access." Continued billing contradicts disclaimer.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">→</div>
+    <h2>Next Steps</h2>
+  </div>
+  <div class="next-items">
+    <div class="next-item">
+      <span class="next-priority p0">P0</span>
+      <div>
+        <div class="next-title">Watch BV Response (deadline May 22)</div>
+        <div class="next-desc">Five response patterns mapped to next steps in the triage table. If productive engagement → may resolve via GoDaddy push. If silence or deflection → attorney letter May 25.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Kevin: Pre-confirm Legal Insurance Coverage</div>
+        <div class="next-desc">Check whether legal-insurance covers a consultation/letter on Crissy's behalf. Most likely needed by week of May 25 if BV's tier-2 doesn't engage.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Crissy: Locate BV Contract + Invoices</div>
+        <div class="next-desc">Beneficial-ownership exhibits for attorney letter. Original service agreement + payment receipts documenting continuous relationship since 2019.</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">TDRP Filing (Safety Net)</div>
+        <div class="next-desc">GoDaddy Transfer Dispute Resolution Policy complaint. Domain transferred 4/12/26, filing deadline ~6 months out (~October 12, 2026). Parallel track if correspondence fails.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Generated from Projects/Flourish Counseling Rebuild/00_Project Dashboard.md · Last updated 2026-05-22</div>
+
+</div>
+</body>
+</html>
