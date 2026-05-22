@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin's Claude Projects</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #5a5a7a;
+  --accent: #6c5ce7;
+  --accent-light: #a29bfe;
+  --green: #00b894;
+  --yellow: #fdcb6e;
+  --blue: #74b9ff;
+  --orange: #e17055;
+  --border: #e8e8f0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.header .subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.stats-banner {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.stat-pill {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 18px;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: var(--shadow);
+}
+
+.stat-pill .number {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.stat-pill .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.section-badge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.badge-active { background: #e6fff8; color: #00b894; }
+.badge-backlog { background: #f0f0ff; color: #6c5ce7; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.project-card .accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.accent-green { background: var(--green); }
+.accent-yellow { background: var(--yellow); }
+.accent-blue { background: var(--blue); }
+.accent-purple { background: var(--accent); }
+.accent-orange { background: var(--orange); }
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.card-title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.status-active { background: #e6fff8; color: #00896e; }
+.status-hold { background: #e8f4fd; color: #2980b9; }
+.status-backlog { background: #f5f0ff; color: #6c5ce7; }
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.progress-section {
+  margin-bottom: 12px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.metric-chip {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: #f4f4f8;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.metric-chip strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.concept-card {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+  border-radius: 14px;
+  padding: 24px;
+  color: white;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.concept-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.concept-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.concept-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.pillar {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.wiki-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.wiki-stat {
+  text-align: center;
+  padding: 8px;
+  background: #f8f7ff;
+  border-radius: 8px;
+}
+
+.wiki-stat .ws-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.wiki-stat .ws-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tech-pill {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f0eeff;
+  color: #6c5ce7;
+  font-weight: 600;
+}
+
+.cumulative-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.cumulative-section h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.cumulative-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.cumulative-item {
+  text-align: center;
+  padding: 12px 8px;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f0eeff 100%);
+  border-radius: 10px;
+}
+
+.cumulative-item .ci-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.cumulative-item .ci-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+.cumulative-item .ci-detail {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.connects-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.connects-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.connects-card strong {
+  color: var(--text);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>What I'm Building with Claude</h1>
+  <div class="subtitle">Kevin Sun's AI project portfolio &mdash; powered by Claude &amp; Anthropic</div>
+</div>
+
+<!-- Big Picture -->
+<div class="concept-card">
+  <h3>The Big Idea</h3>
+  <p>I'm using Claude as a persistent collaborator to build systems that compound over time. Instead of one-off chats, every conversation feeds into a structured knowledge base, project tracker, and suite of AI agents that actively manage parts of my life. The AI does all the bookkeeping, cross-referencing, and maintenance that humans give up on.</p>
+  <div class="concept-pillars">
+    <span class="pillar">Personal Knowledge Base</span>
+    <span class="pillar">AI Agents</span>
+    <span class="pillar">Automated Workflows</span>
+    <span class="pillar">Persistent Memory</span>
+  </div>
+</div>
+
+<!-- Cumulative Stats -->
+<div class="cumulative-section">
+  <h3>Cumulative Activity (since April 28, 2026)</h3>
+  <div class="cumulative-grid">
+    <div class="cumulative-item">
+      <div class="ci-num">270</div>
+      <div class="ci-label">Git Commits</div>
+      <div class="ci-detail">~11/day avg</div>
+    </div>
+    <div class="cumulative-item">
+      <div class="ci-num">547</div>
+      <div class="ci-label">Sources Ingested</div>
+      <div class="ci-detail">ChatGPT, podcasts, web</div>
+    </div>
+    <div class="cumulative-item">
+      <div class="ci-num">69</div>
+      <div class="ci-label">Wiki Pages</div>
+      <div class="ci-detail">9 hubs, 53 topics</div>
+    </div>
+    <div class="cumulative-item">
+      <div class="ci-num">20+</div>
+      <div class="ci-label">Sprints Shipped</div>
+      <div class="ci-detail">across all projects</div>
+    </div>
+    <div class="cumulative-item">
+      <div class="ci-num">3</div>
+      <div class="ci-label">Live Agents</div>
+      <div class="ci-detail">daily cloud routines</div>
+    </div>
+    <div class="cumulative-item">
+      <div class="ci-num">24</div>
+      <div class="ci-label">Days Active</div>
+      <div class="ci-detail">started Apr 28</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE PROJECTS -->
+<div class="section-header">
+  <h2>Active Projects</h2>
+  <span class="section-badge badge-active">4 active</span>
+</div>
+
+<div class="card-grid">
+
+  <!-- Second Brain -->
+  <div class="project-card">
+    <div class="accent-bar accent-green"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #f0eeff;">&#129504;</div>
+      <div class="card-title-block">
+        <div class="card-title">Second Brain</div>
+        <div class="card-status status-active">&#9679; Active &mdash; Sprint 12</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      An LLM-maintained personal knowledge base in Obsidian. I feed it sources &mdash; ChatGPT exports, podcast transcripts, web clips &mdash; and Claude writes structured wiki pages with cross-references, graph integration, and semantic search. The AI does all the summarization, cross-referencing, and bookkeeping that makes a knowledge base actually useful over time.
+    </div>
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>Sprint progress</span>
+        <span>12 sprints &middot; 270 commits</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 80%; background: linear-gradient(90deg, #6c5ce7, #a29bfe);"></div>
+      </div>
+    </div>
+    <div class="wiki-stats">
+      <div class="wiki-stat"><div class="ws-num">9</div><div class="ws-label">Hubs</div></div>
+      <div class="wiki-stat"><div class="ws-num">53</div><div class="ws-label">Topics</div></div>
+      <div class="wiki-stat"><div class="ws-num">547</div><div class="ws-label">Sources</div></div>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-pill">Obsidian</span>
+      <span class="tech-pill">GitHub MCP</span>
+      <span class="tech-pill">Claude Cowork</span>
+      <span class="tech-pill">Semantic Search</span>
+      <span class="tech-pill">Dataview</span>
+      <span class="tech-pill">GitHub Actions</span>
+    </div>
+  </div>
+
+  <!-- Fitness Coach -->
+  <div class="project-card">
+    <div class="accent-bar accent-green"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #e6fff8;">&#127947;</div>
+      <div class="card-title-block">
+        <div class="card-title">Fitness Coach</div>
+        <div class="card-status status-active">&#9679; Active &mdash; Sprint 8</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      An adaptive personal fitness coach for a weight cut. Pulls daily biometrics from Garmin Connect via GitHub Actions, reasons over recovery state and training load, auto-adjusts workouts within a whitelist, and delivers a polished dark-mode brief card to Telegram every morning. Evening adherence check verifies the workout happened. Public dashboard at GitHub Pages.
+    </div>
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>Pipeline maturity</span>
+        <span>8 sprints &middot; fully autonomous</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 70%; background: linear-gradient(90deg, #00b894, #55efc4);"></div>
+      </div>
+    </div>
+    <div class="metric-row">
+      <span class="metric-chip"><strong>2</strong> daily cloud routines</span>
+      <span class="metric-chip"><strong>8:30 AM</strong> morning brief</span>
+      <span class="metric-chip"><strong>9:30 PM</strong> adherence check</span>
+      <span class="metric-chip">&#127760; <a href="https://niveknus.github.io/fitness/" style="color: inherit; text-decoration: none;">Public dashboard</a></span>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-pill">Garmin API</span>
+      <span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">Telegram Bot</span>
+      <span class="tech-pill">Claude Routines</span>
+      <span class="tech-pill">Playwright</span>
+      <span class="tech-pill">GitHub Pages</span>
+      <span class="tech-pill">DigitalOcean Proxy</span>
+    </div>
+  </div>
+
+  <!-- Personal Assistant -->
+  <div class="project-card">
+    <div class="accent-bar accent-green"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #fff8e6;">&#129302;</div>
+      <div class="card-title-block">
+        <div class="card-title">Personal Assistant</div>
+        <div class="card-status status-active">&#9679; Active &mdash; Sprint 2 complete</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      Claude as a persistent personal assistant managing tasks, calendar, and daily briefings. Connected to Todoist, Google Calendar, and Gmail. Morning briefing runs as a cloud routine and delivers to Telegram &mdash; no laptop required. Works from the Claude mobile app on Android for on-the-go scheduling. Recently added email triage and mass unsubscribe automation.
+    </div>
+    <div class="metric-row">
+      <span class="metric-chip"><strong>7:30 AM</strong> daily briefing</span>
+      <span class="metric-chip">&#128241; Mobile-first</span>
+      <span class="metric-chip"><strong>3</strong> MCP integrations</span>
+      <span class="metric-chip">Cloud-hosted</span>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-pill">Todoist MCP</span>
+      <span class="tech-pill">Google Calendar MCP</span>
+      <span class="tech-pill">Gmail MCP</span>
+      <span class="tech-pill">Telegram Bot</span>
+      <span class="tech-pill">Claude Routines</span>
+    </div>
+  </div>
+
+  <!-- Home Server -->
+  <div class="project-card">
+    <div class="accent-bar accent-orange"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #fff3e6;">&#128421;</div>
+      <div class="card-title-block">
+        <div class="card-title">Home Server</div>
+        <div class="card-status status-active">&#9679; Active &mdash; hardware arriving May 26</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      Mac Mini M4 as an always-on Claude infrastructure node &mdash; local Cowork sessions, Claude Code, MCP servers, scheduled agents, and remote access. Replaces cloud workarounds with a dedicated local machine. Snagged a $599 discontinued SKU before Apple pulled it from stores entirely.
+    </div>
+    <div class="metric-row">
+      <span class="metric-chip"><strong>$599</strong> Mac Mini M4</span>
+      <span class="metric-chip">16 GB / 256 GB</span>
+      <span class="metric-chip">Always-on compute</span>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-pill">Mac Mini M4</span>
+      <span class="tech-pill">Claude Code</span>
+      <span class="tech-pill">MCP Servers</span>
+      <span class="tech-pill">Remote Access</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- BACKLOG -->
+<div class="section-header">
+  <h2>Backlog</h2>
+  <span class="section-badge badge-backlog">3 queued</span>
+</div>
+
+<div class="card-grid">
+
+  <!-- Work Brain -->
+  <div class="project-card">
+    <div class="accent-bar accent-blue"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #e8f4fd;">&#128188;</div>
+      <div class="card-title-block">
+        <div class="card-title">Work Brain</div>
+        <div class="card-status status-hold">&#9679; On Hold</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      A work-focused knowledge base using the same LLM-wiki pattern, scoped to engineering projects, SAP/automation tooling, org context, and process docs. Vault template built and ready to deploy.
+    </div>
+  </div>
+
+  <!-- Life Coach -->
+  <div class="project-card">
+    <div class="accent-bar accent-purple"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #f5f0ff;">&#127919;</div>
+      <div class="card-title-block">
+        <div class="card-title">Life Coach</div>
+        <div class="card-status status-backlog">&#9679; Backlog</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      Annual goal setting, tracking, and accountability across all life areas. Claude as a guide that reviews progress, surfaces stalling goals, asks hard questions, and connects goals to the wiki where the real knowledge lives.
+    </div>
+  </div>
+
+  <!-- Career Coach -->
+  <div class="project-card">
+    <div class="accent-bar accent-purple"></div>
+    <div class="card-top">
+      <div class="card-icon" style="background: #f5f0ff;">&#128188;</div>
+      <div class="card-title-block">
+        <div class="card-title">Career Coach</div>
+        <div class="card-status status-backlog">&#9679; Backlog</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      A readiness system for career assets &mdash; resume, LinkedIn profile, career narrative, and interview prep bank. Not a job search; a system that stays maintained so you're never scrambling to update a stale resume.
+    </div>
+  </div>
+
+</div>
+
+<!-- How It All Connects -->
+<div class="section-header">
+  <h2>How It All Connects</h2>
+</div>
+
+<div class="connects-card">
+  <p>
+    <strong>The Second Brain is the backbone.</strong> Every project has a wiki page that cross-links to other topics. The Fitness Coach reads biometric data and writes to the wiki. The Personal Assistant manages tasks and calendar. The Life Coach will track goals that span across projects. The Home Server will host it all locally.
+  </p>
+  <br>
+  <p>
+    <strong>Claude remembers everything between sessions</strong> because the wiki and project files <em>are</em> the memory. No chat history needed &mdash; Claude reads the project dashboard, picks up where it left off, and updates everything when done. It's a system that gets smarter the more you use it.
+  </p>
+</div>
+
+<div class="footer">
+  Built with Claude (Anthropic) &bull; Obsidian &bull; GitHub &bull; Updated May 2026<br>
+  <a href="https://niveknus.github.io/fitness/" style="color: var(--accent); text-decoration: none;">Fitness Dashboard</a>
+</div>
+
+</body>
+</html>
