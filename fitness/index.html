@@ -184,6 +184,243 @@ body {
   padding-top: 12px;
   border-top: 1px solid #e5e7eb;
 }
+
+/* ── Adherence strip ───────────────────────────────────────────── */
+.adherence-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+.adherence-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.adherence-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.adherence-rate {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.adherence-dots {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.adherence-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: default;
+  transition: transform 0.1s;
+}
+.adherence-dot:hover { transform: scale(1.25); }
+.adherence-dot-empty {
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+}
+.adherence-legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.adherence-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #6b7280;
+}
+.adherence-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Coaching context card ─────────────────────────────────────── */
+.coaching-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.coaching-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.coaching-card-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.recovery-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.recovery-good  { background: #d1fae5; color: #065f46; }
+.recovery-watch { background: #fef3c7; color: #92400e; }
+.recovery-low   { background: #fee2e2; color: #991b1b; }
+.coaching-session {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 2px;
+}
+.coaching-time {
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+.adjustment-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  margin-bottom: 6px;
+}
+.coaching-why {
+  font-size: 12px;
+  color: #4b5563;
+  font-style: italic;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.week-strip {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.week-day {
+  flex: 1;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px 2px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+.week-day .wd-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  display: block;
+}
+.week-day .wd-emoji {
+  font-size: 14px;
+  display: block;
+  margin: 2px 0;
+}
+.week-day.today {
+  background: #ea580c;
+  border-color: #ea580c;
+}
+.week-day.today .wd-label { color: rgba(255,255,255,0.85); }
+.targets-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.target-item {
+  flex: 1;
+  min-width: 58px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+}
+.target-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  display: block;
+}
+.target-lbl {
+  font-size: 9px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: block;
+}
+
+/* ── ACWR zone bar ───────────────────────────────────────────────── */
+.acwr-section {
+  margin-top: 16px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 12px;
+}
+.acwr-bar-track {
+  position: relative;
+  height: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+}
+.acwr-zone-seg { height: 100%; }
+.acwr-needle {
+  position: absolute;
+  top: -3px;
+  height: calc(100% + 6px);
+  width: 3px;
+  background: #1a1a2e;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: left 0.4s;
+}
+.acwr-zone-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #9ca3af;
+  margin-top: 3px;
+  padding: 0 1px;
+}
+.acwr-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.acwr-stat-item { text-align: center; }
+.acwr-stat-val { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+.acwr-stat-lbl { font-size: 9px; font-weight: 600; color: #9ca3af; text-transform: uppercase; }
+
+/* ── HR zone bars in workout items ──────────────────────────────── */
+.workout-zones-bar {
+  display: flex;
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.wz-seg { height: 100%; }
 </style>
 </head>
 <body>
@@ -202,6 +439,32 @@ body {
   </div>
 
   <div id="error-area"></div>
+
+  <!-- Coaching context card — populated from data/latest-brief-context.json -->
+  <div id="coaching-card" class="coaching-card" style="display:none;">
+    <div class="coaching-card-header">
+      <span class="coaching-card-title">Today's Plan</span>
+      <span class="recovery-pill" id="ctx-recovery-pill">—</span>
+    </div>
+    <div class="coaching-session" id="ctx-session">—</div>
+    <div class="coaching-time" id="ctx-time"></div>
+    <div id="ctx-adjustment-wrap" style="display:none;">
+      <span class="adjustment-pill" id="ctx-adjustment"></span>
+    </div>
+    <div class="coaching-why" id="ctx-why"></div>
+    <div class="week-strip" id="ctx-week-strip"></div>
+    <div class="targets-row" id="ctx-targets"></div>
+  </div>
+
+  <!-- Adherence strip — populated from data/adherence-summary.json -->
+  <div id="adherence-strip-wrap" class="adherence-card" style="display:none;">
+    <div class="adherence-header">
+      <span class="adherence-title">14-Day Adherence</span>
+      <span class="adherence-rate" id="adherence-rate">—</span>
+    </div>
+    <div class="adherence-dots" id="adherence-dots"></div>
+    <div class="adherence-legend" id="adherence-legend"></div>
+  </div>
 
   <div class="cut-banner">
     <div class="cut-stat">
@@ -261,6 +524,11 @@ body {
       <div class="value" id="kpi-vo2">--</div>
       <div class="sub">ml/kg/min</div>
     </div>
+    <div class="kpi-card">
+      <div class="label">Training Status</div>
+      <div class="value" id="kpi-ts" style="font-size:17px;line-height:1.3;">--</div>
+      <div class="badge" id="kpi-ts-badge" style="margin-top:3px;">--</div>
+    </div>
   </div>
 
   <div class="chart-grid">
@@ -270,6 +538,7 @@ body {
     </div>
     <div class="chart-card">
       <h3>Weight trend</h3>
+      <div id="weight-prediction-note" style="display:none; font-size:11px; color:#6b7280; margin-bottom:6px;"></div>
       <div style="position:relative;height:200px;"><canvas id="chart-weight"></canvas></div>
     </div>
   </div>
@@ -278,6 +547,27 @@ body {
     <div class="chart-card">
       <h3>Training load</h3>
       <div style="position:relative;height:160px;"><canvas id="chart-load"></canvas></div>
+
+      <!-- ACWR zone bar — Sprint 9, populated from training_load.acwr -->
+      <div id="acwr-section" class="acwr-section" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:0.3px;">ACWR</span>
+          <span id="acwr-status-pill" class="badge">--</span>
+        </div>
+        <div class="acwr-bar-track">
+          <!-- zones: 0–0.8 Low (40%), 0.8–1.3 Optimal (25%), 1.3–1.5 Caution (10%), 1.5–2.0 Danger (25%) -->
+          <div class="acwr-zone-seg" style="width:40%;background:#bfdbfe;"></div>
+          <div class="acwr-zone-seg" style="width:25%;background:#bbf7d0;"></div>
+          <div class="acwr-zone-seg" style="width:10%;background:#fde68a;"></div>
+          <div class="acwr-zone-seg" style="width:25%;background:#fecaca;"></div>
+          <div class="acwr-needle" id="acwr-needle" style="left:0%;"></div>
+        </div>
+        <div class="acwr-zone-labels">
+          <span>0</span><span>0.8</span><span style="margin-left:8px;">1.3</span><span>1.5</span><span>2.0</span>
+        </div>
+        <div class="acwr-stats" id="acwr-stats"></div>
+      </div>
+
       <h3 style="margin-top:14px;">Recent workouts</h3>
       <ul class="workout-list" id="workout-list"></ul>
     </div>
@@ -306,9 +596,36 @@ body {
 </div>
 
 <script>
-const DIGEST_URL = 'latest-digest.json';
+const DIGEST_URL       = 'data/latest-digest.json';
+const CONTEXT_URL      = 'data/latest-brief-context.json';
+const WEIGHT_HIST_URL  = 'data/weight-history.json';
+const ADHERENCE_URL    = 'data/adherence-summary.json';
 const START_WEIGHT = 200;
 const GOAL_WEIGHT = 165;
+
+// ── Adherence state metadata ─────────────────────────────────────────────────
+const ADHERENCE_COLORS = {
+  'done-as-prescribed': '#059669',
+  'done-modified':      '#10b981',
+  'partial':            '#f59e0b',
+  'replaced':           '#3b82f6',
+  'skipped':            '#dc2626',
+  'rest-adhered':       '#9ca3af',
+  'rest-with-activity': '#d97706',
+};
+const ADHERENCE_LABELS = {
+  'done-as-prescribed': '✅ Done',
+  'done-modified':      '🟢 Extended',
+  'partial':            '🟡 Partial',
+  'replaced':           '🔄 Replaced',
+  'skipped':            '🔴 Skipped',
+  'rest-adhered':       '🧘 Rest',
+  'rest-with-activity': '⚠️ Rest + activity',
+};
+// States counting as workout days (not pure rest)
+const WORKOUT_STATES = new Set(['done-as-prescribed','done-modified','partial','replaced','skipped']);
+// States counting as "completed in some form"
+const DONE_STATES    = new Set(['done-as-prescribed','done-modified','partial','replaced']);
 
 function fmt(n, d=0) { return n != null ? Number(n).toFixed(d) : '--'; }
 function shortDate(s) {
@@ -336,6 +653,495 @@ async function fetchDigest() {
   return resp.json();
 }
 
+async function fetchContext() {
+  try {
+    const resp = await fetch(CONTEXT_URL);
+    if (!resp.ok) return null;  // 404 = not yet published; degrade gracefully
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchWeightHistory() {
+  try {
+    const resp = await fetch(WEIGHT_HIST_URL);
+    if (!resp.ok) return null;
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchAdherence() {
+  try {
+    const resp = await fetch(ADHERENCE_URL);
+    if (!resp.ok) return null;
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Render the 14-day adherence dot strip.
+ *
+ * Each dot represents one calendar day ending today. Color encodes the
+ * workout outcome; hollow dots fill days with no log entry. Adherence rate
+ * is computed over workout days only (excludes rest days).
+ */
+function buildAdherenceStrip(summary) {
+  if (!summary || !summary.entries || summary.entries.length === 0) return;
+
+  // Index entries by date string
+  const byDate = {};
+  summary.entries.forEach(e => { byDate[e.date] = e; });
+
+  // Build 14-day window: [today-13 .. today]
+  const todayDate = new Date();
+  todayDate.setHours(0, 0, 0, 0);
+  const window14 = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(todayDate);
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toISOString().slice(0, 10);
+    window14.push({ dateStr, entry: byDate[dateStr] || null });
+  }
+
+  // Adherence rate over workout days in the window
+  const windowEntries = window14.filter(d => d.entry).map(d => d.entry);
+  const workoutDays = windowEntries.filter(e => WORKOUT_STATES.has(e.state));
+  const doneDays    = windowEntries.filter(e => DONE_STATES.has(e.state));
+  const rate        = workoutDays.length > 0
+    ? Math.round((doneDays.length / workoutDays.length) * 100) : null;
+
+  // Rate badge
+  const rateEl = document.getElementById('adherence-rate');
+  if (rate !== null) {
+    rateEl.textContent = `${rate}% (${doneDays.length}/${workoutDays.length} workout days)`;
+    rateEl.style.color = rate >= 80 ? '#059669' : rate >= 60 ? '#d97706' : '#dc2626';
+  } else {
+    rateEl.textContent = 'No workout data yet';
+    rateEl.style.color = '#9ca3af';
+  }
+
+  // Dots
+  const dotsEl = document.getElementById('adherence-dots');
+  dotsEl.innerHTML = '';
+  window14.forEach(({ dateStr, entry }) => {
+    const dot = document.createElement('div');
+
+    if (entry) {
+      dot.className = 'adherence-dot';
+      dot.style.background = ADHERENCE_COLORS[entry.state] || '#e5e7eb';
+
+      // Tooltip: date + state + prescribed + actual + note
+      const dLabel = new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US',
+        { weekday: 'short', month: 'short', day: 'numeric' });
+      let tip = `${dLabel}\n${ADHERENCE_LABELS[entry.state] || entry.state}`;
+      if (entry.prescribed) tip += `\nPrescribed: ${entry.prescribed}`;
+      if (entry.actual)     tip += `\nActual: ${entry.actual}`;
+      if (entry.note)       tip += `\n⚠ ${entry.note}`;
+      dot.title = tip;
+
+      // Dim dots flagged as data-gap so Kevin knows not to trust them
+      if (entry.note && entry.note.includes('data gap')) {
+        dot.style.opacity = '0.45';
+      }
+    } else {
+      dot.className = 'adherence-dot adherence-dot-empty';
+      dot.title = `${dateStr} — no entry`;
+    }
+
+    dotsEl.appendChild(dot);
+  });
+
+  // Compact legend — only show states that appear in the window
+  const seenStates = new Set(windowEntries.map(e => e.state));
+  const legendEl = document.getElementById('adherence-legend');
+  legendEl.innerHTML = '';
+  Object.entries(ADHERENCE_COLORS).forEach(([state, color]) => {
+    if (!seenStates.has(state)) return;
+    const item = document.createElement('div');
+    item.className = 'adherence-legend-item';
+    item.innerHTML =
+      `<div class="adherence-legend-dot" style="background:${color}"></div>` +
+      `<span>${ADHERENCE_LABELS[state] || state}</span>`;
+    legendEl.appendChild(item);
+  });
+
+  document.getElementById('adherence-strip-wrap').style.display = 'block';
+}
+
+/**
+ * Build (or rebuild) the weight + body-comp charts using the cumulative
+ * weight history when available, falling back to bc.trend_30d otherwise.
+ *
+ * Called twice: once immediately with weightHistory=null (renders a quick
+ * 30-day chart from the digest), then again when the history file loads
+ * (replaces with the full arc + prediction line).
+ */
+function buildWeightChart(bc, weightHistory) {
+  // ── Choose data source ──────────────────────────────────────────────
+  let entries = [];
+  let startWeightLbs = START_WEIGHT;
+
+  if (weightHistory && weightHistory.entries && weightHistory.entries.length > 1) {
+    entries = [...weightHistory.entries].sort((a, b) => a.date.localeCompare(b.date));
+    startWeightLbs = weightHistory.start_weight_lbs || START_WEIGHT;
+  } else if (bc && bc.trend_30d && bc.trend_30d.length > 0) {
+    entries = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
+  }
+  if (entries.length === 0) return;
+
+  const weights = entries.map(e => e.weight_lbs);
+  const currentWeight = weights[weights.length - 1];
+
+  // ── Prediction math ─────────────────────────────────────────────────
+  // Use up to 14 entries from the trailing window; need ≥2 entries
+  let predInfo = null;
+  if (entries.length >= 2) {
+    const window = entries.slice(-Math.min(14, entries.length));
+    const t0 = new Date(window[0].date + 'T00:00:00');
+    const t1 = new Date(window[window.length - 1].date + 'T00:00:00');
+    const daysDiff = (t1 - t0) / 86400000;
+    if (daysDiff > 0) {
+      const ratePerDay = (window[window.length - 1].weight_lbs - window[0].weight_lbs) / daysDiff;
+      if (ratePerDay < 0) {
+        const daysToGoal = Math.ceil((currentWeight - GOAL_WEIGHT) / Math.abs(ratePerDay));
+        const goalDate = new Date(t1);
+        goalDate.setDate(goalDate.getDate() + daysToGoal);
+        predInfo = { ratePerDay, daysToGoal, goalDate };
+      }
+    }
+  }
+
+  // ── Build label + data arrays ────────────────────────────────────────
+  const histLabels = entries.map(e => shortDate(e.date));
+  let allLabels = [...histLabels];
+  let histData  = [...weights];
+  let predData  = new Array(weights.length).fill(null);
+  let goalData  = new Array(weights.length).fill(GOAL_WEIGHT);
+
+  if (predInfo) {
+    // Prediction line: starts at the last actual value, ends at GOAL_WEIGHT
+    predData[predData.length - 1] = currentWeight;
+    const goalDateStr = shortDate(predInfo.goalDate.toISOString().slice(0, 10));
+    allLabels.push(goalDateStr);
+    histData.push(null);
+    predData.push(GOAL_WEIGHT);
+    goalData.push(GOAL_WEIGHT);
+  }
+
+  // ── Destroy any existing chart on this canvas ───────────────────────
+  const canvas = document.getElementById('chart-weight');
+  if (canvas._chartInstance) { canvas._chartInstance.destroy(); }
+
+  const minW = Math.min(GOAL_WEIGHT - 2, ...weights.filter(Boolean)) - 1;
+  const maxW = Math.max(startWeightLbs + 1, ...weights.filter(Boolean)) + 1;
+
+  const pointRadius = entries.length <= 30 ? 4 : entries.length <= 90 ? 2 : 0;
+
+  canvas._chartInstance = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: allLabels,
+      datasets: [
+        {
+          label: 'Weight (lbs)',
+          data: histData,
+          borderColor: '#ea580c',
+          backgroundColor: '#ea580c10',
+          tension: 0.2,
+          fill: true,
+          pointRadius,
+          pointBackgroundColor: '#ea580c',
+          spanGaps: false,
+        },
+        {
+          label: 'Prediction',
+          data: predData,
+          borderColor: '#ea580c',
+          borderWidth: 1.5,
+          borderDash: [8, 5],
+          pointRadius: 3,
+          pointBackgroundColor: '#ea580c',
+          backgroundColor: 'transparent',
+          fill: false,
+          tension: 0,
+          spanGaps: true,
+        },
+        {
+          label: 'Goal (165)',
+          data: goalData,
+          borderColor: '#9ca3af',
+          borderDash: [6, 4],
+          borderWidth: 1,
+          pointRadius: 0,
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } },
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: { size: 9 },
+            maxTicksLimit: allLabels.length <= 14 ? allLabels.length : 10,
+            maxRotation: 45,
+          },
+        },
+        y: {
+          title: { display: true, text: 'lbs', font: { size: 10 } },
+          grid: { color: '#f3f4f6' },
+          suggestedMin: minW,
+          suggestedMax: maxW,
+        },
+      },
+    },
+  });
+
+  // ── Prediction note label ────────────────────────────────────────────
+  const noteEl = document.getElementById('weight-prediction-note');
+  if (predInfo && noteEl) {
+    const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+    const goalStr = predInfo.goalDate.toLocaleDateString('en-US', opts);
+    const lbPerWk = (Math.abs(predInfo.ratePerDay) * 7).toFixed(1);
+    noteEl.textContent = `At ${lbPerWk} lb/wk → goal est. ${goalStr} (${predInfo.daysToGoal} days)`;
+    noteEl.style.display = 'block';
+  } else if (noteEl) {
+    noteEl.style.display = 'none';
+  }
+}
+
+/**
+ * Build (or rebuild) the body-comp chart using the best available data.
+ * Uses weight history entries (which include body_fat_pct + muscle_mass_lbs
+ * from the Withings scale) when available, falling back to bc.trend_30d.
+ */
+function buildBodyCompChart(bc, weightHistory) {
+  let entries = [];
+  if (weightHistory && weightHistory.entries && weightHistory.entries.length > 1) {
+    // Filter to entries that actually have body comp data (scale weigh-ins)
+    const rich = weightHistory.entries.filter(e => e.body_fat_pct != null || e.muscle_mass_lbs != null);
+    if (rich.length > 0) {
+      entries = [...rich].sort((a, b) => a.date.localeCompare(b.date));
+    }
+  }
+  if (entries.length === 0 && bc && bc.trend_30d) {
+    entries = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
+  }
+  if (entries.length === 0) return;
+
+  const canvas = document.getElementById('chart-bodycomp');
+  if (canvas._chartInstance) { canvas._chartInstance.destroy(); }
+
+  const pointRadius = entries.length <= 30 ? 4 : entries.length <= 90 ? 2 : 0;
+
+  canvas._chartInstance = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: entries.map(e => shortDate(e.date)),
+      datasets: [
+        {
+          label: 'Body Fat %',
+          data: entries.map(e => e.body_fat_pct),
+          borderColor: '#dc2626',
+          backgroundColor: '#dc262610',
+          tension: 0.3,
+          fill: true,
+          yAxisID: 'y',
+          pointRadius,
+          pointBackgroundColor: '#dc2626',
+        },
+        {
+          label: 'Muscle (lbs)',
+          data: entries.map(e => e.muscle_mass_lbs),
+          borderColor: '#2563eb',
+          tension: 0.3,
+          fill: false,
+          yAxisID: 'y2',
+          pointRadius,
+          pointBackgroundColor: '#2563eb',
+        },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } },
+      },
+      scales: {
+        x: { ticks: { font: { size: 9 }, maxTicksLimit: 10, maxRotation: 45 } },
+        y:  { position: 'left',  title: { display: true, text: 'Fat %',      font: { size: 10 } }, grid: { color: '#f3f4f6' } },
+        y2: { position: 'right', title: { display: true, text: 'Muscle lbs', font: { size: 10 } }, grid: { display: false } },
+      },
+    },
+  });
+}
+
+function typeEmoji(type) {
+  const t = (type || '').toLowerCase();
+  if (t.includes('rest'))     return '😴';
+  if (t.includes('recovery')) return '💤';
+  if (t.includes('yoga'))     return '🧘';
+  if (t.includes('pickleball') || t.includes('tennis')) return '🎾';
+  if (t.includes('cardio') || t.includes('run'))   return '🏃';
+  if (t.includes('walk'))     return '🚶';
+  if (t.includes('hiit'))     return '🔥';
+  if (t.includes('split') || t.includes('strength') || t.includes('gym')) return '💪';
+  return '📋';
+}
+
+function populateCoachingCard(ctx) {
+  if (!ctx) return;
+  const card = document.getElementById('coaching-card');
+  card.style.display = 'block';
+
+  // Recovery pill
+  const status = (ctx.recovery_status || 'good').toLowerCase();
+  const pill = document.getElementById('ctx-recovery-pill');
+  pill.textContent = status.toUpperCase();
+  pill.className = 'recovery-pill recovery-' + status;
+
+  // Session + time
+  const t = ctx.today || {};
+  document.getElementById('ctx-session').textContent = t.session || '—';
+  document.getElementById('ctx-time').textContent = t.time || '';
+
+  // Adjustment pill (only when adjusted)
+  if (t.adjustment_status && t.adjustment_status !== 'none') {
+    document.getElementById('ctx-adjustment-wrap').style.display = '';
+    document.getElementById('ctx-adjustment').textContent = '⚡ ' + (t.adjustment_label || 'Adjusted');
+  }
+
+  // Why / coaching rationale
+  document.getElementById('ctx-why').textContent = t.why || '';
+
+  // Week strip
+  const strip = document.getElementById('ctx-week-strip');
+  strip.innerHTML = '';
+  const wp = ctx.week_plan || {};
+  const days = wp.days || [];
+  const monDate = wp.monday_date;  // "YYYY-MM-DD"
+  const todayMidnight = new Date();
+  todayMidnight.setHours(0, 0, 0, 0);
+  days.forEach((d, i) => {
+    const div = document.createElement('div');
+    div.className = 'week-day';
+    if (monDate) {
+      const dayDate = new Date(monDate + 'T00:00:00');
+      dayDate.setDate(dayDate.getDate() + i);
+      if (dayDate.getTime() === todayMidnight.getTime()) div.classList.add('today');
+    }
+    div.innerHTML =
+      '<span class="wd-label">' + (d.label || '') + '</span>' +
+      '<span class="wd-emoji">' + typeEmoji(d.type) + '</span>';
+    strip.appendChild(div);
+  });
+
+  // Targets row
+  const tgtsEl = document.getElementById('ctx-targets');
+  tgtsEl.innerHTML = '';
+  const targets = ctx.targets || {};
+  const defs = [
+    { key: 'steps',    label: 'Steps',    fmt: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : String(v) },
+    { key: 'protein',  label: 'Protein',  fmt: v => v + 'g'   },
+    { key: 'calories', label: 'Calories', fmt: v => v >= 1000 ? (v / 1000).toFixed(1) + 'k' : String(v) },
+    { key: 'water',    label: 'Water',    fmt: v => v + 'oz'  },
+  ];
+  defs.forEach(({ key, label, fmt }) => {
+    if (targets[key] == null) return;
+    const el = document.createElement('div');
+    el.className = 'target-item';
+    el.innerHTML =
+      '<span class="target-val">' + fmt(targets[key]) + '</span>' +
+      '<span class="target-lbl">' + label + '</span>';
+    tgtsEl.appendChild(el);
+  });
+}
+
+/**
+ * Sprint 9: populate ACWR zone bar and Training Status KPI.
+ *
+ * ACWR zones (ratio scale 0–2.0, bar width proportions):
+ *   <0.80  Low / detraining risk  — blue bar   (40% of bar)
+ *   0.8–1.3 Optimal              — green bar   (25%)
+ *   1.3–1.5 Caution              — amber bar   (10%)
+ *   >1.5   High risk             — red bar     (25%)
+ *
+ * Needle position = (ratio / 2.0) * 100%.
+ */
+function buildACWRCard(tl) {
+  const acwr = tl && tl.acwr;
+  const ts   = tl && tl.training_status;
+
+  // Training Status KPI
+  if (ts && ts.training_status_label && ts.training_status_label !== 'NO_DATA') {
+    // Humanise phrase: "MAINTAINING_1" → "Maintaining", "RECOVERY_1" → "Recovery"
+    const rawPhrase = ts.training_status_phrase || ts.training_status_label || '';
+    const humanLabel = rawPhrase
+      .replace(/_\d+$/, '')           // strip trailing _1, _2 …
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(' ');
+
+    const STATUS_BG = {
+      PRODUCTIVE:   'bg-green',
+      PEAKING:      'bg-green',
+      MAINTAINING:  'bg-yellow',
+      RECOVERY:     'bg-yellow',
+      DETRAINING:   'bg-red',
+      OVERREACHING: 'bg-red',
+    };
+    document.getElementById('kpi-ts').textContent = humanLabel;
+    const tsBadge = document.getElementById('kpi-ts-badge');
+    tsBadge.textContent = ts.training_status_label;
+    tsBadge.className = 'badge ' + (STATUS_BG[ts.training_status_label] || 'bg-yellow');
+  }
+
+  if (!acwr || acwr.acwr_ratio == null) return;
+
+  const MAX_RATIO = 2.0;
+  const ratio = acwr.acwr_ratio;
+  const needlePct = Math.min(Math.max(ratio / MAX_RATIO * 100, 0), 100);
+
+  // Needle
+  document.getElementById('acwr-needle').style.left = needlePct + '%';
+
+  // Status pill
+  const pill = document.getElementById('acwr-status-pill');
+  const statusText = acwr.acwr_status || (ratio < 0.8 ? 'LOW' : ratio <= 1.3 ? 'OPTIMAL' : ratio <= 1.5 ? 'CAUTION' : 'HIGH');
+  pill.textContent = statusText;
+  pill.className = 'badge ' + (
+    ratio < 0.8  ? 'bg-yellow' :
+    ratio <= 1.3 ? 'bg-green'  :
+    ratio <= 1.5 ? 'bg-yellow' : 'bg-red'
+  );
+
+  // Stats row
+  const statsEl = document.getElementById('acwr-stats');
+  const items = [
+    { val: fmt(ratio, 2),                                                   lbl: 'ACWR Ratio' },
+    { val: acwr.acute_load   != null ? Math.round(acwr.acute_load)   : '--', lbl: 'Acute Load'  },
+    { val: acwr.chronic_load != null ? Math.round(acwr.chronic_load) : '--', lbl: 'Chronic Load' },
+  ];
+  statsEl.innerHTML = items.map(s =>
+    `<div class="acwr-stat-item">` +
+      `<div class="acwr-stat-val">${s.val}</div>` +
+      `<div class="acwr-stat-lbl">${s.lbl}</div>` +
+    `</div>`
+  ).join('');
+
+  document.getElementById('acwr-section').style.display = 'block';
+}
+
 async function render() {
   let digest;
   try {
@@ -350,6 +1156,12 @@ async function render() {
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
+
+  // Coaching context card — non-blocking; card stays hidden if context not yet published
+  fetchContext().then(ctx => populateCoachingCard(ctx));
+
+  // Adherence strip — non-blocking; strip stays hidden if file not yet published
+  fetchAdherence().then(summary => buildAdherenceStrip(summary));
 
   const ln = digest.last_night;
   const r7 = digest.rolling_7d;
@@ -417,6 +1229,9 @@ async function render() {
 
   document.getElementById('kpi-vo2').textContent = fmt(ln.training_status.vo2_max, 1);
 
+  // Sprint 9: ACWR zone bar + training status KPI
+  buildACWRCard(tl);
+
   // Chart: 7-Day Recovery
   const days = r7.daily_signals;
   const labels7 = days.map(d => dayLabel(d.date));
@@ -441,29 +1256,8 @@ async function render() {
     }
   });
 
-  // Chart: Weight
-  if (bc && bc.trend_30d && bc.trend_30d.length > 0) {
-    const wt = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
-    new Chart(document.getElementById('chart-weight'), {
-      type: 'line',
-      data: {
-        labels: wt.map(d => shortDate(d.date)),
-        datasets: [
-          { label: 'Weight', data: wt.map(d => d.weight_lbs), borderColor: '#ea580c', backgroundColor: '#ea580c15', tension: 0.3, fill: true, pointRadius: 4, pointBackgroundColor: '#ea580c' },
-          { label: 'Goal', data: wt.map(() => GOAL_WEIGHT), borderColor: '#9ca3af', borderDash: [6, 4], pointRadius: 0, fill: false }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } },
-        scales: {
-          y: { title: { display: true, text: 'lbs', font: { size: 10 } }, grid: { color: '#f3f4f6' },
-            suggestedMin: Math.min(GOAL_WEIGHT - 2, Math.min(...wt.map(d => d.weight_lbs)) - 2),
-            suggestedMax: Math.max(...wt.map(d => d.weight_lbs)) + 2 }
-        }
-      }
-    });
-  }
+  // Chart: Weight — initial render from digest (30d)
+  buildWeightChart(bc, null);
 
   // Chart: Training Load
   const thisW = tl.this_iso_week;
@@ -481,14 +1275,48 @@ async function render() {
     }
   });
 
-  // Workout list
+  // Workout list — Sprint 9: HR zone bars + body battery cost
+  // Zone color palette: Z1 Recovery (sky), Z2 Aerobic (green), Z3 Tempo (yellow), Z4 Threshold (orange), Z5 VO2max (red)
+  const HR_ZONE_COLORS = ['#93c5fd', '#86efac', '#fde047', '#fb923c', '#ef4444'];
   const wl = document.getElementById('workout-list');
   if (digest.workouts && digest.workouts.length > 0) {
     [...digest.workouts].sort((a, b) => b.start_time_local.localeCompare(a.start_time_local)).forEach(w => {
       const li = document.createElement('li');
       li.className = 'workout-item';
+      li.style.alignItems = 'flex-start';
       const dt = new Date(w.start_time_local.replace(' ', 'T'));
-      li.innerHTML = '<div><div class="workout-name">' + w.activity_name + '</div><div class="workout-meta">' + dt.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}) + ' · ' + Math.round(w.duration_minutes) + ' min · ' + Math.round(w.calories) + ' cal</div></div><div class="workout-load">' + fmt(w.training_load, 1) + ' TL</div>';
+      const dateStr = dt.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+
+      // HR zone stacked bar
+      const zoneSecs = [1,2,3,4,5].map(i => w[`hr_zone_${i}_seconds`] || 0);
+      const totalZone = zoneSecs.reduce((a,b) => a+b, 0);
+      let zoneBarHtml = '';
+      if (totalZone > 0) {
+        const segs = zoneSecs.map((s, i) => {
+          if (!s) return '';
+          const pct = (s / totalZone * 100).toFixed(1);
+          const mins = (s / 60).toFixed(0);
+          const zoneTip = `Z${i+1}: ${mins}m`;
+          return `<div class="wz-seg" style="width:${pct}%;background:${HR_ZONE_COLORS[i]};" title="${zoneTip}"></div>`;
+        }).join('');
+        zoneBarHtml = `<div class="workout-zones-bar" title="HR Zones">${segs}</div>`;
+      }
+
+      // Battery cost badge (negative int = drain; render as cost)
+      const bbCost = (w.body_battery_cost != null && w.body_battery_cost !== 0)
+        ? ` · 🔋${Math.abs(w.body_battery_cost)}`
+        : '';
+
+      li.innerHTML =
+        '<div style="flex:1;min-width:0;">' +
+          '<div class="workout-name">' + w.activity_name + '</div>' +
+          '<div class="workout-meta">' +
+            dateStr + ' · ' + Math.round(w.duration_minutes) + ' min' +
+            ' · ' + Math.round(w.calories || 0) + ' cal' + bbCost +
+          '</div>' +
+          zoneBarHtml +
+        '</div>' +
+        '<div class="workout-load" style="margin-left:8px;flex-shrink:0;">' + fmt(w.training_load, 1) + ' TL</div>';
       wl.appendChild(li);
     });
   } else {
@@ -522,29 +1350,11 @@ async function render() {
     }
   });
 
-  // Chart: Body Comp
-  if (bc && bc.trend_30d && bc.trend_30d.length > 0) {
-    const bcd = [...bc.trend_30d].sort((a, b) => a.date.localeCompare(b.date));
-    new Chart(document.getElementById('chart-bodycomp'), {
-      type: 'line',
-      data: {
-        labels: bcd.map(d => shortDate(d.date)),
-        datasets: [
-          { label: 'Body Fat %', data: bcd.map(d => d.body_fat_pct), borderColor: '#dc2626', backgroundColor: '#dc262610', tension: 0.3, fill: true, yAxisID: 'y', pointRadius: 4, pointBackgroundColor: '#dc2626' },
-          { label: 'Muscle (lbs)', data: bcd.map(d => d.muscle_mass_lbs), borderColor: '#2563eb', tension: 0.3, fill: false, yAxisID: 'y2', pointRadius: 4, pointBackgroundColor: '#2563eb' }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } },
-        scales: {
-          y: { position: 'left', title: { display: true, text: 'Fat %', font: { size: 10 } }, grid: { color: '#f3f4f6' } },
-          y2: { position: 'right', title: { display: true, text: 'Muscle lbs', font: { size: 10 } }, grid: { display: false } }
-        }
-      }
-    });
-  }
+  // Chart: Body Comp — initial render from digest; one shared fetch upgrades both charts
+  buildBodyCompChart(bc, null);
+  fetchWeightHistory().then(wh => {
+    if (wh) { buildWeightChart(bc, wh); buildBodyCompChart(bc, wh); }
+  });
 
   // Chart: Stress & Calories
   new Chart(document.getElementById('chart-stress'), {
