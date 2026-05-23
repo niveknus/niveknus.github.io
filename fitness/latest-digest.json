@@ -1,129 +1,113 @@
 {
   "digest_version": 2,
   "source_export_version": 2,
-  "source_fetched_at_local": "2026-05-22T18:13:09",
+  "source_fetched_at_local": "2026-05-23T12:36:15",
   "calendar": {
-    "snapshot_end": "2026-05-22",
-    "window_start": "2026-05-16",
-    "window_end": "2026-05-22",
+    "snapshot_end": "2026-05-23",
+    "window_start": "2026-05-17",
+    "window_end": "2026-05-23",
     "iso_week_current_monday": "2026-05-18",
     "iso_week_previous_monday": "2026-05-11"
   },
   "last_night": {
     "sleep": {
-      "date": "2026-05-22",
-      "sleep_time_seconds": 24240,
-      "sleep_time_hours": 6.73,
-      "deep_sleep_minutes": 113.0,
-      "light_sleep_minutes": 222.0,
-      "rem_sleep_minutes": 69.0,
-      "awake_minutes": 2.0,
-      "sleep_score": 81,
-      "sleep_score_qualifier": "GOOD",
+      "date": "2026-05-23",
+      "sleep_time_seconds": null,
+      "sleep_time_hours": 0.0,
+      "deep_sleep_minutes": 0.0,
+      "light_sleep_minutes": 0.0,
+      "rem_sleep_minutes": 0.0,
+      "awake_minutes": 0.0,
+      "sleep_score": null,
+      "sleep_score_qualifier": null,
       "avg_overnight_hrv": null,
-      "avg_sleep_stress": 13.0
+      "avg_sleep_stress": null
     },
     "hrv": {
-      "date": "2026-05-22",
-      "last_night_avg": 47,
-      "last_night_5_min_high": 66,
-      "weekly_avg": 40,
-      "status": "BALANCED",
-      "feedback_phrase": "HRV_BALANCED_8",
-      "baseline_balanced_low": 38,
-      "baseline_balanced_upper": 50
+      "date": "2026-05-23",
+      "last_night_avg": null,
+      "last_night_5_min_high": null,
+      "weekly_avg": null,
+      "status": null,
+      "feedback_phrase": null,
+      "baseline_balanced_low": null,
+      "baseline_balanced_upper": null
     },
     "cardio": {
-      "date": "2026-05-22",
-      "resting_heart_rate": 60,
+      "date": "2026-05-23",
+      "resting_heart_rate": 61,
       "resting_hr_7d_avg": 62,
-      "max_heart_rate": 156,
-      "max_avg_heart_rate": 151,
-      "min_heart_rate": 55,
+      "max_heart_rate": 81,
+      "max_avg_heart_rate": 78,
+      "min_heart_rate": 57,
       "avg_respiration": 17.0
     },
     "body_battery": {
-      "date": "2026-05-22",
-      "at_wake_time": 79,
-      "charged": 71,
-      "drained": 29,
-      "during_sleep": 71,
-      "highest_value": 79,
-      "lowest_value": 8,
-      "most_recent_value": 50
+      "date": "2026-05-23",
+      "at_wake_time": null,
+      "charged": 29,
+      "drained": 0,
+      "during_sleep": null,
+      "highest_value": 34,
+      "lowest_value": 5,
+      "most_recent_value": 34
     },
     "training_readiness": {
-      "date": "2026-05-22",
-      "score": 50,
-      "level": "MODERATE",
-      "feedback_long": "MOD_RT_MOD_OR_LOW_SS_GOOD_STRESS_HISTORY_NEG",
-      "feedback_short": "WELL_RESTED",
-      "sleep_score_factor_percent": 72,
-      "recovery_time_hours": 1550,
-      "hrv_factor_percent": 96,
-      "stress_history_factor_percent": 61,
-      "acwr_factor_percent": 94,
-      "acute_load": 118
+      "date": "2026-05-23",
+      "score": null,
+      "level": null,
+      "feedback_long": null,
+      "feedback_short": null,
+      "sleep_score_factor_percent": null,
+      "recovery_time_hours": null,
+      "hrv_factor_percent": null,
+      "stress_history_factor_percent": null,
+      "acwr_factor_percent": null,
+      "acute_load": null
     },
     "training_status": {
-      "date": "2026-05-22",
-      "vo2_max": 41.0,
+      "date": "2026-05-23",
+      "vo2_max": null,
       "training_status": null,
-      "load_balance_feedback": "AEROBIC_HIGH_SHORTAGE"
+      "load_balance_feedback": null
     },
     "energy": {
-      "date": "2026-05-22",
-      "total_calories_burned": 1587.0,
-      "bmr_calories": 931.0,
-      "active_calories": 656.0,
-      "wellness_calories": 1587.0
+      "date": "2026-05-23",
+      "total_calories_burned": 345.0,
+      "bmr_calories": 345.0,
+      "active_calories": 0.0,
+      "wellness_calories": 345.0
     },
     "stress": {
-      "date": "2026-05-22",
-      "average_level": 17,
-      "max_level": 81,
+      "date": "2026-05-23",
+      "average_level": 16,
+      "max_level": 55,
       "qualifier": "UNKNOWN",
-      "rest_pct": 69.47,
-      "low_pct": 7.2,
-      "medium_pct": 2.57,
-      "high_pct": 0.17
+      "rest_pct": 90.45,
+      "low_pct": 8.64,
+      "medium_pct": 0.91,
+      "high_pct": 0.0
     },
     "intensity_minutes": {
-      "date": "2026-05-22",
-      "moderate_minutes": 73,
-      "vigorous_minutes": 21,
+      "date": "2026-05-23",
+      "moderate_minutes": 0,
+      "vigorous_minutes": 0,
       "weekly_goal": 150
     },
     "activity": {
-      "date": "2026-05-22",
-      "total_steps": 5202,
+      "date": "2026-05-23",
+      "total_steps": 13,
       "step_goal": 5000,
-      "highly_active_minutes": 12.0,
-      "active_minutes": 94.0,
-      "sedentary_minutes": 81.0,
+      "highly_active_minutes": 0.0,
+      "active_minutes": 1.0,
+      "sedentary_minutes": 219.0,
       "floors_climbed": 0.0,
       "floors_goal": 10,
-      "total_distance_meters": 4344
+      "total_distance_meters": 11
     }
   },
   "rolling_7d": {
     "daily_signals": [
-      {
-        "date": "2026-05-16",
-        "sleep_hours": 7.08,
-        "sleep_score": 79,
-        "hrv_last_night_avg": 40,
-        "hrv_status": "BALANCED",
-        "resting_heart_rate": 60,
-        "total_calories_burned": 2563.0,
-        "active_calories": 300.0,
-        "steps": 6339,
-        "stress_avg": 40,
-        "stress_qualifier": "STRESSFUL",
-        "moderate_intensity_minutes": 1,
-        "vigorous_intensity_minutes": 0,
-        "floors_climbed": 0.7874
-      },
       {
         "date": "2026-05-17",
         "sleep_hours": 6.93,
@@ -211,31 +195,47 @@
         "hrv_last_night_avg": 47,
         "hrv_status": "BALANCED",
         "resting_heart_rate": 60,
-        "total_calories_burned": 1587.0,
-        "active_calories": 656.0,
-        "steps": 5202,
-        "stress_avg": 17,
+        "total_calories_burned": 3500.0,
+        "active_calories": 1239.0,
+        "steps": 8761,
+        "stress_avg": 45,
+        "stress_qualifier": "STRESSFUL",
+        "moderate_intensity_minutes": 88,
+        "vigorous_intensity_minutes": 23,
+        "floors_climbed": 0.0
+      },
+      {
+        "date": "2026-05-23",
+        "sleep_hours": 0.0,
+        "sleep_score": null,
+        "hrv_last_night_avg": null,
+        "hrv_status": null,
+        "resting_heart_rate": 61,
+        "total_calories_burned": 345.0,
+        "active_calories": 0.0,
+        "steps": 13,
+        "stress_avg": 16,
         "stress_qualifier": "UNKNOWN",
-        "moderate_intensity_minutes": 73,
-        "vigorous_intensity_minutes": 21,
+        "moderate_intensity_minutes": 0,
+        "vigorous_intensity_minutes": 0,
         "floors_climbed": 0.0
       }
     ],
     "baselines": {
-      "sleep_hours_7d_avg": 6.96,
-      "sleep_score_7d_avg": 74,
-      "hrv_7d_avg": 40.29,
-      "rhr_7d_avg": 62.29,
-      "steps_7d_avg": 5439.29,
-      "total_calories_7d_avg": 2429.29,
-      "active_calories_7d_avg": 355.57,
-      "stress_7d_avg": 38.71
+      "sleep_hours_7d_avg": 6.94,
+      "sleep_score_7d_avg": 73.17,
+      "hrv_7d_avg": 40.33,
+      "rhr_7d_avg": 62.43,
+      "steps_7d_avg": 5044,
+      "total_calories_7d_avg": 2385.71,
+      "active_calories_7d_avg": 462.0,
+      "stress_7d_avg": 39.29
     }
   },
   "training_load": {
     "this_iso_week": {
       "window_start": "2026-05-18",
-      "window_end": "2026-05-22",
+      "window_end": "2026-05-23",
       "activity_count": 2,
       "sum_activity_training_load": 79.6,
       "ok": true
@@ -392,7 +392,7 @@
   "workouts": [
     {
       "activity_id": 22972213383,
-      "activity_name": "Orange County Pickleball",
+      "activity_name": "Morning Pickleball",
       "activity_type": "pickleball",
       "start_time_local": "2026-05-22 08:10:33",
       "duration_minutes": 132.5,
@@ -419,21 +419,6 @@
       "aerobic_training_effect": 0.8999999761581421,
       "anaerobic_training_effect": 0.0,
       "steps": 282
-    },
-    {
-      "activity_id": 22903273129,
-      "activity_name": "Yoga",
-      "activity_type": "yoga",
-      "start_time_local": "2026-05-16 11:05:20",
-      "duration_minutes": 56.8,
-      "calories": 136.0,
-      "average_hr": 81.0,
-      "max_hr": 112.0,
-      "distance_meters": null,
-      "training_load": 1.7,
-      "aerobic_training_effect": 0.20000000298023224,
-      "anaerobic_training_effect": 0.0,
-      "steps": 0
     }
   ]
 }
