@@ -1,0 +1,36 @@
+{
+  "date_label": "Saturday, May 23",
+  "recovery_status": "watch",
+  "today": {
+    "time": "7:30 AM",
+    "session": "Lake Baldwin walk/jog or bike",
+    "subtitle": "Weekend morning cardio",
+    "adjustment_status": "hold",
+    "adjustment_label": "Sleep not synced — plan as written",
+    "why": "Sleep data hasn't arrived yet. RHR (61 bpm) is near average and body battery peaked at 34 overnight — low, but yesterday's recovery was solid (HRV 16% above baseline, sleep score 81). Proceed with the plan; sync Garmin Connect if in doubt.",
+    "expected_activity_types": ["walking", "running", "cycling", "road_biking"],
+    "expected_duration_minutes": 60
+  },
+  "cut": {
+    "start_weight_lbs": 200
+  },
+  "week_plan": {
+    "monday_date": "2026-05-18",
+    "days": [
+      {"label": "Walk", "type": "walk"},
+      {"label": "Split A", "type": "lift"},
+      {"label": "ND class", "type": "class"},
+      {"label": "Split B", "type": "lift"},
+      {"label": "Pkl", "type": "pickleball"},
+      {"label": "L Baldwin", "type": "walk"},
+      {"label": "Rest", "type": "rest"}
+    ]
+  },
+  "cut_note": "*7d TDEE pulled down by today's partial read (345 cal). 6-day complete avg ~2,726 cal → ~1.59 lb/wk possible ceiling; truer gap ~647 cal/day over protocol.",
+  "targets": {
+    "steps": "10k",
+    "protein": "180 g",
+    "calories": "2,100",
+    "water": "3 L"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "start_weight_lbs": 200.0,
+  "goal_weight_lbs": 165.0,
+  "start_date": "2026-05-10",
+  "entries": [
+    {
+      "date": "2026-05-10",
+      "weight_lbs": 199.5,
+      "body_fat_pct": 26.1,
+      "muscle_mass_lbs": 140.0
+    },
+    {
+      "date": "2026-05-11",
+      "weight_lbs": 197.8,
+      "body_fat_pct": 26.3,
+      "muscle_mass_lbs": 138.5
+    },
+    {
+      "date": "2026-05-12",
+      "weight_lbs": 199.2,
+      "body_fat_pct": 26.9,
+      "muscle_mass_lbs": 138.4
+    },
+    {
+      "date": "2026-05-14",
+      "weight_lbs": 200.2,
+      "body_fat_pct": 26.8,
+      "muscle_mass_lbs": 139.4
+    },
+    {
+      "date": "2026-05-18",
+      "weight_lbs": 200.8,
+      "body_fat_pct": 26.8,
+      "muscle_mass_lbs": 139.6
+    },
+    {
+      "date": "2026-05-21",
+      "weight_lbs": 199.9,
+      "body_fat_pct": 26.6,
+      "muscle_mass_lbs": 139.4
+    }
+  ]
+}

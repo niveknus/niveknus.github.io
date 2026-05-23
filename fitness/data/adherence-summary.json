@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-05-23T20:17:54.988339+00:00",
+  "stats": {
+    "total_entries": 7,
+    "workout_days": 7,
+    "done_days": 1,
+    "adherence_rate_pct": 14,
+    "rolling_14": {
+      "workout_days": 7,
+      "done_days": 1,
+      "adherence_rate_pct": 14
+    }
+  },
+  "entries": [
+    {
+      "date": "2026-05-14",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk · expected types `[walking]` (inferred — `expected_activity_types` absent from brief context) · ~25 min (from subtitle \"20–30 min easy\"; `expected_duration_minutes` absent from brief context)",
+      "actual": null,
+      "note": "evening dispatch failed"
+    },
+    {
+      "date": "2026-05-15",
+      "weekday": "Friday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate"
+    },
+    {
+      "date": "2026-05-18",
+      "weekday": "Monday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running, indoor_walking]` · ~45 min",
+      "actual": null,
+      "note": "evening dispatch failed"
+    },
+    {
+      "date": "2026-05-19",
+      "weekday": "Tuesday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "PF Split A — Arms + Shoulders · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate"
+    },
+    {
+      "date": "2026-05-20",
+      "weekday": "Wednesday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "New Dimensions class · expected types `[fitness_equipment, cardio, strength_training]` · ~60 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate"
+    },
+    {
+      "date": "2026-05-21",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Split B — Chest + Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate"
+    },
+    {
+      "date": "2026-05-22",
+      "weekday": "Friday",
+      "state": "done-as-prescribed",
+      "emoji": "✅",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": "Morning Pickleball · type `pickleball` · 133 min · 951 cal · avg HR 130 · started 08:10 ET",
+      "note": ""
+    }
+  ]
+}
