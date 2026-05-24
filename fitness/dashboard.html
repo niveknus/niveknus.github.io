@@ -466,33 +466,6 @@ body {
     <div class="adherence-legend" id="adherence-legend"></div>
   </div>
 
-  <div class="cut-banner">
-    <div class="cut-stat">
-      <div class="num" id="cut-current">--</div>
-      <div class="lbl">Current</div>
-    </div>
-    <div class="cut-divider"></div>
-    <div class="cut-stat">
-      <div class="num" id="cut-lost">--</div>
-      <div class="lbl">Lost</div>
-    </div>
-    <div class="cut-divider"></div>
-    <div class="cut-stat">
-      <div class="num" id="cut-delta">--</div>
-      <div class="lbl">To Go</div>
-    </div>
-    <div class="cut-divider"></div>
-    <div class="cut-stat">
-      <div class="num" id="cut-rate">--</div>
-      <div class="lbl">lb/wk</div>
-    </div>
-    <div class="cut-divider"></div>
-    <div class="cut-stat">
-      <div class="num" id="cut-weeks">--</div>
-      <div class="lbl">Weeks Left</div>
-    </div>
-  </div>
-
   <div class="kpi-row">
     <div class="kpi-card">
       <div class="label">Readiness</div>
@@ -531,18 +504,19 @@ body {
     </div>
   </div>
 
+  <!-- ── Daily tactical: recovery + energy balance ──────────────── -->
   <div class="chart-grid">
     <div class="chart-card">
       <h3>7-day recovery trends</h3>
       <div style="position:relative;height:200px;"><canvas id="chart-recovery"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>Weight trend</h3>
-      <div id="weight-prediction-note" style="display:none; font-size:11px; color:#6b7280; margin-bottom:6px;"></div>
-      <div style="position:relative;height:200px;"><canvas id="chart-weight"></canvas></div>
+      <h3>Daily energy expenditure</h3>
+      <div style="position:relative;height:200px;"><canvas id="chart-tdee"></canvas></div>
     </div>
   </div>
 
+  <!-- ── Weekly context: training + sleep ─────────────────────────── -->
   <div class="chart-grid">
     <div class="chart-card">
       <h3>Training load</h3>
@@ -579,14 +553,43 @@ body {
     </div>
   </div>
 
+  <!-- ── Goal progress: cut + body metrics ────────────────────────── -->
+  <div class="cut-banner">
+    <div class="cut-stat">
+      <div class="num" id="cut-current">--</div>
+      <div class="lbl">Current</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-lost">--</div>
+      <div class="lbl">Lost</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-delta">--</div>
+      <div class="lbl">To Go</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-rate">--</div>
+      <div class="lbl">lb/wk</div>
+    </div>
+    <div class="cut-divider"></div>
+    <div class="cut-stat">
+      <div class="num" id="cut-weeks">--</div>
+      <div class="lbl">Weeks Left</div>
+    </div>
+  </div>
+
   <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Weight trend</h3>
+      <div id="weight-prediction-note" style="display:none; font-size:11px; color:#6b7280; margin-bottom:6px;"></div>
+      <div style="position:relative;height:200px;"><canvas id="chart-weight"></canvas></div>
+    </div>
     <div class="chart-card">
       <h3>Body composition</h3>
       <div style="position:relative;height:200px;"><canvas id="chart-bodycomp"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <h3>Daily energy expenditure</h3>
-      <div style="position:relative;height:200px;"><canvas id="chart-tdee"></canvas></div>
     </div>
   </div>
 
@@ -600,7 +603,7 @@ const DIGEST_URL       = 'data/latest-digest.json';
 const CONTEXT_URL      = 'data/latest-brief-context.json';
 const WEIGHT_HIST_URL  = 'data/weight-history.json';
 const ADHERENCE_URL    = 'data/adherence-summary.json';
-const START_WEIGHT = 200;
+const START_WEIGHT = 199.9;
 const GOAL_WEIGHT = 165;
 
 // ── Adherence state metadata ─────────────────────────────────────────────────
@@ -1353,7 +1356,17 @@ async function render() {
   // Chart: Body Comp — initial render from digest; one shared fetch upgrades both charts
   buildBodyCompChart(bc, null);
   fetchWeightHistory().then(wh => {
-    if (wh) { buildWeightChart(bc, wh); buildBodyCompChart(bc, wh); }
+    if (wh) {
+      buildWeightChart(bc, wh);
+      buildBodyCompChart(bc, wh);
+      // Update cut banner "Lost" using start_weight from weight-history.json
+      if (wh.start_weight_lbs && bc && bc.status === 'ok') {
+        const current = bc.most_recent.weight_lbs;
+        const lost = wh.start_weight_lbs - current;
+        document.getElementById('cut-lost').textContent = (lost >= 0 ? '-' : '+') + fmt(Math.abs(lost), 1) + ' lb';
+        document.getElementById('cut-lost').style.color = lost > 0 ? '#059669' : '#dc2626';
+      }
+    }
   });
 
   // Chart: TDEE — stacked bar (BMR + Active) with intake target line
