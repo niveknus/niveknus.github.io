@@ -1,17 +1,27 @@
 {
-  "generated_at": "2026-05-24T01:38:02.603356+00:00",
+  "generated_at": "2026-05-24T12:34:05.660060+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 0,
-    "workout_days": 0,
+    "total_entries": 1,
+    "workout_days": 1,
     "done_days": 0,
-    "adherence_rate_pct": null,
+    "adherence_rate_pct": 0,
     "rolling_14": {
-      "workout_days": 0,
+      "workout_days": 1,
       "done_days": 0,
-      "adherence_rate_pct": null
+      "adherence_rate_pct": 0
     },
     "reset_date": "2026-05-23"
   },
-  "entries": []
+  "entries": [
+    {
+      "date": "2026-05-23",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin walk/jog or bike · expected types `[walking, running, cycling, road_biking]` · ~60 min",
+      "actual": null,
+      "note": ""
+    }
+  ]
 }
