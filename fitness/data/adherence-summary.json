@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-25T01:33:58.673996+00:00",
+  "generated_at": "2026-05-25T12:39:06.775495+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 1,
+    "total_entries": 2,
     "workout_days": 1,
     "done_days": 0,
     "adherence_rate_pct": 0,
@@ -21,6 +21,15 @@
       "emoji": "🔴",
       "prescribed": "Lake Baldwin walk/jog or bike · expected types `[walking, running, cycling, road_biking]` · ~60 min",
       "actual": null,
+      "note": ""
+    },
+    {
+      "date": "2026-05-24",
+      "weekday": "Sunday",
+      "state": "rest-with-activity",
+      "emoji": "⚠️",
+      "prescribed": "Rest day · expected types `` · ~0 min",
+      "actual": "Strength · type `strength_training` · 88 min · 382 cal · avg HR 101 · started 11:00 ET",
       "note": ""
     }
   ]
