@@ -1,7 +1,7 @@
 {
   "digest_version": 3,
   "source_export_version": 2,
-  "source_fetched_at_local": "2026-05-24T12:34:04",
+  "source_fetched_at_local": "2026-05-25T01:33:57",
   "calendar": {
     "snapshot_end": "2026-05-24",
     "window_start": "2026-05-18",
@@ -37,8 +37,8 @@
       "date": "2026-05-24",
       "resting_heart_rate": 58,
       "resting_hr_7d_avg": 61,
-      "max_heart_rate": 107,
-      "max_avg_heart_rate": 95,
+      "max_heart_rate": 121,
+      "max_avg_heart_rate": 117,
       "min_heart_rate": 54,
       "avg_respiration": 16.0
     },
@@ -46,11 +46,11 @@
       "date": "2026-05-24",
       "at_wake_time": 76,
       "charged": 53,
-      "drained": 5,
+      "drained": 58,
       "during_sleep": 58,
       "highest_value": 79,
-      "lowest_value": 28,
-      "most_recent_value": 76
+      "lowest_value": 23,
+      "most_recent_value": 23
     },
     "training_readiness": {
       "date": "2026-05-24",
@@ -63,7 +63,7 @@
       "hrv_factor_percent": 100,
       "stress_history_factor_percent": 50,
       "acwr_factor_percent": 100,
-      "acute_load": 82
+      "acute_load": 89
     },
     "training_status": {
       "date": "2026-05-24",
@@ -73,37 +73,37 @@
     },
     "energy": {
       "date": "2026-05-24",
-      "total_calories_burned": 750.0,
-      "bmr_calories": 737.0,
-      "active_calories": 13.0,
-      "wellness_calories": 750.0
+      "total_calories_burned": 2198.0,
+      "bmr_calories": 1695.0,
+      "active_calories": 503.0,
+      "wellness_calories": 2198.0
     },
     "stress": {
       "date": "2026-05-24",
-      "average_level": 17,
-      "max_level": 75,
-      "qualifier": "UNKNOWN",
-      "rest_pct": 81.24,
-      "low_pct": 17.06,
-      "medium_pct": 1.07,
-      "high_pct": 0.0
+      "average_level": 34,
+      "max_level": 96,
+      "qualifier": "BALANCED",
+      "rest_pct": 36.43,
+      "low_pct": 17.28,
+      "medium_pct": 13.52,
+      "high_pct": 6.38
     },
     "intensity_minutes": {
       "date": "2026-05-24",
-      "moderate_minutes": 0,
+      "moderate_minutes": 24,
       "vigorous_minutes": 0,
       "weekly_goal": 150
     },
     "activity": {
       "date": "2026-05-24",
-      "total_steps": 128,
+      "total_steps": 5188,
       "step_goal": 5000,
-      "highly_active_minutes": 0.0,
-      "active_minutes": 5.0,
-      "sedentary_minutes": 112.0,
+      "highly_active_minutes": 19.0,
+      "active_minutes": 103.0,
+      "sedentary_minutes": 605.0,
       "floors_climbed": 0.0,
       "floors_goal": 10,
-      "total_distance_meters": 104
+      "total_distance_meters": 4202
     }
   },
   "rolling_7d": {
@@ -217,13 +217,13 @@
         "hrv_last_night_avg": 39,
         "hrv_status": "BALANCED",
         "resting_heart_rate": 58,
-        "total_calories_burned": 750.0,
-        "bmr_calories": 737.0,
-        "active_calories": 13.0,
-        "steps": 128,
-        "stress_avg": 17,
-        "stress_qualifier": "UNKNOWN",
-        "moderate_intensity_minutes": 0,
+        "total_calories_burned": 2198.0,
+        "bmr_calories": 1695.0,
+        "active_calories": 503.0,
+        "steps": 5188,
+        "stress_avg": 34,
+        "stress_qualifier": "BALANCED",
+        "moderate_intensity_minutes": 24,
         "vigorous_intensity_minutes": 0,
         "floors_climbed": 0.0
       }
@@ -233,18 +233,18 @@
       "sleep_score_7d_avg": 77.86,
       "hrv_7d_avg": 41.43,
       "rhr_7d_avg": 60.86,
-      "steps_7d_avg": 5072.71,
-      "total_calories_7d_avg": 2441.29,
-      "active_calories_7d_avg": 395.86,
-      "stress_7d_avg": 37.71
+      "steps_7d_avg": 5795.57,
+      "total_calories_7d_avg": 2648.14,
+      "active_calories_7d_avg": 465.86,
+      "stress_7d_avg": 40.14
     }
   },
   "training_load": {
     "this_iso_week": {
       "window_start": "2026-05-18",
       "window_end": "2026-05-24",
-      "activity_count": 2,
-      "sum_activity_training_load": 79.6,
+      "activity_count": 3,
+      "sum_activity_training_load": 84.6,
       "ok": true
     },
     "previous_iso_week": {
@@ -259,10 +259,10 @@
       "acwr_ratio": 0.7,
       "acwr_percent": 29,
       "acwr_status": "LOW",
-      "acute_load": 82,
-      "chronic_load": 116,
-      "chronic_load_min": 92.8,
-      "chronic_load_max": 174.0
+      "acute_load": 89,
+      "chronic_load": 117,
+      "chronic_load_min": 93.6,
+      "chronic_load_max": 175.5
     },
     "training_status": {
       "date": "2026-05-24",
@@ -408,6 +408,27 @@
     "weeks_to_goal_at_2lb_per_week": 17.4
   },
   "workouts": [
+    {
+      "activity_id": 22997887182,
+      "activity_name": "Strength",
+      "activity_type": "strength_training",
+      "start_time_local": "2026-05-24 11:00:49",
+      "duration_minutes": 87.8,
+      "calories": 382.0,
+      "average_hr": 101.0,
+      "max_hr": 132.0,
+      "distance_meters": 0.0,
+      "training_load": 5.0,
+      "aerobic_training_effect": 0.800000011920929,
+      "anaerobic_training_effect": 0.0,
+      "steps": 364,
+      "body_battery_cost": -8,
+      "hr_zone_1_seconds": 0.0,
+      "hr_zone_2_seconds": 0.0,
+      "hr_zone_3_seconds": 0.0,
+      "hr_zone_4_seconds": 0.0,
+      "hr_zone_5_seconds": 0.0
+    },
     {
       "activity_id": 22972213383,
       "activity_name": "Morning Pickleball",
