@@ -1,21 +1,21 @@
 {
-  "date_label": "Sunday, May 24",
+  "date_label": "Monday, May 25",
   "recovery_status": "good",
   "today": {
-    "time": "—",
-    "session": "Rest day",
-    "subtitle": "Sunday template default",
+    "time": "6:00 PM",
+    "session": "Neighborhood walk/jog",
+    "subtitle": "2–3 mi Waterford Lakes loop",
     "adjustment_status": "none",
-    "adjustment_label": "Full rest, no adjustments",
-    "why": "All recovery signals green. RHR 3 bpm below 7d avg, body battery 76, training readiness 77 (High). Template prescribes Sunday rest.",
-    "expected_activity_types": [],
-    "expected_duration_minutes": 0
+    "adjustment_label": "Full session, no adjustments",
+    "why": "All signals in range. HRV at baseline (41 ms), Body Battery 64, sleep 7.3h. Right load for a Monday opener.",
+    "expected_activity_types": ["walking", "running", "indoor_walking"],
+    "expected_duration_minutes": 45
   },
   "cut": {
     "start_weight_lbs": 200
   },
   "week_plan": {
-    "monday_date": "2026-05-18",
+    "monday_date": "2026-05-25",
     "days": [
       {"label": "Walk", "type": "walk"},
       {"label": "Split A", "type": "lift"},
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,723 cal → ~1.6 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE dragged by today's partial read. 6d complete avg ~2,734 cal → ~1.6 lb/wk truer ceiling; gap ~655 cal/day using complete days.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "2,100",
+    "calories": "1,800",
     "water": "3 L"
   }
 }
