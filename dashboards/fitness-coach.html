@@ -1,1 +1,418 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fitness Coach — Project Dashboard</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>:root{--bg:#090b0f;--surface:#0f1218;--surface-raised:#151a22;--border:#1e2430;--border-accent:#2a3344;--text:#dfe3ec;--text-muted:#7e8a9e;--text-dim:#4e5768;--green:#00d68f;--green-dim:rgba(0,214,143,0.1);--green-border:rgba(0,214,143,0.25);--amber:#ffb020;--amber-dim:rgba(255,176,32,0.1);--red:#ff5c5c;--red-dim:rgba(255,92,92,0.08);--blue:#3b82f6;--blue-dim:rgba(59,130,246,0.1);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.08);--mono:'Space Mono',monospace;--sans:'Outfit',system-ui,sans-serif;--radius:8px}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6}.topnav{border-bottom:1px solid var(--border);padding:.75rem 0;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.topnav a{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);text-decoration:none;transition:color .2s}.topnav a:hover{color:var(--green)}.topnav .back{display:flex;align-items:center;gap:.4rem}.topnav .back::before{content:'←';font-size:.85rem}.topnav .nav-right{display:flex;gap:1.25rem}.container{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 4rem}.header{margin-bottom:2rem}.header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}.header-left{flex:1;min-width:280px}.title-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}.project-badge{width:40px;height:40px;background:linear-gradient(135deg,var(--green),#00a870);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}h1{font-size:1.6rem;font-weight:700;color:#fff;letter-spacing:-.03em}.vision-text{color:var(--text-muted);font-size:.88rem;max-width:600px;line-height:1.6;font-weight:300}.status-banner{background:var(--green-dim);border:1px solid var(--green-border);border-radius:var(--radius);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;margin-bottom:2rem}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.5}}.status-text{font-size:.82rem;color:var(--green);font-weight:500}.status-detail{font-size:.78rem;color:var(--text-muted);font-weight:300}.cut-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem}.cut-header{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:1rem}.cut-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1.25rem;margin-bottom:1.5rem}.cut-stat{text-align:center}.cut-val{font-size:1.8rem;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.1}.cut-val.highlight{color:var(--green)}.cut-val.target{color:var(--cyan)}.cut-label{font-size:.72rem;color:var(--text-dim);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-top:.3rem}.progress-track{height:8px;background:var(--surface-raised);border-radius:4px;position:relative;overflow:hidden}.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--cyan));width:1.4%;position:relative}.progress-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3))}.progress-labels{display:flex;justify-content:space-between;margin-top:.4rem;font-family:var(--mono);font-size:.68rem;color:var(--text-dim)}.section{margin-bottom:2.5rem}.section-title{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}.section-title::after{content:'';flex:1;height:1px;background:var(--border)}.arch-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:640px){.arch-two-col{grid-template-columns:1fr}}.arch-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;position:relative;overflow:hidden}.arch-box::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}.arch-box.compute::before{background:var(--blue)}.arch-box.intel::before{background:var(--cyan)}.arch-box-title{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}.arch-box-title .tag{font-family:var(--mono);font-size:.62rem;padding:.15em .5em;border-radius:3px;font-weight:400}.arch-box.compute .tag{background:var(--blue-dim);color:var(--blue)}.arch-box.intel .tag{background:var(--cyan-dim);color:var(--cyan)}.arch-box p{font-size:.82rem;color:var(--text-muted);line-height:1.6;font-weight:300}.arch-box code{font-family:var(--mono);font-size:.75rem;background:rgba(255,255,255,0.05);padding:.1em .35em;border-radius:3px;color:var(--text)}.data-sources{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:1rem}.data-sources table{width:100%;border-collapse:collapse;font-size:.82rem}.data-sources th{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-weight:400}.data-sources td{padding:.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:300}.data-sources tr:last-child td{border-bottom:none}.source-status{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.72rem;font-weight:400}.source-status.live{color:var(--green)}.source-status.manual{color:var(--amber)}.source-status.optional{color:var(--text-dim)}.source-status::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem}.profile-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}.profile-label{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.3rem}.profile-val{font-size:.92rem;font-weight:500;color:var(--text)}.profile-note{font-size:.72rem;color:var(--text-muted);font-weight:300;margin-top:.15rem}.sprint-list{display:flex;flex-direction:column;gap:.5rem}details.sprint{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}details.sprint[open]{border-color:var(--border-accent)}details.sprint summary{padding:.85rem 1.15rem;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;font-size:.85rem}details.sprint summary::-webkit-details-marker{display:none}details.sprint summary::before{content:'▸';color:var(--text-dim);font-size:.75rem;transition:transform .2s;flex-shrink:0}details.sprint[open] summary::before{transform:rotate(90deg)}.s-date{font-family:var(--mono);font-size:.72rem;color:var(--text-dim);min-width:80px}.s-name{font-weight:500;color:var(--text);flex:1;min-width:0}.s-tag{font-family:var(--mono);font-size:.62rem;padding:.1em .45em;border-radius:3px}.s-tag.infra{background:var(--blue-dim);color:var(--blue)}.s-tag.ux{background:rgba(168,85,247,0.1);color:#a855f7}.s-tag.fix{background:var(--red-dim);color:var(--red)}.s-tag.feature{background:var(--green-dim);color:var(--green)}.sprint-detail{padding:0 1.15rem 1rem}.sprint-detail ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}.sprint-detail li{font-size:.8rem;color:var(--text-muted);font-weight:300;line-height:1.5;padding-left:1.1rem;position:relative}.sprint-detail li::before{content:'—';position:absolute;left:0;color:var(--text-dim)}.next-list{display:flex;flex-direction:column;gap:.6rem}.next-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1.15rem;display:flex;gap:.75rem;align-items:flex-start}.next-num{font-family:var(--mono);font-size:.72rem;color:var(--text-dim);padding-top:.15rem;flex-shrink:0}.next-content .n-title{font-size:.85rem;font-weight:500;color:var(--text)}.next-content .n-desc{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5;margin-top:.15rem}.footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center;font-size:.72rem;color:var(--text-dim);font-family:var(--mono)}@media(max-width:640px){.container{padding:1.25rem 1rem 3rem}h1{font-size:1.3rem}.cut-val{font-size:1.4rem}.cut-numbers{grid-template-columns:repeat(2,1fr)}.profile-grid{grid-template-columns:repeat(2,1fr)}}</style></head><body><div class="container"><nav class="topnav"><a href="./" class="back">All Dashboards</a><div class="nav-right"><a href="../projects/">Portfolio</a><a href="../fitness/">Fitness Brief</a></div></nav><div class="header"><div class="header-row"><div class="header-left"><div class="title-row"><div class="project-badge">💪</div><h1>Fitness Coach</h1></div><p class="vision-text">Claude as an adaptive personal fitness coach for the 200 → 165 lb cut. Reads Garmin Connect daily, reasons over goals/profile/whitelist, makes auto-adjustments within preferred workout types, and delivers a daily morning brief via Telegram at 8:30 AM.</p></div></div><div class="status-banner"><div class="status-dot"></div><span class="status-text">Active — Routines live</span><span class="status-detail">Morning Brief 8:30 AM + Adherence Loop 9:30 PM · Re-enabled 2026-05-17 · Dedicated Garmin proxy deployed 2026-05-20</span></div></div><div class="cut-section"><div class="cut-header">Cut Progress — 200 → 165 lb</div><div class="cut-numbers"><div class="cut-stat"><div class="cut-val">200</div><div class="cut-label">Start (lbs)</div></div><div class="cut-stat"><div class="cut-val highlight">199.5</div><div class="cut-label">Current (lbs)</div></div><div class="cut-stat"><div class="cut-val target">165</div><div class="cut-label">Goal (lbs)</div></div><div class="cut-stat"><div class="cut-val">0.5</div><div class="cut-label">Lost (lbs)</div></div><div class="cut-stat"><div class="cut-val">34.5</div><div class="cut-label">Remaining (lbs)</div></div><div class="cut-stat"><div class="cut-val">~17</div><div class="cut-label">Weeks Target</div></div></div><div class="progress-track"><div class="progress-fill"></div></div><div class="progress-labels"><span>200 lb start</span><span>1.4% complete</span><span>165 lb goal</span></div></div><div class="section"><div class="section-title">Two-Layer Cloud Architecture</div><div class="arch-two-col"><div class="arch-box compute"><div class="arch-box-title">Compute Layer <span class="tag">GitHub Actions</span></div><p>Runs <code>garmin_health_snapshot.py</code> + <code>garmin_export_all.py</code> on cron. Handles Garmin OAuth, 2FA, session refresh. Commits daily JSON to <code>raw-sources/garmin/</code>. Traffic routed through dedicated DigitalOcean proxy ($4/mo) to avoid shared-IP 429s.</p></div><div class="arch-box intel"><div class="arch-box-title">Intelligence Layer <span class="tag">Claude Routine</span></div><p>Fires at 8:30 AM daily. Dispatches fresh Garmin pull, reads digest + profile + rules via GitHub MCP, reasons over recovery state + today's plan, renders polished PNG card, delivers to Telegram via Bot API. Adherence loop at 9:30 PM evaluates workout completion.</p></div></div><div class="data-sources"><table><thead><tr><th>Data Source</th><th>Status</th><th>Mechanism</th></tr></thead><tbody><tr><td>Garmin Connect</td><td><span class="source-status live">Live</span></td><td><code>garminconnect</code> Python library via GitHub Actions + proxy</td></tr><tr><td>Withings Scale</td><td><span class="source-status manual">Manual</span></td><td>SmartScaleSync → Garmin Connect. Sprint 4: Withings OAuth</td></tr><tr><td>Subjective Logs</td><td><span class="source-status optional">Optional</span></td><td>Pain/RPE/mood via Todoist quick-capture</td></tr></tbody></table></div></div><div class="section"><div class="section-title">Fitness Profile</div><div class="profile-grid"><div class="profile-card"><div class="profile-label">Calories Mon–Thu</div><div class="profile-val">1,800 cal</div></div><div class="profile-card"><div class="profile-label">Calories Fri–Sun</div><div class="profile-val">2,100 cal</div></div><div class="profile-card"><div class="profile-label">Protein Target</div><div class="profile-val">180g</div></div><div class="profile-card"><div class="profile-label">Daily Steps</div><div class="profile-val">10–12k</div></div><div class="profile-card"><div class="profile-label">Water</div><div class="profile-val">3 L/day</div></div><div class="profile-card"><div class="profile-label">Rate Target</div><div class="profile-val">~2 lb/wk</div><div class="profile-note">Matches prior Jan–Jul 2025 cut</div></div><div class="profile-card"><div class="profile-label">Work Schedule</div><div class="profile-val">M–Th 8–6 PM</div><div class="profile-note">Evening block 6–7:30 PM</div></div><div class="profile-card"><div class="profile-label">Coach Authority</div><div class="profile-val">Auto-adjust</div><div class="profile-note">Within whitelist; ask first for novel</div></div></div></div><div class="section"><div class="section-title">Sprint History</div><div class="sprint-list"><details class="sprint" open><summary><span class="s-date">05-21</span><span class="s-name">Sprint 8 — Cowork Live Artifact Dashboard + GH Pages Redesign</span><span class="s-tag ux">UX</span></summary><div class="sprint-detail"><ul><li>Cowork Live Artifact pulls fresh Garmin data on each open — cut progress banner, 6 KPI cards, 8 Chart.js charts</li><li>GitHub Pages dashboard redesigned to match artifact visual design</li><li>Remaining: JSON copy step to decouple dashboard freshness from render pipeline</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-20</span><span class="s-name">Dedicated Garmin Proxy (DigitalOcean)</span><span class="s-tag infra">Infra</span></summary><div class="sprint-detail"><ul><li>Squid proxy on DO droplet ($4/mo) with auth + domain allowlist for .garmin.com</li><li>Eliminates shared-IP root cause of all three 429 incidents</li><li>No more manual MFA refreshes for rate-limit recovery</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-13</span><span class="s-name">Sprint 2.5 — Adherence Loop ("Did You Do It?")</span><span class="s-tag feature">Feature</span></summary><div class="sprint-detail"><ul><li>9:30 PM evening Routine — dispatches fresh Garmin data, evaluates 7 adherence states, sends Telegram summary</li><li>Type + duration match logic with 0.7/1.3 ratio thresholds</li><li>Todoist P3 task created on skipped/partial days</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-13</span><span class="s-name">Sprint 2 Session 1 — Calendar + Todoist + Telegram Link</span><span class="s-tag feature">Feature</span></summary><div class="sprint-detail"><ul><li>Daily FC event written to Google Calendar with full idempotency</li><li>Pending decisions persisted as Todoist P2 tasks with fitness-coach label</li><li>Calendar event link delivered as separate Telegram message</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-12</span><span class="s-name">Sprint 1.8 — Freshness Gate</span><span class="s-tag infra">Infra</span></summary><div class="sprint-detail"><ul><li>Detects stale digests — the worst failure mode for a coaching system</li><li>Loud red banner on brief when STALE, text-only "pipeline broken" on MISSING</li><li>Dev workflow guidance: treat garmin-daily.yml as a 2-runs/day budget</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-11</span><span class="s-name">Sprint 1.6–1.7 — Polished PNG Card + Dashboard + Week Strip</span><span class="s-tag ux">UX</span></summary><div class="sprint-detail"><ul><li>Dark-mode PNG card via Jinja2 + Playwright Chromium rendering. Telegram sendPhoto</li><li>Public dashboard live at niveknus.github.io/fitness/</li><li>Week strip (7-day M-S), lost-since-start delta, "Today's targets" section</li></ul></div></details><details class="sprint"><summary><span class="s-date">05-10</span><span class="s-name">Sprint 1 — End-to-End MVP Build</span><span class="s-tag infra">Infra</span></summary><div class="sprint-detail"><ul><li>Full pipeline: Garmin pull → digest (515× compression) → Routine reasoning → Telegram brief</li><li>OAuth auto-rotation, body composition endpoint, 7 new health fields</li><li>Cut math: target deficit vs actual deficit vs gap</li></ul></div></details></div></div><div class="section"><div class="section-title">Next Steps</div><div class="next-list"><div class="next-item"><span class="next-num">01</span><div class="next-content"><div class="n-title">Deploy Sprint 8 Dashboard</div><div class="n-desc">Git push from Mac, trigger render-brief.yml. Verify niveknus.github.io/fitness/dashboard.html shows redesign.</div></div></div><div class="next-item"><span class="next-num">02</span><div class="next-content"><div class="n-title">Sprint 8 P0: JSON Copy Step</div><div class="n-desc">Add step to garmin-daily.yml to publish latest-digest.json to GitHub Pages data directory.</div></div></div><div class="next-item"><span class="next-num">03</span><div class="next-content"><div class="n-title">Sprint 2 Session 2</div><div class="n-desc">Brief-format externalization + adherence-check fix + OAuth1 expiry advisory banner. Final bar: 5 consecutive clean unattended mornings + evenings.</div></div></div><div class="next-item"><span class="next-num">04</span><div class="next-content"><div class="n-title">Sprint 1.9 Candidates</div><div class="n-desc">429 backoff marker in garmin_daily.py, tighter-SLA scheduler replacement, OAuth1 expiry alarm.</div></div></div></div></div><div class="footer">Generated from Projects/Fitness Coach/00_Project Dashboard.md · Last updated 2026-05-21</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Coach — Project Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090b0f;
+  --surface: #0f1218;
+  --surface-raised: #151a22;
+  --border: #1e2430;
+  --border-accent: #2a3344;
+  --text: #dfe3ec;
+  --text-muted: #7e8a9e;
+  --text-dim: #4e5768;
+  --accent: #00d68f;
+  --accent-glow: rgba(0, 214, 143, 0.1);
+  --accent-border: rgba(0, 214, 143, 0.25);
+  --green: #3ecf8e;
+  --green-bg: rgba(62, 207, 142, 0.08);
+  --amber: #f0b429;
+  --amber-bg: rgba(240, 180, 41, 0.08);
+  --blue: #4da6ff;
+  --blue-bg: rgba(77, 166, 255, 0.08);
+  --red: #ef6b6b;
+  --red-bg: rgba(239, 107, 107, 0.08);
+  --mono: 'Space Mono', monospace;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --radius: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+.topnav { border-bottom: 1px solid var(--border); padding: .75rem 0; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.topnav a { font-family: var(--mono); font-size: .75rem; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.topnav a:hover { color: var(--accent); }
+.topnav .back { display: flex; align-items: center; gap: .4rem; }
+.topnav .back::before { content: '←'; font-size: .85rem; }
+.topnav .nav-right { display: flex; gap: 1.25rem; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.header-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; flex-wrap: wrap; }
+.project-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #00d68f, #00a870); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; color: #fff; }
+.status-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .75rem; border-radius: 100px; font-size: .75rem; font-weight: 500; font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+.status-badge.active { background: var(--green-bg); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+.status-badge.active::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.status-badge.blocked { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.status-badge.blocked::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.status-badge.hold { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.status-badge.hold::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.header-desc { color: var(--text-muted); font-size: .92rem; max-width: 720px; line-height: 1.65; }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.meta-item { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); }
+.meta-item span { color: var(--text-muted); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: .5; }
+.stat-label { font-size: .72rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin-bottom: .5rem; }
+.stat-value { font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.stat-sub { font-size: .78rem; color: var(--text-muted); margin-top: .2rem; }
+
+.section { margin-bottom: 2.5rem; }
+.section-header { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; }
+.section-header h2 { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+.section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 7px; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 0; }
+.timeline-dot { position: absolute; left: -1.5rem; top: 1.1rem; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); z-index: 1; }
+.timeline-item:first-child .timeline-dot { background: var(--accent); box-shadow: 0 0 8px rgba(0, 214, 143, 0.1); }
+
+details.sprint-entry { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
+details.sprint-entry[open] { border-color: var(--border-accent); }
+details.sprint-entry summary { padding: 1rem 1.25rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+details.sprint-entry summary::-webkit-details-marker { display: none; }
+details.sprint-entry summary::before { content: '▸'; color: var(--text-dim); font-size: .8rem; transition: transform .2s; flex-shrink: 0; }
+details.sprint-entry[open] summary::before { transform: rotate(90deg); }
+.sprint-date { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); min-width: 90px; }
+.sprint-title { font-size: .88rem; font-weight: 500; color: var(--text); }
+.sprint-tag { font-family: var(--mono); font-size: .68rem; padding: .15em .5em; border-radius: 4px; background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(0, 214, 143, 0.25); }
+.sprint-body { padding: 0 1.25rem 1.25rem; }
+.sprint-body ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.sprint-body li { font-size: .83rem; color: var(--text-muted); line-height: 1.55; padding-left: 1.2rem; position: relative; }
+.sprint-body li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+.next-items { display: flex; flex-direction: column; gap: .75rem; }
+.next-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.next-priority { font-family: var(--mono); font-size: .7rem; font-weight: 500; padding: .2em .5em; border-radius: 4px; flex-shrink: 0; margin-top: .15rem; }
+.next-priority.p1 { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.next-priority.p2 { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.next-priority.p3 { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.08); }
+.next-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+.next-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: .75rem; color: var(--text-dim); font-family: var(--mono); }
+
+@media (max-width: 640px) {
+  .container { padding: 1.25rem 1rem 3rem; }
+  h1 { font-size: 1.35rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<nav class="topnav">
+  <a href="./" class="back">All Dashboards</a>
+  <div class="nav-right">
+    <a href="../projects/">Portfolio</a>
+    <a href="../fitness/">Fitness Brief</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-top">
+    <div class="project-icon">💪</div>
+    <h1>Fitness Coach</h1>
+    <span class="status-badge active">Active</span>
+  </div>
+  <p class="header-desc">Build Claude into Kevin's adaptive personal fitness coach for the 200 → 165 lb cut. The coach reads Garmin Connect daily (Withings as available), reasons over Kevin's goal/profile/whitelist, makes auto-adjustments within Kevin's preferred workout types, and asks first when proposing anything novel. Delivers a single daily morning brief via Telegram at 8:30 AM, riding the cloud-routine + Telegram infrastructure built for the Personal Assistant.</p>
+  <div class="header-meta">
+    <div class="meta-item">Last session <span>2026-05-23 (session 5)</span></div>
+    <div class="meta-item">Sprint 13 · 2026-05-23</div>
+    
+  </div>
+</div>
+
+
+
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">✓</div>
+    <h2>Recently Completed</h2>
+  </div>
+  <div class="timeline">
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-23</span>
+          <span class="sprint-title">Sprint 13: Adherence dashboard visualization</span>
+          <span class="sprint-tag">session 4</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`scripts/garmin/parse_adherence.py` (new): parses `adherence-log.md` → `adherence-summary.json`. Regex section split on `## [YYYY-MM-DD]` headers; field extraction using `KEY:` format. Includes ove...</li>
+            
+            <li>`garmin-daily.yml`: new "Parse adherence log" step (non-fatal, `|| true`). Pages publish step copies `adherence-summary.json` to `fitness/data/`.</li>
+            
+            <li>`generate_dashboard.py`: copies `adherence-summary.json` to `data/`.</li>
+            
+            <li>`fitness-dashboard.html`: 14-day dot strip with state-colored circles, data-gap dimming, adherence rate %, compact legend, tooltip showing prescribed/actual. Non-blocking fetch. Inserted between co...</li>
+            
+            <li>Pending: Mac terminal push (same commit as Sprint 8 P0 + Sprint 12).</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-23</span>
+          <span class="sprint-title">Sprint 12: Weight history + prediction line</span>
+          <span class="sprint-tag">session 3</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`garmin_digest.py`: `update_weight_history()` — cumulative `weight-history.json` archive. Merges new entries from `bc.trend_30d`, dedupes by date, prefers richer entries, sorts chronologically. Sch...</li>
+            
+            <li>`garmin_daily.py`: calls `update_weight_history()` post-digest. Non-fatal WARN path. `FITNESS_START_WEIGHT_LBS` env var (default 200). `weight-history.json` auto-committed by existing `git add raw-...</li>
+            
+            <li>`generate_dashboard.py`: copies `weight-history.json` to `data/`.</li>
+            
+            <li>`garmin-daily.yml`: Pages publish step copies `weight-history.json` to `fitness/data/`.</li>
+            
+            <li>`fitness-dashboard.html`: `buildWeightChart()` — two-pass render (30d fallback → full history). 14-day rolling rate prediction. Dashed projection line to goal. `#weight-prediction-note` shows "At X...</li>
+            
+            <li>Pending: Kevin to push from Mac terminal: `git add .github/workflows/garmin-daily.yml scripts/garmin/ && git commit -m "Sprint 8 P0 + Sprint 12: data pipeline, coaching card, weight history" && git...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-23</span>
+          <span class="sprint-title">Sprint 8 P0: Data pipeline + coaching context card</span>
+          <span class="sprint-tag">session 2</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`garmin-daily.yml` — new "Publish JSON data to GitHub Pages" step. After each Garmin pull (morning Routine dispatch + evening adherence dispatch), the workflow now clones `niveknus.github.io`, copi...</li>
+            
+            <li>`generate_dashboard.py` updated. Both JSONs now copy to `tgt/data/` subdirectory (new). `data/` dir created if absent. Print output updated to reflect the new paths. `render-brief.yml`'s `generate_...</li>
+            
+            <li>Coaching context card added to `fitness-dashboard.html`. Card sits between `#error-area` and `.cut-banner`. Shows: recovery status pill (green/amber/red), today's session + time window, adjustment ...</li>
+            
+            <li>`DIGEST_URL` updated to `'data/latest-digest.json'` in the dashboard HTML. Old root path was never read externally so no migration needed.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-23</span>
+          <span class="sprint-title">Sprint 2 P1: Brief-format externalization</span>
+          <span class="sprint-tag">Sprint 2</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Created `brief-format.md`. All brief formatting rules extracted from `routine-prompt.md` into a standalone config file: full brief template (with CASE A/B/C cut tracking), sleep-TBD fallback templa...</li>
+            
+            <li>`routine-prompt.md` bumped to v4.2. Step 1 now reads `brief-format.md` as a sixth parallel read alongside the profile/template/rules/digest. Steps 6, 6b, and 7 slimmed to references — the Routine f...</li>
+            
+            <li>Adherence-check edge case confirmed self-resolved. Log shows correct prescription-matching from May 14 onward. The persistent 🔴 skipped pattern is evening-dispatch failures (stale morning digest), ...</li>
+            
+            <li>Sprint 2 fully complete. Both P0 (Calendar + Todoist) and P1 (brief-format externalization) done.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-22</span>
+          <span class="sprint-title">Dashboard as landing page + improvement plan integrated into backlog</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Dashboard is now the landing page. Updated `generate_dashboard.py` to copy `fitness-dashboard.html` as both `index.html` and `dashboard.html` — visiting `niveknus.github.io/fitness/` loads the inte...</li>
+            
+            <li>Dashboard improvement plan integrated into feature backlog. Five phases from `plans/dashboard-v2-plan.md` written into `01_Feature Backlog.md` as proper sprints: Sprint 8 P0 coaching context card (...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-22</span>
+          <span class="sprint-title">garth→DI OAuth migration + proxy teardown</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Problem: Garmin OAuth 429 rate-limits kept recurring (May 12–13, May 15–16, May 20, May 22) because the old `garth`-based OAuth1/OAuth2 token-exchange endpoint (`connectapi.garmin.com/oauth-service...</li>
+            
+            <li>Solution: Migrated from `garth`-based OAuth1/OAuth2 to `garminconnect` 0.3.x's native DI OAuth flow (same flow as the Garmin Connect Android app). Auth now goes through `diauth.garmin.com/di-oauth2...</li>
+            
+            <li>Files changed: `garmin.py` (auth rewrite — dropped garth, new `connect_garmin()` with DI token cache), `garmin_daily.py` (CI wrapper — single `GARMIN_TOKENS` env var), `garmin-daily.yml` (workflow ...</li>
+            
+            <li>Cleanup: Old GitHub secrets deleted (`GARMIN_OAUTH1_TOKEN`, `GARMIN_OAUTH2_TOKEN`, `GARMIN_PROXY_URL`). DigitalOcean proxy droplet (157.245.81.217) destroyed. New `GARMIN_TOKENS` secret set from fr...</li>
+            
+            <li>Validation: Workflow run succeeded end-to-end with DI OAuth. Token auto-rotation confirmed (rotation step writes refreshed `garmin_tokens.json` back to `GARMIN_TOKENS` secret).</li>
+            
+            <li>Impact: Eliminates the garth/OAuth1/OAuth2 auth path entirely. DI tokens auto-renew indefinitely via the existing rotation mechanism. The OAuth1 ~1-year expiry ceiling no longer applies — DI refres...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-21</span>
+          <span class="sprint-title">Sprint 8: Cowork Live Artifact dashboard + GitHub Pages redesign</span>
+          <span class="sprint-tag">Sprint 8</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Cowork Live Artifact (`fitness-coach-dashboard`) deployed/updated. Pulls fresh Garmin data from `latest-digest.json` via GitHub MCP on each open. Sections: cut progress banner (current/lost/to-go/r...</li>
+            
+            <li>GitHub Pages dashboard redesigned (`scripts/garmin/render/fitness-dashboard.html`) to match the artifact's visual design. Key changes: cut banner now shows "Lost" (from 200 start) instead of "Goal"...</li>
+            
+            <li>Deployment pending: local file updated; will deploy to `niveknus.github.io/fitness/dashboard.html` on next `render-brief.yml` run after git push.</li>
+            
+            <li>Sprint 8 partially complete: P0 dashboard build done. P0 data pipeline (copy JSON to public repo on each Garmin pull) and P1 enhancements (date range, auto-refresh) remain.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-20</span>
+          <span class="sprint-title">Dedicated Garmin proxy deployed</span>
+          <span class="sprint-tag">fixes recurring 429s</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Problem: Garmin OAuth 429 rate-limits kept recurring (May 12–13, May 15–16) because GitHub Actions runners share IPs with other Garmin users. Each incident required manual local MFA refresh from Ke...</li>
+            
+            <li>Solution: Deployed a Squid proxy on a DigitalOcean droplet (157.245.81.217, $4/mo) with auth + domain allowlist (`.garmin.com` + `thegarth.s3.amazonaws.com`). Added `HTTPS_PROXY`/`HTTP_PROXY` env v...</li>
+            
+            <li>Smoke test: After one proxy config fix (missing S3 domain for garth's OAuth consumer fetch) and a final local MFA refresh to clear residual 429 state, the workflow succeeded end-to-end through the ...</li>
+            
+            <li>Impact: Eliminates the shared-IP root cause of all three 429 incidents. No more manual MFA refreshes for rate-limit recovery. Proxy will be replaced by a self-hosted runner when Mac Mini arrives.</li>
+            
+            <li>Setup guide: `Projects/Fitness Coach/guides/garmin-proxy-setup.md`</li>
+            
+            <li>Superseded: Proxy torn down 2026-05-22 — the garth→DI OAuth migration eliminated the per-account rate-limited endpoint entirely, making the proxy unnecessary.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">→</div>
+    <h2>Recommended Next Work</h2>
+  </div>
+  <div class="next-items">
+    
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Push + deploy</div>
+        <div class="next-desc">Git push from Mac terminal (Sprint 8 P0 + Sprint 12 + Sprint 13 changes pending). Then trigger render-brief.yml or wait for next morning Routine.</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Sprint 2 Session 2:</div>
+        <div class="next-desc">Copy updated routine-prompt.md v4.2 into the claude.ai Morning Routine editor.</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Sprint 3:</div>
+        <div class="next-desc">Weekly review / summary brief.</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Sprint 4:</div>
+        <div class="next-desc">Withings OAuth Python integration (automated scale data pull).</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Sprint 1.9 candidates</div>
+        <div class="next-desc">(evaluate if they keep biting): 429 backoff marker in garmin_daily.py; replace GitHub Actions cron with tighter-SLA scheduler.</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Format tuning</div>
+        <div class="next-desc">now that brief-format.md is live, iterate on format with single-file edits.</div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="footer">Generated from Projects/Fitness Coach/00_Project Dashboard.md · Last updated 2026-05-25</div>
+
+</div>
+</body>
+</html>

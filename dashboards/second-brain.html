@@ -1,1 +1,366 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Second Brain — Project Dashboard</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><style>:root{--bg:#0c0e12;--surface:#13161c;--surface-raised:#1a1e26;--border:#252a35;--border-accent:#3a4050;--text:#e0e4ec;--text-muted:#8891a4;--text-dim:#5a6377;--accent:#7c6aef;--accent-glow:rgba(124,106,239,0.12);--green:#3ecf8e;--green-bg:rgba(62,207,142,0.08);--amber:#f0b429;--amber-bg:rgba(240,180,41,0.08);--blue:#4da6ff;--blue-bg:rgba(77,166,255,0.08);--red:#ef6b6b;--mono:'DM Mono',monospace;--sans:'DM Sans',system-ui,sans-serif;--radius:10px}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}.topnav{border-bottom:1px solid var(--border);padding:.75rem 0;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.topnav a{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);text-decoration:none;transition:color .2s}.topnav a:hover{color:var(--accent)}.topnav .back{display:flex;align-items:center;gap:.4rem}.topnav .back::before{content:'←';font-size:.85rem}.topnav .nav-right{display:flex;gap:1.25rem}.container{max-width:1080px;margin:0 auto;padding:2rem 1.5rem 4rem}.header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}.header-top{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}.project-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#9b7aff);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}h1{font-size:1.75rem;font-weight:700;letter-spacing:-.02em;color:#fff}.status-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .75rem;border-radius:100px;font-size:.75rem;font-weight:500;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;background:var(--green-bg);color:var(--green);border:1px solid rgba(62,207,142,0.2)}.status-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 6px currentColor}.header-desc{color:var(--text-muted);font-size:.92rem;max-width:720px;line-height:1.65}.header-meta{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}.meta-item{font-family:var(--mono);font-size:.78rem;color:var(--text-dim)}.meta-item span{color:var(--text-muted)}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem}.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;position:relative;overflow:hidden}.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.5}.stat-label{font-size:.72rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.5rem}.stat-value{font-size:1.6rem;font-weight:700;color:#fff;letter-spacing:-.02em}.stat-sub{font-size:.78rem;color:var(--text-muted);margin-top:.2rem}.section{margin-bottom:2.5rem}.section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}.section-header h2{font-size:1.05rem;font-weight:600;color:#fff;letter-spacing:-.01em}.section-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}.arch-diagram{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;overflow-x:auto}.arch-layers{display:flex;flex-direction:column;gap:.5rem;min-width:600px}.arch-layer{display:grid;grid-template-columns:130px 1fr;gap:1rem;align-items:center;padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface-raised)}.arch-layer-name{font-family:var(--mono);font-size:.75rem;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}.arch-layer-content{font-size:.85rem;color:var(--text-muted)}.arch-layer-content code{font-family:var(--mono);font-size:.78rem;background:rgba(124,106,239,0.1);color:var(--accent);padding:.1em .4em;border-radius:3px}.arch-arrow{text-align:center;color:var(--text-dim);font-size:.85rem;padding:.25rem 0}.timeline{position:relative;padding-left:1.5rem}.timeline::before{content:'';position:absolute;top:0;bottom:0;left:7px;width:2px;background:var(--border)}.timeline-item{position:relative;margin-bottom:0}.timeline-dot{position:absolute;left:-1.5rem;top:1.1rem;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);z-index:1}.timeline-item:first-child .timeline-dot{background:var(--accent);box-shadow:0 0 8px rgba(124,106,239,0.4)}details.sprint-entry{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s}details.sprint-entry[open]{border-color:var(--border-accent)}details.sprint-entry summary{padding:1rem 1.25rem;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}details.sprint-entry summary::-webkit-details-marker{display:none}details.sprint-entry summary::before{content:'▸';color:var(--text-dim);font-size:.8rem;transition:transform .2s;flex-shrink:0}details.sprint-entry[open] summary::before{transform:rotate(90deg)}.sprint-date{font-family:var(--mono);font-size:.78rem;color:var(--text-dim);min-width:90px}.sprint-title{font-size:.88rem;font-weight:500;color:var(--text)}.sprint-tag{font-family:var(--mono);font-size:.68rem;padding:.15em .5em;border-radius:4px;background:var(--accent-glow);color:var(--accent);border:1px solid rgba(124,106,239,0.2)}.sprint-body{padding:0 1.25rem 1.25rem}.sprint-body ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}.sprint-body li{font-size:.83rem;color:var(--text-muted);line-height:1.55;padding-left:1.2rem;position:relative}.sprint-body li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}.next-items{display:flex;flex-direction:column;gap:.75rem}.next-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start}.next-priority{font-family:var(--mono);font-size:.7rem;font-weight:500;padding:.2em .5em;border-radius:4px;flex-shrink:0;margin-top:.15rem}.next-priority.p0{background:rgba(239,107,107,0.12);color:var(--red);border:1px solid rgba(239,107,107,0.2)}.next-priority.p1{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(240,180,41,0.2)}.next-priority.p2{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(77,166,255,0.2)}.next-title{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:.2rem}.next-desc{font-size:.8rem;color:var(--text-muted);line-height:1.5}.access-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}.access-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem}.access-icon{font-size:1.2rem;width:32px;text-align:center;flex-shrink:0}.access-label{font-size:.82rem;font-weight:500;color:var(--text)}.access-sub{font-size:.72rem;color:var(--text-dim)}.footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-dim);font-family:var(--mono)}@media(max-width:640px){.container{padding:1.25rem 1rem 3rem}h1{font-size:1.35rem}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-value{font-size:1.3rem}.arch-diagram{padding:1rem}}</style></head><body><div class="container"><nav class="topnav"><a href="./" class="back">All Dashboards</a><div class="nav-right"><a href="../projects/">Portfolio</a><a href="../fitness/">Fitness Brief</a></div></nav><div class="header"><div class="header-top"><div class="project-icon">🧠</div><h1>Second Brain</h1><span class="status-badge">Functional</span></div><p class="header-desc">An LLM-maintained personal knowledge base in Obsidian. Raw source documents are ingested by Claude, which writes structured wiki pages with cross-references, YAML frontmatter, and graph integration. The human curates sources and directs analysis; the LLM handles all summarization, cross-referencing, and bookkeeping.</p><div class="header-meta"><div class="meta-item">Last session <span>2026-05-21</span></div><div class="meta-item">Session <span>#9</span></div><div class="meta-item">Sprint <span>12 (complete)</span></div><div class="meta-item">Repo <span>niveknus/second-brain</span></div></div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Wiki Pages</div><div class="stat-value">69</div><div class="stat-sub">9 hubs · 52 topics · 8 special</div></div><div class="stat-card"><div class="stat-label">Sources Ingested</div><div class="stat-value">~547</div><div class="stat-sub">exports, transcripts, clips, PDFs</div></div><div class="stat-card"><div class="stat-label">Git Commits</div><div class="stat-value">270+</div><div class="stat-sub">~11/day avg over 24 days</div></div><div class="stat-card"><div class="stat-label">Sprints Shipped</div><div class="stat-value">12</div><div class="stat-sub">across 9 sessions</div></div><div class="stat-card"><div class="stat-label">Cloud Agents</div><div class="stat-value">3</div><div class="stat-sub">live routines running daily</div></div><div class="stat-card"><div class="stat-label">Access Points</div><div class="stat-value">5</div><div class="stat-sub">Cowork, CLI, Web, Desktop, Mobile</div></div></div><div class="section"><div class="section-header"><div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">⚙</div><h2>Architecture</h2></div><div class="arch-diagram"><div class="arch-layers"><div class="arch-layer"><div class="arch-layer-name">Raw Sources</div><div class="arch-layer-content">Universal inbox — ChatGPT exports, podcast transcripts, web clips, PDFs. Immutable ground truth. <code>raw-sources/</code></div></div><div class="arch-arrow">↓ LLM ingestion (Claude reads → synthesizes → writes wiki)</div><div class="arch-layer"><div class="arch-layer-name">Wiki Layer</div><div class="arch-layer-content">69 structured Markdown files with YAML frontmatter, wikilinks, cross-references. LLM-owned — human reads, LLM writes. <code>wiki/</code></div></div><div class="arch-arrow">↓ governed by</div><div class="arch-layer"><div class="arch-layer-name">Schema</div><div class="arch-layer-content"><code>Claude.md</code> — the constitution. Directory structure, entry formats, conventions, operating rules. Controls all LLM behavior.</div></div><div class="arch-arrow">↓ project management in</div><div class="arch-layer"><div class="arch-layer-name">Projects</div><div class="arch-layer-content">Full projects (dashboard + backlog + sprint + decision log) and Light side-projects. Master tracker at <code>Projects/00_Project Tracker.md</code></div></div><div class="arch-arrow">↓ automated via</div><div class="arch-layer"><div class="arch-layer-name">Scripts</div><div class="arch-layer-content"><code>generate-manifest.py</code> semantic search · <code>wiki-search.py</code> keyword+manifest · <code>check-duplicates.py</code> dedup · <code>chatgpt_to_md.py</code> import</div></div><div class="arch-arrow">↓ synced to</div><div class="arch-layer"><div class="arch-layer-name">GitHub</div><div class="arch-layer-content">Private repo auto-synced every 10 min via Obsidian Git. GitHub Actions runs manifest updates on wiki changes. MCP connector enables Claude access from all platforms.</div></div></div></div></div><div class="section"><div class="section-header"><div class="section-icon" style="background:var(--blue-bg);color:var(--blue)">🔗</div><h2>Claude Access Points</h2></div><div class="access-grid"><div class="access-card"><div class="access-icon">🖥️</div><div><div class="access-label">Cowork</div><div class="access-sub">Direct file access</div></div></div><div class="access-card"><div class="access-icon">⌨️</div><div><div class="access-label">Claude Code CLI</div><div class="access-sub">Terminal agent</div></div></div><div class="access-card"><div class="access-icon">🌐</div><div><div class="access-label">claude.ai Web</div><div class="access-sub">GitHub MCP</div></div></div><div class="access-card"><div class="access-icon">💻</div><div><div class="access-label">Desktop App</div><div class="access-sub">GitHub MCP</div></div></div><div class="access-card"><div class="access-icon">📱</div><div><div class="access-label">Android App</div><div class="access-sub">GitHub MCP</div></div></div><div class="access-card"><div class="access-icon">🔄</div><div><div class="access-label">Obsidian Sync</div><div class="access-sub">Mac ↔ Android</div></div></div></div></div><div class="section"><div class="section-header"><div class="section-icon" style="background:var(--green-bg);color:var(--green)">✓</div><h2>Recently Completed</h2></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry" open><summary><span class="sprint-date">2026-05-21</span><span class="sprint-title">Project Portfolio Dashboard</span><span class="sprint-tag">Session 9</span></summary><div class="sprint-body"><ul><li>Built "What I'm Building with Claude" visual showcase — cards for each project with status badges, progress bars, metric chips, and tech stacks</li><li>Cumulative stats: 270 commits in 24 days, 547 sources, 69 wiki pages, 20+ sprints shipped, 3 live cloud agents</li><li>Deployed to GitHub Pages at niveknus.github.io/projects/</li><li>Cowork Live Artifact created for quick sidebar access</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-17</span><span class="sprint-title">Sprint 12 — Semantic Search Manifest</span><span class="sprint-tag">Session 8</span></summary><div class="sprint-body"><ul><li>Built generate-manifest.py — Haiku API generates per-page summaries, 15-30 search terms with vocabulary bridging, entry keywords, and concepts</li><li>GitHub Actions workflow auto-commits updated manifest on wiki changes</li><li>Rewrote wiki-search.py to blend ripgrep hits with semantic manifest matches</li><li>Analysis reports: suggested-links and topic-gaps generated automatically</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-13</span><span class="sprint-title">Sprint 11 — Polish &amp; Structure Pass</span><span class="sprint-tag">Session 7</span></summary><div class="sprint-body"><ul><li>Bridge links added to all 6 personal-knowledge pages</li><li>Fitness Coach adjustment-rules upgraded to 5-band sleep threshold</li><li>New wiki pages: books-and-reading + monthly-checkins</li><li>AI-and-automation-tools organized into 5 named sub-sections (32 entries)</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-10</span><span class="sprint-title">Sprint 10 — AI Tooling Wave + Batch Ingest</span><span class="sprint-tag">Session 6</span></summary><div class="sprint-body"><ul><li>32-file backlog processed end-to-end with AskUserQuestion-driven scoping</li><li>22 wiki entries across 4 topic pages — Karpathy cluster, Maverick library, sleep science, personal growth</li><li>Counts updated: master index 514 → 536 sources, 6 new cross-references</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-10</span><span class="sprint-title">Sprint 9 — Vault Health + Personal Knowledge + Side-Projects</span><span class="sprint-tag">Session 5</span></summary><div class="sprint-body"><ul><li>6 new personal wiki pages: family, close-friends, work-people, annual-goals, principles-and-quotes, 2025-year-in-review</li><li>Side-project infrastructure: new sub-project tier, 15 home improvement ideas seeded</li><li>Cowork worktree maintenance script with dry-run/auto-confirm flags</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-05</span><span class="sprint-title">Sprint 6 + 8 — Cross-Platform Access + Persistent Instructions</span><span class="sprint-tag">Session 4</span></summary><div class="sprint-body"><ul><li>GitHub MCP connector deployed — Claude reads/writes vault from all platforms</li><li>Persistent instructions deployed to claude.ai settings (syncs everywhere)</li><li>Shared project files repo created with auto-sync GitHub Action</li></ul></div></details></div><div class="timeline-item"><div class="timeline-dot"></div><details class="sprint-entry"><summary><span class="sprint-date">2026-05-01</span><span class="sprint-title">Foundation — Projects Infra + Batch Ingest + Search + Timeline</span><span class="sprint-tag">Sessions 1–3</span></summary><div class="sprint-body"><ul><li>Projects folder infrastructure: dashboards, backlogs, sprints, decision logs</li><li>31 April sources ingested, ChatGPT import skill built (two-pass dedup)</li><li>wiki-search.py built with ripgrep + ranking. Timeline page with 312 life-event entries</li><li>3 decision playbooks: vehicle, travel, financial decisions</li></ul></div></details></div></div></div><div class="section"><div class="section-header"><div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">→</div><h2>Recommended Next Work</h2></div><div class="next-items"><div class="next-item"><span class="next-priority p0">P0</span><div><div class="next-title">Sprint 12 Setup (Kevin)</div><div class="next-desc">Add ANTHROPIC_API_KEY as GitHub Actions secret, push workflow YAML from Mac terminal, re-test generate-manifest.py cost reduction</div></div></div><div class="next-item"><span class="next-priority p1">P1</span><div><div class="next-title">Maverick Library Follow-ups</div><div class="next-desc">Install Obsidian Second Brain skill (31 commands), evaluate Stop-Slop/Humanizer, Marketing Skills for Flourish</div></div></div><div class="next-item"><span class="next-priority p1">P1</span><div><div class="next-title">Vault Health Analysis Gaps</div><div class="next-desc">Health-data snapshot pattern (Garmin/Oura/weight over time), 2022/2023 goals recovery, decision retrospective practice</div></div></div><div class="next-item"><span class="next-priority p2">P2</span><div><div class="next-title">Carry-over Backlog</div><div class="next-desc">Obsidian Git on Android, scheduled wiki &amp; project lint routine, Canvas visualization, Marp slide decks</div></div></div></div></div><div class="footer">Generated from Projects/Second Brain/00_Project Dashboard.md · Last updated 2026-05-21</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Brain — Project Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0e12;
+  --surface: #13161c;
+  --surface-raised: #1a1e26;
+  --border: #252a35;
+  --border-accent: #3a4050;
+  --text: #e0e4ec;
+  --text-muted: #8891a4;
+  --text-dim: #5a6377;
+  --accent: #7c6aef;
+  --accent-glow: rgba(124, 106, 239, 0.12);
+  --accent-border: rgba(124, 106, 239, 0.25);
+  --green: #3ecf8e;
+  --green-bg: rgba(62, 207, 142, 0.08);
+  --amber: #f0b429;
+  --amber-bg: rgba(240, 180, 41, 0.08);
+  --blue: #4da6ff;
+  --blue-bg: rgba(77, 166, 255, 0.08);
+  --red: #ef6b6b;
+  --red-bg: rgba(239, 107, 107, 0.08);
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 10px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+.topnav { border-bottom: 1px solid var(--border); padding: .75rem 0; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.topnav a { font-family: var(--mono); font-size: .75rem; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.topnav a:hover { color: var(--accent); }
+.topnav .back { display: flex; align-items: center; gap: .4rem; }
+.topnav .back::before { content: '←'; font-size: .85rem; }
+.topnav .nav-right { display: flex; gap: 1.25rem; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+.header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.header-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; flex-wrap: wrap; }
+.project-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #7c6aef, #9b7aff); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; color: #fff; }
+.status-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .75rem; border-radius: 100px; font-size: .75rem; font-weight: 500; font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+.status-badge.active { background: var(--green-bg); color: var(--green); border: 1px solid rgba(62, 207, 142, 0.2); }
+.status-badge.active::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.status-badge.blocked { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.status-badge.blocked::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.status-badge.hold { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.status-badge.hold::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.header-desc { color: var(--text-muted); font-size: .92rem; max-width: 720px; line-height: 1.65; }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.meta-item { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); }
+.meta-item span { color: var(--text-muted); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: .5; }
+.stat-label { font-size: .72rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin-bottom: .5rem; }
+.stat-value { font-size: 1.6rem; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.stat-sub { font-size: .78rem; color: var(--text-muted); margin-top: .2rem; }
+
+.section { margin-bottom: 2.5rem; }
+.section-header { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem; }
+.section-header h2 { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: -.01em; }
+.section-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 7px; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 0; }
+.timeline-dot { position: absolute; left: -1.5rem; top: 1.1rem; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); z-index: 1; }
+.timeline-item:first-child .timeline-dot { background: var(--accent); box-shadow: 0 0 8px rgba(124, 106, 239, 0.12); }
+
+details.sprint-entry { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
+details.sprint-entry[open] { border-color: var(--border-accent); }
+details.sprint-entry summary { padding: 1rem 1.25rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+details.sprint-entry summary::-webkit-details-marker { display: none; }
+details.sprint-entry summary::before { content: '▸'; color: var(--text-dim); font-size: .8rem; transition: transform .2s; flex-shrink: 0; }
+details.sprint-entry[open] summary::before { transform: rotate(90deg); }
+.sprint-date { font-family: var(--mono); font-size: .78rem; color: var(--text-dim); min-width: 90px; }
+.sprint-title { font-size: .88rem; font-weight: 500; color: var(--text); }
+.sprint-tag { font-family: var(--mono); font-size: .68rem; padding: .15em .5em; border-radius: 4px; background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(124, 106, 239, 0.25); }
+.sprint-body { padding: 0 1.25rem 1.25rem; }
+.sprint-body ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.sprint-body li { font-size: .83rem; color: var(--text-muted); line-height: 1.55; padding-left: 1.2rem; position: relative; }
+.sprint-body li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+.next-items { display: flex; flex-direction: column; gap: .75rem; }
+.next-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.next-priority { font-family: var(--mono); font-size: .7rem; font-weight: 500; padding: .2em .5em; border-radius: 4px; flex-shrink: 0; margin-top: .15rem; }
+.next-priority.p1 { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(240, 180, 41, 0.2); }
+.next-priority.p2 { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(77, 166, 255, 0.2); }
+.next-priority.p3 { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.08); }
+.next-title { font-size: .88rem; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+.next-desc { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: .75rem; color: var(--text-dim); font-family: var(--mono); }
+
+@media (max-width: 640px) {
+  .container { padding: 1.25rem 1rem 3rem; }
+  h1 { font-size: 1.35rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<nav class="topnav">
+  <a href="./" class="back">All Dashboards</a>
+  <div class="nav-right">
+    <a href="../projects/">Portfolio</a>
+    <a href="../fitness/">Fitness Brief</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-top">
+    <div class="project-icon">🧠</div>
+    <h1>Second Brain</h1>
+    <span class="status-badge active">Active</span>
+  </div>
+  <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
+  <div class="header-meta">
+    <div class="meta-item">Last session <span>2026-05-25</span></div>
+    <div class="meta-item">Session 11 · 2026-05-25</div>
+    
+  </div>
+</div>
+
+
+
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">✓</div>
+    <h2>Recently Completed</h2>
+  </div>
+  <div class="timeline">
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-25</span>
+          <span class="sprint-title">Structural Audit + CLAUDE.md Token Optimization</span>
+          <span class="sprint-tag">session 11</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>CLAUDE.md split: Extracted 3 sections into `docs/` reference files (llm-wiki-pattern.md, git-hygiene.md, graph-view-preferences.md). Core CLAUDE.md trimmed from ~7,500 to ~3,500 tokens — ~4,000 tok...</li>
+            
+            <li>AI & Automation promoted to 10th hub: `ai-and-automation.md` hub page created. `ai-and-automation-tools.md` (33 entries) split into `ai-and-automation-tools.md` (18 — Second Brain/LLM methodology) ...</li>
+            
+            <li>home-maintenance.md split: 31 entries → `home-maintenance.md` (21 — cleaning, repair, decor, smart home) + `home-improvement.md` (10 — renovation/upgrade projects).</li>
+            
+            <li>Root file cleanup: 6 misplaced files moved to proper project locations (2 EV Charger PDFs, 2 Flourish council files, portfolio HTML, GitHub MCP setup guide).</li>
+            
+            <li>Wiki lint pass run with count fixes and cross-reference opportunities flagged.</li>
+            
+            <li>FC wiki catchup: 2 entries added to fitness-coach.md (DI OAuth migration + Sprint 8-13 dashboard build).</li>
+            
+            <li>Full structural audit report saved at `Projects/Second Brain/structural-audit-2026-05-25.md`.</li>
+            
+            <li>Wiki lint pass (continuation): Moved misfiled "Withings vs Wyze Comparison" from car-and-transportation to fitness-and-nutrition. Added bridge links to playbook-travel (Vancouver & Seattle, Travel ...</li>
+            
+            <li>About Me.md refresh: Updated age (34), relationship status (reconnected with Crissy), added pickleball + AI/automation interests, added current cut + SVT health info, fixed 4 broken wiki links, upd...</li>
+            
+            <li>Dashboard changelog system: Built `scripts/generate-changelog.py` (parses wiki/log → JSON), updated `generate-dashboard-index.py` with "Recent Activity" table on landing page (one-line-per-entry wi...</li>
+            
+            <li>Dashboard manifest updated: All project statuses and metadata refreshed to reflect current state.</li>
+            
+            <li>Portfolio page updated: Cumulative stats refreshed (549 sources, 60+ pages/10 hubs, 4 live agents, 28 days active).</li>
+            
+            <li>Project Tracker audit: Updated SB and PA statuses, fixed double-pipe formatting.</li>
+            
+            <li>FC dashboard cleanup: Removed stale Next Steps for completed Sprints 8–13.</li>
+            
+            <li>Sprint convention documented in Session Protocols: numbered sprints for PA/FC/Flourish, session numbers for SB/Light projects.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-22</span>
+          <span class="sprint-title">HTML Dashboard Deploy Pipeline</span>
+          <span class="sprint-tag">session 10</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Built `deploy-dashboards.yml` GitHub Action — triggers on `Projects/*/dashboard.html` changes, clones `niveknus.github.io`, copies all dashboard.html files with URL-safe filenames (e.g., "Second Br...</li>
+            
+            <li>Generated 3 new project dashboards with distinct visual identities:</li>
+            
+            <li>Personal Assistant — orange accent (#ff8c42), Inter + JetBrains Mono fonts, stats grid (4 integrations, 7:30 AM briefing), architecture diagram, scheduling preference cards, 3-sprint collapsible ti...</li>
+            
+            <li>Flourish Counseling Rebuild — rose accent (#e85d75), 3-phase tracker, domain facts table, 7-event evidence timeline (April 2025 → May 2026), reserve cards for attorney letter strategy</li>
+            
+            <li>Work Brain — blue accent (#4a9eff), IBM Plex fonts, three-layer architecture cards (wiki/projects/ops), environment grid, wiki hub cards, 8-item setup checklist</li>
+            
+            <li>Stored source copies of existing Second Brain + Fitness Coach dashboards in private repo at `Projects/*/dashboard.html`</li>
+            
+            <li>Built dashboard infrastructure: `scripts/dashboard-manifest.json` (project metadata for landing page generation) + `scripts/generate-dashboard-index.py` (reads manifest, checks for dashboards, gene...</li>
+            
+            <li>Updated Session Protocols — added dashboard regeneration as item 6 in both Full and Light end-of-session checklists</li>
+            
+            <li>Merged backlog item from `backlog-html-dashboards.md` into `01_Feature Backlog.md` as ✅ completed entry; deleted standalone file</li>
+            
+            <li>All 5 dashboards live at `niveknus.github.io/dashboards/` with auto-generated landing page</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-21</span>
+          <span class="sprint-title">Project Portfolio Dashboard</span>
+          <span class="sprint-tag">session 9</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Built "What I'm Building with Claude" portfolio dashboard at `niveknus.github.io/projects/`</li>
+            
+            <li>Cumulative stats: 270 git commits in 24 days, 547 sources, 69 wiki pages, 3 live cloud agents</li>
+            
+            <li>Cowork Live Artifact created for quick sidebar access</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-17</span>
+          <span class="sprint-title">Sprint 12</span>
+          <span class="sprint-tag">session 8</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`scripts/generate-manifest.py` — Haiku API generates per-page summaries, search terms, entry keywords, concepts</li>
+            
+            <li>GitHub Action auto-commits updated manifest on wiki changes</li>
+            
+            <li>`wiki-search.py` rewritten with manifest blending</li>
+            
+            <li>Remaining: Kevin adds `ANTHROPIC_API_KEY` as GitHub Actions secret</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-13</span>
+          <span class="sprint-title">Sprint 11</span>
+          <span class="sprint-tag">session 7</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Bridge links added to all 6 personal-knowledge pages</li>
+            
+            <li>Fitness Coach adjustment-rules upgraded to 5-band sleep threshold</li>
+            
+            <li>New wiki pages: books-and-reading + monthly-checkins</li>
+            
+            <li>AI-and-automation-tools organized into 5 named sub-sections</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-10</span>
+          <span class="sprint-title">/11 — Sprint 9–10</span>
+          <span class="sprint-tag">sessions 5–6</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Vault health pass + 6 personal-knowledge pages + side-project infrastructure</li>
+            
+            <li>32-file batch ingest (AI tooling wave + sleep/personal growth)</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-05</span>
+          <span class="sprint-title">Sprint 6 + 8</span>
+          <span class="sprint-tag">session 4</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Cross-Platform Claude Access + Persistent Instructions + Shared repo</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-01</span>
+          <span class="sprint-title">Foundation</span>
+          <span class="sprint-tag">sessions 1–3</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Projects folder infrastructure, 31 April sources ingested, ChatGPT import skill, wiki-search.py, timeline page, 3 decision playbooks</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+<div class="footer">Generated from Projects/Second Brain/00_Project Dashboard.md · Last updated 2026-05-25</div>
+
+</div>
+</body>
+</html>
