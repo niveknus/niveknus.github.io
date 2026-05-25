@@ -53,16 +53,27 @@
   .card-date { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); margin-left: auto; }
   .coming-soon { position: absolute; top: 12px; right: 12px; font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.05em; }
   .footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); line-height: 1.8; }
-  @media (max-width: 640px) { .container { padding: 2rem 1rem 3rem; } .grid { grid-template-columns: 1fr; } }
+  .activity-table-wrapper { margin-bottom: 2.5rem; overflow-x: auto; }
+  .activity-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .activity-table tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .activity-table tr:hover { background: rgba(255,255,255,0.02); }
+  .activity-table td { padding: 0.55rem 0.5rem; vertical-align: middle; white-space: nowrap; }
+  .activity-date { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); width: 90px; }
+  .activity-icon { width: 28px; text-align: center; font-size: 0.85rem; }
+  .activity-title { white-space: normal !important; color: var(--text-muted); font-weight: 300; line-height: 1.4; }
+  .activity-link { color: var(--text); text-decoration: none; transition: color 0.2s; font-weight: 400; }
+  .activity-link:hover { color: var(--accent); }
+  .activity-type { font-family: var(--mono); font-size: 0.6rem; padding: 0.15em 0.45em; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid; opacity: 0.7; }
+  @media (max-width: 640px) { .container { padding: 2rem 1rem 3rem; } .grid { grid-template-columns: 1fr; } .activity-date { display: none; } }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <h1>&#128202; Project Dashboards</h1>
-    <p class="subtitle">Visual dashboards for active projects. Generated from Markdown project files in the Second Brain vault. These are the HTML presentation layer &mdash; the Markdown stays the source of truth.</p>
+    <h1>📊 Project Dashboards</h1>
+    <p class="subtitle">Visual dashboards for active projects. Generated from Markdown project files in the Second Brain vault. These are the HTML presentation layer — the Markdown stays the source of truth.</p>
     <div class="nav-links">
-      <a href="../projects/">&larr; Portfolio</a>
+      <a href="../projects/">← Portfolio</a>
       <a href="../fitness/">Fitness Brief</a>
     </div>
   </div>
@@ -70,39 +81,39 @@
   <div class="section-label">Active Projects</div>
   <div class="grid">
     <a class="card" href="second-brain.html">
-      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #7c6aef, #9b7aff);">&#129504;</div><div class="card-title">Second Brain</div></div>
-      <div class="card-desc">LLM-maintained personal knowledge base. 64 wiki pages, ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</div>
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #7c6aef, #9b7aff);">🧠</div><div class="card-title">Second Brain</div></div>
+      <div class="card-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</div>
       <div class="card-footer"><span class="badge active">Active</span>
       <span class="badge full">Full</span>
-      <span class="card-date">Sprint 12 &middot; 2026-05-25</span></div>
+      <span class="card-date">Session 11 · 2026-05-25</span></div>
     </a>
     <a class="card" href="fitness-coach.html">
-      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #00d68f, #00a870);">&#128170;</div><div class="card-title">Fitness Coach</div></div>
-      <div class="card-desc">Adaptive fitness coach for the 200 &rarr; 165 lb cut. Daily Garmin pull, morning Telegram brief, evening adherence loop, GitHub Pages live dashboard.</div>
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #00d68f, #00a870);">💪</div><div class="card-title">Fitness Coach</div></div>
+      <div class="card-desc">Adaptive fitness coach for the 200 → 165 lb cut. Daily Garmin pull, morning Telegram brief, evening adherence loop, GitHub Pages live dashboard.</div>
       <div class="card-footer"><span class="badge active">Active</span>
       <span class="badge full">Full</span>
-      <span class="card-date">Sprint 13 &middot; 2026-05-23</span></div>
+      <span class="card-date">Sprint 13 · 2026-05-23</span></div>
     </a>
     <a class="card" href="personal-assistant.html">
-      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #ff8c42, #ff6b1a);">&#129302;</div><div class="card-title">Personal Assistant</div></div>
-      <div class="card-desc">Task management, calendar, daily morning briefings via Telegram. Email triage, smart scheduling, reminders. Cloud Routine live.</div>
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #ff8c42, #ff6b1a);">🤖</div><div class="card-title">Personal Assistant</div></div>
+      <div class="card-desc">Task management, calendar, daily morning briefings via Telegram. Email triage, smart scheduling, weekly review, monthly retro. Cloud Routines live.</div>
       <div class="card-footer"><span class="badge active">Active</span>
       <span class="badge full">Full</span>
-      <span class="card-date">Sprint 2 &middot; 2026-05-15</span></div>
+      <span class="card-date">Sprint 2 · 2026-05-25</span></div>
     </a>
     <a class="card" href="flourish-counseling-rebuild.html">
-      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #e85d75, #c94060);">&#127800;</div><div class="card-title">Flourish Counseling Rebuild</div></div>
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #e85d75, #c94060);">🌸</div><div class="card-title">Flourish Counseling Rebuild</div></div>
       <div class="card-desc">Domain recovery and web presence rebuild for Crissy's therapy practice. Multi-phase: registrar transfer, DNS, email, new site.</div>
       <div class="card-footer"><span class="badge blocked">Blocked</span>
       <span class="badge full">Full</span>
-      <span class="card-date">Phase 1 &middot; 2026-05-24</span></div>
+      <span class="card-date">Round 3 · 2026-05-24</span></div>
     </a>
     <a class="card" href="work-brain.html">
-      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #4a9eff, #2d7fd6);">&#128188;</div><div class="card-title">Work Brain</div></div>
+      <div class="card-top"><div class="card-icon" style="background: linear-gradient(135deg, #4a9eff, #2d7fd6);">💼</div><div class="card-title">Work Brain</div></div>
       <div class="card-desc">Obsidian vault template for work knowledge management. Three-layer architecture: wiki + projects + operations.</div>
       <div class="card-footer"><span class="badge hold">On Hold</span>
       <span class="badge light">Light</span>
-      <span class="card-date">Template ready &middot; 2026-05-22</span></div>
+      <span class="card-date">Template ready · 2026-05-22</span></div>
     </a>
   </div>
 
@@ -110,14 +121,14 @@
   <div class="grid">
     <div class="card disabled">
       <span class="coming-soon">dashboard pending</span>
-      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">&#129517;</div><div class="card-title">Life Coach</div></div>
-      <div class="card-desc">Broader life coaching layer &mdash; goals, habits, personal development, monthly check-ins.</div>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">🧭</div><div class="card-title">Life Coach</div></div>
+      <div class="card-desc">Broader life coaching layer — goals, habits, personal development, monthly check-ins.</div>
       <div class="card-footer"><span class="badge backlog">Backlog</span>
       <span class="badge full">Full</span></div>
     </div>
     <div class="card disabled">
       <span class="coming-soon">dashboard pending</span>
-      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">&#128200;</div><div class="card-title">Career Coach</div></div>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">📈</div><div class="card-title">Career Coach</div></div>
       <div class="card-desc">Career progression tracking, resume, skills development, promotion planning.</div>
       <div class="card-footer"><span class="badge backlog">Backlog</span>
       <span class="badge light">Light</span></div>
@@ -128,14 +139,113 @@
   <div class="grid">
     <div class="card disabled">
       <span class="coming-soon">dashboard pending</span>
-      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">&#128421;&#65039;</div><div class="card-title">Home Server (Mac Mini)</div></div>
-      <div class="card-desc">Mac Mini M4 arrived 05/24. Always-on Claude infrastructure node &mdash; Cowork, Claude Code, MCP servers, scheduled agents.</div>
+      <div class="card-top"><div class="card-icon" style="background: rgba(255,255,255,0.06);">🖥️</div><div class="card-title">Home Server (Mac Mini)</div></div>
+      <div class="card-desc">Mac Mini M4 16/256 core setup complete. Headless access, SSH + Screen Sharing + Tailscale verified. Claude Desktop + CLI installed.</div>
       <div class="card-footer"><span class="badge active">Active</span>
       <span class="badge light">Light</span></div>
     </div>
   </div>
 
-  <div class="footer">Source: niveknus/second-brain (private) &middot; Published to niveknus.github.io/dashboards/<br>Markdown &rarr; HTML presentation layer &middot; Updated 2026-05-25</div>
+
+  <div class="section-label">Recent Activity</div>
+  <div class="activity-table-wrapper">
+    <table class="activity-table">
+      <tbody>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔩</td>
+        <td class="activity-title"><a href="second-brain.html" class="activity-link">Wiki lint — misfiled Withings entry moved, bridge links added, About …</a></td>
+        <td><span class="activity-type" style="color: var(--amber); border-color: var(--amber)">maintenance</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><span>Dashboard changelog system + manifest updates + portfolio refresh</span></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🏗️</td>
+        <td class="activity-title"><span>Sprint convention documented in Session Protocols</span></td>
+        <td><span class="activity-type" style="color: var(--accent); border-color: var(--accent)">structure</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🏗️</td>
+        <td class="activity-title"><a href="second-brain.html" class="activity-link">CLAUDE.md token optimization — split into core + 3 reference docs</a></td>
+        <td><span class="activity-type" style="color: var(--accent); border-color: var(--accent)">structure</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🏗️</td>
+        <td class="activity-title"><a href="second-brain.html" class="activity-link">AI & Automation promoted to 10th hub + topic splits</a></td>
+        <td><span class="activity-type" style="color: var(--accent); border-color: var(--accent)">structure</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🏗️</td>
+        <td class="activity-title"><span>home-maintenance.md split + home-improvement.md created</span></td>
+        <td><span class="activity-type" style="color: var(--accent); border-color: var(--accent)">structure</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><a href="personal-assistant.html" class="activity-link">Personal Assistant — Monthly Retrospective Routine + Neglected Commit…</a></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><span>Home Server — Core setup complete, headless access verified</span></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">📝</td>
+        <td class="activity-title"><a href="fitness-coach.html" class="activity-link">Fitness Coach wiki catchup — DI OAuth migration + Sprint 8-13 dashboard</a></td>
+        <td><span class="activity-type" style="color: var(--blue); border-color: var(--blue)">capture</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔩</td>
+        <td class="activity-title"><span>Root file cleanup — 6 files moved to proper locations</span></td>
+        <td><span class="activity-type" style="color: var(--amber); border-color: var(--amber)">maintenance</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔩</td>
+        <td class="activity-title"><a href="second-brain.html" class="activity-link">Wiki lint pass</a></td>
+        <td><span class="activity-type" style="color: var(--amber); border-color: var(--amber)">maintenance</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><span>EV Charger Business Case — completed (Azul Baldwin Park)</span></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-25</td>
+        <td class="activity-icon">📝</td>
+        <td class="activity-title"><span>Tesla Model 3 Ceramic Coating Plan — Gyeon CanCoat EVO</span></td>
+        <td><span class="activity-type" style="color: var(--blue); border-color: var(--blue)">capture</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-24</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><a href="personal-assistant.html" class="activity-link">Personal Assistant — Morning Brief v2 (email intelligence)</a></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      <tr>
+        <td class="activity-date">2026-05-24</td>
+        <td class="activity-icon">🔧</td>
+        <td class="activity-title"><span>Home Server — Mac Mini arrived, setup day prep</span></td>
+        <td><span class="activity-type" style="color: var(--green); border-color: var(--green)">session</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">Source: niveknus/second-brain (private) · Published to niveknus.github.io/dashboards/<br>Markdown → HTML presentation layer · Auto-generated 2026-05-25</div>
 </div>
 </body>
 </html>
