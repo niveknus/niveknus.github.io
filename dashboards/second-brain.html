@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-25</span></div>
+    <div class="meta-item">Last session <span>2026-05-26</span></div>
     <div class="meta-item">Session 11 · 2026-05-25</div>
     
   </div>
@@ -149,6 +149,40 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
         <summary>
+          <span class="sprint-date">2026-05-26</span>
+          <span class="sprint-title">System Review Execution + Structural Overhaul</span>
+          <span class="sprint-tag">session 12</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Full 7-panel system review executed across all projects (cartography → review panels → cross-project synthesis → prioritized action plan). 15 system review items identified; all resolved this session.</li>
+            
+            <li>SR-1 through SR-10: Fixed session-end protocol, replaced handoff prompts with stable dashboard pointers, deleted 10 dead files, fixed 9 stale counts/status lines, marked pre-fix adherence entries, ...</li>
+            
+            <li>SR-13 through SR-15: Updated wiki project pages (PA, FC, Flourish), calibrated FC recovery baselines from Garmin data, created `docs/shared-conventions.md`.</li>
+            
+            <li>Structural overhaul (#17): Collapsed Full project structure from 8→4 files (Dashboard, Backlog, Decision Log, Sprint History). Deleted Current Sprint + Session Handoff Prompt across PA, FC, SB, Lif...</li>
+            
+            <li>Flourish restructure (#18): Converted from sprint-based to correspondence-driven structure. Created `01_Correspondence Timeline.md` (chronological record of all BV communication rounds). Deleted Fe...</li>
+            
+            <li>Routine manifest (#19): Created `docs/routines-manifest.md` documenting all 5 active cloud routines with schedules, prompt files, data dependencies, and shared infrastructure.</li>
+            
+            <li>FC backlog tagging (#21): Marked Sprints 10, 11, 14 as exploratory (deprioritized).</li>
+            
+            <li>Lint pass: Fixed 4 broken wikilinks, 3 stale dates, 1 dead-file reference in Life Coach backlog.</li>
+            
+            <li>Cross-file consistency verified: Session Protocols, CLAUDE.md directory tree, Project Tracker, Home Improvement promotion template all updated to reflect new structure.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
           <span class="sprint-date">2026-05-25</span>
           <span class="sprint-title">Dynamic Dashboard Template System</span>
           <span class="sprint-tag">session 11b</span>
@@ -156,15 +190,11 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
         <div class="sprint-body">
           <ul>
             
-            <li>Built `scripts/render-dashboard.py` — Jinja2-based renderer that parses `00_Project Dashboard.md` into structured sections (vision, sprints, next steps) and renders HTML using per-project style con...</li>
+            <li>Built `scripts/render-dashboard.py` — Jinja2-based renderer that parses `00_Project Dashboard.md` into structured sections and renders HTML using per-project style configs from `dashboard-manifest....</li>
             
-            <li>Created `scripts/templates/dashboard.html.j2` — generalized dashboard template with CSS variable slots for per-project visual identity (accent colors, fonts, gradients, border radius).</li>
+            <li>Created `scripts/templates/dashboard.html.j2` — generalized dashboard template with CSS variable slots for per-project visual identity.</li>
             
-            <li>Added `style` objects to `dashboard-manifest.json` for all 5 projects — extracted fonts, accent colors, gradients, and color palette from each existing hand-crafted dashboard.</li>
-            
-            <li>Updated `deploy-dashboards.yml` — triggers on `00_Project Dashboard.md` and `_overview.md` changes; installs jinja2+pyyaml; renders template dashboards after copying static ones (template takes pre...</li>
-            
-            <li>Markdown parser handles two formats: multiple `## Recently Completed (date — title)` sections (PA/Flourish pattern) and single `## Recently Completed` with `### date — title` subsections (SB/FC pat...</li>
+            <li>Updated `deploy-dashboards.yml` — triggers on dashboard markdown changes; renders template dashboards after copying static ones.</li>
             
             <li>Full pipeline tested locally: 5 dashboards rendered successfully, all integrated with changelog and landing page generation.</li>
             
@@ -184,71 +214,13 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
         <div class="sprint-body">
           <ul>
             
-            <li>CLAUDE.md split: Extracted 3 sections into `docs/` reference files (llm-wiki-pattern.md, git-hygiene.md, graph-view-preferences.md). Core CLAUDE.md trimmed from ~7,500 to ~3,500 tokens — ~4,000 tok...</li>
+            <li>CLAUDE.md split: Extracted 3 sections into `docs/` reference files. Core CLAUDE.md trimmed from ~7,500 to ~3,500 tokens.</li>
             
-            <li>AI & Automation promoted to 10th hub: `ai-and-automation.md` hub page created. `ai-and-automation-tools.md` (33 entries) split into `ai-and-automation-tools.md` (18 — Second Brain/LLM methodology) ...</li>
+            <li>AI & Automation promoted to 10th hub. `ai-and-automation-tools.md` split into tools + prompts pages.</li>
             
-            <li>home-maintenance.md split: 31 entries → `home-maintenance.md` (21 — cleaning, repair, decor, smart home) + `home-improvement.md` (10 — renovation/upgrade projects).</li>
+            <li>home-maintenance.md split: 31 entries → maintenance (21) + improvement (10).</li>
             
-            <li>Root file cleanup: 6 misplaced files moved to proper project locations (2 EV Charger PDFs, 2 Flourish council files, portfolio HTML, GitHub MCP setup guide).</li>
-            
-            <li>Wiki lint pass run with count fixes and cross-reference opportunities flagged.</li>
-            
-            <li>FC wiki catchup: 2 entries added to fitness-coach.md (DI OAuth migration + Sprint 8-13 dashboard build).</li>
-            
-            <li>Full structural audit report saved at `Projects/Second Brain/structural-audit-2026-05-25.md`.</li>
-            
-            <li>Wiki lint pass (continuation): Moved misfiled "Withings vs Wyze Comparison" from car-and-transportation to fitness-and-nutrition. Added bridge links to playbook-travel (Vancouver & Seattle, Travel ...</li>
-            
-            <li>About Me.md refresh: Updated age (34), relationship status (reconnected with Crissy), added pickleball + AI/automation interests, added current cut + SVT health info, fixed 4 broken wiki links, upd...</li>
-            
-            <li>Dashboard changelog system: Built `scripts/generate-changelog.py` (parses wiki/log → JSON), updated `generate-dashboard-index.py` with "Recent Activity" table on landing page (one-line-per-entry wi...</li>
-            
-            <li>Dashboard manifest updated: All project statuses and metadata refreshed to reflect current state.</li>
-            
-            <li>Portfolio page updated: Cumulative stats refreshed (549 sources, 60+ pages/10 hubs, 4 live agents, 28 days active).</li>
-            
-            <li>Project Tracker audit: Updated SB and PA statuses, fixed double-pipe formatting.</li>
-            
-            <li>FC dashboard cleanup: Removed stale Next Steps for completed Sprints 8–13.</li>
-            
-            <li>Sprint convention documented in Session Protocols: numbered sprints for PA/FC/Flourish, session numbers for SB/Light projects.</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-22</span>
-          <span class="sprint-title">HTML Dashboard Deploy Pipeline</span>
-          <span class="sprint-tag">session 10</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Built `deploy-dashboards.yml` GitHub Action — triggers on `Projects/*/dashboard.html` changes, clones `niveknus.github.io`, copies all dashboard.html files with URL-safe filenames (e.g., "Second Br...</li>
-            
-            <li>Generated 3 new project dashboards with distinct visual identities:</li>
-            
-            <li>Personal Assistant — orange accent (#ff8c42), Inter + JetBrains Mono fonts, stats grid (4 integrations, 7:30 AM briefing), architecture diagram, scheduling preference cards, 3-sprint collapsible ti...</li>
-            
-            <li>Flourish Counseling Rebuild — rose accent (#e85d75), 3-phase tracker, domain facts table, 7-event evidence timeline (April 2025 → May 2026), reserve cards for attorney letter strategy</li>
-            
-            <li>Work Brain — blue accent (#4a9eff), IBM Plex fonts, three-layer architecture cards (wiki/projects/ops), environment grid, wiki hub cards, 8-item setup checklist</li>
-            
-            <li>Stored source copies of existing Second Brain + Fitness Coach dashboards in private repo at `Projects/*/dashboard.html`</li>
-            
-            <li>Built dashboard infrastructure: `scripts/dashboard-manifest.json` (project metadata for landing page generation) + `scripts/generate-dashboard-index.py` (reads manifest, checks for dashboards, gene...</li>
-            
-            <li>Updated Session Protocols — added dashboard regeneration as item 6 in both Full and Light end-of-session checklists</li>
-            
-            <li>Merged backlog item from `backlog-html-dashboards.md` into `01_Feature Backlog.md` as ✅ completed entry; deleted standalone file</li>
-            
-            <li>All 5 dashboards live at `niveknus.github.io/dashboards/` with auto-generated landing page</li>
+            <li>Root file cleanup, wiki lint pass, FC wiki catchup, About Me.md refresh, dashboard changelog system, portfolio page update, sprint convention documented.</li>
             
           </ul>
         </div>
