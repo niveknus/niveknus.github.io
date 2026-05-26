@@ -203,98 +203,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       </details>
     </div>
     
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-15</span>
-          <span class="sprint-title">Email Triage + Mass Unsubscribe</span>
-          
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>First-pass email triage on Gmail inbox (unread + last 90 days) — identified ~30+ promotional senders, extracted 3 action items to Todoist (Wealthfront beneficiary, Tesla Premium Connectivity, Best ...</li>
-            
-            <li>Simplified label taxonomy from 5 → 3 labels (Action-Required, Receipts, Newsletters-Keep); Kevin created labels manually</li>
-            
-            <li>Mass unsubscribe via Gmail in Chrome browser automation — 11 senders unsubscribed via native List-Unsubscribe (Peacock, Paramount+, Banana Republic, DoorDash, Spotify, Target, Costco, Amazon Pharma...</li>
-            
-            <li>Unroll.me confirmed ineffective (labels emails but doesn't actually unsubscribe) — replaced by Gmail's native mechanism</li>
-            
-            <li>4 senders (Samsung, Lowe's, Instacart, Google) lack List-Unsubscribe headers; remaining senders had no promotional emails or only account/transactional emails</li>
-            
-            <li>Captured full triage runbook + unsubscribe results in `01_Feature Backlog.md`</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-02</span>
-          <span class="sprint-title">Sprint 2</span>
-          <span class="sprint-tag">Sprint 2</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Migrated morning briefing from Cowork scheduled task → claude.ai Remote Routine (cloud-hosted, no laptop required)</li>
-            
-            <li>Investigated Claude mobile app delivery — Android app does not show Code/Routine sessions</li>
-            
-            <li>Enabled push notification settings in `~/.claude/settings.json` (`agentPushNotifEnabled`, `inputNeededNotifEnabled`, `remoteControlAtStartup`)</li>
-            
-            <li>Set up Telegram bot and configured Bot API delivery in routine prompt</li>
-            
-            <li>Updated routine environment from "Trusted only" → "Full network access" to allow Telegram API calls</li>
-            
-            <li>Documented scheduling preferences in `03_Decision Log.md`</li>
-            
-            <li>Built Smart Scheduling Assistant (conversational, no separate setup needed — uses Calendar + Todoist MCPs)</li>
-            
-            <li>Confirmed claude.ai Android app has full MCP access (Calendar + Todoist) — phone is a fully capable scheduling terminal, no laptop required</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-01</span>
-          <span class="sprint-title">Sprint 1</span>
-          <span class="sprint-tag">Sprint 1</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Confirmed Google Calendar MCP is live with full CRUD</li>
-            
-            <li>Researched and ruled out Google Keep (no API), Google Tasks (no MCP), gkeepapi (unofficial/fragile), Todoist registry entry (missing), TickTick (no MCP)</li>
-            
-            <li>Found and connected Todoist's official MCP (`https://ai.todoist.net/mcp`) via custom connector</li>
-            
-            <li>Created `05_Sprint History.md` and updated Session Protocols to track it</li>
-            
-            <li>Built and scheduled morning briefing — runs daily at 7:30 AM, pulls Google Calendar + Todoist tasks, delivers formatted digest</li>
-            
-            <li>Fixed morning briefing timezone: now reads offset directly from Google Calendar datetime strings (resilient to travel — auto-correct for any timezone)</li>
-            
-            <li>Created "Today" and "Upcoming" sections in Todoist Inbox for manual task prioritization</li>
-            
-            <li>Updated morning briefing to show "Today's Focus" section (tasks in Todoist "Today" section)</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
   </div>
 </div>
 
@@ -343,7 +251,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
 </div>
 
 
-<div class="footer">Generated from Projects/Personal Assistant/00_Project Dashboard.md · Last updated 2026-05-25</div>
+<div class="footer">Generated from Projects/Personal Assistant/00_Project Dashboard.md · Last updated 2026-05-26</div>
 
 </div>
 </body>
