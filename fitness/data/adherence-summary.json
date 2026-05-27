@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-26T01:33:08.554278+00:00",
+  "generated_at": "2026-05-27T01:37:13.790983+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 2,
-    "workout_days": 1,
-    "done_days": 0,
-    "adherence_rate_pct": 0,
+    "total_entries": 3,
+    "workout_days": 2,
+    "done_days": 1,
+    "adherence_rate_pct": 50,
     "rolling_14": {
-      "workout_days": 1,
-      "done_days": 0,
-      "adherence_rate_pct": 0
+      "workout_days": 2,
+      "done_days": 1,
+      "adherence_rate_pct": 50
     },
     "reset_date": "2026-05-23"
   },
@@ -21,7 +21,8 @@
       "emoji": "🔴",
       "prescribed": "Lake Baldwin walk/jog or bike · expected types `[walking, running, cycling, road_biking]` · ~60 min",
       "actual": null,
-      "note": ""
+      "note": "",
+      "data_gap": false
     },
     {
       "date": "2026-05-24",
@@ -30,7 +31,18 @@
       "emoji": "⚠️",
       "prescribed": "Rest day · expected types `` · ~0 min",
       "actual": "Strength · type `strength_training` · 88 min · 382 cal · avg HR 101 · started 11:00 ET",
-      "note": ""
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-05-25",
+      "weekday": "Monday",
+      "state": "replaced",
+      "emoji": "🔄",
+      "prescribed": "Neighborhood walk/jog · expected types `[walking, running, indoor_walking]` · ~45 min",
+      "actual": "Yoga · type `yoga` · 46 min · 147 cal · avg HR 89 · started 18:39 ET",
+      "note": "",
+      "data_gap": false
     }
   ]
 }

@@ -7,7 +7,7 @@
     "subtitle": "2–3 mi Waterford Lakes loop",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "All signals in range. HRV at baseline (41 ms), Body Battery 64, sleep 7.3h. Right load for a Monday opener.",
+    "why": "All signals green. HRV at baseline (41 ms), Body Battery 64, sleep 7.3h solid. Clean Monday opener.",
     "expected_activity_types": ["walking", "running", "indoor_walking"],
     "expected_duration_minutes": 45
   },
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE dragged by today's partial read. 6d complete avg ~2,734 cal → ~1.6 lb/wk truer ceiling; gap ~655 cal/day using complete days.",
+  "cut_note": "*7d TDEE includes today's low-activity read (2,293 cal). 6-day complete avg ~2,734 cal → ~1.6 lb/wk ceiling; gap ~655 cal/day using complete days.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
