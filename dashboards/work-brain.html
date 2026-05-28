@@ -138,7 +138,143 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
 
 
 
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">✓</div>
+    <h2>Recently Completed</h2>
+  </div>
+  <div class="timeline">
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-27</span>
+          <span class="sprint-title">Activation + Email Pipeline</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Upgraded OpenCode to v1.15.11</li>
+            
+            <li>Deployed AGENTS.md and .clinerules to Work Brain root (transferred from Second Brain vault template)</li>
+            
+            <li>Built `scripts/email_export.py` with iterative testing (1 day → 14 days → custom folders → sender exclusion → resume)</li>
+            
+            <li>14-day test: 1,068 substantive emails exported after filtering</li>
+            
+            <li>Sonnet 4.5 approved for work use, set as recommended default</li>
+            
+            <li>EEXIST bug resolved via explicit `os.makedirs(exist_ok=True)` prompting</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-26</span>
+          <span class="sprint-title">Confluence Tooling + IOI Proof of Concept</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Confluence MCP server working: page tree export from parent page, bulk export as JSON/HTML</li>
+            
+            <li>Chat completion script: source doc + prompt → GPT-5.1 gateway → rewritten HTML with images</li>
+            
+            <li>Outlook .msg-to-JSON converter: Python GUI for manual email conversion</li>
+            
+            <li>IOI processor: 4 weeks of IOIs → week-over-week delta HTML report with per-project timelines</li>
+            
+            <li>Validated batch email processing as Work Brain activation strategy</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-22</span>
+          <span class="sprint-title">Three-Layer Architecture</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Restructured vault template from 2-layer to 3-layer model (wiki + projects + operations)</li>
+            
+            <li>Added lightweight project format, Confluence framing, context-window guidance</li>
+            
+            <li>Brain dump and real-time capture workflows documented</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+  </div>
+</div>
 
+
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon" style="background:var(--amber-bg);color:var(--amber)">→</div>
+    <h2>Recommended Next Work</h2>
+  </div>
+  <div class="next-items">
+    
+    <div class="next-item">
+      <span class="next-priority p1">P1</span>
+      <div>
+        <div class="next-title">Resume and complete 30-day email export</div>
+        <div class="next-desc">run PowerShell command, verify output</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Scale to 6-month bootstrap</div>
+        <div class="next-desc">run --bootstrap for full 180 days</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Build ingest prompt with Claude</div>
+        <div class="next-desc">design the prompt that routes exported emails into wiki/operations layers</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Run first ingest batch</div>
+        <div class="next-desc">test on a small cluster (e.g., one sender's emails) before scaling</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Set up IOI recurring pipeline</div>
+        <div class="next-desc">first Tier 1 automated workflow</div>
+      </div>
+    </div>
+    
+  </div>
+</div>
 
 
 <div class="footer">Generated from Projects/Work Brain/00_Project Dashboard.md · Last updated 2026-05-27</div>
