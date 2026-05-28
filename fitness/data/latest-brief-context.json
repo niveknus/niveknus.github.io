@@ -1,15 +1,15 @@
 {
-  "date_label": "Monday, May 25",
+  "date_label": "Thursday, May 28",
   "recovery_status": "good",
   "today": {
     "time": "6:00 PM",
-    "session": "Neighborhood walk/jog",
-    "subtitle": "2–3 mi Waterford Lakes loop",
+    "session": "Split B — Chest + Upper Back",
+    "subtitle": "Planet Fitness · 3–4 sets",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "All signals green. HRV at baseline (41 ms), Body Battery 64, sleep 7.3h solid. Clean Monday opener.",
-    "expected_activity_types": ["walking", "running", "indoor_walking"],
-    "expected_duration_minutes": 45
+    "why": "Sleep 8h 14m, score 87, training readiness 84 — all recovery signals in range. Show up ready.",
+    "expected_activity_types": ["strength_training", "fitness_equipment"],
+    "expected_duration_minutes": 50
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE includes today's low-activity read (2,293 cal). 6-day complete avg ~2,734 cal → ~1.6 lb/wk ceiling; gap ~655 cal/day using complete days.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,699 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
