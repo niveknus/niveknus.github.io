@@ -34,111 +34,30 @@ body {
   margin: 0 auto;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.header h1 {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.header .subtitle {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.stats-banner {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-
-.stat-pill {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 18px;
-  text-align: center;
-  min-width: 100px;
-  box-shadow: var(--shadow);
-}
-
-.stat-pill .number {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1.1;
-}
-
-.stat-pill .label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--text-secondary);
-  margin-top: 2px;
-}
+.header { text-align: center; margin-bottom: 32px; }
+.header h1 { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.header .subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
 
 .section-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 28px 0 16px;
-  padding-bottom: 8px;
+  display: flex; align-items: center; gap: 10px;
+  margin: 28px 0 16px; padding-bottom: 8px;
   border-bottom: 2px solid var(--border);
 }
-
-.section-header h2 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.section-badge {
-  font-size: 11px;
-  padding: 2px 10px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
+.section-header h2 { font-size: 16px; font-weight: 600; color: var(--text); }
+.section-badge { font-size: 11px; padding: 2px 10px; border-radius: 10px; font-weight: 600; }
 .badge-active { background: #e6fff8; color: #00b894; }
 .badge-backlog { background: #f0f0ff; color: #6c5ce7; }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
 
 .project-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow);
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
   transition: box-shadow 0.2s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-
-.project-card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-1px);
-}
-
-.project-card .accent-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-}
+.project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+.project-card .accent-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; }
 
 .accent-green { background: var(--green); }
 .accent-yellow { background: var(--yellow); }
@@ -146,262 +65,127 @@ body {
 .accent-purple { background: var(--accent); }
 .accent-orange { background: var(--orange); }
 
-.card-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
+.card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
 .card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
 }
-
-.card-title-block {
-  flex: 1;
-  min-width: 0;
-}
-
-.card-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-}
-
+.card-title-block { flex: 1; min-width: 0; }
+.card-title { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.2; }
 .card-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-top: 4px;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; padding: 2px 8px;
+  border-radius: 6px; margin-top: 4px;
 }
-
 .status-active { background: #e6fff8; color: #00896e; }
 .status-hold { background: #e8f4fd; color: #2980b9; }
 .status-backlog { background: #f5f0ff; color: #6c5ce7; }
 
-.card-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 14px;
-}
+.card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 14px; }
 
-.progress-section {
-  margin-bottom: 12px;
-}
-
+.progress-section { margin-bottom: 12px; }
 .progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-  font-weight: 500;
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500;
 }
+.progress-bar { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
 
-.progress-bar {
-  height: 6px;
-  background: #eee;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.6s ease;
-}
-
-.metric-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
+.metric-row { display: flex; flex-wrap: wrap; gap: 6px; }
 .metric-chip {
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 8px;
-  background: #f4f4f8;
-  color: var(--text-secondary);
-  font-weight: 500;
+  font-size: 11px; padding: 3px 10px; border-radius: 8px;
+  background: #f4f4f8; color: var(--text-secondary); font-weight: 500;
 }
-
-.metric-chip strong {
-  color: var(--text);
-  font-weight: 700;
-}
+.metric-chip strong { color: var(--text); font-weight: 700; }
 
 .concept-card {
   background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
-  border-radius: 14px;
-  padding: 24px;
-  color: white;
-  margin-bottom: 24px;
-  box-shadow: var(--shadow);
+  border-radius: 14px; padding: 24px; color: white;
+  margin-bottom: 24px; box-shadow: var(--shadow);
 }
-
-.concept-card h3 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.concept-card p {
-  font-size: 13px;
-  line-height: 1.6;
-  opacity: 0.92;
-}
-
-.concept-pillars {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
+.concept-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.concept-card p { font-size: 13px; line-height: 1.6; opacity: 0.92; }
+.concept-pillars { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .pillar {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(4px);
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
+  background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+  padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
 }
 
 .footer {
-  text-align: center;
-  margin-top: 32px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--text-secondary);
+  text-align: center; margin-top: 32px; padding-top: 16px;
+  border-top: 1px solid var(--border); font-size: 11px; color: var(--text-secondary);
 }
 
-.wiki-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 12px;
-}
+.wiki-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.wiki-stat { text-align: center; padding: 8px; background: #f8f7ff; border-radius: 8px; }
+.wiki-stat .ws-num { font-size: 20px; font-weight: 700; color: var(--accent); }
+.wiki-stat .ws-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-secondary); }
 
-.wiki-stat {
-  text-align: center;
-  padding: 8px;
-  background: #f8f7ff;
-  border-radius: 8px;
-}
-
-.wiki-stat .ws-num {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.wiki-stat .ws-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-secondary);
-}
-
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 8px;
-}
-
-.tech-pill {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: #f0eeff;
-  color: #6c5ce7;
-  font-weight: 600;
-}
+.tech-stack { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.tech-pill { font-size: 10px; padding: 2px 8px; border-radius: 6px; background: #f0eeff; color: #6c5ce7; font-weight: 600; }
 
 .cumulative-section {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow);
-  margin-bottom: 16px;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px;
 }
-
-.cumulative-section h3 {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.cumulative-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-}
-
+.cumulative-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+.cumulative-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .cumulative-item {
-  text-align: center;
-  padding: 12px 8px;
-  background: linear-gradient(135deg, #f8f7ff 0%, #f0eeff 100%);
-  border-radius: 10px;
+  text-align: center; padding: 12px 8px;
+  background: linear-gradient(135deg, #f8f7ff 0%, #f0eeff 100%); border-radius: 10px;
 }
-
-.cumulative-item .ci-num {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1.1;
-}
-
-.cumulative-item .ci-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-secondary);
-  margin-top: 3px;
-}
-
-.cumulative-item .ci-detail {
-  font-size: 10px;
-  color: var(--text-secondary);
-  margin-top: 2px;
-  font-style: italic;
-}
+.cumulative-item .ci-num { font-size: 24px; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.cumulative-item .ci-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-secondary); margin-top: 3px; }
+.cumulative-item .ci-detail { font-size: 10px; color: var(--text-secondary); margin-top: 2px; font-style: italic; }
 
 .connects-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: var(--shadow);
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
 }
+.connects-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0; }
+.connects-card strong { color: var(--text); }
 
-.connects-card p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 0;
+/* Visualization sections */
+.viz-section {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px;
 }
+.viz-section h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+.viz-subtitle { font-size: 11px; color: var(--text-secondary); margin-bottom: 16px; }
 
-.connects-card strong {
-  color: var(--text);
+.timeline-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -4px; padding: 0 4px; }
+.timeline-chart { display: flex; align-items: flex-end; gap: 2px; height: 120px; min-width: fit-content; }
+.timeline-labels { display: flex; gap: 2px; margin-top: 4px; min-width: fit-content; }
+.timeline-label { min-width: 8px; flex: 1; max-width: 18px; font-size: 8px; color: var(--text-secondary); text-align: center; white-space: nowrap; }
+.timeline-legend { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+.viz-tooltip {
+  position: fixed; background: var(--text); color: #fff;
+  padding: 5px 10px; border-radius: 6px; font-size: 11px;
+  pointer-events: none; opacity: 0; transition: opacity 0.12s;
+  z-index: 100; white-space: pre; font-weight: 500;
 }
+.viz-tooltip.show { opacity: 1; }
+
+.heatmap-container { display: flex; gap: 6px; }
+.heatmap-y-labels { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+.heatmap-y-label {
+  height: 16px; display: flex; align-items: center;
+  font-size: 10px; font-weight: 600; color: var(--text-secondary);
+  width: 30px; justify-content: flex-end; padding-right: 4px;
+}
+.heatmap-body { flex: 1; overflow-x: auto; }
+.heatmap-grid { display: grid; grid-template-rows: repeat(7, 16px); grid-template-columns: repeat(24, 1fr); gap: 2px; }
+.heatmap-cell { border-radius: 3px; min-width: 12px; height: 16px; cursor: default; transition: transform 0.1s; }
+.heatmap-cell:hover { transform: scale(1.3); z-index: 2; position: relative; }
+.heatmap-x-labels { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; margin-top: 3px; }
+.heatmap-x-label { font-size: 8px; color: var(--text-secondary); text-align: center; min-width: 12px; }
+.heatmap-scale { display: flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 10px; color: var(--text-secondary); }
+.heatmap-scale-cell { width: 14px; height: 14px; border-radius: 3px; }
+.viz-loading { text-align: center; color: var(--text-secondary); font-size: 12px; padding: 24px 0; font-style: italic; }
 </style>
 </head>
 <body>
@@ -411,7 +195,6 @@ body {
   <div class="subtitle">Kevin Sun's AI project portfolio &mdash; powered by Claude &amp; Anthropic</div>
 </div>
 
-<!-- Big Picture -->
 <div class="concept-card">
   <h3>The Big Idea</h3>
   <p>I'm using Claude as a persistent collaborator to build systems that compound over time. Instead of one-off chats, every conversation feeds into a structured knowledge base, project tracker, and suite of AI agents that actively manage parts of my life. The AI does all the bookkeeping, cross-referencing, and maintenance that humans give up on.</p>
@@ -428,9 +211,9 @@ body {
   <h3>Cumulative Activity (since April 28, 2026)</h3>
   <div class="cumulative-grid">
     <div class="cumulative-item">
-      <div class="ci-num">300+</div>
+      <div class="ci-num" id="commit-count">300+</div>
       <div class="ci-label">Git Commits</div>
-      <div class="ci-detail">~11/day avg</div>
+      <div class="ci-detail" id="commit-rate">~11/day avg</div>
     </div>
     <div class="cumulative-item">
       <div class="ci-num">549</div>
@@ -453,10 +236,41 @@ body {
       <div class="ci-detail">daily cloud routines</div>
     </div>
     <div class="cumulative-item">
-      <div class="ci-num">27</div>
+      <div class="ci-num" id="days-active">27</div>
       <div class="ci-label">Days Active</div>
       <div class="ci-detail">started Apr 28</div>
     </div>
+  </div>
+</div>
+
+<!-- Commit Timeline -->
+<div class="viz-section" id="timeline-section">
+  <h3>Commit Timeline</h3>
+  <div class="viz-subtitle">Daily commits across all repositories</div>
+  <div id="timeline-loading" class="viz-loading">Loading commit data&hellip;</div>
+  <div id="timeline-content" style="display:none;">
+    <div class="timeline-wrap">
+      <div class="timeline-chart" id="timeline-chart"></div>
+      <div class="timeline-labels" id="timeline-labels"></div>
+    </div>
+    <div class="timeline-legend" id="timeline-legend"></div>
+  </div>
+</div>
+
+<!-- Activity Heatmap -->
+<div class="viz-section" id="heatmap-section">
+  <h3>Activity Heatmap</h3>
+  <div class="viz-subtitle">When commits happen &mdash; hour of day vs. day of week (your local time)</div>
+  <div id="heatmap-loading" class="viz-loading">Loading commit data&hellip;</div>
+  <div id="heatmap-content" style="display:none;">
+    <div class="heatmap-container">
+      <div class="heatmap-y-labels" id="heatmap-y-labels"></div>
+      <div class="heatmap-body">
+        <div class="heatmap-grid" id="heatmap-grid"></div>
+        <div class="heatmap-x-labels" id="heatmap-x-labels"></div>
+      </div>
+    </div>
+    <div class="heatmap-scale" id="heatmap-scale"></div>
   </div>
 </div>
 
@@ -467,28 +281,22 @@ body {
 </div>
 
 <div class="card-grid">
-
-  <!-- Second Brain -->
   <div class="project-card">
     <div class="accent-bar accent-green"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #f0eeff;">&#129504;</div>
+      <div class="card-icon" style="background:#f0eeff;">&#129504;</div>
       <div class="card-title-block">
         <div class="card-title">Second Brain</div>
         <div class="card-status status-active">&#9679; Active &mdash; Sprint 12</div>
       </div>
     </div>
-    <div class="card-desc">
-      An LLM-maintained personal knowledge base in Obsidian. I feed it sources &mdash; ChatGPT exports, podcast transcripts, web clips &mdash; and Claude writes structured wiki pages with cross-references, graph integration, and semantic search. The AI does all the summarization, cross-referencing, and bookkeeping that makes a knowledge base actually useful over time.
-    </div>
+    <div class="card-desc">An LLM-maintained personal knowledge base in Obsidian. I feed it sources &mdash; ChatGPT exports, podcast transcripts, web clips &mdash; and Claude writes structured wiki pages with cross-references, graph integration, and semantic search. The AI does all the summarization, cross-referencing, and bookkeeping that makes a knowledge base actually useful over time.</div>
     <div class="progress-section">
       <div class="progress-label">
         <span>Sprint progress</span>
-        <span>12 sprints &middot; 300+ commits</span>
+        <span>12 sprints &middot; <span id="sb-commits">300+</span> commits</span>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 80%; background: linear-gradient(90deg, #6c5ce7, #a29bfe);"></div>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:80%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);"></div></div>
     </div>
     <div class="wiki-stats">
       <div class="wiki-stat"><div class="ws-num">10</div><div class="ws-label">Hubs</div></div>
@@ -496,67 +304,50 @@ body {
       <div class="wiki-stat"><div class="ws-num">549</div><div class="ws-label">Sources</div></div>
     </div>
     <div class="tech-stack">
-      <span class="tech-pill">Obsidian</span>
-      <span class="tech-pill">GitHub MCP</span>
-      <span class="tech-pill">Claude Cowork</span>
-      <span class="tech-pill">Semantic Search</span>
-      <span class="tech-pill">Dataview</span>
-      <span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">Obsidian</span><span class="tech-pill">GitHub MCP</span>
+      <span class="tech-pill">Claude Cowork</span><span class="tech-pill">Semantic Search</span>
+      <span class="tech-pill">Dataview</span><span class="tech-pill">GitHub Actions</span>
     </div>
   </div>
 
-  <!-- Fitness Coach -->
   <div class="project-card">
     <div class="accent-bar accent-green"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #e6fff8;">&#127947;</div>
+      <div class="card-icon" style="background:#e6fff8;">&#127947;</div>
       <div class="card-title-block">
         <div class="card-title">Fitness Coach</div>
         <div class="card-status status-active">&#9679; Active &mdash; Sprint 13</div>
       </div>
     </div>
-    <div class="card-desc">
-      An adaptive personal fitness coach for a weight cut. Pulls daily biometrics from Garmin Connect via GitHub Actions, reasons over recovery state and training load, auto-adjusts workouts within a whitelist, and delivers a polished dark-mode brief card to Telegram every morning. Evening adherence check verifies the workout happened. Public dashboard at GitHub Pages.
-    </div>
+    <div class="card-desc">An adaptive personal fitness coach for a weight cut. Pulls daily biometrics from Garmin Connect via GitHub Actions, reasons over recovery state and training load, auto-adjusts workouts within a whitelist, and delivers a polished dark-mode brief card to Telegram every morning. Evening adherence check verifies the workout happened. Public dashboard at GitHub Pages.</div>
     <div class="progress-section">
-      <div class="progress-label">
-        <span>Pipeline maturity</span>
-        <span>13 sprints &middot; fully autonomous</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, #00b894, #55efc4);"></div>
-      </div>
+      <div class="progress-label"><span>Pipeline maturity</span><span>13 sprints &middot; fully autonomous</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%;background:linear-gradient(90deg,#00b894,#55efc4);"></div></div>
     </div>
     <div class="metric-row">
       <span class="metric-chip"><strong>2</strong> daily cloud routines</span>
       <span class="metric-chip"><strong>8:30 AM</strong> morning brief</span>
       <span class="metric-chip"><strong>9:30 PM</strong> adherence check</span>
-      <span class="metric-chip">&#127760; <a href="https://niveknus.github.io/fitness/" style="color: inherit; text-decoration: none;">Public dashboard</a></span>
+      <span class="metric-chip">&#127760; <a href="https://niveknus.github.io/fitness/" style="color:inherit;text-decoration:none;">Public dashboard</a></span>
     </div>
     <div class="tech-stack">
-      <span class="tech-pill">Garmin API</span>
-      <span class="tech-pill">GitHub Actions</span>
-      <span class="tech-pill">Telegram Bot</span>
-      <span class="tech-pill">Claude Routines</span>
-      <span class="tech-pill">Playwright</span>
-      <span class="tech-pill">GitHub Pages</span>
+      <span class="tech-pill">Garmin API</span><span class="tech-pill">GitHub Actions</span>
+      <span class="tech-pill">Telegram Bot</span><span class="tech-pill">Claude Routines</span>
+      <span class="tech-pill">Playwright</span><span class="tech-pill">GitHub Pages</span>
       <span class="tech-pill">DigitalOcean Proxy</span>
     </div>
   </div>
 
-  <!-- Personal Assistant -->
   <div class="project-card">
     <div class="accent-bar accent-green"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #fff8e6;">&#129302;</div>
+      <div class="card-icon" style="background:#fff8e6;">&#129302;</div>
       <div class="card-title-block">
         <div class="card-title">Personal Assistant</div>
         <div class="card-status status-active">&#9679; Active &mdash; Sprint 2 complete</div>
       </div>
     </div>
-    <div class="card-desc">
-      Claude as a persistent personal assistant managing tasks, calendar, and daily briefings. Connected to Todoist, Google Calendar, and Gmail. Morning briefing runs as a cloud routine and delivers to Telegram &mdash; no laptop required. Works from the Claude mobile app on Android for on-the-go scheduling. Recently added email triage and mass unsubscribe automation.
-    </div>
+    <div class="card-desc">Claude as a persistent personal assistant managing tasks, calendar, and daily briefings. Connected to Todoist, Google Calendar, and Gmail. Morning briefing runs as a cloud routine and delivers to Telegram &mdash; no laptop required. Works from the Claude mobile app on Android for on-the-go scheduling. Recently added email triage and mass unsubscribe automation.</div>
     <div class="metric-row">
       <span class="metric-chip"><strong>7:30 AM</strong> daily briefing</span>
       <span class="metric-chip">&#128241; Mobile-first</span>
@@ -564,41 +355,33 @@ body {
       <span class="metric-chip">Cloud-hosted</span>
     </div>
     <div class="tech-stack">
-      <span class="tech-pill">Todoist MCP</span>
-      <span class="tech-pill">Google Calendar MCP</span>
-      <span class="tech-pill">Gmail MCP</span>
-      <span class="tech-pill">Telegram Bot</span>
+      <span class="tech-pill">Todoist MCP</span><span class="tech-pill">Google Calendar MCP</span>
+      <span class="tech-pill">Gmail MCP</span><span class="tech-pill">Telegram Bot</span>
       <span class="tech-pill">Claude Routines</span>
     </div>
   </div>
 
-  <!-- Home Server -->
   <div class="project-card">
     <div class="accent-bar accent-green"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #fff3e6;">&#128421;</div>
+      <div class="card-icon" style="background:#fff3e6;">&#128421;</div>
       <div class="card-title-block">
         <div class="card-title">Home Server</div>
         <div class="card-status status-active">&#9679; Active &mdash; arrived, setting up</div>
       </div>
     </div>
-    <div class="card-desc">
-      Mac Mini M4 as an always-on Claude infrastructure node &mdash; local Cowork sessions, Claude Code, MCP servers, scheduled agents, and remote access. Replaces cloud workarounds with a dedicated local machine. Snagged a $599 discontinued SKU before Apple pulled it from stores entirely.
-    </div>
+    <div class="card-desc">Mac Mini M4 as an always-on Claude infrastructure node &mdash; local Cowork sessions, Claude Code, MCP servers, scheduled agents, and remote access. Replaces cloud workarounds with a dedicated local machine. Snagged a $599 discontinued SKU before Apple pulled it from stores entirely.</div>
     <div class="metric-row">
       <span class="metric-chip"><strong>$599</strong> Mac Mini M4</span>
       <span class="metric-chip">16 GB / 256 GB</span>
       <span class="metric-chip">Always-on compute</span>
     </div>
     <div class="tech-stack">
-      <span class="tech-pill">Mac Mini M4</span>
-      <span class="tech-pill">Claude Code</span>
-      <span class="tech-pill">MCP Servers</span>
-      <span class="tech-pill">Tailscale</span>
+      <span class="tech-pill">Mac Mini M4</span><span class="tech-pill">Claude Code</span>
+      <span class="tech-pill">MCP Servers</span><span class="tech-pill">Tailscale</span>
       <span class="tech-pill">Remote Access</span>
     </div>
   </div>
-
 </div>
 
 <!-- BACKLOG -->
@@ -608,73 +391,251 @@ body {
 </div>
 
 <div class="card-grid">
-
-  <!-- Work Brain -->
   <div class="project-card">
     <div class="accent-bar accent-blue"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #e8f4fd;">&#128188;</div>
+      <div class="card-icon" style="background:#e8f4fd;">&#128188;</div>
       <div class="card-title-block">
         <div class="card-title">Work Brain</div>
         <div class="card-status status-hold">&#9679; On Hold</div>
       </div>
     </div>
-    <div class="card-desc">
-      A work-focused knowledge base using the same LLM-wiki pattern, scoped to engineering projects, SAP/automation tooling, org context, and process docs. Vault template built and ready to deploy.
-    </div>
+    <div class="card-desc">A work-focused knowledge base using the same LLM-wiki pattern, scoped to engineering projects, SAP/automation tooling, org context, and process docs. Vault template built and ready to deploy.</div>
   </div>
 
-  <!-- Life Coach -->
   <div class="project-card">
     <div class="accent-bar accent-purple"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #f5f0ff;">&#127919;</div>
+      <div class="card-icon" style="background:#f5f0ff;">&#127919;</div>
       <div class="card-title-block">
         <div class="card-title">Life Coach</div>
         <div class="card-status status-backlog">&#9679; Backlog</div>
       </div>
     </div>
-    <div class="card-desc">
-      Annual goal setting, tracking, and accountability across all life areas. Claude as a guide that reviews progress, surfaces stalling goals, asks hard questions, and connects goals to the wiki where the real knowledge lives.
-    </div>
+    <div class="card-desc">Annual goal setting, tracking, and accountability across all life areas. Claude as a guide that reviews progress, surfaces stalling goals, asks hard questions, and connects goals to the wiki where the real knowledge lives.</div>
   </div>
 
-  <!-- Career Coach -->
   <div class="project-card">
     <div class="accent-bar accent-purple"></div>
     <div class="card-top">
-      <div class="card-icon" style="background: #f5f0ff;">&#128188;</div>
+      <div class="card-icon" style="background:#f5f0ff;">&#128188;</div>
       <div class="card-title-block">
         <div class="card-title">Career Coach</div>
         <div class="card-status status-backlog">&#9679; Backlog</div>
       </div>
     </div>
-    <div class="card-desc">
-      A readiness system for career assets &mdash; resume, LinkedIn profile, career narrative, and interview prep bank. Not a job search; a system that stays maintained so you're never scrambling to update a stale resume.
-    </div>
+    <div class="card-desc">A readiness system for career assets &mdash; resume, LinkedIn profile, career narrative, and interview prep bank. Not a job search; a system that stays maintained so you're never scrambling to update a stale resume.</div>
   </div>
-
 </div>
 
-<!-- How It All Connects -->
-<div class="section-header">
-  <h2>How It All Connects</h2>
-</div>
+<div class="section-header"><h2>How It All Connects</h2></div>
 
 <div class="connects-card">
-  <p>
-    <strong>The Second Brain is the backbone.</strong> Every project has a wiki page that cross-links to other topics. The Fitness Coach reads biometric data and writes to the wiki. The Personal Assistant manages tasks and calendar. The Life Coach will track goals that span across projects. The Home Server will host it all locally.
-  </p>
+  <p><strong>The Second Brain is the backbone.</strong> Every project has a wiki page that cross-links to other topics. The Fitness Coach reads biometric data and writes to the wiki. The Personal Assistant manages tasks and calendar. The Life Coach will track goals that span across projects. The Home Server will host it all locally.</p>
   <br>
-  <p>
-    <strong>Claude remembers everything between sessions</strong> because the wiki and project files <em>are</em> the memory. No chat history needed &mdash; Claude reads the project dashboard, picks up where it left off, and updates everything when done. It's a system that gets smarter the more you use it.
-  </p>
+  <p><strong>Claude remembers everything between sessions</strong> because the wiki and project files <em>are</em> the memory. No chat history needed &mdash; Claude reads the project dashboard, picks up where it left off, and updates everything when done. It's a system that gets smarter the more you use it.</p>
 </div>
 
 <div class="footer">
   Built with Claude (Anthropic) &bull; Obsidian &bull; GitHub &bull; Updated May 2026<br>
-  <a href="https://niveknus.github.io/fitness/" style="color: var(--accent); text-decoration: none;">Fitness Dashboard</a>
+  <a href="https://niveknus.github.io/fitness/" style="color:var(--accent);text-decoration:none;">Fitness Dashboard</a>
 </div>
 
+<div class="viz-tooltip" id="tooltip"></div>
+
+<script>
+(function () {
+  var REPO_COLORS = {
+    'second-brain':        '#6c5ce7',
+    'niveknus.github.io':  '#00b894',
+    'second-brain-shared': '#fdcb6e'
+  };
+  var REPO_LABELS = {
+    'second-brain':        'Second Brain',
+    'niveknus.github.io':  'GitHub Pages',
+    'second-brain-shared': 'Shared Tooling'
+  };
+  var DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var HEATMAP_COLORS = ['#eeedf5','#d4cfed','#a29bfe','#7c6fe0','#5a4fcf'];
+  var tooltip = document.getElementById('tooltip');
+
+  function showTip(e, text) { tooltip.textContent = text; tooltip.classList.add('show'); moveTip(e); }
+  function moveTip(e) { tooltip.style.left = e.clientX+10+'px'; tooltip.style.top = e.clientY-30+'px'; }
+  function hideTip() { tooltip.classList.remove('show'); }
+
+  fetch('/commit-data.json')
+    .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(function() {
+      document.getElementById('timeline-loading').textContent = 'Commit data not yet generated \u2014 run the GitHub Action to populate.';
+      document.getElementById('heatmap-loading').textContent = 'Commit data not yet generated \u2014 run the GitHub Action to populate.';
+    });
+
+  function render(data) {
+    var total = data.total;
+    document.getElementById('commit-count').textContent = total.toLocaleString();
+
+    var startDate = new Date('2026-04-28');
+    var now = new Date();
+    var daysActive = Math.max(1, Math.ceil((now - startDate) / 86400000));
+    document.getElementById('days-active').textContent = daysActive;
+    document.getElementById('commit-rate').textContent = '~' + (total / daysActive).toFixed(0) + '/day avg';
+
+    var sbCount = data.by_repo['second-brain'] || 0;
+    var sbEl = document.getElementById('sb-commits');
+    if (sbEl) sbEl.textContent = sbCount.toLocaleString();
+
+    var commits = data.commits.map(function(c) { return { date: new Date(c[0]), repo: c[1] }; });
+    buildTimeline(commits);
+    buildHeatmap(commits);
+  }
+
+  function buildTimeline(commits) {
+    var dayMap = {};
+    commits.forEach(function(c) {
+      var key = localDateStr(c.date);
+      if (!dayMap[key]) dayMap[key] = { total: 0, repos: {} };
+      dayMap[key].total++;
+      dayMap[key].repos[c.repo] = (dayMap[key].repos[c.repo] || 0) + 1;
+    });
+
+    var sorted = Object.keys(dayMap).sort();
+    if (!sorted.length) return;
+    var first = new Date(sorted[0] + 'T00:00:00');
+    var last = new Date(sorted[sorted.length - 1] + 'T00:00:00');
+    var days = [];
+    for (var d = new Date(first); d <= last; d.setDate(d.getDate() + 1)) days.push(localDateStr(d));
+
+    var maxCount = Math.max.apply(null, days.map(function(d) { return (dayMap[d] || {}).total || 0; }).concat([1]));
+    var repos = Object.keys(REPO_COLORS);
+
+    var chartEl = document.getElementById('timeline-chart');
+    var labelsEl = document.getElementById('timeline-labels');
+    chartEl.innerHTML = ''; labelsEl.innerHTML = '';
+
+    days.forEach(function(day, i) {
+      var info = dayMap[day] || { total: 0, repos: {} };
+      var bar = document.createElement('div');
+      bar.style.cssText = 'display:flex;flex-direction:column-reverse;height:100%;min-width:8px;flex:1;max-width:18px;';
+
+      var tipParts = [formatDate(day) + ': ' + info.total + ' commits'];
+      repos.forEach(function(repo) {
+        var count = info.repos[repo] || 0;
+        if (count === 0) return;
+        var seg = document.createElement('div');
+        var h = (count / maxCount) * 100;
+        seg.style.cssText = 'height:'+h+'%;background:'+REPO_COLORS[repo]+';border-radius:2px;min-height:'+(count?2:0)+'px;';
+        bar.appendChild(seg);
+        tipParts.push('  ' + REPO_LABELS[repo] + ': ' + count);
+      });
+
+      if (info.total === 0) {
+        var empty = document.createElement('div');
+        empty.style.cssText = 'height:2px;background:#e8e8f0;border-radius:2px;';
+        bar.appendChild(empty);
+      }
+
+      (function(tp) {
+        bar.addEventListener('mouseenter', function(e) { showTip(e, tp.join('\n')); });
+      })(tipParts);
+      bar.addEventListener('mousemove', moveTip);
+      bar.addEventListener('mouseleave', hideTip);
+      chartEl.appendChild(bar);
+
+      var label = document.createElement('div');
+      label.className = 'timeline-label';
+      var dd = new Date(day + 'T00:00:00');
+      if (i === 0 || dd.getDate() === 1 || i % 7 === 0) label.textContent = (dd.getMonth()+1)+'/'+dd.getDate();
+      labelsEl.appendChild(label);
+    });
+
+    var legendEl = document.getElementById('timeline-legend');
+    legendEl.innerHTML = '';
+    repos.forEach(function(repo) {
+      var item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = '<span class="legend-dot" style="background:'+REPO_COLORS[repo]+'"></span>'+REPO_LABELS[repo];
+      legendEl.appendChild(item);
+    });
+
+    document.getElementById('timeline-loading').style.display = 'none';
+    document.getElementById('timeline-content').style.display = 'block';
+  }
+
+  function buildHeatmap(commits) {
+    var counts = []; for (var i=0;i<7;i++) { counts.push([]); for (var j=0;j<24;j++) counts[i].push(0); }
+    var maxVal = 0;
+
+    commits.forEach(function(c) {
+      var d = c.date;
+      var dow = d.getDay() - 1; if (dow < 0) dow = 6;
+      var hour = d.getHours();
+      counts[dow][hour]++;
+      if (counts[dow][hour] > maxVal) maxVal = counts[dow][hour];
+    });
+
+    var yEl = document.getElementById('heatmap-y-labels');
+    yEl.innerHTML = '';
+    DAYS.forEach(function(d) {
+      var label = document.createElement('div');
+      label.className = 'heatmap-y-label'; label.textContent = d;
+      yEl.appendChild(label);
+    });
+
+    var gridEl = document.getElementById('heatmap-grid');
+    gridEl.innerHTML = '';
+    for (var dow=0; dow<7; dow++) {
+      for (var h=0; h<24; h++) {
+        var cell = document.createElement('div');
+        cell.className = 'heatmap-cell';
+        var val = counts[dow][h];
+        var level = maxVal === 0 ? 0 : Math.min(4, Math.floor((val/maxVal)*4.99));
+        cell.style.background = val === 0 ? '#f0f0f4' : HEATMAP_COLORS[level];
+        (function(dn, hl, v) {
+          cell.addEventListener('mouseenter', function(e) {
+            showTip(e, dn+' '+hl+': '+v+' commit'+(v!==1?'s':''));
+          });
+        })(DAYS[dow], formatHour(h), val);
+        cell.addEventListener('mousemove', moveTip);
+        cell.addEventListener('mouseleave', hideTip);
+        gridEl.appendChild(cell);
+      }
+    }
+
+    var xEl = document.getElementById('heatmap-x-labels');
+    xEl.innerHTML = '';
+    for (var h=0; h<24; h++) {
+      var label = document.createElement('div');
+      label.className = 'heatmap-x-label';
+      label.textContent = (h%3===0) ? formatHour(h) : '';
+      xEl.appendChild(label);
+    }
+
+    var scaleEl = document.getElementById('heatmap-scale');
+    scaleEl.innerHTML = '';
+    var lessSpan = document.createElement('span'); lessSpan.textContent = 'Less'; scaleEl.appendChild(lessSpan);
+    ['#f0f0f4'].concat(HEATMAP_COLORS).forEach(function(color) {
+      var c = document.createElement('span'); c.className='heatmap-scale-cell'; c.style.background=color;
+      scaleEl.appendChild(c);
+    });
+    var moreSpan = document.createElement('span'); moreSpan.textContent = 'More'; scaleEl.appendChild(moreSpan);
+
+    document.getElementById('heatmap-loading').style.display = 'none';
+    document.getElementById('heatmap-content').style.display = 'block';
+  }
+
+  function localDateStr(d) {
+    var dd = (typeof d === 'string') ? new Date(d+'T00:00:00') : d;
+    return dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');
+  }
+  function formatDate(s) {
+    var d = new Date(s+'T00:00:00');
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  }
+  function formatHour(h) {
+    if (h===0) return '12a'; if (h<12) return h+'a'; if (h===12) return '12p'; return (h-12)+'p';
+  }
+})();
+</script>
 </body>
 </html>
