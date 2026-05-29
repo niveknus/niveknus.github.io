@@ -1,15 +1,15 @@
 {
-  "date_label": "Thursday, May 28",
-  "recovery_status": "good",
+  "date_label": "Friday, May 29",
+  "recovery_status": "watch",
   "today": {
-    "time": "6:00 PM",
-    "session": "Split B — Chest + Upper Back",
-    "subtitle": "Planet Fitness · 3–4 sets",
-    "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "Sleep 8h 14m, score 87, training readiness 84 — all recovery signals in range. Show up ready.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "time": "8:00 AM",
+    "session": "Pickleball",
+    "subtitle": "8:00–10:30 AM",
+    "adjustment_status": "hold",
+    "adjustment_label": "Proceed — HRV flagged",
+    "why": "HRV dipped to 33 ms (16% below 7d baseline), normally active recovery territory. Pickleball stays per protocol — ease into play, keep intensity recreational.",
+    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
+    "expected_duration_minutes": 120
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,7 +17,7 @@
   "week_plan": {
     "monday_date": "2026-05-25",
     "days": [
-      {"label": "Walk", "type": "walk"},
+      {"label": "Walk/Jog", "type": "walk"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,699 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE depressed by today's partial read. 6-day complete avg ~2,545 cal → ~1.23 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "1,800",
+    "calories": "2,100",
     "water": "3 L"
   }
 }
