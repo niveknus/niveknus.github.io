@@ -150,6 +150,28 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       <details class="sprint-entry" open>
         <summary>
           <span class="sprint-date">2026-05-28</span>
+          <span class="sprint-title">Commit Stats Visualizations</span>
+          <span class="sprint-tag">session 14</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Built commit-stats pipeline for `niveknus.github.io/projects/` — GitHub Action (`commit-stats.yml`) runs daily + on push, queries all 3 repos via GitHub API, writes `commit-data.json`. Projects pag...</li>
+            
+            <li>Files deployed: `scripts/generate-commit-stats.py` (Python, paginated API fetcher), `.github/workflows/commit-stats.yml` (cron + push + manual trigger), updated `projects/index.html` with timeline ...</li>
+            
+            <li>Token issue resolved: Fine-grained PATs return 404 on commits API for private repos; switched to classic token with `repo` scope. 751 commits now tracked across `second-brain` (481), `niveknus.gith...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
+          <span class="sprint-date">2026-05-28</span>
           <span class="sprint-title">Technical Council Skill</span>
           <span class="sprint-tag">session 13</span>
         </summary>
