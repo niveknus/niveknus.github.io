@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-29T01:39:10.214063+00:00",
+  "generated_at": "2026-05-29T12:36:56.570269+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 3,
-    "workout_days": 2,
-    "done_days": 1,
-    "adherence_rate_pct": 50,
+    "total_entries": 4,
+    "workout_days": 3,
+    "done_days": 2,
+    "adherence_rate_pct": 67,
     "rolling_14": {
-      "workout_days": 2,
-      "done_days": 1,
-      "adherence_rate_pct": 50
+      "workout_days": 3,
+      "done_days": 2,
+      "adherence_rate_pct": 67
     },
     "reset_date": "2026-05-23"
   },
@@ -41,6 +41,16 @@
       "emoji": "🔄",
       "prescribed": "Neighborhood walk/jog · expected types `[walking, running, indoor_walking]` · ~45 min",
       "actual": "Yoga · type `yoga` · 46 min · 147 cal · avg HR 89 · started 18:39 ET",
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-05-28",
+      "weekday": "Thursday",
+      "state": "partial",
+      "emoji": "🟡",
+      "prescribed": "Split B — Chest + Upper Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": "Strength · type `strength_training` · 28 min · 148 cal · avg HR 103 · started 19:37 ET",
       "note": "",
       "data_gap": false
     }
