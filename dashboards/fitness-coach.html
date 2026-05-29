@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Build Claude into Kevin's adaptive personal fitness coach for the 200 → 165 lb cut. The coach reads Garmin Connect daily (Withings as available), reasons over Kevin's goal/profile/whitelist, makes auto-adjustments within Kevin's preferred workout types, and asks first when proposing anything novel. Delivers a single daily morning brief via Telegram at 8:30 AM, riding the cloud-routine + Telegram infrastructure built for the Personal Assistant.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-25 (session 6)</span></div>
+    <div class="meta-item">Last session <span>2026-05-28 (Sprint 3 — Weekly Review shipped)</span></div>
     <div class="meta-item">Sprint 13 · 2026-05-25</div>
     
   </div>
@@ -148,6 +148,28 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-28</span>
+          <span class="sprint-title">Sprint 3: Weekly Review Brief</span>
+          <span class="sprint-tag">shipped</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`weekly-review-routine-prompt.md` (v1.0) built and deployed to claude.ai as a new Remote Routine (Sundays 5:00 PM ET — scheduled to clear the 7 PM PA Weekly Review). Step 0 dispatches `garmin-daily...</li>
+            
+            <li>Durable history: appends a machine-parseable `## [WEEK: ...]` block to `Projects/Fitness Coach/weekly-reviews.md` each week → data source for a future "this year" adherence heat map.</li>
+            
+            <li>Text-only Telegram for MVP (per decision). Full entry in `05_Sprint History.md`.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-23</span>
           <span class="sprint-title">Sprint 13: Adherence dashboard visualization</span>
@@ -238,13 +260,21 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="next-item">
       <span class="next-priority p1">P1</span>
       <div>
-        <div class="next-title">Sprint 3:</div>
-        <div class="next-desc">Weekly review / summary brief.</div>
+        <div class="next-title">Sprint 14: Progressive Overload Tracker</div>
+        <div class="next-desc">spec drafted (_review/garmin-progressive-overload-extension.md): confirmed exercise sets/reps/weights are reachable via Garmin's get_activity_exerc...</div>
       </div>
     </div>
     
     <div class="next-item">
       <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Sprint 3.1: adherence heat map</div>
+        <div class="next-desc">build the "this year" heat map from the new weekly-reviews.md history + adherence-summary.json (parser → JSON → dashboard card).</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
       <div>
         <div class="next-title">Sprint 1.9 candidates</div>
         <div class="next-desc">(evaluate if they keep biting): 429 backoff marker in garmin_daily.py; replace GitHub Actions cron with tighter-SLA scheduler.</div>
@@ -255,15 +285,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       <span class="next-priority p3">P3</span>
       <div>
         <div class="next-title">Format tuning</div>
-        <div class="next-desc">now that brief-format.md is live, iterate on format with single-file edits.</div>
-      </div>
-    </div>
-    
-    <div class="next-item">
-      <span class="next-priority p3">P3</span>
-      <div>
-        <div class="next-title">Sprint 14:</div>
-        <div class="next-desc">Progressive Overload Tracker (exercise history pipeline + dashboard trends).</div>
+        <div class="next-desc">iterate on brief-format.md with single-file edits.</div>
       </div>
     </div>
     
