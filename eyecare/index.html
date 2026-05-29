@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FBF6EE">
+<title>Eye Care · Daily</title>
+<style>
+  :root{
+    --cream:#FBF6EE; --cream-2:#F4ECE0; --card:#FFFDFA;
+    --clay:#C8856B; --clay-soft:#E6C3B2; --clay-tint:#F6E7DE;
+    --sage:#9AAA8B; --sage-soft:#DCE3D3; --sage-tint:#EEF1E8;
+    --gold:#D9A441;
+    --ink:#4A3F36; --ink-soft:#8A7C6F; --line:#EDE2D4;
+    --ok:#8FA877; --shadow:0 6px 20px rgba(116,92,68,.10);
+    --radius:22px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+    background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);
+    background-attachment:fixed;
+    color:var(--ink); min-height:100vh;
+    padding:0 0 96px; -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Hoefler Text",Georgia,"Times New Roman",serif;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 18px;}
+  header{padding:calc(env(safe-area-inset-top) + 22px) 18px 8px;max-width:520px;margin:0 auto;}
+  .hello{font-size:14px;color:var(--ink-soft);letter-spacing:.2px;}
+  .date{font-size:27px;font-weight:600;margin:2px 0 0;letter-spacing:.2px;}
+  .view{display:none;animation:fade .35s ease;}
+  .view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* progress banner */
+  .pulse{
+    background:linear-gradient(135deg,var(--clay-tint),var(--sage-tint));
+    border-radius:var(--radius);padding:18px 20px;margin:14px 0 18px;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:16px;
+  }
+  .ring{width:58px;height:58px;flex:0 0 58px;position:relative;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:15px;color:var(--clay);}
+  .pulse .msg{font-size:15px;line-height:1.4;}
+  .pulse .msg b{font-weight:600;}
+
+  .section-label{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;
+    color:var(--ink-soft);margin:22px 4px 10px;font-weight:600;}
+
+  /* treatment cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;}
+  .treat{display:flex;align-items:center;gap:14px;padding:15px 16px;cursor:pointer;
+    border-bottom:1px solid var(--line);transition:background .2s;}
+  .treat:last-child{border-bottom:none;}
+  .treat:active{background:var(--cream);}
+  .ic{width:42px;height:42px;flex:0 0 42px;border-radius:14px;display:flex;align-items:center;
+    justify-content:center;background:var(--sage-tint);transition:all .25s;}
+  .ic svg{width:22px;height:22px;stroke:var(--sage);fill:none;stroke-width:1.8;}
+  .treat .tt{flex:1;}
+  .treat .tt .n{font-size:16px;font-weight:600;}
+  .treat .tt .s{font-size:12.5px;color:var(--ink-soft);margin-top:1px;}
+  .check{width:30px;height:30px;flex:0 0 30px;border-radius:50%;border:2px solid var(--clay-soft);
+    display:flex;align-items:center;justify-content:center;transition:all .25s;background:#fff;}
+  .check svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:3;
+    stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .3s .05s;}
+  .treat.done{background:var(--sage-tint);}
+  .treat.done .ic{background:var(--sage);}
+  .treat.done .ic svg{stroke:#fff;}
+  .treat.done .check{background:var(--sage);border-color:var(--sage);transform:scale(1.05);}
+  .treat.done .check svg{stroke-dashoffset:0;}
+
+  /* symptom scales */
+  .scale-card{padding:18px 18px 6px;}
+  .scale{margin-bottom:18px;}
+  .scale .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;}
+  .scale .lab .name{font-size:15px;font-weight:600;}
+  .scale .lab .val{font-size:12.5px;color:var(--clay);font-weight:600;}
+  .dots{display:flex;gap:8px;}
+  .dot{flex:1;height:40px;border-radius:13px;background:var(--cream-2);border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;
+    color:var(--ink-soft);cursor:pointer;transition:all .18s;}
+  .dot:active{transform:scale(.94);}
+  .scale[data-kind="dry"] .dot.on{background:var(--clay);border-color:var(--clay);color:#fff;}
+  .scale[data-kind="tired"] .dot.on{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .ends{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);margin-top:6px;}
+
+  .note-card{padding:16px 18px;}
+  .note-card textarea{width:100%;border:none;background:transparent;resize:none;font-family:inherit;
+    font-size:15px;color:var(--ink);min-height:46px;outline:none;line-height:1.45;}
+  .note-card textarea::placeholder{color:var(--ink-soft);}
+
+  .saved-flash{font-size:12px;color:var(--sage);text-align:center;height:16px;margin-top:4px;
+    opacity:0;transition:opacity .3s;}
+  .saved-flash.show{opacity:1;}
+
+  /* history */
+  .month-nav{display:flex;align-items:center;justify-content:space-between;margin:14px 2px 12px;}
+  .month-nav button{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    width:38px;height:38px;font-size:18px;color:var(--clay);box-shadow:var(--shadow);cursor:pointer;}
+  .month-nav .mlabel{font-size:18px;font-weight:600;}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;}
+  .gd-head{font-size:11px;color:var(--ink-soft);text-align:center;font-weight:600;padding-bottom:2px;}
+  .day{aspect-ratio:1;border-radius:13px;background:var(--card);border:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;
+    cursor:pointer;position:relative;transition:transform .12s;}
+  .day:active{transform:scale(.93);}
+  .day.empty{background:transparent;border:none;cursor:default;}
+  .day.today{outline:2px solid var(--clay);outline-offset:-2px;}
+  .day .pips{display:flex;gap:2px;margin-top:3px;height:5px;}
+  .day .pip{width:5px;height:5px;border-radius:50%;background:var(--sage);}
+  .day.full{background:var(--sage-tint);}
+  .legend{display:flex;gap:16px;justify-content:center;margin-top:16px;font-size:12px;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
+
+  /* report */
+  .stat-row{display:flex;gap:12px;margin-bottom:12px;}
+  .stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:15px;box-shadow:var(--shadow);text-align:center;}
+  .stat .big{font-size:26px;font-weight:700;color:var(--clay);}
+  .stat .cap{font-size:11.5px;color:var(--ink-soft);margin-top:3px;line-height:1.3;}
+  .bar-item{margin-bottom:13px;}
+  .bar-item .top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px;}
+  .bar-item .top b{font-weight:600;}
+  .track{height:11px;background:var(--cream-2);border-radius:6px;overflow:hidden;}
+  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--sage),var(--sage-soft));transition:width .6s;}
+  .spark{width:100%;height:70px;}
+  .range-pick{display:flex;gap:8px;margin:14px 0 18px;}
+  .range-pick button{flex:1;padding:10px;border-radius:13px;border:1.5px solid var(--line);
+    background:var(--card);font-family:inherit;font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer;}
+  .range-pick button.on{background:var(--clay);border-color:var(--clay);color:#fff;}
+  .notes-list{margin-top:6px;}
+  .note-entry{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;
+    margin-bottom:9px;font-size:14px;line-height:1.45;}
+  .note-entry .d{font-size:11.5px;color:var(--clay);font-weight:600;margin-bottom:3px;}
+  .actions{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+  .btn{padding:15px;border-radius:15px;border:none;font-family:inherit;font-size:15px;font-weight:600;
+    cursor:pointer;box-shadow:var(--shadow);}
+  .btn-primary{background:var(--clay);color:#fff;}
+  .btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none;}
+  .empty-state{text-align:center;color:var(--ink-soft);padding:40px 20px;font-size:14.5px;line-height:1.5;}
+
+  /* tab bar */
+  .tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,253,250,.92);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);
+    display:flex;padding:8px 0 calc(env(safe-area-inset-bottom) + 8px);z-index:50;}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;
+    font-family:inherit;color:var(--ink-soft);cursor:pointer;padding:4px;}
+  .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;}
+  .tab span{font-size:10.5px;font-weight:600;letter-spacing:.2px;}
+  .tab.on{color:var(--clay);}
+
+  .modal{position:fixed;inset:0;background:rgba(74,63,54,.4);display:none;align-items:flex-end;
+    z-index:100;backdrop-filter:blur(2px);}
+  .modal.show{display:flex;}
+  .sheet{background:var(--cream);width:100%;max-width:520px;margin:0 auto;border-radius:26px 26px 0 0;
+    padding:22px 20px calc(env(safe-area-inset-bottom) + 22px);animation:up .3s ease;}
+  @keyframes up{from{transform:translateY(100%);}to{transform:none;}}
+  .sheet h3{margin:0 0 4px;font-size:21px;font-weight:600;}
+  .sheet .sub{color:var(--ink-soft);font-size:13px;margin-bottom:14px;}
+
+  @media print{
+    .tabs,.range-pick,.actions,header .hello{display:none!important;}
+    body{background:#fff;padding:0;}
+    .view{display:none!important;}
+    #report-print.active{display:block!important;}
+    .card,.stat,.note-entry{box-shadow:none;}
+  }
+  @media (min-width:430px){ .date{font-size:30px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hello" id="hello">Welcome back</div>
+  <div class="date serif" id="today-label">Today</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= TODAY ================= -->
+  <section class="view active" id="view-today">
+    <div class="pulse">
+      <div class="ring">
+        <svg width="58" height="58" viewBox="0 0 58 58">
+          <circle cx="29" cy="29" r="25" stroke="rgba(255,255,255,.55)" stroke-width="6" fill="none"/>
+          <circle id="ring-fill" cx="29" cy="29" r="25" stroke="#C8856B" stroke-width="6" fill="none"
+            stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157"/>
+        </svg>
+        <div class="num" id="ring-num">0/4</div>
+      </div>
+      <div class="msg" id="pulse-msg">Let's take care of your eyes today. Tap each step as you go.</div>
+    </div>
+
+    <div class="section-label">Today's care</div>
+    <div class="card" id="treatments"></div>
+
+    <div class="section-label">How do your eyes feel?</div>
+    <div class="card scale-card">
+      <div class="scale" data-kind="dry" id="scale-dry">
+        <div class="lab"><span class="name">Dryness</span><span class="val" id="dry-val">—</span></div>
+        <div class="dots"></div>
+        <div class="ends"><span>Comfortable</span><span>Very dry</span></div>
+      </div>
+      <div class="scale" data-kind="tired" id="scale-tired">
+        <div class="lab"><span class="name">Eye tiredness</span><span class="val" id="tired-val">—</span></div>
+        <div class="dots"></div>
+        <div class="ends"><span>Rested</span><span>Very tired</span></div>
+      </div>
+    </div>
+
+    <div class="section-label">Anything notable? <span style="text-transform:none;letter-spacing:0;font-weight:400;">(optional)</span></div>
+    <div class="card note-card">
+      <textarea id="note" rows="2" placeholder="e.g. windy day, lots of screen time, woke up gritty…"></textarea>
+    </div>
+    <div class="saved-flash" id="saved-flash">✓ Saved</div>
+  </section>
+
+  <!-- ================= HISTORY ================= -->
+  <section class="view" id="view-history">
+    <div class="month-nav">
+      <button id="prev-m">‹</button>
+      <div class="mlabel serif" id="m-label">Month</div>
+      <button id="next-m">›</button>
+    </div>
+    <div class="grid" id="cal-head"></div>
+    <div class="grid" id="cal-grid" style="margin-top:7px;"></div>
+    <div class="legend">
+      <span><i style="background:var(--sage)"></i>All 4 steps</span>
+      <span><i style="background:var(--sage-soft)"></i>Some steps</span>
+      <span><i style="background:var(--line)"></i>Not logged</span>
+    </div>
+  </section>
+
+  <!-- ================= REPORT ================= -->
+  <section class="view" id="view-report">
+    <div class="section-label" style="margin-top:14px;">Summary for your eye doctor</div>
+    <div class="range-pick" id="range-pick">
+      <button data-r="7">7 days</button>
+      <button data-r="30" class="on">30 days</button>
+      <button data-r="all">All</button>
+    </div>
+    <div id="report-body"></div>
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-print">Save / print report (PDF)</button>
+      <button class="btn btn-ghost" id="btn-csv">Export data (CSV)</button>
+      <button class="btn btn-ghost" id="btn-backup">Back up all data</button>
+      <button class="btn btn-ghost" id="btn-restore">Restore from backup</button>
+      <input type="file" id="restore-file" accept="application/json,.json" style="display:none">
+    </div>
+  </section>
+
+  <!-- printable mirror -->
+  <section class="view" id="report-print"></section>
+</div>
+
+<!-- tab bar -->
+<nav class="tabs">
+  <button class="tab on" data-v="today">
+    <svg viewBox="0 0 24 24"><path d="M12 5c-5 0-8 7-8 7s3 7 8 7 8-7 8-7-3-7-8-7z"/><circle cx="12" cy="12" r="2.6"/></svg>
+    <span>Today</span>
+  </button>
+  <button class="tab" data-v="history">
+    <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>
+    <span>History</span>
+  </button>
+  <button class="tab" data-v="report">
+    <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+    <span>Report</span>
+  </button>
+</nav>
+
+<!-- day editor sheet -->
+<div class="modal" id="day-modal">
+  <div class="sheet" id="day-sheet"></div>
+</div>
+
+<script>
+const TREATMENTS=[
+  {k:"pataday",  n:"Pataday drops",     s:"Allergy / antihistamine drop",
+   ic:'<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>'},
+  {k:"bruder",   n:"Bruder mask",        s:"Warm compress, ~10 min",
+   ic:'<path d="M4 12a8 8 0 0 1 16 0"/><path d="M4 12c0 3 3 4 8 4s8-1 8-4"/><path d="M9 10v.01M15 10v.01"/>'},
+  {k:"massage",  n:"Lid massage",        s:"Gentle, after the mask",
+   ic:'<circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M17.7 6.3l-1.4 1.4M7.7 16.3l-1.4 1.4"/>'},
+  {k:"lacrilube",n:"Lacri-Lube ointment",s:"Nighttime, last step",
+   ic:'<path d="M9 3h6v4l-1 1v3l3 8H7l3-8V8L9 7z"/>'}
+];
+const SCALE_LABELS={
+  dry:["","Comfortable","Slightly dry","Dry","Quite dry","Very dry"],
+  tired:["","Rested","A little tired","Tired","Quite tired","Very tired"]
+};
+const STORE="dryEyeLog.v1";
+const $=(s,el=document)=>el.querySelector(s);
+const $$=(s,el=document)=>[...el.querySelectorAll(s)];
+const pad=n=>String(n).padStart(2,"0");
+const keyOf=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayKey=keyOf(new Date());
+
+let data=load();
+let calMonth=new Date();
+let reportRange=30;
+
+function load(){try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return{}}}
+function save(){localStorage.setItem(STORE,JSON.stringify(data));}
+function dayRec(k){if(!data[k])data[k]={t:{},dry:0,tired:0,note:""};return data[k];}
+
+/* ---------- greeting ---------- */
+(function(){
+  const h=new Date().getHours();
+  $("#hello").textContent = h<5?"Late night care":h<12?"Good morning, Crissy":h<17?"Good afternoon, Crissy":"Evening eye care";
+  $("#today-label").textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+})();
+
+/* ---------- TODAY: treatments ---------- */
+function renderTreatments(){
+  const rec=dayRec(todayKey), box=$("#treatments"); box.innerHTML="";
+  TREATMENTS.forEach(t=>{
+    const done=!!rec.t[t.k];
+    const el=document.createElement("div");
+    el.className="treat"+(done?" done":"");
+    el.innerHTML=`<div class="ic"><svg viewBox="0 0 24 24">${t.ic}</svg></div>
+      <div class="tt"><div class="n">${t.n}</div><div class="s">${t.s}</div></div>
+      <div class="check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>`;
+    el.onclick=()=>{rec.t[t.k]=!rec.t[t.k];save();renderTreatments();renderPulse();
+      if(navigator.vibrate)navigator.vibrate(rec.t[t.k]?14:0);};
+    box.appendChild(el);
+  });
+}
+function renderPulse(){
+  const rec=dayRec(todayKey);
+  const done=TREATMENTS.filter(t=>rec.t[t.k]).length;
+  $("#ring-num").textContent=`${done}/4`;
+  $("#ring-fill").style.strokeDashoffset=157-(157*done/4);
+  const msgs=[
+    "Let's take care of your eyes today. Tap each step as you go.",
+    "Lovely start. One step down — no rush, just keep going.",
+    "Halfway there. Your eyes are already thanking you.",
+    "Almost done — just one step left tonight.",
+    "All done for today. That's real care, every single day. ✨"
+  ];
+  $("#pulse-msg").innerHTML=msgs[done];
+}
+/* ---------- TODAY: scales ---------- */
+function buildScale(kind){
+  const wrap=$(`#scale-${kind} .dots`); wrap.innerHTML="";
+  for(let i=1;i<=5;i++){
+    const d=document.createElement("div");
+    d.className="dot"; d.textContent=i;
+    d.onclick=()=>{const rec=dayRec(todayKey); rec[kind===
+"dry"?"dry":"tired"]=i; save(); renderScales(); flashSaved();
+      if(navigator.vibrate)navigator.vibrate(10);};
+    wrap.appendChild(d);
+  }
+}
+function renderScales(){
+  const rec=dayRec(todayKey);
+  ["dry","tired"].forEach(kind=>{
+    const v=rec[kind==="dry"?"dry":"tired"];
+    $$(`#scale-${kind} .dot`).forEach((d,i)=>d.classList.toggle("on",(i+1)===v));
+    $(`#${kind}-val`).textContent = v>0 ? SCALE_LABELS[kind][v] : "—";
+  });
+}
+let flashT;
+function flashSaved(){const f=$("#saved-flash");f.classList.add("show");clearTimeout(flashT);
+  flashT=setTimeout(()=>f.classList.remove("show"),1400);}
+
+$("#note").addEventListener("input",e=>{dayRec(todayKey).note=e.target.value;save();});
+$("#note").addEventListener("blur",flashSaved);
+function loadNote(){$("#note").value=dayRec(todayKey).note||"";}
+
+/* ---------- HISTORY ---------- */
+const DOW=["S","M","T","W","T","F","S"];
+function renderHistory(){
+  $("#m-label").textContent=calMonth.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+  const head=$("#cal-head");head.innerHTML="";DOW.forEach(d=>{const e=document.createElement("div");e.className="gd-head";e.textContent=d;head.appendChild(e);});
+  const grid=$("#cal-grid");grid.innerHTML="";
+  const y=calMonth.getFullYear(),m=calMonth.getMonth();
+  const first=new Date(y,m,1).getDay(), days=new Date(y,m+1,0).getDate();
+  for(let i=0;i<first;i++){const e=document.createElement("div");e.className="day empty";grid.appendChild(e);}
+  for(let dnum=1;dnum<=days;dnum++){
+    const k=`${y}-${pad(m+1)}-${pad(dnum)}`, rec=data[k];
+    const done=rec?TREATMENTS.filter(t=>rec.t[t.k]).length:0;
+    const el=document.createElement("div");
+    el.className="day"+(done===4?" full":"")+(k===todayKey?" today":"");
+    let pips="";for(let i=0;i<done;i++)pips+=`<span class="pip"${i>=4?'':''}></span>`;
+    el.innerHTML=`<div>${dnum}</div><div class="pips">${pips}</div>`;
+    el.onclick=()=>openDay(k,dnum,m,y);
+    grid.appendChild(el);
+  }
+}
+$("#prev-m").onclick=()=>{calMonth.setMonth(calMonth.getMonth()-1);renderHistory();};
+$("#next-m").onclick=()=>{calMonth.setMonth(calMonth.getMonth()+1);renderHistory();};
+
+function openDay(k,dnum,m,y){
+  const rec=data[k];
+  const sheet=$("#day-sheet");
+  const dateStr=new Date(y,m,dnum).toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+  if(!rec){
+    sheet.innerHTML=`<h3 class="serif">${dateStr}</h3><div class="sub">Nothing logged this day.</div>
+      <button class="btn btn-ghost" onclick="closeDay()">Close</button>`;
+  }else{
+    const tdone=TREATMENTS.map(t=>`<div class="treat ${rec.t[t.k]?'done':''}" style="cursor:default">
+      <div class="ic"><svg viewBox="0 0 24 24">${t.ic}</svg></div>
+      <div class="tt"><div class="n">${t.n}</div></div>
+      <div class="check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div></div>`).join("");
+    sheet.innerHTML=`<h3 class="serif">${dateStr}</h3>
+      <div class="sub">Dryness: <b style="color:var(--clay)">${rec.dry?SCALE_LABELS.dry[rec.dry]:'—'}</b>
+       · Tiredness: <b style="color:var(--gold)">${rec.tired?SCALE_LABELS.tired[rec.tired]:'—'}</b></div>
+      <div class="card" style="margin-bottom:14px">${tdone}</div>
+      ${rec.note?`<div class="note-entry"><div class="d">Note</div>${esc(rec.note)}</div>`:''}
+      <button class="btn btn-ghost" onclick="closeDay()">Close</button>`;
+  }
+  $("#day-modal").classList.add("show");
+}
+window.closeDay=()=>$("#day-modal").classList.remove("show");
+$("#day-modal").onclick=e=>{if(e.target.id==="day-modal")closeDay();};
+function esc(s){return(s||"").replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+/* ---------- REPORT ---------- */
+function rangeKeys(r){
+  const keys=Object.keys(data).filter(k=>{
+    const rec=data[k];return rec && (TREATMENTS.some(t=>rec.t[t.k])||rec.dry||rec.tired||rec.note);
+  }).sort();
+  if(r==="all")return keys;
+  const cut=new Date();cut.setDate(cut.getDate()-(r-1));const cutK=keyOf(cut);
+  return keys.filter(k=>k>=cutK);
+}
+function buildReport(target){
+  const keys=rangeKeys(reportRange);
+  const body=target||$("#report-body");
+  if(!keys.length){body.innerHTML=`<div class="empty-state">No entries yet in this range.<br>Log a few days and your doctor-ready summary will appear here.</div>`;return;}
+  const n=keys.length;
+  // adherence per treatment
+  const adh={};TREATMENTS.forEach(t=>adh[t.k]=keys.filter(k=>data[k].t[t.k]).length);
+  const dryVals=keys.filter(k=>data[k].dry).map(k=>data[k].dry);
+  const tiredVals=keys.filter(k=>data[k].tired).map(k=>data[k].tired);
+  const avg=a=>a.length?(a.reduce((x,y)=>x+y,0)/a.length):0;
+  const trend=a=>{if(a.length<4)return"";const h=Math.ceil(a.length/2);
+    const f=avg(a.slice(0,h)),s=avg(a.slice(h));const d=s-f;
+    return Math.abs(d)<.4?"holding steady":d<0?"improving ↓":"worsening ↑";};
+  const start=keys[0],end=keys[keys.length-1];
+  const fmt=k=>new Date(k+"T00:00").toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  const overall=Math.round(TREATMENTS.reduce((s,t)=>s+adh[t.k],0)/(TREATMENTS.length*n)*100);
+
+  let html=`<div style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">
+    ${fmt(start)} – ${fmt(end)} · ${n} day${n>1?'s':''} logged</div>
+    <div class="stat-row">
+      <div class="stat"><div class="big">${overall}%</div><div class="cap">Routine adherence</div></div>
+      <div class="stat"><div class="big" style="color:var(--clay)">${avg(dryVals).toFixed(1)}</div><div class="cap">Avg dryness ${trend(dryVals)?'· '+trend(dryVals):''}</div></div>
+      <div class="stat"><div class="big" style="color:var(--gold)">${avg(tiredVals).toFixed(1)}</div><div class="cap">Avg tiredness ${trend(tiredVals)?'· '+trend(tiredVals):''}</div></div>
+    </div>
+    <div class="section-label" style="margin-top:18px">Each treatment</div>`;
+  TREATMENTS.forEach(t=>{const p=Math.round(adh[t.k]/n*100);
+    html+=`<div class="bar-item"><div class="top"><b>${t.n}</b><span>${adh[t.k]}/${n} days · ${p}%</span></div>
+      <div class="track"><div class="fill" style="width:${p}%"></div></div></div>`;});
+
+  html+=`<div class="section-label" style="margin-top:18px">Symptom trend</div>${sparkline(keys)}`;
+
+  const notes=keys.filter(k=>data[k].note).reverse();
+  if(notes.length){
+    html+=`<div class="section-label" style="margin-top:18px">Notes</div><div class="notes-list">`;
+    notes.forEach(k=>{html+=`<div class="note-entry"><div class="d">${fmt(k)}</div>${esc(data[k].note)}</div>`;});
+    html+=`</div>`;
+  }
+  body.innerHTML=html;
+}
+function sparkline(keys){
+  const W=480,H=70,pad=6;
+  const xs=keys.map((k,i)=>pad+(W-2*pad)*(keys.length>1?i/(keys.length-1):.5));
+  const yOf=v=>H-pad-((v-0)/5)*(H-2*pad);
+  const line=(field,color)=>{
+    const pts=keys.map((k,i)=>data[k][field]?`${xs[i].toFixed(1)},${yOf(data[k][field]).toFixed(1)}`:null).filter(Boolean);
+    return pts.length?`<polyline points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`+
+      pts.map(p=>`<circle cx="${p.split(',')[0]}" cy="${p.split(',')[1]}" r="2.6" fill="${color}"/>`).join(''):'';
+  };
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+    ${line('dry','#C8856B')}${line('tired','#D9A441')}</svg>
+    <div class="legend" style="margin-top:4px;justify-content:flex-start;gap:18px">
+      <span><i style="background:#C8856B"></i>Dryness</span><span><i style="background:#D9A441"></i>Tiredness</span>
+      <span style="margin-left:auto;color:var(--ink-soft)">lower is better</span></div>`;
+}
+$$("#range-pick button").forEach(b=>b.onclick=()=>{
+  $$("#range-pick button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+  reportRange=b.dataset.r==="all"?"all":+b.dataset.r;buildReport();});
+
+/* ---------- export ---------- */
+$("#btn-csv").onclick=()=>{
+  const keys=rangeKeys(reportRange);
+  let csv="Date,"+TREATMENTS.map(t=>t.n).join(",")+",Dryness(1-5),Tiredness(1-5),Note\n";
+  keys.forEach(k=>{const r=data[k];
+    csv+=[k,...TREATMENTS.map(t=>r.t[t.k]?"Yes":"No"),r.dry||"",r.tired||"",`"${(r.note||"").replace(/"/g,'""')}"`].join(",")+"\n";});
+  download("dry-eye-log.csv",csv,"text/csv");
+};
+$("#btn-backup").onclick=()=>download("dry-eye-backup.json",JSON.stringify(data),"application/json");
+$("#btn-restore").onclick=()=>$("#restore-file").click();
+$("#restore-file").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const incoming=JSON.parse(r.result);
+    if(typeof incoming!=="object"||Array.isArray(incoming))throw new Error("bad shape");
+    // merge: keep both sets of days; incoming wins on conflicts
+    let added=0;for(const k in incoming){if(!data[k])added++;data[k]=incoming[k];}
+    save();
+    renderTreatments();renderPulse();renderScales();loadNote();buildReport();
+    alert(`Restored ${Object.keys(incoming).length} day(s). Your data is safe.`);
+  }catch(err){alert("That doesn't look like a valid backup file.");}
+  e.target.value="";};
+  r.readAsText(f);
+};
+function download(name,content,type){
+  const b=new Blob([content],{type});const u=URL.createObjectURL(b);
+  const a=document.createElement("a");a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);
+}
+$("#btn-print").onclick=()=>{
+  buildReport($("#report-print"));
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  $("#report-print").classList.add("active");
+  $("#report-print").insertAdjacentHTML("afterbegin",
+    `<h2 class="serif" style="margin:0 0 2px">Dry Eye Care Summary</h2>
+     <div style="color:var(--ink-soft);font-size:13px;margin-bottom:14px">Cristina · generated ${new Date().toLocaleDateString()}</div>`);
+  setTimeout(()=>{window.print();
+    $("#report-print").classList.remove("active");$("#report-print").innerHTML="";
+    $("#view-report").classList.add("active");},250);
+};
+
+/* ---------- tab nav ---------- */
+$$(".tab").forEach(t=>t.onclick=()=>{
+  $$(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  const v=t.dataset.v;$(`#view-${v}`).classList.add("active");
+  if(v==="history")renderHistory();
+  if(v==="report")buildReport();
+  window.scrollTo(0,0);
+});
+
+/* ---------- init ---------- */
+buildScale("dry");buildScale("tired");
+renderTreatments();renderPulse();renderScales();loadNote();
+</script>
+</body>
+</html>
