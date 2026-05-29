@@ -1,7 +1,7 @@
 {
   "digest_version": 3,
   "source_export_version": 2,
-  "source_fetched_at_local": "2026-05-28T12:37:21",
+  "source_fetched_at_local": "2026-05-29T01:39:09",
   "calendar": {
     "snapshot_end": "2026-05-28",
     "window_start": "2026-05-22",
@@ -37,33 +37,33 @@
       "date": "2026-05-28",
       "resting_heart_rate": 64,
       "resting_hr_7d_avg": 61,
-      "max_heart_rate": 111,
-      "max_avg_heart_rate": 104,
+      "max_heart_rate": 130,
+      "max_avg_heart_rate": 125,
       "min_heart_rate": 60,
-      "avg_respiration": 18.0
+      "avg_respiration": 17.0
     },
     "body_battery": {
       "date": "2026-05-28",
       "at_wake_time": 57,
       "charged": 51,
-      "drained": 1,
+      "drained": 41,
       "during_sleep": 52,
       "highest_value": 57,
       "lowest_value": 6,
-      "most_recent_value": 56
+      "most_recent_value": 16
     },
     "training_readiness": {
       "date": "2026-05-28",
-      "score": 84,
+      "score": 83,
       "level": "HIGH",
       "feedback_long": "HIGH_RT_HIGHEST_SS_AVAILABLE",
       "feedback_short": "WELL_RECOVERED",
       "sleep_score_factor_percent": 84,
-      "recovery_time_hours": 1,
+      "recovery_time_hours": 62,
       "hrv_factor_percent": 100,
       "stress_history_factor_percent": 58,
       "acwr_factor_percent": 100,
-      "acute_load": 43
+      "acute_load": 52
     },
     "training_status": {
       "date": "2026-05-28",
@@ -73,37 +73,37 @@
     },
     "energy": {
       "date": "2026-05-28",
-      "total_calories_burned": 803.0,
-      "bmr_calories": 783.0,
-      "active_calories": 20.0,
-      "wellness_calories": 803.0
+      "total_calories_burned": 2291.0,
+      "bmr_calories": 1981.0,
+      "active_calories": 310.0,
+      "wellness_calories": 2291.0
     },
     "stress": {
       "date": "2026-05-28",
-      "average_level": 22,
-      "max_level": 66,
-      "qualifier": "UNKNOWN",
-      "rest_pct": 74.8,
-      "low_pct": 22.18,
-      "medium_pct": 1.41,
-      "high_pct": 0.0
+      "average_level": 37,
+      "max_level": 90,
+      "qualifier": "STRESSFUL",
+      "rest_pct": 32.44,
+      "low_pct": 35.69,
+      "medium_pct": 18.29,
+      "high_pct": 3.98
     },
     "intensity_minutes": {
       "date": "2026-05-28",
-      "moderate_minutes": 0,
-      "vigorous_minutes": 0,
+      "moderate_minutes": 13,
+      "vigorous_minutes": 1,
       "weekly_goal": 150
     },
     "activity": {
       "date": "2026-05-28",
-      "total_steps": 144,
+      "total_steps": 4695,
       "step_goal": 5000,
-      "highly_active_minutes": 0.0,
-      "active_minutes": 5.0,
-      "sedentary_minutes": 21.0,
+      "highly_active_minutes": 28.0,
+      "active_minutes": 60.0,
+      "sedentary_minutes": 701.0,
       "floors_climbed": 0.0,
       "floors_goal": 10,
-      "total_distance_meters": 117
+      "total_distance_meters": 3803
     }
   },
   "rolling_7d": {
@@ -217,14 +217,14 @@
         "hrv_last_night_avg": 39,
         "hrv_status": "BALANCED",
         "resting_heart_rate": 64,
-        "total_calories_burned": 803.0,
-        "bmr_calories": 783.0,
-        "active_calories": 20.0,
-        "steps": 144,
-        "stress_avg": 22,
-        "stress_qualifier": "UNKNOWN",
-        "moderate_intensity_minutes": 0,
-        "vigorous_intensity_minutes": 0,
+        "total_calories_burned": 2291.0,
+        "bmr_calories": 1981.0,
+        "active_calories": 310.0,
+        "steps": 4695,
+        "stress_avg": 37,
+        "stress_qualifier": "STRESSFUL",
+        "moderate_intensity_minutes": 13,
+        "vigorous_intensity_minutes": 1,
         "floors_climbed": 0.0
       }
     ],
@@ -233,18 +233,18 @@
       "sleep_score_7d_avg": 77.14,
       "hrv_7d_avg": 41.14,
       "rhr_7d_avg": 61,
-      "steps_7d_avg": 4409.29,
-      "total_calories_7d_avg": 2428.29,
-      "active_calories_7d_avg": 378.43,
-      "stress_7d_avg": 37.14
+      "steps_7d_avg": 5059.43,
+      "total_calories_7d_avg": 2640.86,
+      "active_calories_7d_avg": 419.86,
+      "stress_7d_avg": 39.29
     }
   },
   "training_load": {
     "this_iso_week": {
       "window_start": "2026-05-25",
       "window_end": "2026-05-28",
-      "activity_count": 1,
-      "sum_activity_training_load": 2.2,
+      "activity_count": 2,
+      "sum_activity_training_load": 9.1,
       "ok": true
     },
     "previous_iso_week": {
@@ -256,10 +256,10 @@
     },
     "acwr": {
       "date": "2026-05-28",
-      "acwr_ratio": 0.4,
-      "acwr_percent": 16,
+      "acwr_ratio": 0.5,
+      "acwr_percent": 20,
       "acwr_status": "LOW",
-      "acute_load": 43,
+      "acute_load": 52,
       "chronic_load": 100,
       "chronic_load_min": 80.0,
       "chronic_load_max": 150.0
@@ -441,6 +441,27 @@
     "weeks_to_goal_at_2lb_per_week": 17.5
   },
   "workouts": [
+    {
+      "activity_id": 23050261098,
+      "activity_name": "Strength",
+      "activity_type": "strength_training",
+      "start_time_local": "2026-05-28 19:37:35",
+      "duration_minutes": 28.1,
+      "calories": 148.0,
+      "average_hr": 103.0,
+      "max_hr": 137.0,
+      "distance_meters": 0.0,
+      "training_load": 6.9,
+      "aerobic_training_effect": 1.100000023841858,
+      "anaerobic_training_effect": 0.0,
+      "steps": 218,
+      "body_battery_cost": -1,
+      "hr_zone_1_seconds": 22.0,
+      "hr_zone_2_seconds": 0.0,
+      "hr_zone_3_seconds": 0.0,
+      "hr_zone_4_seconds": 0.0,
+      "hr_zone_5_seconds": 0.0
+    },
     {
       "activity_id": 23013232828,
       "activity_name": "Yoga",
