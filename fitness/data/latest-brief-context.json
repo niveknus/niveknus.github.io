@@ -1,15 +1,15 @@
 {
-  "date_label": "Friday, May 29",
+  "date_label": "Saturday, May 30",
   "recovery_status": "watch",
   "today": {
-    "time": "8:00 AM",
-    "session": "Pickleball",
-    "subtitle": "8:00–10:30 AM",
-    "adjustment_status": "hold",
-    "adjustment_label": "Proceed — HRV flagged",
-    "why": "HRV dipped to 33 ms (16% below 7d baseline), normally active recovery territory. Pickleball stays per protocol — ease into play, keep intensity recreational.",
-    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
-    "expected_duration_minutes": 120
+    "time": "7:30 AM",
+    "session": "Lake Baldwin walk",
+    "subtitle": "Easy 35-min walk, no jogging",
+    "adjustment_status": "intensity_reduced",
+    "adjustment_label": "Intensity reduced — walk only",
+    "why": "Sleep score 55 (Poor) + 5h 38m triggers two rules: 5–6 hr sleep band and score <60. HRV is above baseline at 41 ms — walk is appropriate, jogging is not.",
+    "expected_activity_types": ["walking"],
+    "expected_duration_minutes": 35
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,16 +17,16 @@
   "week_plan": {
     "monday_date": "2026-05-25",
     "days": [
-      {"label": "Walk/Jog", "type": "walk"},
+      {"label": "Walk", "type": "walk"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
-      {"label": "Baldwin", "type": "walk"},
+      {"label": "Walk", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE depressed by today's partial read. 6-day complete avg ~2,545 cal → ~1.23 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,612 cal → ~1.37 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
