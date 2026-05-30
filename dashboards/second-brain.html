@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-28</span></div>
+    <div class="meta-item">Last session <span>2026-05-29</span></div>
     <div class="meta-item">Session 12 · 2026-05-26</div>
     
   </div>
@@ -148,6 +148,34 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-29</span>
+          <span class="sprint-title">Instagram Export Ingestion + Opus Search Index</span>
+          <span class="sprint-tag">session 15</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Full Instagram "Download Your Information" ingestion. Parsed 1,403 saved posts + 8,016 likes + 660 follows; fixed the mojibake encoding; synthesized a behavioral/interest profile → new `wiki/instag...</li>
+            
+            <li>Local A/V enrichment pipeline (`transcribe_saved_media.sh`): yt-dlp + ffmpeg + whisper.cpp for reels, gallery-dl + tesseract for carousels — run on the always-on Mac Mini M4 over Tailscale/VNC (GUI...</li>
+            
+            <li>Curated synthesis ingestion ("synthesis on top of an archive") at a fixed fidelity bar across 11 pages: instagram-profile + principles-and-quotes (+3 clusters), personal-growth-and-spirituality (fr...</li>
+            
+            <li>New tooling in `scripts/`: `instagram_to_md.py`, `instagram_bucket_saves.py`, `instagram_extract_insights.py`, `instagram_triage_saves.py`, `instagram_export_urls.py`, `transcribe_saved_media.sh` (...</li>
+            
+            <li>Opus search-manifest regen: manually authored richer summary/search_terms/concepts for all 73/73 pages (tagged `regen:opus`), recomputing content hashes so the cron skips them. Verified `update-man...</li>
+            
+            <li>New `docs/report-style.md` (+ CLAUDE.md pointer) — the default format for shareable "show my friends" reports; built the exemplar `instagram-second-brain-report.html`.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-28</span>
           <span class="sprint-title">Commit Stats Visualizations</span>
@@ -179,88 +207,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
           <ul>
             
             <li>Created `skills/technical-council/SKILL.md` — standalone skill for running hard technical problems through a 5-advisor council (Architect, Pragmatist, Debugger, Simplifier, Researcher). Same workfl...</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-26</span>
-          <span class="sprint-title">System Review Execution + Structural Overhaul</span>
-          <span class="sprint-tag">session 12</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Full 7-panel system review executed across all projects (cartography → review panels → cross-project synthesis → prioritized action plan). 15 system review items identified; all resolved this session.</li>
-            
-            <li>SR-1 through SR-10: Fixed session-end protocol, replaced handoff prompts with stable dashboard pointers, deleted 10 dead files, fixed 9 stale counts/status lines, marked pre-fix adherence entries, ...</li>
-            
-            <li>SR-13 through SR-15: Updated wiki project pages (PA, FC, Flourish), calibrated FC recovery baselines from Garmin data, created `docs/shared-conventions.md`.</li>
-            
-            <li>Structural overhaul (#17): Collapsed Full project structure from 8→4 files (Dashboard, Backlog, Decision Log, Sprint History). Deleted Current Sprint + Session Handoff Prompt across PA, FC, SB, Lif...</li>
-            
-            <li>Flourish restructure (#18): Converted from sprint-based to correspondence-driven structure. Created `01_Correspondence Timeline.md` (chronological record of all BV communication rounds). Deleted Fe...</li>
-            
-            <li>Routine manifest (#19): Created `docs/routines-manifest.md` documenting all 5 active cloud routines with schedules, prompt files, data dependencies, and shared infrastructure.</li>
-            
-            <li>FC backlog tagging (#21): Marked Sprints 10, 11, 14 as exploratory (deprioritized).</li>
-            
-            <li>Lint pass: Fixed 4 broken wikilinks, 3 stale dates, 1 dead-file reference in Life Coach backlog.</li>
-            
-            <li>Cross-file consistency verified: Session Protocols, CLAUDE.md directory tree, Project Tracker, Home Improvement promotion template all updated to reflect new structure.</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-25</span>
-          <span class="sprint-title">Dynamic Dashboard Template System</span>
-          <span class="sprint-tag">session 11b</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Built `scripts/render-dashboard.py` — Jinja2-based renderer that parses `00_Project Dashboard.md` into structured sections and renders HTML using per-project style configs from `dashboard-manifest....</li>
-            
-            <li>Created `scripts/templates/dashboard.html.j2` — generalized dashboard template with CSS variable slots for per-project visual identity.</li>
-            
-            <li>Updated `deploy-dashboards.yml` — triggers on dashboard markdown changes; renders template dashboards after copying static ones.</li>
-            
-            <li>Full pipeline tested locally: 5 dashboards rendered successfully, all integrated with changelog and landing page generation.</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-25</span>
-          <span class="sprint-title">Structural Audit + CLAUDE.md Token Optimization</span>
-          <span class="sprint-tag">session 11</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>CLAUDE.md split: Extracted 3 sections into `docs/` reference files. Core CLAUDE.md trimmed from ~7,500 to ~3,500 tokens.</li>
-            
-            <li>AI & Automation promoted to 10th hub. `ai-and-automation-tools.md` split into tools + prompts pages.</li>
-            
-            <li>home-maintenance.md split: 31 entries → maintenance (21) + improvement (10).</li>
-            
-            <li>Root file cleanup, wiki lint pass, FC wiki catchup, About Me.md refresh, dashboard changelog system, portfolio page update, sprint convention documented.</li>
             
           </ul>
         </div>
