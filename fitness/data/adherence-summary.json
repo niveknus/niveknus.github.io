@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-30T01:38:53.748386+00:00",
+  "generated_at": "2026-05-30T12:37:33.885941+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 4,
-    "workout_days": 3,
-    "done_days": 2,
-    "adherence_rate_pct": 67,
+    "total_entries": 5,
+    "workout_days": 4,
+    "done_days": 3,
+    "adherence_rate_pct": 75,
     "rolling_14": {
-      "workout_days": 3,
-      "done_days": 2,
-      "adherence_rate_pct": 67
+      "workout_days": 4,
+      "done_days": 3,
+      "adherence_rate_pct": 75
     },
     "reset_date": "2026-05-23"
   },
@@ -51,6 +51,16 @@
       "emoji": "🟡",
       "prescribed": "Split B — Chest + Upper Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
       "actual": "Strength · type `strength_training` · 28 min · 148 cal · avg HR 103 · started 19:37 ET",
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-05-29",
+      "weekday": "Friday",
+      "state": "replaced",
+      "emoji": "🔄",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": "Orange County Walking · type `walking` · 38 min · 217 cal · avg HR 114 · started 14:12 ET",
       "note": "",
       "data_gap": false
     }
