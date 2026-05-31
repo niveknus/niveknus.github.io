@@ -1,0 +1,8 @@
+# Published to the niveknus.github.io root by deploy-dashboards.yml.
+# Kevin's GitHub Pages site hosts personal dashboards (fitness biometrics,
+# project status). Block all crawlers/search-engine indexing of the entire site
+# (SR-1 Stage A, 2026-05-31). This stops search indexing + well-behaved crawlers;
+# it does NOT stop someone who already has a direct URL (that's SR-1 Stage B,
+# deferred — unguessable URL or Cloudflare Access).
+User-agent: *
+Disallow: /
