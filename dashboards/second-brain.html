@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-30</span></div>
+    <div class="meta-item">Last session <span>2026-05-31</span></div>
     <div class="meta-item">Session 12 · 2026-05-26</div>
     
   </div>
@@ -148,6 +148,30 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-31</span>
+          <span class="sprint-title">Netflix Viewing History Ingest</span>
+          <span class="sprint-tag">session 17</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Analyzed Kevin's full Netflix export (844 plays, May 2020–Mar 2026): parsed into 45 series (591 episode-plays) + ~250 films via a colon/keyword title parser. Surfaced the heist/spy/crime taste prof...</li>
+            
+            <li>Built two `report-style` HTML reports at vault root: `netflix-viewing-report.html` (shareable) and `netflix-viewing-report-PRIVATE.html` (adds a relationship-lens sweep — kept local-only, deliberat...</li>
+            
+            <li>Ingested the shareable analysis as a dated taste-profile entry on podcasts-and-media (13→14 sources); bumped miscellaneous hub + index counts; logged to `wiki/log/2026-05.md`; archived source `raw-...</li>
+            
+            <li>Note: workspace shell returned garbled/duplicated output mid-session; every figure was re-derived from a structured JSON file and cross-checked (by-year/weekday/month each sum to 844). An early dra...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-30</span>
           <span class="sprint-title">Google Takeout + Garmin History + Graph Redesign</span>
