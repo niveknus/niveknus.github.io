@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-29</span></div>
+    <div class="meta-item">Last session <span>2026-05-30</span></div>
     <div class="meta-item">Session 12 · 2026-05-26</div>
     
   </div>
@@ -148,6 +148,36 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-30</span>
+          <span class="sprint-title">Google Takeout + Garmin History + Graph Redesign</span>
+          <span class="sprint-tag">session 16</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Google Takeout ingest. Calendar (2,712 events → a 5-era life spine on `timeline`, milestones, a bills→experiences spending pattern, and a full social graph) and Maps (19 reviews, San Diego spots, a...</li>
+            
+            <li>Places API enrichment. New `scripts/resolve_places.py` resolved all 147 Maps Place IDs → names for $0 (free tier); joined to 430 visits → Orlando daily-life-places entry on `orlando-life` + surface...</li>
+            
+            <li>Garmin backfill via two new auth-reusing scripts (`garmin_history.py`, `garmin_health_history.py`): full activity history (616 acts, 2020–2026 training arc) + health history (546 weigh-ins 2018→202...</li>
+            
+            <li>Crissy relationship labels reconciled to status-over-time (met→dating→official→breakup→reconnecting, no current label) across `people`, `crissy`, `dating-and-romance`, and PA `crissy-dates.md`.</li>
+            
+            <li>Shareable report: built `google-garmin-second-brain-report.html` (per `report-style.md`) with a monthly weight-cycle chart.</li>
+            
+            <li>Graph view redesign: tag-based 10-domain color palette, hub-and-spoke force tuning, new `home` MOC root (gravitational center) + `home` breadcrumbs on all 10 hubs; `.obsidian/graph.json` gitignored...</li>
+            
+            <li>PA: `birthdays.md` feed created (routine wiring deferred). Source-ingest backlog consolidated in `ingest-workflow.md`.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-29</span>
           <span class="sprint-title">Instagram Export Ingestion + Opus Search Index</span>
@@ -189,24 +219,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
             <li>Files deployed: `scripts/generate-commit-stats.py` (Python, paginated API fetcher), `.github/workflows/commit-stats.yml` (cron + push + manual trigger), updated `projects/index.html` with timeline ...</li>
             
             <li>Token issue resolved: Fine-grained PATs return 404 on commits API for private repos; switched to classic token with `repo` scope. 751 commits now tracked across `second-brain` (481), `niveknus.gith...</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-28</span>
-          <span class="sprint-title">Technical Council Skill</span>
-          <span class="sprint-tag">session 13</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Created `skills/technical-council/SKILL.md` — standalone skill for running hard technical problems through a 5-advisor council (Architect, Pragmatist, Debugger, Simplifier, Researcher). Same workfl...</li>
             
           </ul>
         </div>
