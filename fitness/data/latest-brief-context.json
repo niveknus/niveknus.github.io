@@ -1,15 +1,15 @@
 {
-  "date_label": "Saturday, May 30",
+  "date_label": "Sunday, May 31",
   "recovery_status": "watch",
   "today": {
-    "time": "7:30 AM",
-    "session": "Lake Baldwin walk",
-    "subtitle": "Easy 35-min walk, no jogging",
-    "adjustment_status": "intensity_reduced",
-    "adjustment_label": "Intensity reduced — walk only",
-    "why": "Sleep score 55 (Poor) + 5h 38m triggers two rules: 5–6 hr sleep band and score <60. HRV is above baseline at 41 ms — walk is appropriate, jogging is not.",
-    "expected_activity_types": ["walking"],
-    "expected_duration_minutes": 35
+    "time": "—",
+    "session": "Rest day",
+    "subtitle": "Full rest",
+    "adjustment_status": "none",
+    "adjustment_label": "Rest day — no session scheduled",
+    "why": "Sunday default. Hard recovery signals are fine (HRV +11% above baseline, Body Battery 61, RHR on target). Training readiness 48 (LOW) driven by accumulated sleep pattern stress; rest absorbs this week's training debt.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,16 +17,16 @@
   "week_plan": {
     "monday_date": "2026-05-25",
     "days": [
-      {"label": "Walk", "type": "walk"},
+      {"label": "Walk/Jog", "type": "walk"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
-      {"label": "Walk", "type": "walk"},
+      {"label": "Baldwin", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,612 cal → ~1.37 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,565 cal → ~1.3 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
