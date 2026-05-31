@@ -129,7 +129,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Build Claude into Kevin's adaptive personal fitness coach for the 200 → 165 lb cut. The coach reads Garmin Connect daily (Withings as available), reasons over Kevin's goal/profile/whitelist, makes auto-adjustments within Kevin's preferred workout types, and asks first when proposing anything novel. Delivers a single daily morning brief via Telegram at 8:30 AM, riding the cloud-routine + Telegram infrastructure built for the Personal Assistant.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-30 (v5.0 — text brief replaces PNG + conflict-aware calendar booking)</span></div>
+    <div class="meta-item">Last session <span>2026-05-30 (session 17 — Sprint 14 P0 exercise-history pipeline shipped + backfilled)</span></div>
     <div class="meta-item">Sprint 13 · 2026-05-25</div>
     
   </div>
@@ -148,6 +148,36 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-30</span>
+          <span class="sprint-title">Sprint 14 P0: Progressive Overload data pipeline</span>
+          <span class="sprint-tag">session 17</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`garmin_export_all.py` → `fetch_exercise_sets_for_strength()`: after the workout pull, fetches Garmin's per-activity `exerciseSets` for each `strength_training` activity (non-fatal per-activity), a...</li>
+            
+            <li>`garmin_digest.py` → `extract_strength_detail()`: REST rows dropped, gram weights → lb (`_g_to_lb`), ACTIVE sets grouped by exercise (`name` → `category` fallback), each summarized with top set, Ep...</li>
+            
+            <li>`garmin_digest.py` → `update_exercise_history()`: cumulative `raw-sources/garmin/exercise-history.json` (schema `exercise-history.v1`), deduped by (exercise, activity_id), idempotent, non-destructi...</li>
+            
+            <li>Publish wiring: `garmin-daily.yml` + `generate_dashboard.py` copy `exercise-history.json` to `fitness/data/`.</li>
+            
+            <li>Verification: live-fetched the real payload (no MFA, cached tokens); unit-tested gram→lb, REST filter, Epley, idempotent dedupe, and edge cases (missing key, REST-only, bodyweight, old exports).</li>
+            
+            <li>Backfill: ran the real digest+archive code over all 36 historical strength sessions → 34 exercises, 169 rows (2020-07 → 2026-05), seeded to the vault.</li>
+            
+            <li>Data-quality note: 15 sessions contain an `UNKNOWN` exercise (untagged sets) and a few entries look mis-mapped in Connect (e.g. a "115 lb lateral raise"). Code reports faithfully; chart quality dep...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-28</span>
           <span class="sprint-title">Sprint 3: Weekly Review Brief</span>
@@ -193,58 +223,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       </details>
     </div>
     
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-23</span>
-          <span class="sprint-title">Sprint 12: Weight history + prediction line</span>
-          <span class="sprint-tag">session 3</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>`garmin_digest.py`: `update_weight_history()` — cumulative `weight-history.json` archive. Merges new entries from `bc.trend_30d`, dedupes by date, prefers richer entries, sorts chronologically. Sch...</li>
-            
-            <li>`garmin_daily.py`: calls `update_weight_history()` post-digest. Non-fatal WARN path. `FITNESS_START_WEIGHT_LBS` env var (default 200). `weight-history.json` auto-committed by existing `git add raw-...</li>
-            
-            <li>`generate_dashboard.py`: copies `weight-history.json` to `data/`.</li>
-            
-            <li>`garmin-daily.yml`: Pages publish step copies `weight-history.json` to `fitness/data/`.</li>
-            
-            <li>`fitness-dashboard.html`: `buildWeightChart()` — two-pass render (30d fallback → full history). 14-day rolling rate prediction. Dashed projection line to goal. `#weight-prediction-note` shows "At X...</li>
-            
-            <li>Pending: Kevin to push from Mac terminal: `git add .github/workflows/garmin-daily.yml scripts/garmin/ && git commit -m "Sprint 8 P0 + Sprint 12: data pipeline, coaching card, weight history" && git...</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-23</span>
-          <span class="sprint-title">Sprint 8 P0: Data pipeline + coaching context card</span>
-          <span class="sprint-tag">session 2</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>`garmin-daily.yml` — new "Publish JSON data to GitHub Pages" step. After each Garmin pull (morning Routine dispatch + evening adherence dispatch), the workflow now clones `niveknus.github.io`, copi...</li>
-            
-            <li>`generate_dashboard.py` updated. Both JSONs now copy to `tgt/data/` subdirectory (new). `data/` dir created if absent. Print output updated to reflect the new paths. `render-brief.yml`'s `generate_...</li>
-            
-            <li>Coaching context card added to `fitness-dashboard.html`. Card sits between `#error-area` and `.cut-banner`. Shows: recovery status pill (green/amber/red), today's session + time window, adjustment ...</li>
-            
-            <li>`DIGEST_URL` updated to `'data/latest-digest.json'` in the dashboard HTML. Old root path was never read externally so no migration needed.</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
   </div>
 </div>
 
@@ -260,16 +238,32 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="next-item">
       <span class="next-priority p1">P1</span>
       <div>
-        <div class="next-title">Sprint 14: Progressive Overload Tracker</div>
-        <div class="next-desc">spec drafted (_review/garmin-progressive-overload-extension.md): confirmed exercise sets/reps/weights are reachable via Garmin's get_activity_exerc...</div>
+        <div class="next-title">Sprint 14 piece 4: Progressive Overload dashboard card</div>
+        <div class="next-desc">pieces 1–3 (pipeline) shipped + backfilled 2026-05-30. Now build the dashboard viz: per-exercise top-set + est-1RM progression lines with a lift pi...</div>
       </div>
     </div>
     
     <div class="next-item">
       <span class="next-priority p2">P2</span>
       <div>
+        <div class="next-title">Push from Mac terminal</div>
+        <div class="next-desc">Sprint 14 changed garmin_export_all.py, garmin_digest.py, garmin_daily.py, garmin-daily.yml, render/generate_dashboard.py, and seeded raw-sources/g...</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
         <div class="next-title">Sprint 3.1: adherence heat map</div>
         <div class="next-desc">build the "this year" heat map from the new weekly-reviews.md history + adherence-summary.json (parser → JSON → dashboard card).</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Data-quality pass (P1):</div>
+        <div class="next-desc">review how strength sets are tagged in Garmin Connect (15 sessions have UNKNOWN; a few look mis-mapped) → seeds exercise-mappings.json.</div>
       </div>
     </div>
     
