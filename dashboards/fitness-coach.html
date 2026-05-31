@@ -130,7 +130,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Build Claude into Kevin's adaptive personal fitness coach for the 200 → 165 lb cut. The coach reads Garmin Connect daily (Withings as available), reasons over Kevin's goal/profile/whitelist, makes auto-adjustments within Kevin's preferred workout types, and asks first when proposing anything novel. Delivers a single daily morning brief via Telegram at 8:30 AM, riding the cloud-routine + Telegram infrastructure built for the Personal Assistant.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-31 (session 18 — Sprint 14 P1 brief trends + data-quality mappings + Sprint 3.1 "this year" heat map)</span></div>
+    <div class="meta-item">Last session <span>2026-05-31</span></div>
     <div class="meta-item">Sprint 13 · 2026-05-25</div>
     
   </div>
@@ -149,6 +149,32 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-05-31</span>
+          <span class="sprint-title">System-review Fix-Now SRs</span>
+          <span class="sprint-tag">session 19</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Correctness: new stdlib-only `garmin_dateutil.py` (`today_et`) — digest archive stamps + heatmap window now use Eastern, not runner-UTC (SR-8); `extract_body_composition` caps the 7-day weigh-in ma...</li>
+            
+            <li>PNG dropped (SR-13): removed the Playwright/Chromium render from `render_brief.py` + `render-brief.yml` + the exit-3 deploy gate in `generate_dashboard.py` (history keys on `.html`); also fixed a l...</li>
+            
+            <li>Weekly plans activated (SR-5): `plans/week-of-2026-06-01.md` seeded + override workflow documented (the read path already existed; was dead code).</li>
+            
+            <li>Crawler block (SR-1 Stage A): `noindex` on the fitness dashboard + daily-brief templates; site-wide `robots.txt` via `deploy-dashboards.yml`. Full data preserved; Stage B (unguessable URL / auth) d...</li>
+            
+            <li>`routine-prompt.md` → v5.2 (re-pasted): struck the dead 8:15-cron narration, fixed the PAT line, removed PNG mentions. Manifest synced.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-31</span>
           <span class="sprint-title">Sprint 14 P1 brief trends + data-quality + Sprint 3.1 heat map</span>
