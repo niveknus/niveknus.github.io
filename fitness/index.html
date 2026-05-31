@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
 <title>Fitness Coach Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 <style>
@@ -251,6 +252,71 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Activity heat map (this year) ─────────────────────────────── */
+.heatmap-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+.heatmap-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.heatmap-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.heatmap-stats { font-size: 11px; color: #6b7280; }
+.heatmap-stats b { color: #1a1a2e; font-weight: 700; }
+.heatmap-scroll { overflow-x: auto; padding-bottom: 4px; }
+.heatmap-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 11px);
+  gap: 3px;
+  width: max-content;
+}
+.heatmap-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  cursor: default;
+}
+.heatmap-cell:hover { outline: 1px solid #9ca3af; }
+.hm-l0 { background: #ebedf0; }
+.hm-l1 { background: #fde2c8; }
+.hm-l2 { background: #fbb874; }
+.hm-l3 { background: #f59e3c; }
+.hm-l4 { background: #d97706; }
+.hm-pad { background: transparent; }
+.heatmap-months {
+  display: flex;
+  gap: 3px;
+  font-size: 9px;
+  color: #9ca3af;
+  margin: 4px 0 2px;
+  width: max-content;
+}
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #6b7280;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+.heatmap-legend .heatmap-cell { cursor: default; }
+
 /* ── Coaching context card ─────────────────────────────────────── */
 .coaching-card {
   background: #fff;
@@ -466,6 +532,27 @@ body {
     <div class="adherence-legend" id="adherence-legend"></div>
   </div>
 
+  <!-- Activity heat map (this year) — populated from data/activity-heatmap.json (Sprint 3.1). Hidden until data loads. -->
+  <div id="heatmap-wrap" class="heatmap-card" style="display:none;">
+    <div class="heatmap-header">
+      <span class="heatmap-title">Training — This Year</span>
+      <span class="heatmap-stats" id="heatmap-stats"></span>
+    </div>
+    <div class="heatmap-scroll">
+      <div class="heatmap-months" id="heatmap-months"></div>
+      <div class="heatmap-grid" id="heatmap-grid"></div>
+    </div>
+    <div class="heatmap-legend">
+      <span>Less</span>
+      <span class="heatmap-cell hm-l0"></span>
+      <span class="heatmap-cell hm-l1"></span>
+      <span class="heatmap-cell hm-l2"></span>
+      <span class="heatmap-cell hm-l3"></span>
+      <span class="heatmap-cell hm-l4"></span>
+      <span>More</span>
+    </div>
+  </div>
+
   <div class="kpi-row">
     <div class="kpi-card">
       <div class="label">Readiness</div>
@@ -593,6 +680,27 @@ body {
     </div>
   </div>
 
+  <!-- Progressive Overload — populated from data/exercise-history.json (Sprint 14). Hidden until data loads. -->
+  <div id="overload-card" class="chart-card" style="display:none; margin-bottom:16px;">
+    <h3>Progressive Overload</h3>
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;">
+      <label for="overload-picker" style="font-size:11px; color:#6b7280;">Lift</label>
+      <select id="overload-picker" style="font-size:12px; padding:4px 8px; border:1px solid #e5e7eb; border-radius:6px; background:#fff; color:#374151;"></select>
+      <span id="overload-meta" style="font-size:11px; color:#6b7280;"></span>
+    </div>
+    <div style="position:relative;height:220px;"><canvas id="chart-overload"></canvas></div>
+    <div style="font-size:10px; color:#9ca3af; margin-top:8px;">Personal bests (est. 1RM, Epley)</div>
+    <div id="overload-prs" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;"></div>
+  </div>
+
+  <!-- Running Trends — populated from data/running-history.json (Sprint 14). Hidden until data loads. -->
+  <div id="running-card" class="chart-card" style="display:none; margin-bottom:16px;">
+    <h3>Running Trends</h3>
+    <div id="running-stats" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;"></div>
+    <div style="font-size:10px; color:#9ca3af; margin-bottom:4px;">Pace (faster is higher) vs. avg HR &middot; point size = distance</div>
+    <div style="position:relative;height:220px;"><canvas id="chart-running"></canvas></div>
+  </div>
+
   <div class="footer">
     Fitness Coach Dashboard &middot; Garmin Connect &middot; Updated on each deploy
   </div>
@@ -603,6 +711,9 @@ const DIGEST_URL       = 'data/latest-digest.json';
 const CONTEXT_URL      = 'data/latest-brief-context.json';
 const WEIGHT_HIST_URL  = 'data/weight-history.json';
 const ADHERENCE_URL    = 'data/adherence-summary.json';
+const EXERCISE_HIST_URL = 'data/exercise-history.json';
+const RUNNING_HIST_URL  = 'data/running-history.json';
+const HEATMAP_URL       = 'data/activity-heatmap.json';
 const START_WEIGHT = 199.9;
 const GOAL_WEIGHT = 165;
 
@@ -631,6 +742,9 @@ const WORKOUT_STATES = new Set(['done-as-prescribed','done-modified','partial','
 const DONE_STATES    = new Set(['done-as-prescribed','done-modified','partial','replaced']);
 
 function fmt(n, d=0) { return n != null ? Number(n).toFixed(d) : '--'; }
+// Local calendar date as yyyy-mm-dd (NOT toISOString, which converts to UTC and
+// can shift the date by a day for non-UTC viewers / DST edges — SR-9).
+function localYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function shortDate(s) {
   const d = new Date(s + 'T00:00:00');
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -686,6 +800,104 @@ async function fetchAdherence() {
   }
 }
 
+async function fetchExerciseHistory() {
+  try {
+    const resp = await fetch(EXERCISE_HIST_URL);
+    if (!resp.ok) return null;  // 404 = not yet published; card stays hidden
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchRunningHistory() {
+  try {
+    const resp = await fetch(RUNNING_HIST_URL);
+    if (!resp.ok) return null;  // 404 = not yet published; card stays hidden
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchHeatmap() {
+  try {
+    const resp = await fetch(HEATMAP_URL);
+    if (!resp.ok) return null;  // 404 = not yet published; card stays hidden
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Render the "this year" training-activity heat map (GitHub-style contribution
+ * grid). 53 columns (weeks) x 7 rows (Sun..Sat), each cell colored by that day's
+ * total active minutes (level 0–4). Built from data/activity-heatmap.json.
+ */
+const HM_TYPE_EMOJI = {
+  strength_training: '🏋️', fitness_equipment: '🏋️', indoor_cardio: '🏃',
+  running: '🏃', treadmill_running: '🏃', indoor_running: '🏃',
+  walking: '🚶', indoor_walking: '🚶', hiking: '🥾',
+  cycling: '🚴', road_biking: '🚴', indoor_cycling: '🚴', mountain_biking: '🚴',
+  pickleball: '🎾', tennis: '🎾', racket_sports: '🎾',
+  yoga: '🧘', pilates: '🧘', other: '•',
+};
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function buildHeatmap(hm) {
+  if (!hm || !Array.isArray(hm.days) || !hm.days.length) return;  // stays hidden
+
+  const grid = document.getElementById('heatmap-grid');
+  grid.innerHTML = '';
+
+  // The first day is the window's Sunday, so days flow column-major (top→bottom,
+  // then next week) exactly matching grid-auto-flow:column with 7 rows.
+  const days = hm.days;
+  // Pad the leading week so day 0 lands on its real weekday row (Sun=0).
+  const firstWeekday = new Date(days[0].date + 'T00:00:00').getDay();
+  for (let i = 0; i < firstWeekday; i++) {
+    const pad = document.createElement('div');
+    pad.className = 'heatmap-cell hm-pad';
+    grid.appendChild(pad);
+  }
+  days.forEach(d => {
+    const cell = document.createElement('div');
+    cell.className = 'heatmap-cell hm-l' + (d.level || 0);
+    if (d.level > 0) {
+      const emoji = HM_TYPE_EMOJI[d.dominant_type] || '•';
+      cell.title = `${longDate(d.date)}\n${emoji} ${d.count} session${d.count > 1 ? 's' : ''} · ${Math.round(d.minutes)} min`;
+    } else {
+      cell.title = `${longDate(d.date)}\nrest`;
+    }
+    grid.appendChild(cell);
+  });
+
+  // Month labels: one per column-week, shown when the month changes.
+  const monthsEl = document.getElementById('heatmap-months');
+  monthsEl.innerHTML = '';
+  let lastMonth = -1;
+  const totalCells = firstWeekday + days.length;
+  const weekCount = Math.ceil(totalCells / 7);
+  for (let w = 0; w < weekCount; w++) {
+    const idx = w * 7 - firstWeekday;  // first real day index in this column
+    const d = days[Math.max(0, idx)];
+    const m = d ? new Date(d.date + 'T00:00:00').getMonth() : -1;
+    const label = document.createElement('span');
+    label.style.width = '14px';
+    label.textContent = (m !== lastMonth && idx >= 0) ? MONTH_NAMES[m] : '';
+    lastMonth = m;
+    monthsEl.appendChild(label);
+  }
+
+  const s = hm.stats || {};
+  document.getElementById('heatmap-stats').innerHTML =
+    `<b>${s.active_days_365 ?? '--'}</b> active days · <b>${s.total_hours_365 ?? '--'}</b> h` +
+    (s.current_streak_days ? ` · <b>${s.current_streak_days}</b>-day streak` : '');
+
+  document.getElementById('heatmap-wrap').style.display = 'block';
+}
+
 /**
  * Render the 14-day adherence dot strip.
  *
@@ -707,7 +919,7 @@ function buildAdherenceStrip(summary) {
   for (let i = 13; i >= 0; i--) {
     const d = new Date(todayDate);
     d.setDate(d.getDate() - i);
-    const dateStr = d.toISOString().slice(0, 10);
+    const dateStr = localYMD(d);
     window14.push({ dateStr, entry: byDate[dateStr] || null });
   }
 
@@ -784,6 +996,176 @@ function buildAdherenceStrip(summary) {
  * 30-day chart from the digest), then again when the history file loads
  * (replaces with the full arc + prediction line).
  */
+// ── Progressive Overload card (Sprint 14) ───────────────────────────────
+const _overloadState = { byLift: null };
+
+function prettyLift(name) {
+  return String(name).toLowerCase().split('_')
+    .map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
+}
+function longDate(s) {
+  const d = new Date(s + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
+}
+
+/**
+ * Build the Progressive Overload card from exercise-history.json.
+ * Selective by design: excludes UNKNOWN and bodyweight-only moves, and requires
+ * >= 2 weighted sessions, so only cleanly-tracked lifts surface. Card stays
+ * hidden if nothing qualifies (e.g. file not yet published).
+ */
+function buildOverloadCard(hist) {
+  if (!hist || !hist.exercises) return;
+  const byLift = {};
+  for (const [name, rows] of Object.entries(hist.exercises)) {
+    if (name === 'UNKNOWN') continue;
+    const weighted = (rows || []).filter(r => (r.top_weight_lb || 0) > 0 && r.date);
+    if (weighted.length >= 2) {
+      weighted.sort((a, b) => a.date.localeCompare(b.date));
+      byLift[name] = weighted;
+    }
+  }
+  const lifts = Object.keys(byLift);
+  if (lifts.length === 0) return;
+  // Rank by session count, then most-recent date — most-tracked lift first.
+  lifts.sort((a, b) => byLift[b].length - byLift[a].length ||
+    byLift[b][byLift[b].length - 1].date.localeCompare(byLift[a][byLift[a].length - 1].date));
+  _overloadState.byLift = byLift;
+
+  const picker = document.getElementById('overload-picker');
+  picker.innerHTML = lifts.map(n => `<option value="${n}">${prettyLift(n)} (${byLift[n].length})</option>`).join('');
+  picker.onchange = () => renderOverloadChart(picker.value);
+
+  // PRs strip — best est-1RM per lift, top 6 lifts.
+  const prs = lifts.map(n => {
+    const best = byLift[n].reduce((m, r) => (r.est_1rm_lb || 0) > (m.est_1rm_lb || 0) ? r : m, byLift[n][0]);
+    return { name: n, oneRm: best.est_1rm_lb || best.top_weight_lb || 0, w: best.top_weight_lb, reps: best.top_reps };
+  }).sort((a, b) => b.oneRm - a.oneRm).slice(0, 6);
+  document.getElementById('overload-prs').innerHTML = prs.map(p =>
+    `<span style="font-size:11px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; padding:4px 8px; color:#374151;">`
+    + `<b>${prettyLift(p.name)}</b> · ${Math.round(p.oneRm)} lb <span style="color:#9ca3af;">(${p.w}&times;${p.reps})</span></span>`
+  ).join('');
+
+  document.getElementById('overload-card').style.display = 'block';
+  renderOverloadChart(lifts[0]);
+}
+
+function renderOverloadChart(name) {
+  const rows = (_overloadState.byLift || {})[name];
+  if (!rows) return;
+  const labels = rows.map(r => longDate(r.date));
+  const canvas = document.getElementById('chart-overload');
+  if (canvas._chartInstance) canvas._chartInstance.destroy();
+
+  const first = rows[0], last = rows[rows.length - 1];
+  const delta = last.top_weight_lb - first.top_weight_lb;
+  document.getElementById('overload-meta').textContent =
+    `${rows.length} sessions · ${longDate(first.date)} → ${longDate(last.date)} · top set ${delta >= 0 ? '+' : ''}${delta.toFixed(0)} lb`;
+
+  const pr = rows.length <= 20 ? 4 : 2;
+  canvas._chartInstance = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Top set (lb)', data: rows.map(r => r.top_weight_lb), borderColor: '#0ea5e9',
+          backgroundColor: '#0ea5e910', tension: 0.2, fill: true, pointRadius: pr,
+          pointBackgroundColor: '#0ea5e9', spanGaps: true },
+        { label: 'Est. 1RM (lb)', data: rows.map(r => r.est_1rm_lb), borderColor: '#7c3aed',
+          borderDash: [6, 4], borderWidth: 1.5, tension: 0.2, fill: false, pointRadius: pr,
+          pointBackgroundColor: '#7c3aed', spanGaps: true },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } },
+        tooltip: { callbacks: { afterBody: items => {
+          const r = rows[items[0].dataIndex];
+          return `${r.sets} sets · top ${r.top_weight_lb}×${r.top_reps} · vol ${Math.round(r.volume_lb)} lb`;
+        } } },
+      },
+      scales: {
+        x: { ticks: { font: { size: 9 }, maxTicksLimit: 10, maxRotation: 45 } },
+        y: { title: { display: true, text: 'lb', font: { size: 10 } }, grid: { color: '#f3f4f6' } },
+      },
+    },
+  });
+}
+
+// ── Running Trends card (Sprint 14) ──────────────────────────────────────
+function fmtPace(minPerKm) {
+  const m = Math.floor(minPerKm);
+  const s = Math.round((minPerKm - m) * 60);
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+/**
+ * Build the Running Trends card from running-history.json.
+ * Plausibility filter (distance >= 1 km, pace 3-12 min/km) drops GPS/treadmill
+ * glitches so the trend and PRs reflect real runs. Card hidden if <2 plausible runs.
+ */
+function buildRunningCard(hist) {
+  if (!hist || !hist.runs) return;
+  const runs = hist.runs
+    .filter(r => r.date && r.distance_km >= 1 && r.pace_min_km >= 3 && r.pace_min_km <= 12)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (runs.length < 2) return;
+
+  const totalKm = runs.reduce((s, r) => s + r.distance_km, 0);
+  const longest = runs.reduce((m, r) => r.distance_km > m.distance_km ? r : m, runs[0]);
+  const fastest = runs.reduce((m, r) => r.pace_min_km < m.pace_min_km ? r : m, runs[0]);
+  const chips = [
+    [`${runs.length}`, 'runs'],
+    [`${Math.round(totalKm)} km`, 'total'],
+    [`${longest.distance_km.toFixed(1)} km`, 'longest'],
+    [`${fmtPace(fastest.pace_min_km)}/km`, 'fastest'],
+  ];
+  document.getElementById('running-stats').innerHTML = chips.map(c =>
+    `<span style="font-size:11px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; padding:4px 8px; color:#374151;">`
+    + `<b>${c[0]}</b> <span style="color:#9ca3af;">${c[1]}</span></span>`).join('');
+
+  document.getElementById('running-card').style.display = 'block';
+
+  const canvas = document.getElementById('chart-running');
+  if (canvas._chartInstance) canvas._chartInstance.destroy();
+  const labels = runs.map(r => longDate(r.date));
+
+  canvas._chartInstance = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Pace (min/km)', data: runs.map(r => r.pace_min_km), borderColor: '#0ea5e9',
+          backgroundColor: '#0ea5e910', tension: 0.2, fill: true, yAxisID: 'y', spanGaps: true,
+          pointRadius: runs.map(r => 2 + Math.min(r.distance_km / 3, 6)), pointBackgroundColor: '#0ea5e9' },
+        { label: 'Avg HR', data: runs.map(r => r.avg_hr), borderColor: '#dc2626', borderWidth: 1.5,
+          tension: 0.2, fill: false, yAxisID: 'y2', spanGaps: true, pointRadius: 2, pointBackgroundColor: '#dc2626' },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } },
+        tooltip: { callbacks: { label: ctx => {
+          const r = runs[ctx.dataIndex];
+          return ctx.datasetIndex === 0
+            ? `Pace ${fmtPace(r.pace_min_km)}/km · ${r.distance_km} km`
+            : `Avg HR ${r.avg_hr ?? '–'} bpm`;
+        } } },
+      },
+      scales: {
+        x: { ticks: { font: { size: 9 }, maxTicksLimit: 10, maxRotation: 45 } },
+        // reversed so a faster pace (lower min/km) sits higher — improvement reads as "up"
+        y: { position: 'left', reverse: true, title: { display: true, text: 'min/km (faster ↑)', font: { size: 10 } }, grid: { color: '#f3f4f6' } },
+        y2: { position: 'right', title: { display: true, text: 'bpm', font: { size: 10 } }, grid: { display: false } },
+      },
+    },
+  });
+}
+
 function buildWeightChart(bc, weightHistory) {
   // ── Choose data source ──────────────────────────────────────────────
   let entries = [];
@@ -829,7 +1211,7 @@ function buildWeightChart(bc, weightHistory) {
   if (predInfo) {
     // Prediction line: starts at the last actual value, ends at GOAL_WEIGHT
     predData[predData.length - 1] = currentWeight;
-    const goalDateStr = shortDate(predInfo.goalDate.toISOString().slice(0, 10));
+    const goalDateStr = shortDate(localYMD(predInfo.goalDate));
     allLabels.push(goalDateStr);
     histData.push(null);
     predData.push(GOAL_WEIGHT);
@@ -1165,6 +1547,15 @@ async function render() {
 
   // Adherence strip — non-blocking; strip stays hidden if file not yet published
   fetchAdherence().then(summary => buildAdherenceStrip(summary));
+
+  // Activity heat map (this year) — non-blocking; stays hidden until published
+  fetchHeatmap().then(hm => buildHeatmap(hm));
+
+  // Progressive Overload card — non-blocking; card stays hidden until published
+  fetchExerciseHistory().then(hist => buildOverloadCard(hist));
+
+  // Running Trends card — non-blocking; card stays hidden until published
+  fetchRunningHistory().then(hist => buildRunningCard(hist));
 
   const ln = digest.last_night;
   const r7 = digest.rolling_7d;
