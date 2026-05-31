@@ -1,0 +1,2991 @@
+{
+  "schema": "activity-heatmap.v1",
+  "generated_at": "2026-05-31T16:01:05.816465+00:00",
+  "window_start": "2025-05-25",
+  "window_end": "2026-05-31",
+  "weeks": 53,
+  "stats": {
+    "active_days_365": 151,
+    "total_hours_365": 208.3,
+    "current_streak_days": 0,
+    "active_days_window": 154
+  },
+  "days": [
+    {
+      "date": "2025-05-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-05-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-05-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-05-28",
+      "count": 1,
+      "minutes": 40.8,
+      "calories": 402,
+      "dominant_type": "running",
+      "level": 2
+    },
+    {
+      "date": "2025-05-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-05-30",
+      "count": 2,
+      "minutes": 124.9,
+      "calories": 831,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-05-31",
+      "count": 1,
+      "minutes": 15.4,
+      "calories": 162,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-06-01",
+      "count": 1,
+      "minutes": 49.0,
+      "calories": 501,
+      "dominant_type": "running",
+      "level": 2
+    },
+    {
+      "date": "2025-06-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-03",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-06",
+      "count": 1,
+      "minutes": 25.4,
+      "calories": 267,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-06-07",
+      "count": 3,
+      "minutes": 102.0,
+      "calories": 1092,
+      "dominant_type": "running",
+      "level": 4
+    },
+    {
+      "date": "2025-06-08",
+      "count": 1,
+      "minutes": 66.9,
+      "calories": 399,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-06-09",
+      "count": 1,
+      "minutes": 31.2,
+      "calories": 165,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2025-06-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-13",
+      "count": 2,
+      "minutes": 154.6,
+      "calories": 991,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-06-14",
+      "count": 2,
+      "minutes": 144.3,
+      "calories": 976,
+      "dominant_type": "tennis_v2",
+      "level": 4
+    },
+    {
+      "date": "2025-06-15",
+      "count": 2,
+      "minutes": 215.4,
+      "calories": 1309,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-06-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-17",
+      "count": 1,
+      "minutes": 65.7,
+      "calories": 408,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-06-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-20",
+      "count": 2,
+      "minutes": 141.0,
+      "calories": 1015,
+      "dominant_type": "strength_training",
+      "level": 4
+    },
+    {
+      "date": "2025-06-21",
+      "count": 1,
+      "minutes": 52.0,
+      "calories": 199,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-06-22",
+      "count": 2,
+      "minutes": 104.1,
+      "calories": 711,
+      "dominant_type": "strength_training",
+      "level": 4
+    },
+    {
+      "date": "2025-06-23",
+      "count": 1,
+      "minutes": 21.8,
+      "calories": 257,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-06-24",
+      "count": 2,
+      "minutes": 56.0,
+      "calories": 269,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2025-06-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-27",
+      "count": 1,
+      "minutes": 75.7,
+      "calories": 435,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-06-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-06-29",
+      "count": 1,
+      "minutes": 42.5,
+      "calories": 487,
+      "dominant_type": "running",
+      "level": 2
+    },
+    {
+      "date": "2025-06-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-03",
+      "count": 1,
+      "minutes": 66.9,
+      "calories": 273,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-07-04",
+      "count": 2,
+      "minutes": 86.4,
+      "calories": 691,
+      "dominant_type": "pickleball",
+      "level": 3
+    },
+    {
+      "date": "2025-07-05",
+      "count": 2,
+      "minutes": 99.7,
+      "calories": 618,
+      "dominant_type": "strength_training",
+      "level": 4
+    },
+    {
+      "date": "2025-07-06",
+      "count": 1,
+      "minutes": 62.9,
+      "calories": 685,
+      "dominant_type": "running",
+      "level": 3
+    },
+    {
+      "date": "2025-07-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-08",
+      "count": 1,
+      "minutes": 36.8,
+      "calories": 388,
+      "dominant_type": "running",
+      "level": 2
+    },
+    {
+      "date": "2025-07-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-10",
+      "count": 1,
+      "minutes": 102.8,
+      "calories": 745,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-07-11",
+      "count": 2,
+      "minutes": 157.5,
+      "calories": 897,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-07-12",
+      "count": 1,
+      "minutes": 61.3,
+      "calories": 294,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-07-13",
+      "count": 1,
+      "minutes": 68.9,
+      "calories": 761,
+      "dominant_type": "running",
+      "level": 3
+    },
+    {
+      "date": "2025-07-14",
+      "count": 1,
+      "minutes": 143.8,
+      "calories": 1061,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-07-15",
+      "count": 1,
+      "minutes": 10.1,
+      "calories": 118,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-07-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-18",
+      "count": 1,
+      "minutes": 96.8,
+      "calories": 592,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-07-19",
+      "count": 2,
+      "minutes": 89.9,
+      "calories": 663,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-07-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-21",
+      "count": 1,
+      "minutes": 14.5,
+      "calories": 102,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2025-07-22",
+      "count": 1,
+      "minutes": 21.6,
+      "calories": 259,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-07-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-24",
+      "count": 1,
+      "minutes": 18.6,
+      "calories": 222,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-07-25",
+      "count": 2,
+      "minutes": 105.4,
+      "calories": 820,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-07-26",
+      "count": 2,
+      "minutes": 106.9,
+      "calories": 463,
+      "dominant_type": "other",
+      "level": 4
+    },
+    {
+      "date": "2025-07-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-28",
+      "count": 1,
+      "minutes": 101.8,
+      "calories": 702,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-07-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-07-31",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-03",
+      "count": 1,
+      "minutes": 24.5,
+      "calories": 127,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2025-08-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-05",
+      "count": 1,
+      "minutes": 35.7,
+      "calories": 173,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2025-08-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-07",
+      "count": 1,
+      "minutes": 58.7,
+      "calories": 259,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2025-08-08",
+      "count": 1,
+      "minutes": 61.8,
+      "calories": 379,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-08-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-10",
+      "count": 1,
+      "minutes": 28.9,
+      "calories": 143,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2025-08-11",
+      "count": 1,
+      "minutes": 19.6,
+      "calories": 236,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-08-12",
+      "count": 1,
+      "minutes": 60.9,
+      "calories": 333,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-08-13",
+      "count": 1,
+      "minutes": 15.0,
+      "calories": 185,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-08-14",
+      "count": 1,
+      "minutes": 61.0,
+      "calories": 299,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-08-15",
+      "count": 1,
+      "minutes": 54.3,
+      "calories": 185,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-08-16",
+      "count": 3,
+      "minutes": 132.2,
+      "calories": 959,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-08-17",
+      "count": 1,
+      "minutes": 55.2,
+      "calories": 243,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-08-18",
+      "count": 1,
+      "minutes": 27.5,
+      "calories": 129,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2025-08-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-20",
+      "count": 1,
+      "minutes": 36.6,
+      "calories": 410,
+      "dominant_type": "running",
+      "level": 2
+    },
+    {
+      "date": "2025-08-21",
+      "count": 1,
+      "minutes": 77.9,
+      "calories": 360,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-08-22",
+      "count": 2,
+      "minutes": 173.3,
+      "calories": 974,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-08-23",
+      "count": 1,
+      "minutes": 66.7,
+      "calories": 217,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-08-24",
+      "count": 1,
+      "minutes": 24.6,
+      "calories": 308,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2025-08-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-28",
+      "count": 1,
+      "minutes": 66.6,
+      "calories": 289,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-08-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-08-31",
+      "count": 1,
+      "minutes": 143.4,
+      "calories": 468,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-09-01",
+      "count": 1,
+      "minutes": 61.7,
+      "calories": 263,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-09-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-03",
+      "count": 1,
+      "minutes": 47.0,
+      "calories": 241,
+      "dominant_type": "walking",
+      "level": 2
+    },
+    {
+      "date": "2025-09-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-05",
+      "count": 3,
+      "minutes": 267.3,
+      "calories": 1509,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-09-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-07",
+      "count": 2,
+      "minutes": 131.8,
+      "calories": 553,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-09-08",
+      "count": 1,
+      "minutes": 121.8,
+      "calories": 838,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-09-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-13",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-14",
+      "count": 1,
+      "minutes": 70.2,
+      "calories": 427,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-09-15",
+      "count": 1,
+      "minutes": 90.8,
+      "calories": 536,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-09-16",
+      "count": 1,
+      "minutes": 56.5,
+      "calories": 284,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-09-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-18",
+      "count": 1,
+      "minutes": 84.7,
+      "calories": 468,
+      "dominant_type": "pickleball",
+      "level": 3
+    },
+    {
+      "date": "2025-09-19",
+      "count": 3,
+      "minutes": 110.6,
+      "calories": 573,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-09-20",
+      "count": 1,
+      "minutes": 51.1,
+      "calories": 219,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-09-21",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-22",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-24",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-26",
+      "count": 2,
+      "minutes": 187.7,
+      "calories": 1260,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-09-27",
+      "count": 2,
+      "minutes": 196.0,
+      "calories": 624,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-09-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-09-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-01",
+      "count": 1,
+      "minutes": 60.3,
+      "calories": 287,
+      "dominant_type": "walking",
+      "level": 3
+    },
+    {
+      "date": "2025-10-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-03",
+      "count": 1,
+      "minutes": 101.7,
+      "calories": 672,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-10-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-11",
+      "count": 2,
+      "minutes": 85.7,
+      "calories": 579,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2025-10-12",
+      "count": 2,
+      "minutes": 186.6,
+      "calories": 660,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-10-13",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-15",
+      "count": 2,
+      "minutes": 108.1,
+      "calories": 437,
+      "dominant_type": "walking",
+      "level": 4
+    },
+    {
+      "date": "2025-10-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-17",
+      "count": 2,
+      "minutes": 203.7,
+      "calories": 677,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-10-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-21",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-22",
+      "count": 2,
+      "minutes": 76.4,
+      "calories": 471,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-10-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-24",
+      "count": 1,
+      "minutes": 165.3,
+      "calories": 905,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-10-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-29",
+      "count": 1,
+      "minutes": 53.5,
+      "calories": 201,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-10-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-10-31",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-01",
+      "count": 2,
+      "minutes": 166.0,
+      "calories": 543,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-11-02",
+      "count": 1,
+      "minutes": 44.5,
+      "calories": 190,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-11-03",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-08",
+      "count": 1,
+      "minutes": 108.1,
+      "calories": 562,
+      "dominant_type": "walking",
+      "level": 4
+    },
+    {
+      "date": "2025-11-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-13",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-15",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-19",
+      "count": 1,
+      "minutes": 69.2,
+      "calories": 243,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-11-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-21",
+      "count": 1,
+      "minutes": 148.9,
+      "calories": 970,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-11-22",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-23",
+      "count": 1,
+      "minutes": 46.3,
+      "calories": 219,
+      "dominant_type": "walking",
+      "level": 2
+    },
+    {
+      "date": "2025-11-24",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-26",
+      "count": 1,
+      "minutes": 20.8,
+      "calories": 132,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2025-11-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-28",
+      "count": 1,
+      "minutes": 28.7,
+      "calories": 202,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2025-11-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-11-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-03",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-05",
+      "count": 1,
+      "minutes": 111.9,
+      "calories": 834,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-12-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-12",
+      "count": 1,
+      "minutes": 144.2,
+      "calories": 923,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-12-13",
+      "count": 2,
+      "minutes": 154.2,
+      "calories": 862,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2025-12-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-15",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-19",
+      "count": 1,
+      "minutes": 49.7,
+      "calories": 261,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2025-12-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-21",
+      "count": 4,
+      "minutes": 89.2,
+      "calories": 665,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2025-12-22",
+      "count": 1,
+      "minutes": 109.7,
+      "calories": 463,
+      "dominant_type": "walking",
+      "level": 4
+    },
+    {
+      "date": "2025-12-23",
+      "count": 1,
+      "minutes": 21.5,
+      "calories": 112,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2025-12-24",
+      "count": 1,
+      "minutes": 20.9,
+      "calories": 98,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2025-12-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-28",
+      "count": 1,
+      "minutes": 129.6,
+      "calories": 532,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2025-12-29",
+      "count": 1,
+      "minutes": 21.5,
+      "calories": 84,
+      "dominant_type": "walking",
+      "level": 1
+    },
+    {
+      "date": "2025-12-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2025-12-31",
+      "count": 1,
+      "minutes": 95.6,
+      "calories": 410,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2026-01-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-02",
+      "count": 1,
+      "minutes": 81.1,
+      "calories": 775,
+      "dominant_type": "pickleball",
+      "level": 3
+    },
+    {
+      "date": "2026-01-03",
+      "count": 1,
+      "minutes": 84.7,
+      "calories": 308,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2026-01-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-06",
+      "count": 1,
+      "minutes": 33.3,
+      "calories": 284,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2026-01-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-13",
+      "count": 1,
+      "minutes": 34.8,
+      "calories": 273,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-01-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-15",
+      "count": 1,
+      "minutes": 27.2,
+      "calories": 200,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2026-01-16",
+      "count": 1,
+      "minutes": 124.9,
+      "calories": 980,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-01-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-20",
+      "count": 1,
+      "minutes": 54.6,
+      "calories": 332,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2026-01-21",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-22",
+      "count": 1,
+      "minutes": 48.7,
+      "calories": 238,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-01-23",
+      "count": 2,
+      "minutes": 196.0,
+      "calories": 1248,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-01-24",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-27",
+      "count": 1,
+      "minutes": 46.2,
+      "calories": 288,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2026-01-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-01-29",
+      "count": 1,
+      "minutes": 27.1,
+      "calories": 133,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2026-01-30",
+      "count": 2,
+      "minutes": 198.0,
+      "calories": 1233,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2026-01-31",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-03",
+      "count": 1,
+      "minutes": 23.7,
+      "calories": 146,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2026-02-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-13",
+      "count": 1,
+      "minutes": 153.7,
+      "calories": 844,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-02-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-15",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-17",
+      "count": 1,
+      "minutes": 39.3,
+      "calories": 205,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-02-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-19",
+      "count": 1,
+      "minutes": 37.6,
+      "calories": 269,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-02-20",
+      "count": 1,
+      "minutes": 160.0,
+      "calories": 930,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-02-21",
+      "count": 1,
+      "minutes": 23.8,
+      "calories": 226,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2026-02-22",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-24",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-02-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-03",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-05",
+      "count": 1,
+      "minutes": 56.9,
+      "calories": 308,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2026-03-06",
+      "count": 1,
+      "minutes": 144.9,
+      "calories": 1241,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-03-07",
+      "count": 1,
+      "minutes": 83.3,
+      "calories": 591,
+      "dominant_type": "cycling",
+      "level": 3
+    },
+    {
+      "date": "2026-03-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-10",
+      "count": 1,
+      "minutes": 28.7,
+      "calories": 195,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2026-03-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-13",
+      "count": 1,
+      "minutes": 154.1,
+      "calories": 1245,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-03-14",
+      "count": 1,
+      "minutes": 115.1,
+      "calories": 440,
+      "dominant_type": "walking",
+      "level": 4
+    },
+    {
+      "date": "2026-03-15",
+      "count": 1,
+      "minutes": 62.7,
+      "calories": 465,
+      "dominant_type": "cycling",
+      "level": 3
+    },
+    {
+      "date": "2026-03-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-17",
+      "count": 1,
+      "minutes": 56.5,
+      "calories": 494,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-03-18",
+      "count": 1,
+      "minutes": 52.6,
+      "calories": 418,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-03-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-20",
+      "count": 1,
+      "minutes": 117.8,
+      "calories": 849,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-03-21",
+      "count": 1,
+      "minutes": 102.2,
+      "calories": 819,
+      "dominant_type": "cycling",
+      "level": 4
+    },
+    {
+      "date": "2026-03-22",
+      "count": 1,
+      "minutes": 98.2,
+      "calories": 879,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-03-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-24",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-28",
+      "count": 1,
+      "minutes": 24.1,
+      "calories": 286,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2026-03-29",
+      "count": 1,
+      "minutes": 79.9,
+      "calories": 724,
+      "dominant_type": "cycling",
+      "level": 3
+    },
+    {
+      "date": "2026-03-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-03-31",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-03",
+      "count": 1,
+      "minutes": 118.4,
+      "calories": 870,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-04-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-05",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-08",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-10",
+      "count": 1,
+      "minutes": 150.1,
+      "calories": 1022,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-04-11",
+      "count": 1,
+      "minutes": 42.3,
+      "calories": 334,
+      "dominant_type": "walking",
+      "level": 2
+    },
+    {
+      "date": "2026-04-12",
+      "count": 1,
+      "minutes": 75.2,
+      "calories": 438,
+      "dominant_type": "cycling",
+      "level": 3
+    },
+    {
+      "date": "2026-04-13",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-14",
+      "count": 1,
+      "minutes": 24.9,
+      "calories": 164,
+      "dominant_type": "indoor_cardio",
+      "level": 1
+    },
+    {
+      "date": "2026-04-15",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-16",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-17",
+      "count": 1,
+      "minutes": 50.5,
+      "calories": 489,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-04-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-21",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-22",
+      "count": 1,
+      "minutes": 56.5,
+      "calories": 289,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-04-23",
+      "count": 1,
+      "minutes": 31.4,
+      "calories": 328,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-04-24",
+      "count": 1,
+      "minutes": 127.9,
+      "calories": 1053,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-04-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-04-30",
+      "count": 1,
+      "minutes": 70.8,
+      "calories": 423,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2026-05-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-03",
+      "count": 2,
+      "minutes": 248.2,
+      "calories": 981,
+      "dominant_type": "indoor_cardio",
+      "level": 4
+    },
+    {
+      "date": "2026-05-04",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-05",
+      "count": 1,
+      "minutes": 68.6,
+      "calories": 365,
+      "dominant_type": "indoor_cardio",
+      "level": 3
+    },
+    {
+      "date": "2026-05-06",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-07",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-08",
+      "count": 1,
+      "minutes": 144.4,
+      "calories": 912,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-05-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-10",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-11",
+      "count": 1,
+      "minutes": 44.1,
+      "calories": 358,
+      "dominant_type": "indoor_cardio",
+      "level": 2
+    },
+    {
+      "date": "2026-05-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-13",
+      "count": 1,
+      "minutes": 20.5,
+      "calories": 205,
+      "dominant_type": "running",
+      "level": 1
+    },
+    {
+      "date": "2026-05-14",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-15",
+      "count": 1,
+      "minutes": 68.7,
+      "calories": 423,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2026-05-16",
+      "count": 1,
+      "minutes": 56.8,
+      "calories": 136,
+      "dominant_type": "yoga",
+      "level": 2
+    },
+    {
+      "date": "2026-05-17",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-18",
+      "count": 1,
+      "minutes": 69.0,
+      "calories": 314,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2026-05-19",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-20",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-21",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-22",
+      "count": 1,
+      "minutes": 132.5,
+      "calories": 951,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-05-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-24",
+      "count": 1,
+      "minutes": 87.8,
+      "calories": 382,
+      "dominant_type": "strength_training",
+      "level": 3
+    },
+    {
+      "date": "2026-05-25",
+      "count": 1,
+      "minutes": 45.8,
+      "calories": 147,
+      "dominant_type": "yoga",
+      "level": 2
+    },
+    {
+      "date": "2026-05-26",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-28",
+      "count": 1,
+      "minutes": 28.1,
+      "calories": 148,
+      "dominant_type": "strength_training",
+      "level": 1
+    },
+    {
+      "date": "2026-05-29",
+      "count": 1,
+      "minutes": 38.1,
+      "calories": 217,
+      "dominant_type": "walking",
+      "level": 2
+    },
+    {
+      "date": "2026-05-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-05-31",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    }
+  ]
+}

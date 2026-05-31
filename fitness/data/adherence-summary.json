@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-31T01:37:45.332021+00:00",
+  "generated_at": "2026-05-31T16:01:05.764637+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 5,
-    "workout_days": 4,
+    "total_entries": 6,
+    "workout_days": 5,
     "done_days": 3,
-    "adherence_rate_pct": 75,
+    "adherence_rate_pct": 60,
     "rolling_14": {
-      "workout_days": 4,
+      "workout_days": 5,
       "done_days": 3,
-      "adherence_rate_pct": 75
+      "adherence_rate_pct": 60
     },
     "reset_date": "2026-05-23"
   },
@@ -61,6 +61,16 @@
       "emoji": "🔄",
       "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
       "actual": "Orange County Walking · type `walking` · 38 min · 217 cal · avg HR 114 · started 14:12 ET",
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-05-30",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin walk · expected types `[walking]` · ~35 min",
+      "actual": null,
       "note": "",
       "data_gap": false
     }

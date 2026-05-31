@@ -1,0 +1,1595 @@
+{
+  "schema": "exercise-history.v1",
+  "updated": "2026-05-31",
+  "exercises": {
+    "ALTERNATING_DUMBBELL_BICEPS_CURL": [
+      {
+        "date": "2025-06-17",
+        "activity_id": "19465909610",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 1307.4,
+        "sets": 6
+      },
+      {
+        "date": "2025-07-12",
+        "activity_id": "19713907931",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 1445.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 24.9,
+        "top_reps": 11,
+        "est_1rm_lb": 34.0,
+        "volume_lb": 1411.9,
+        "sets": 6
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 1494.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-11-26",
+        "activity_id": "21099577847",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 1550.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-27",
+        "activity_id": "21685715874",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1000.0,
+        "sets": 2
+      }
+    ],
+    "BARBELL_BENCH_PRESS": [
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3222.8,
+        "sets": 3
+      }
+    ],
+    "BENCH_PRESS": [
+      {
+        "date": "2025-06-09",
+        "activity_id": "19384374234",
+        "top_weight_lb": 0.0,
+        "top_reps": 8,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 115.0,
+        "top_reps": 10,
+        "est_1rm_lb": 153.3,
+        "volume_lb": 2645.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 105.0,
+        "top_reps": 10,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 3360.0,
+        "sets": 4
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 120.0,
+        "top_reps": 9,
+        "est_1rm_lb": 156.0,
+        "volume_lb": 2940.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 115.1,
+        "top_reps": 8,
+        "est_1rm_lb": 145.8,
+        "volume_lb": 3020.8,
+        "sets": 4
+      },
+      {
+        "date": "2025-08-05",
+        "activity_id": "19964640804",
+        "top_weight_lb": 115.1,
+        "top_reps": 11,
+        "est_1rm_lb": 157.3,
+        "volume_lb": 3135.9,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 115.1,
+        "top_reps": 8,
+        "est_1rm_lb": 145.8,
+        "volume_lb": 3379.0,
+        "sets": 4
+      },
+      {
+        "date": "2025-10-12",
+        "activity_id": "20668622683",
+        "top_weight_lb": 120.0,
+        "top_reps": 20,
+        "est_1rm_lb": 200.0,
+        "volume_lb": 5722.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-11-28",
+        "activity_id": "21117792122",
+        "top_weight_lb": 94.9,
+        "top_reps": 12,
+        "est_1rm_lb": 132.9,
+        "volume_lb": 2087.8,
+        "sets": 2
+      },
+      {
+        "date": "2026-01-20",
+        "activity_id": "21613970269",
+        "top_weight_lb": 115.1,
+        "top_reps": 6,
+        "est_1rm_lb": 138.1,
+        "volume_lb": 3684.5,
+        "sets": 4
+      },
+      {
+        "date": "2026-05-15",
+        "activity_id": "22894651814",
+        "top_weight_lb": 50.0,
+        "top_reps": 13,
+        "est_1rm_lb": 71.7,
+        "volume_lb": 1250.0,
+        "sets": 2
+      },
+      {
+        "date": "2026-05-18",
+        "activity_id": "22929904691",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 2000.0,
+        "sets": 2
+      },
+      {
+        "date": "2026-05-28",
+        "activity_id": "23050261098",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3345.9,
+        "sets": 3
+      }
+    ],
+    "CABLE_BICEPS_CURL": [
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 20.0,
+        "top_reps": 8,
+        "est_1rm_lb": 25.3,
+        "volume_lb": 480.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 747.0,
+        "sets": 3
+      }
+    ],
+    "CABLE_KICKBACK": [
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 20.0,
+        "top_reps": 8,
+        "est_1rm_lb": 25.3,
+        "volume_lb": 400.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 20.0,
+        "top_reps": 12,
+        "est_1rm_lb": 28.0,
+        "volume_lb": 640.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 24.9,
+        "top_reps": 7,
+        "est_1rm_lb": 30.7,
+        "volume_lb": 574.3,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 20.0,
+        "top_reps": 12,
+        "est_1rm_lb": 28.0,
+        "volume_lb": 440.0,
+        "sets": 2
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 747.0,
+        "sets": 3
+      }
+    ],
+    "CHEST_PRESS_WITH_BAND": [
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 2700.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 90.0,
+        "top_reps": 10,
+        "est_1rm_lb": 120.0,
+        "volume_lb": 2241.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 1800.0,
+        "sets": 2
+      },
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 110.0,
+        "top_reps": 12,
+        "est_1rm_lb": 154.0,
+        "volume_lb": 3520.0,
+        "sets": 3
+      }
+    ],
+    "CURL": [
+      {
+        "date": "2025-06-09",
+        "activity_id": "19384374234",
+        "top_weight_lb": 20.0,
+        "top_reps": 8,
+        "est_1rm_lb": 25.3,
+        "volume_lb": 320.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 560.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-24",
+        "activity_id": "20864376004",
+        "top_weight_lb": 20.0,
+        "top_reps": 7,
+        "est_1rm_lb": 24.7,
+        "volume_lb": 260.0,
+        "sets": 2
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 20.0,
+        "top_reps": 11,
+        "est_1rm_lb": 27.3,
+        "volume_lb": 1020.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 20.0,
+        "top_reps": 11,
+        "est_1rm_lb": 27.3,
+        "volume_lb": 1220.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-08-03",
+        "activity_id": "19940783192",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 1210.0,
+        "sets": 4
+      },
+      {
+        "date": "2025-08-18",
+        "activity_id": "20103124722",
+        "top_weight_lb": 59.9,
+        "top_reps": 11,
+        "est_1rm_lb": 81.9,
+        "volume_lb": 3256.0,
+        "sets": 9
+      },
+      {
+        "date": "2025-10-11",
+        "activity_id": "20658106882",
+        "top_weight_lb": 42.4,
+        "top_reps": 10,
+        "est_1rm_lb": 56.5,
+        "volume_lb": 2048.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-11-28",
+        "activity_id": "21117792122",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 2500.0,
+        "sets": 5
+      },
+      {
+        "date": "2026-01-06",
+        "activity_id": "21466701591",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 500.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-15",
+        "activity_id": "21560731869",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1000.0,
+        "sets": 2
+      },
+      {
+        "date": "2026-01-27",
+        "activity_id": "21685715874",
+        "top_weight_lb": 59.9,
+        "top_reps": 10,
+        "est_1rm_lb": 79.9,
+        "volume_lb": 1797.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-05-15",
+        "activity_id": "22894651814",
+        "top_weight_lb": 59.9,
+        "top_reps": 10,
+        "est_1rm_lb": 79.9,
+        "volume_lb": 599.0,
+        "sets": 1
+      }
+    ],
+    "DECLINE_DUMBBELL_BENCH_PRESS": [
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 115.1,
+        "top_reps": 8,
+        "est_1rm_lb": 145.8,
+        "volume_lb": 2549.8,
+        "sets": 3
+      }
+    ],
+    "DUMBBELL_BENCH_PRESS": [
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 35.0,
+        "top_reps": 12,
+        "est_1rm_lb": 49.0,
+        "volume_lb": 1510.0,
+        "sets": 4
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 45.1,
+        "top_reps": 10,
+        "est_1rm_lb": 60.1,
+        "volume_lb": 1302.0,
+        "sets": 3
+      }
+    ],
+    "DUMBBELL_FRONT_RAISE": [
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 15.0,
+        "top_reps": 8,
+        "est_1rm_lb": 19.0,
+        "volume_lb": 360.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      }
+    ],
+    "DUMBBELL_LATERAL_RAISE": [
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 20.0,
+        "top_reps": 8,
+        "est_1rm_lb": 25.3,
+        "volume_lb": 460.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-12",
+        "activity_id": "19713907931",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 20.0,
+        "top_reps": 10,
+        "est_1rm_lb": 26.7,
+        "volume_lb": 550.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 20.0,
+        "top_reps": 11,
+        "est_1rm_lb": 27.3,
+        "volume_lb": 598.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-11-26",
+        "activity_id": "21099577847",
+        "top_weight_lb": 30.0,
+        "top_reps": 16,
+        "est_1rm_lb": 46.0,
+        "volume_lb": 930.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-27",
+        "activity_id": "21685715874",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1150.0,
+        "sets": 3
+      }
+    ],
+    "DUMBBELL_SHOULDER_PRESS": [
+      {
+        "date": "2025-06-17",
+        "activity_id": "19465909610",
+        "top_weight_lb": 24.9,
+        "top_reps": 10,
+        "est_1rm_lb": 33.2,
+        "volume_lb": 738.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 30.0,
+        "top_reps": 10,
+        "est_1rm_lb": 40.0,
+        "volume_lb": 749.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 35.0,
+        "top_reps": 12,
+        "est_1rm_lb": 49.0,
+        "volume_lb": 1035.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 35.0,
+        "top_reps": 10,
+        "est_1rm_lb": 46.7,
+        "volume_lb": 980.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-12",
+        "activity_id": "19713907931",
+        "top_weight_lb": 35.0,
+        "top_reps": 10,
+        "est_1rm_lb": 46.7,
+        "volume_lb": 1050.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 35.0,
+        "top_reps": 12,
+        "est_1rm_lb": 49.0,
+        "volume_lb": 1155.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 30.0,
+        "top_reps": 10,
+        "est_1rm_lb": 40.0,
+        "volume_lb": 900.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 80.0,
+        "top_reps": 10,
+        "est_1rm_lb": 106.7,
+        "volume_lb": 2340.0,
+        "sets": 3
+      }
+    ],
+    "FLYE": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 85.0,
+        "top_reps": 11,
+        "est_1rm_lb": 116.2,
+        "volume_lb": 2635.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 5200.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 90.0,
+        "top_reps": 11,
+        "est_1rm_lb": 123.0,
+        "volume_lb": 4950.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 120.0,
+        "top_reps": 10,
+        "est_1rm_lb": 160.0,
+        "volume_lb": 3481.2,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 105.0,
+        "top_reps": 10,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 3350.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-05",
+        "activity_id": "19964640804",
+        "top_weight_lb": 120.0,
+        "top_reps": 10,
+        "est_1rm_lb": 160.0,
+        "volume_lb": 3500.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 120.0,
+        "top_reps": 10,
+        "est_1rm_lb": 160.0,
+        "volume_lb": 3200.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-05-28",
+        "activity_id": "23050261098",
+        "top_weight_lb": 120.0,
+        "top_reps": 12,
+        "est_1rm_lb": 168.0,
+        "volume_lb": 3740.0,
+        "sets": 3
+      }
+    ],
+    "FROG_PRESS": [
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 50.0,
+        "top_reps": 20,
+        "est_1rm_lb": 83.3,
+        "volume_lb": 2750.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 0.0,
+        "top_reps": 30,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 3
+      }
+    ],
+    "HANGING_LEG_RAISE": [
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 0.0,
+        "top_reps": 10,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 5
+      },
+      {
+        "date": "2026-05-28",
+        "activity_id": "23050261098",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "INCLINE_BARBELL_BENCH_PRESS": [
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 75.0,
+        "top_reps": 12,
+        "est_1rm_lb": 105.0,
+        "volume_lb": 2550.0,
+        "sets": 3
+      }
+    ],
+    "INCLINE_DUMBBELL_BENCH_PRESS": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1500.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 35.0,
+        "top_reps": 11,
+        "est_1rm_lb": 47.8,
+        "volume_lb": 1050.0,
+        "sets": 3
+      }
+    ],
+    "LATERAL_RAISE": [
+      {
+        "date": "2025-06-17",
+        "activity_id": "19465909610",
+        "top_weight_lb": 15.0,
+        "top_reps": 15,
+        "est_1rm_lb": 22.5,
+        "volume_lb": 660.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 15.0,
+        "top_reps": 10,
+        "est_1rm_lb": 20.0,
+        "volume_lb": 450.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 15.0,
+        "top_reps": 11,
+        "est_1rm_lb": 20.5,
+        "volume_lb": 945.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-08-03",
+        "activity_id": "19940783192",
+        "top_weight_lb": 50.0,
+        "top_reps": 13,
+        "est_1rm_lb": 71.7,
+        "volume_lb": 1130.0,
+        "sets": 4
+      },
+      {
+        "date": "2025-08-18",
+        "activity_id": "20103124722",
+        "top_weight_lb": 59.9,
+        "top_reps": 11,
+        "est_1rm_lb": 81.9,
+        "volume_lb": 658.9,
+        "sets": 1
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 30.0,
+        "top_reps": 12,
+        "est_1rm_lb": 42.0,
+        "volume_lb": 1440.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-10-11",
+        "activity_id": "20658106882",
+        "top_weight_lb": 30.0,
+        "top_reps": 12,
+        "est_1rm_lb": 42.0,
+        "volume_lb": 960.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-10-12",
+        "activity_id": "20668622683",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 1000.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-06",
+        "activity_id": "21466701591",
+        "top_weight_lb": 30.0,
+        "top_reps": 15,
+        "est_1rm_lb": 45.0,
+        "volume_lb": 1110.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-15",
+        "activity_id": "21560731869",
+        "top_weight_lb": 30.0,
+        "top_reps": 12,
+        "est_1rm_lb": 42.0,
+        "volume_lb": 690.0,
+        "sets": 2
+      },
+      {
+        "date": "2026-01-20",
+        "activity_id": "21613970269",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 1151.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-05-18",
+        "activity_id": "22929904691",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 1000.0,
+        "sets": 1
+      }
+    ],
+    "LAT_PULLDOWN": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 90.0,
+        "top_reps": 10,
+        "est_1rm_lb": 120.0,
+        "volume_lb": 2700.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 110.0,
+        "top_reps": 12,
+        "est_1rm_lb": 154.0,
+        "volume_lb": 3220.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 105.0,
+        "top_reps": 11,
+        "est_1rm_lb": 143.5,
+        "volume_lb": 5255.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 100.0,
+        "top_reps": 12,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 6300.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 115.1,
+        "top_reps": 12,
+        "est_1rm_lb": 161.1,
+        "volume_lb": 3798.3,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-05",
+        "activity_id": "19964640804",
+        "top_weight_lb": 105.0,
+        "top_reps": 11,
+        "est_1rm_lb": 143.5,
+        "volume_lb": 3055.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3302.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 3000.0,
+        "sets": 3
+      }
+    ],
+    "LEG_RAISE": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 0.0,
+        "top_reps": 12,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 2
+      },
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 0.0,
+        "top_reps": 25,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-08-05",
+        "activity_id": "19964640804",
+        "top_weight_lb": 0.0,
+        "top_reps": 0,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "PLANK": [
+      {
+        "date": "2025-11-26",
+        "activity_id": "21099577847",
+        "top_weight_lb": 0.0,
+        "top_reps": 2,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "PULL_UP": [
+      {
+        "date": "2025-06-09",
+        "activity_id": "19384374234",
+        "top_weight_lb": 0.0,
+        "top_reps": 9,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-20",
+        "activity_id": "21613970269",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 1000.0,
+        "sets": 1
+      }
+    ],
+    "PUSH_UP": [
+      {
+        "date": "2020-07-10",
+        "activity_id": "5217702522",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 3
+      },
+      {
+        "date": "2023-03-26",
+        "activity_id": "10777127757",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 0.0,
+        "top_reps": 15,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 2
+      },
+      {
+        "date": "2025-10-12",
+        "activity_id": "20668622683",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 1000.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-05-18",
+        "activity_id": "22929904691",
+        "top_weight_lb": 100.0,
+        "top_reps": 12,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 1200.0,
+        "sets": 1
+      }
+    ],
+    "ROPE_HANDLE_CABLE_ROW": [
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 90.0,
+        "top_reps": 11,
+        "est_1rm_lb": 123.0,
+        "volume_lb": 2880.0,
+        "sets": 3
+      }
+    ],
+    "ROW": [
+      {
+        "date": "2025-06-09",
+        "activity_id": "19384374234",
+        "top_weight_lb": 100.0,
+        "top_reps": 8,
+        "est_1rm_lb": 126.7,
+        "volume_lb": 800.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 110.0,
+        "top_reps": 11,
+        "est_1rm_lb": 150.3,
+        "volume_lb": 3410.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 120.0,
+        "top_reps": 13,
+        "est_1rm_lb": 172.0,
+        "volume_lb": 3870.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-05",
+        "activity_id": "19964640804",
+        "top_weight_lb": 120.0,
+        "top_reps": 10,
+        "est_1rm_lb": 160.0,
+        "volume_lb": 3500.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 125.0,
+        "top_reps": 10,
+        "est_1rm_lb": 166.7,
+        "volume_lb": 3890.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-10-12",
+        "activity_id": "20668622683",
+        "top_weight_lb": 115.1,
+        "top_reps": 8,
+        "est_1rm_lb": 145.8,
+        "volume_lb": 2920.8,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-06",
+        "activity_id": "21466701591",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 600.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-15",
+        "activity_id": "21560731869",
+        "top_weight_lb": 100.0,
+        "top_reps": 8,
+        "est_1rm_lb": 126.7,
+        "volume_lb": 800.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-20",
+        "activity_id": "21613970269",
+        "top_weight_lb": 100.0,
+        "top_reps": 12,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 1200.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 2600.0,
+        "sets": 3
+      }
+    ],
+    "RUN": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 0.0,
+        "top_reps": 0,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-06-17",
+        "activity_id": "19465909610",
+        "top_weight_lb": 0.0,
+        "top_reps": 0,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "RUN_INDOOR": [
+      {
+        "date": "2026-01-27",
+        "activity_id": "21685715874",
+        "top_weight_lb": 0.0,
+        "top_reps": 0,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "SEATED_CABLE_ROW": [
+      {
+        "date": "2025-06-15",
+        "activity_id": "19444929715",
+        "top_weight_lb": 90.0,
+        "top_reps": 10,
+        "est_1rm_lb": 120.0,
+        "volume_lb": 2700.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 5920.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-06-24",
+        "activity_id": "19535770469",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 5000.0,
+        "sets": 5
+      },
+      {
+        "date": "2025-07-03",
+        "activity_id": "19624827158",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3302.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-19",
+        "activity_id": "19786795941",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3151.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-14",
+        "activity_id": "20060988677",
+        "top_weight_lb": 100.0,
+        "top_reps": 10,
+        "est_1rm_lb": 133.3,
+        "volume_lb": 3000.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-05-24",
+        "activity_id": "22997887182",
+        "top_weight_lb": 100.0,
+        "top_reps": 11,
+        "est_1rm_lb": 136.7,
+        "volume_lb": 3100.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-05-28",
+        "activity_id": "23050261098",
+        "top_weight_lb": 115.1,
+        "top_reps": 10,
+        "est_1rm_lb": 153.5,
+        "volume_lb": 3302.0,
+        "sets": 3
+      }
+    ],
+    "SQUAT": [
+      {
+        "date": "2026-05-18",
+        "activity_id": "22929904691",
+        "top_weight_lb": 110.0,
+        "top_reps": 11,
+        "est_1rm_lb": 150.3,
+        "volume_lb": 1210.0,
+        "sets": 1
+      }
+    ],
+    "STANDING_ALTERNATING_DUMBBELL_CURLS": [
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 20.0,
+        "top_reps": 11,
+        "est_1rm_lb": 27.3,
+        "volume_lb": 640.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 24.9,
+        "top_reps": 11,
+        "est_1rm_lb": 34.0,
+        "volume_lb": 771.9,
+        "sets": 3
+      }
+    ],
+    "TRICEPS_EXTENSION": [
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 20.0,
+        "top_reps": 8,
+        "est_1rm_lb": 25.3,
+        "volume_lb": 480.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 40.0,
+        "top_reps": 10,
+        "est_1rm_lb": 53.3,
+        "volume_lb": 1080.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 40.0,
+        "top_reps": 12,
+        "est_1rm_lb": 56.0,
+        "volume_lb": 1280.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 40.0,
+        "top_reps": 11,
+        "est_1rm_lb": 54.7,
+        "volume_lb": 1240.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 40.0,
+        "top_reps": 10,
+        "est_1rm_lb": 53.3,
+        "volume_lb": 1200.0,
+        "sets": 3
+      }
+    ],
+    "TRICEPS_PRESSDOWN": [
+      {
+        "date": "2025-06-17",
+        "activity_id": "19465909610",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 1450.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-22",
+        "activity_id": "19516058824",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1350.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-06-27",
+        "activity_id": "19561769040",
+        "top_weight_lb": 55.0,
+        "top_reps": 11,
+        "est_1rm_lb": 75.2,
+        "volume_lb": 1451.1,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-05",
+        "activity_id": "19641120019",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1500.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-07-12",
+        "activity_id": "19713907931",
+        "top_weight_lb": 55.0,
+        "top_reps": 11,
+        "est_1rm_lb": 75.2,
+        "volume_lb": 3410.0,
+        "sets": 6
+      },
+      {
+        "date": "2025-08-07",
+        "activity_id": "19986530070",
+        "top_weight_lb": 55.0,
+        "top_reps": 12,
+        "est_1rm_lb": 77.0,
+        "volume_lb": 1920.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-12",
+        "activity_id": "20039859544",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 1600.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-21",
+        "activity_id": "20135963812",
+        "top_weight_lb": 50.0,
+        "top_reps": 13,
+        "est_1rm_lb": 71.7,
+        "volume_lb": 1650.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-11-26",
+        "activity_id": "21099577847",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 1650.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-27",
+        "activity_id": "21685715874",
+        "top_weight_lb": 55.0,
+        "top_reps": 12,
+        "est_1rm_lb": 77.0,
+        "volume_lb": 1810.0,
+        "sets": 3
+      }
+    ],
+    "UNKNOWN": [
+      {
+        "date": "2020-07-10",
+        "activity_id": "5217702522",
+        "top_weight_lb": 0.0,
+        "top_reps": 30,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 4
+      },
+      {
+        "date": "2020-10-24",
+        "activity_id": "5721967776",
+        "top_weight_lb": 0.0,
+        "top_reps": 6,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 2
+      },
+      {
+        "date": "2023-05-20",
+        "activity_id": "11160513724",
+        "top_weight_lb": 0.0,
+        "top_reps": 4,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2025-06-09",
+        "activity_id": "19384374234",
+        "top_weight_lb": 110.0,
+        "top_reps": 8,
+        "est_1rm_lb": 139.3,
+        "volume_lb": 4080.0,
+        "sets": 7
+      },
+      {
+        "date": "2025-08-03",
+        "activity_id": "19940783192",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 1000.0,
+        "sets": 3
+      },
+      {
+        "date": "2025-08-18",
+        "activity_id": "20103124722",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 749.0,
+        "sets": 2
+      },
+      {
+        "date": "2025-10-11",
+        "activity_id": "20658106882",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 3770.8,
+        "sets": 9
+      },
+      {
+        "date": "2025-10-12",
+        "activity_id": "20668622683",
+        "top_weight_lb": 115.1,
+        "top_reps": 8,
+        "est_1rm_lb": 145.8,
+        "volume_lb": 4123.8,
+        "sets": 5
+      },
+      {
+        "date": "2025-11-28",
+        "activity_id": "21117792122",
+        "top_weight_lb": 94.9,
+        "top_reps": 5,
+        "est_1rm_lb": 110.7,
+        "volume_lb": 474.5,
+        "sets": 1
+      },
+      {
+        "date": "2026-01-06",
+        "activity_id": "21466701591",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 2791.4,
+        "sets": 7
+      },
+      {
+        "date": "2026-01-15",
+        "activity_id": "21560731869",
+        "top_weight_lb": 100.0,
+        "top_reps": 12,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 2700.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-01-20",
+        "activity_id": "21613970269",
+        "top_weight_lb": 100.0,
+        "top_reps": 12,
+        "est_1rm_lb": 140.0,
+        "volume_lb": 2200.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-03-05",
+        "activity_id": "22076515468",
+        "top_weight_lb": 0.0,
+        "top_reps": 6,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-05-15",
+        "activity_id": "22894651814",
+        "top_weight_lb": 59.9,
+        "top_reps": 11,
+        "est_1rm_lb": 81.9,
+        "volume_lb": 4695.5,
+        "sets": 11
+      },
+      {
+        "date": "2026-05-18",
+        "activity_id": "22929904691",
+        "top_weight_lb": 129.9,
+        "top_reps": 11,
+        "est_1rm_lb": 177.5,
+        "volume_lb": 9427.9,
+        "sets": 10
+      }
+    ],
+    "WIDE_GRIP_LAT_PULLDOWN": [
+      {
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 85.0,
+        "top_reps": 12,
+        "est_1rm_lb": 119.0,
+        "volume_lb": 2720.0,
+        "sets": 3
+      }
+    ]
+  }
+}
