@@ -1,23 +1,23 @@
 {
-  "date_label": "Sunday, May 31",
+  "date_label": "Monday, Jun 01",
   "recovery_status": "watch",
   "today": {
-    "time": "—",
-    "session": "Rest day",
-    "subtitle": "Full rest",
+    "time": "6:15 PM",
+    "session": "Neighborhood Walk/Jog",
+    "subtitle": "2–3 mi loop, Waterford Lakes",
     "adjustment_status": "none",
-    "adjustment_label": "Rest day — no session scheduled",
-    "why": "Sunday default. Hard recovery signals are fine (HRV +11% above baseline, Body Battery 61, RHR on target). Training readiness 48 (LOW) driven by accumulated sleep pattern stress; rest absorbs this week's training debt.",
-    "expected_activity_types": [],
-    "expected_duration_minutes": 0
+    "adjustment_label": "Full session, no adjustments",
+    "why": "Sleep was fair (6h10m, score 63) but HRV at baseline and RHR steady — all clear to proceed.",
+    "expected_activity_types": ["walking", "running", "indoor_walking"],
+    "expected_duration_minutes": 45
   },
   "cut": {
     "start_weight_lbs": 200
   },
   "week_plan": {
-    "monday_date": "2026-05-25",
+    "monday_date": "2026-06-01",
     "days": [
-      {"label": "Walk/Jog", "type": "walk"},
+      {"label": "Walk", "type": "walk"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,565 cal → ~1.3 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,586 cal → ~1.3 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "2,100",
+    "calories": "1,800",
     "water": "3 L"
   }
 }
