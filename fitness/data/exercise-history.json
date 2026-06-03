@@ -446,6 +446,15 @@
         "est_1rm_lb": 79.9,
         "volume_lb": 599.0,
         "sets": 1
+      },
+      {
+        "date": "2026-06-02",
+        "activity_id": "23109970296",
+        "top_weight_lb": 70.0,
+        "top_reps": 10,
+        "est_1rm_lb": 93.3,
+        "volume_lb": 3377.2,
+        "sets": 6
       }
     ],
     "DECLINE_DUMBBELL_BENCH_PRESS": [
@@ -882,6 +891,15 @@
         "est_1rm_lb": 133.3,
         "volume_lb": 1000.0,
         "sets": 1
+      },
+      {
+        "date": "2026-06-02",
+        "activity_id": "23109970296",
+        "top_weight_lb": 30.0,
+        "top_reps": 10,
+        "est_1rm_lb": 40.0,
+        "volume_lb": 870.0,
+        "sets": 3
       }
     ],
     "LAT_PULLDOWN": [
@@ -1440,6 +1458,15 @@
         "top_reps": 12,
         "est_1rm_lb": 77.0,
         "volume_lb": 1810.0,
+        "sets": 3
+      },
+      {
+        "date": "2026-06-02",
+        "activity_id": "23109970296",
+        "top_weight_lb": 59.9,
+        "top_reps": 10,
+        "est_1rm_lb": 79.9,
+        "volume_lb": 1698.0,
         "sets": 3
       }
     ],
