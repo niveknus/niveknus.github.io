@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-03T01:37:09.848647+00:00",
+  "generated_at": "2026-06-03T12:36:50.440232+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 7,
-    "workout_days": 5,
-    "done_days": 3,
-    "adherence_rate_pct": 60,
+    "total_entries": 8,
+    "workout_days": 6,
+    "done_days": 4,
+    "adherence_rate_pct": 67,
     "rolling_14": {
-      "workout_days": 5,
-      "done_days": 3,
-      "adherence_rate_pct": 60
+      "workout_days": 6,
+      "done_days": 4,
+      "adherence_rate_pct": 67
     },
     "reset_date": "2026-05-23"
   },
@@ -81,6 +81,16 @@
       "emoji": "🧘",
       "prescribed": "Rest day · expected types `` · ~0 min",
       "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-02",
+      "weekday": "Tuesday",
+      "state": "partial",
+      "emoji": "🟡",
+      "prescribed": "Split A — Arms + Shoulders · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": "Strength · type `strength_training` · 35 min · 206 cal · avg HR 111 · started 19:16 ET",
       "note": "",
       "data_gap": false
     }
