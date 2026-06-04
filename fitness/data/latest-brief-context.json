@@ -1,15 +1,15 @@
 {
-  "date_label": "Wednesday, Jun 03",
-  "recovery_status": "low",
+  "date_label": "Thursday, Jun 04",
+  "recovery_status": "watch",
   "today": {
     "time": "6:00 PM",
-    "session": "Active recovery walk",
-    "subtitle": "Neighborhood walk (auto-adjusted from ND class)",
-    "adjustment_status": "active_recovery",
-    "adjustment_label": "Active recovery only",
-    "why": "HRV 20% below 7-day baseline (30 vs 38 ms) — auto-swapped ND class to active recovery walk (25 min).",
-    "expected_activity_types": ["walking", "indoor_walking"],
-    "expected_duration_minutes": 25
+    "session": "Planet Fitness — Split B (chest + back)",
+    "subtitle": "Chest + Back · 3–4 sets × 8–12",
+    "adjustment_status": "none",
+    "adjustment_label": "Full session, no adjustments",
+    "why": "HRV 8% below baseline (under 10% threshold), RHR slightly elevated at 69 vs 65 avg. Full session; drop to 3 sets if early sets feel heavy.",
+    "expected_activity_types": ["strength_training", "fitness_equipment"],
+    "expected_duration_minutes": 50
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read (701 cal). 6-day complete avg ~2,683 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read (806 cal). 6-day complete avg ~2,695 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
