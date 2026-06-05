@@ -150,6 +150,32 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
         <summary>
+          <span class="sprint-date">2026-06-05</span>
+          <span class="sprint-title">Sprint 10: Cut Confidence Score</span>
+          <span class="sprint-tag">session 20</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>`scripts/garmin/cut_confidence.py` (new, stdlib-only). Blends adherence 35% (rolling-14 rate), recovery 25% (7d sleep score + HRV-balanced fraction + training readiness), weight trajectory 25% (act...</li>
+            
+            <li>25 unit tests (`tests/test_cut_confidence.py`); full garmin suite now 49 green. Dashboard gauge card (SVG semicircle + component bars + trend sparkline) on `fitness-dashboard.html`, jsdom-tested 8/8.</li>
+            
+            <li>Wiring: non-fatal compute step in `garmin-daily.yml` + Pages copies; `generate_dashboard.py` copies to `data/`; `routine-prompt.md` → v5.3 (Step 5.6 reads the precomputed score, renders the headlin...</li>
+            
+            <li>First live score: 59 — Steady → (adherence 71 · recovery 61 · weight trajectory 40; deficit pending). Seeded into `raw-sources/garmin/`.</li>
+            
+            <li>Pending: Mac `git push` → next `garmin-daily` run regenerates in CI + publishes the gauge; re-paste v5.3 Routine prompt into the morning Routine.</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
+        <summary>
           <span class="sprint-date">2026-05-31</span>
           <span class="sprint-title">System-review Fix-Now SRs</span>
           <span class="sprint-tag">session 19</span>
@@ -228,54 +254,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       </details>
     </div>
     
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-28</span>
-          <span class="sprint-title">Sprint 3: Weekly Review Brief</span>
-          <span class="sprint-tag">shipped</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>`weekly-review-routine-prompt.md` (v1.0) built and deployed to claude.ai as a new Remote Routine (Sundays 5:00 PM ET — scheduled to clear the 7 PM PA Weekly Review). Step 0 dispatches `garmin-daily...</li>
-            
-            <li>Durable history: appends a machine-parseable `## [WEEK: ...]` block to `Projects/Fitness Coach/weekly-reviews.md` each week → data source for a future "this year" adherence heat map.</li>
-            
-            <li>Text-only Telegram for MVP (per decision). Full entry in `05_Sprint History.md`.</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-23</span>
-          <span class="sprint-title">Sprint 13: Adherence dashboard visualization</span>
-          <span class="sprint-tag">session 4</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>`scripts/garmin/parse_adherence.py` (new): parses `adherence-log.md` → `adherence-summary.json`. Regex section split on `## [YYYY-MM-DD]` headers; field extraction using `KEY:` format. Includes ove...</li>
-            
-            <li>`garmin-daily.yml`: new "Parse adherence log" step (non-fatal, `|| true`). Pages publish step copies `adherence-summary.json` to `fitness/data/`.</li>
-            
-            <li>`generate_dashboard.py`: copies `adherence-summary.json` to `data/`.</li>
-            
-            <li>`fitness-dashboard.html`: 14-day dot strip with state-colored circles, data-gap dimming, adherence rate %, compact legend, tooltip showing prescribed/actual. Non-blocking fetch. Inserted between co...</li>
-            
-            <li>Pending: Mac terminal push (same commit as Sprint 8 P0 + Sprint 12).</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
   </div>
 </div>
 
@@ -291,8 +269,8 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="next-item">
       <span class="next-priority p1">P1</span>
       <div>
-        <div class="next-title">Push + verify the session-18 work</div>
-        <div class="next-desc">after the Mac git push, the next garmin-daily run writes the **v4 digest** (with exercise_trends/running_trends) and publishes activity-heatmap.jso...</div>
+        <div class="next-title">Push + verify session 20 (Cut Confidence) + the session-18 work</div>
+        <div class="next-desc">after the Mac git push, the next garmin-daily run regenerates cut-confidence.json (+ history) and the **v4 digest** in CI and publishes them. Confi...</div>
       </div>
     </div>
     
