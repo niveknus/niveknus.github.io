@@ -161,6 +161,8 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
             
             <li>25 unit tests (`tests/test_cut_confidence.py`); full garmin suite now 49 green. Dashboard gauge card (SVG semicircle + component bars + trend sparkline) on `fitness-dashboard.html`, jsdom-tested 8/8.</li>
             
+            <li>Adherence dot tooltip upgrade (same session, deploys with the card). Replaced the slow native `title` tooltip on the 14-day adherence dots with a custom styled hover/tap popup — shows the day, stat...</li>
+            
             <li>Wiring: non-fatal compute step in `garmin-daily.yml` + Pages copies; `generate_dashboard.py` copies to `data/`; `routine-prompt.md` → v5.3 (Step 5.6 reads the precomputed score, renders the headlin...</li>
             
             <li>First live score: 59 — Steady → (adherence 71 · recovery 61 · weight trajectory 40; deficit pending). Seeded into `raw-sources/garmin/`.</li>
