@@ -522,6 +522,23 @@ body {
     <div class="targets-row" id="ctx-targets"></div>
   </div>
 
+  <!-- Cut Confidence — populated from data/cut-confidence.json (Sprint 10). Hidden until data loads. -->
+  <div id="cutconf-card" class="chart-card" style="display:none; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:4px;">
+      <h3 style="margin:0;">Cut Confidence</h3>
+      <span id="cutconf-trend" style="font-size:12px; color:#6b7280;"></span>
+    </div>
+    <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+      <div id="cutconf-gauge" style="flex:0 0 auto;"></div>
+      <div style="flex:1 1 180px; min-width:160px;">
+        <div id="cutconf-band" style="font-size:13px; font-weight:600; margin-bottom:8px;"></div>
+        <div id="cutconf-components"></div>
+      </div>
+    </div>
+    <div id="cutconf-spark" style="margin-top:10px;"></div>
+    <div id="cutconf-note" style="font-size:10px; color:#9ca3af; margin-top:8px;"></div>
+  </div>
+
   <!-- Adherence strip — populated from data/adherence-summary.json -->
   <div id="adherence-strip-wrap" class="adherence-card" style="display:none;">
     <div class="adherence-header">
@@ -714,6 +731,8 @@ const ADHERENCE_URL    = 'data/adherence-summary.json';
 const EXERCISE_HIST_URL = 'data/exercise-history.json';
 const RUNNING_HIST_URL  = 'data/running-history.json';
 const HEATMAP_URL       = 'data/activity-heatmap.json';
+const CUTCONF_URL       = 'data/cut-confidence.json';
+const CUTCONF_HIST_URL  = 'data/cut-confidence-history.json';
 const START_WEIGHT = 199.9;
 const GOAL_WEIGHT = 165;
 
@@ -820,6 +839,26 @@ async function fetchRunningHistory() {
   }
 }
 
+async function fetchCutConfidence() {
+  try {
+    const resp = await fetch(CUTCONF_URL);
+    if (!resp.ok) return null;  // 404 = not yet published; card stays hidden
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchCutConfidenceHistory() {
+  try {
+    const resp = await fetch(CUTCONF_HIST_URL);
+    if (!resp.ok) return null;
+    return resp.json();
+  } catch (e) {
+    return null;
+  }
+}
+
 async function fetchHeatmap() {
   try {
     const resp = await fetch(HEATMAP_URL);
@@ -905,6 +944,72 @@ function buildHeatmap(hm) {
  * workout outcome; hollow dots fill days with no log entry. Adherence rate
  * is computed over workout days only (excludes rest days).
  */
+// ── Adherence dot tooltip (custom hover/tap popup) ───────────────────────────
+let _adhTip = null;
+function ensureAdhTip() {
+  if (_adhTip) return _adhTip;
+  const t = document.createElement('div');
+  t.id = 'adh-tip';
+  t.style.cssText = [
+    'position:fixed', 'z-index:1000', 'max-width:240px', 'pointer-events:none',
+    'background:#15181E', 'color:#F3F4F6', 'border:0.5px solid #2A2E36',
+    'border-radius:10px', 'padding:9px 11px', 'font-size:12px', 'line-height:1.5',
+    'box-shadow:0 6px 20px rgba(0,0,0,0.28)', 'opacity:0',
+    'transition:opacity 0.08s ease', 'display:none',
+  ].join(';');
+  document.body.appendChild(t);
+  _adhTip = t;
+  return t;
+}
+
+function adhTipHTML(entry, dateStr) {
+  const dLabel = new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US',
+    { weekday: 'long', month: 'short', day: 'numeric' });
+  if (!entry) {
+    return `<div style="font-weight:600;margin-bottom:2px;">${dLabel}</div>`
+      + `<div style="color:#9ca3af;">No entry logged</div>`;
+  }
+  const color = ADHERENCE_COLORS[entry.state] || '#9ca3af';
+  const label = ADHERENCE_LABELS[entry.state] || entry.state;
+  let h = `<div style="font-weight:600;margin-bottom:3px;">${dLabel}`
+    + ` <span style="color:${color};font-weight:600;">· ${label}</span></div>`;
+  const row = (lbl, val, c) =>
+    `<div style="margin-top:3px;"><span style="color:#9ca3af;">${lbl}</span> `
+    + `<span style="color:${c || '#F3F4F6'};">${val}</span></div>`;
+  if (entry.prescribed) h += row('Planned:', entry.prescribed);
+  // Show what actually happened — make a missed workout explicit.
+  if (entry.actual) {
+    h += row('Did:', entry.actual);
+  } else if (WORKOUT_STATES.has(entry.state)) {
+    h += row('Did:', 'nothing logged', '#f87171');
+  }
+  if (entry.note) h += row('⚠', entry.note, '#fbbf24');
+  return h;
+}
+
+function showAdhTip(el, entry, dateStr) {
+  const t = ensureAdhTip();
+  t.innerHTML = adhTipHTML(entry, dateStr);
+  t.style.display = 'block';
+  // Position above the dot, clamped to the viewport.
+  const r = el.getBoundingClientRect();
+  requestAnimationFrame(() => {
+    const tw = t.offsetWidth, th = t.offsetHeight;
+    let left = r.left + r.width / 2 - tw / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+    let top = r.top - th - 8;
+    if (top < 8) top = r.bottom + 8;        // flip below if no room above
+    t.style.left = left + 'px';
+    t.style.top = top + 'px';
+    t.style.opacity = '1';
+  });
+}
+function hideAdhTip() {
+  if (!_adhTip) return;
+  _adhTip.style.opacity = '0';
+  _adhTip.style.display = 'none';
+}
+
 function buildAdherenceStrip(summary) {
   if (!summary || !summary.entries || summary.entries.length === 0) return;
 
@@ -950,26 +1055,38 @@ function buildAdherenceStrip(summary) {
       dot.className = 'adherence-dot';
       dot.style.background = ADHERENCE_COLORS[entry.state] || '#e5e7eb';
 
-      // Tooltip: date + state + prescribed + actual + note
-      const dLabel = new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US',
-        { weekday: 'short', month: 'short', day: 'numeric' });
-      let tip = `${dLabel}\n${ADHERENCE_LABELS[entry.state] || entry.state}`;
-      if (entry.prescribed) tip += `\nPrescribed: ${entry.prescribed}`;
-      if (entry.actual)     tip += `\nActual: ${entry.actual}`;
-      if (entry.note)       tip += `\n⚠ ${entry.note}`;
-      dot.title = tip;
-
       // Dim dots flagged as data-gap so Kevin knows not to trust them
       if (entry.note && entry.note.includes('data gap')) {
         dot.style.opacity = '0.45';
       }
     } else {
       dot.className = 'adherence-dot adherence-dot-empty';
-      dot.title = `${dateStr} — no entry`;
     }
+
+    // Custom hover/tap tooltip (replaces the native title — instant + readable,
+    // and shows "Planned" vs "Did" with a missed workout called out in red).
+    dot.style.cursor = 'pointer';
+    dot.addEventListener('mouseenter', () => showAdhTip(dot, entry, dateStr));
+    dot.addEventListener('mouseleave', hideAdhTip);
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Tap-to-toggle for touch devices (no hover).
+      if (_adhTip && _adhTip.style.display === 'block' && _adhTip._for === dot) {
+        hideAdhTip();
+      } else {
+        showAdhTip(dot, entry, dateStr);
+        if (_adhTip) _adhTip._for = dot;
+      }
+    });
 
     dotsEl.appendChild(dot);
   });
+
+  // Dismiss an open (tapped) tooltip when clicking elsewhere — one listener.
+  if (!buildAdherenceStrip._dismissBound) {
+    document.addEventListener('click', hideAdhTip);
+    buildAdherenceStrip._dismissBound = true;
+  }
 
   // Compact legend — only show states that appear in the window
   const seenStates = new Set(windowEntries.map(e => e.state));
@@ -1527,6 +1644,113 @@ function buildACWRCard(tl) {
   document.getElementById('acwr-section').style.display = 'block';
 }
 
+// ── Cut Confidence card (Sprint 10) ──────────────────────────────────────────
+const CUTCONF_BAND_COLORS = {
+  on_track: '#059669',
+  steady:   '#f59e0b',
+  concern:  '#f97316',
+  reassess: '#dc2626',
+  unknown:  '#9ca3af',
+};
+const CUTCONF_TREND = {
+  up:   { arrow: '↑', color: '#059669' },
+  down: { arrow: '↓', color: '#dc2626' },
+  flat: { arrow: '→', color: '#6b7280' },
+};
+
+function cutconfGauge(score, color) {
+  // Semicircular gauge: track arc + value arc filled to score/100.
+  const L = Math.PI * 60;                 // semicircle arc length (r=60)
+  const frac = Math.max(0, Math.min(1, (score || 0) / 100));
+  const path = 'M 10 72 A 60 60 0 0 1 130 72';
+  return `
+    <svg width="140" height="84" viewBox="0 0 140 84" role="img" aria-label="Cut confidence ${score}">
+      <path d="${path}" fill="none" stroke="#eef0f3" stroke-width="12" stroke-linecap="round"/>
+      <path d="${path}" fill="none" stroke="${color}" stroke-width="12" stroke-linecap="round"
+            stroke-dasharray="${(frac * L).toFixed(1)} ${L.toFixed(1)}"/>
+      <text x="70" y="62" text-anchor="middle" font-size="30" font-weight="700" fill="${color}">${score != null ? score : '--'}</text>
+      <text x="70" y="78" text-anchor="middle" font-size="10" fill="#9ca3af">out of 100</text>
+    </svg>`;
+}
+
+function cutconfSparkline(hist) {
+  const entries = (hist && hist.entries || []).filter(e => e.score != null).slice(-14);
+  if (entries.length < 2) return '';
+  const W = 280, H = 36, pad = 3;
+  const xs = (i) => pad + i * (W - 2 * pad) / (entries.length - 1);
+  const ys = (v) => H - pad - (v / 100) * (H - 2 * pad);
+  const pts = entries.map((e, i) => `${xs(i).toFixed(1)},${ys(e.score).toFixed(1)}`).join(' ');
+  const last = entries[entries.length - 1];
+  return `
+    <div style="font-size:10px; color:#9ca3af; margin-bottom:2px;">Last ${entries.length} days</div>
+    <svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+      <polyline points="${pts}" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+      <circle cx="${xs(entries.length - 1).toFixed(1)}" cy="${ys(last.score).toFixed(1)}" r="2.5"
+              fill="${CUTCONF_BAND_COLORS[last.band] || '#3b82f6'}"/>
+    </svg>`;
+}
+
+function buildCutConfidenceCard(cc, hist) {
+  if (!cc) return;
+  const color = CUTCONF_BAND_COLORS[cc.band] || CUTCONF_BAND_COLORS.unknown;
+
+  document.getElementById('cutconf-gauge').innerHTML = cutconfGauge(cc.score, color);
+
+  // Band + alert line
+  const bandEl = document.getElementById('cutconf-band');
+  let bandHtml = `<span style="color:${color};">${cc.band_label || '—'}</span>`;
+  if (cc.alert === 'concern') bandHtml += ` · <span style="color:#f97316;">below 50 — watch the drift</span>`;
+  if (cc.alert === 'reassess') bandHtml += ` · <span style="color:#dc2626;">below 30 — time to reassess</span>`;
+  bandEl.innerHTML = bandHtml;
+
+  // Trend
+  const trendEl = document.getElementById('cutconf-trend');
+  if (cc.score != null) {
+    const t = CUTCONF_TREND[cc.trend] || CUTCONF_TREND.flat;
+    const deltaTxt = (cc.trend_delta != null && cc.trend !== 'flat')
+      ? ` ${cc.trend_delta > 0 ? '+' : ''}${cc.trend_delta} vs prev` : '';
+    trendEl.innerHTML = `<span style="color:${t.color};">${t.arrow}${deltaTxt}</span>`;
+  } else {
+    trendEl.textContent = '';
+  }
+
+  // Component bars
+  const compEl = document.getElementById('cutconf-components');
+  compEl.innerHTML = (cc.components || []).map(c => {
+    const wpct = Math.round((c.weight || 0) * 100);
+    if (!c.available) {
+      return `<div style="margin-bottom:7px; opacity:0.55;">
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#9ca3af;">
+            <span>${c.label}</span><span>pending</span>
+          </div>
+          <div style="font-size:10px; color:#9ca3af;">${c.detail || ''}</div>
+        </div>`;
+    }
+    const barColor = scoreColor(c.raw);
+    return `<div style="margin-bottom:7px;">
+        <div style="display:flex; justify-content:space-between; font-size:11px; color:#374151;">
+          <span>${c.label} <span style="color:#9ca3af;">· ${wpct}%</span></span>
+          <span style="font-weight:600; color:${barColor};">${Math.round(c.raw)}</span>
+        </div>
+        <div style="background:#eef0f3; border-radius:4px; height:6px; margin-top:2px; overflow:hidden;">
+          <div style="background:${barColor}; height:6px; width:${Math.max(0, Math.min(100, c.raw))}%;"></div>
+        </div>
+        <div style="font-size:10px; color:#9ca3af; margin-top:1px;">${c.detail || ''}</div>
+      </div>`;
+  }).join('');
+
+  // Sparkline
+  document.getElementById('cutconf-spark').innerHTML = cutconfSparkline(hist);
+
+  // Footnote
+  const noteEl = document.getElementById('cutconf-note');
+  noteEl.textContent = cc.deficit_component_pending
+    ? 'Adherence 35% · Recovery 25% · Weight trajectory 25% · Deficit sustainability 15% (pending calorie tracking — weights renormalized over the other three).'
+    : 'Adherence 35% · Recovery 25% · Weight trajectory 25% · Deficit sustainability 15%.';
+
+  document.getElementById('cutconf-card').style.display = 'block';
+}
+
 async function render() {
   let digest;
   try {
@@ -1544,6 +1768,10 @@ async function render() {
 
   // Coaching context card — non-blocking; card stays hidden if context not yet published
   fetchContext().then(ctx => populateCoachingCard(ctx));
+
+  // Cut Confidence card — non-blocking; card stays hidden until published
+  Promise.all([fetchCutConfidence(), fetchCutConfidenceHistory()])
+    .then(([cc, hist]) => buildCutConfidenceCard(cc, hist));
 
   // Adherence strip — non-blocking; strip stays hidden if file not yet published
   fetchAdherence().then(summary => buildAdherenceStrip(summary));
