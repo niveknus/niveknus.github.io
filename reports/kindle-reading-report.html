@@ -1,0 +1,352 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>75 Books, Two Eras — Kevin's Kindle, Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#d4a373; --accent2:#e9c46a;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.tldr p{margin:0 0 4px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#1a1206}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:150px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:62px;font-size:13px;font-weight:700;text-align:left}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:165px}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.lv{font-size:11px;font-weight:800;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.lv.md{background:#3a230d;color:#ffb86b;border:1px solid #6e4416}
+
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+
+/* era timeline */
+.tl{display:flex;gap:4px;align-items:flex-end;height:130px;margin-top:6px}
+.tl .yr{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.tl .col{width:100%;max-width:30px;border-radius:5px 5px 0 0}
+.tl .yl{font-size:10px;color:var(--dim);transform:rotate(-0deg)}
+.tl .yv{font-size:10px;color:var(--muted);font-weight:700}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}.det-body .bar-label{width:110px}.tl .yl{font-size:8px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>75 Books, Two Eras</h1>
+    <p class="sub">A 15-year Kindle library that splits cleanly down the middle: aerospace textbooks gave way to leadership and self-help the moment college ended. The data tells a career story — and quietly admits Kevin is a highlighter, not a finisher.</p>
+    <div class="meta">Library spans 2010 → 2025 · reading telemetry May 2023 → Dec 2025 · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>75</b> distinct titles</div>
+      <div class="chip"><b>44</b> Business &amp; Money tags</div>
+      <div class="chip"><b>4</b> Jocko Willink books</div>
+      <div class="chip"><b>15</b> titles also on Audible</div>
+      <div class="chip"><b>20</b> highlights</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Amazon's Kindle export is dozens of telemetry CSVs — power-state logs, Wi-Fi pings, screensaver taps. Buried inside the noise are four signal files: the library catalog (what Kevin owns), reading sessions (when and how long he reads on the device), Whispersync annotations (highlights + Audible position), and Amazon's own behavior rollup (completion %, KU membership). Cross-referenced, they paint a clear portrait.</p>
+      <div class="callout"><b>Core insight:</b> Kevin's library is a career autobiography. 2010–2015 is pure aerospace/engineering coursework — Aerodynamics, Calculus, Advanced Engineering Math, SAT prep. From 2018 on it pivots hard into leadership and mindset (Jocko Willink ×4, Tim Grover, Sinek, Lencioni). And the reading style is honest: he opens books, samples and highlights them, then finishes most of them by <i>ear</i> on Audible — Kindle is the highlighting layer, not the reading surface.</div>
+    </div></section>
+
+  <section><h2>From 30 noisy CSVs to one reading portrait</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the Amazon "Request My Data" export</div>
+        <div class="d">~40 Kindle CSV folders, most of them device telemetry (power state, hibernate, Wi-Fi). Signal is a tiny fraction.</div>
+        <span class="tag">amazon.com/gp/privacycentral</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Find the four files that matter</div>
+        <div class="d">Library catalog, ReadingSession, Whispersync annotations, ReadingBehaviorCounts — out of 2,800-row noise files.</div>
+        <span class="tag">find . -name "*.csv" | wc -l</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Resolve ASINs to titles, authors, genres</div>
+        <div class="d">Join the cryptic <span class="mono">B0B6ML61NP</span> codes against the UnifiedLibraryIndex to get human titles.</div>
+        <span class="tag">pandas merge on ASIN</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Date the library, bucket the genres</div>
+        <div class="d">Acquisition dates reveal the textbook→leadership era shift; Amazon's genre tags quantify it.</div>
+        <span class="tag">groupby(year), value_counts</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Reconcile Kindle vs Audible honestly</div>
+        <div class="d">15 titles carry Audible "last heard" markers — the missing reading hours live in audiobooks, not on the e-reader.</div>
+        <span class="tag">audible.last_heard</span></div></div>
+    </div></section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">75</div><div class="l">distinct titles owned</div></div>
+      <div class="stat"><div class="n">15&nbsp;yrs</div><div class="l">library span (2010–2025)</div></div>
+      <div class="stat"><div class="n">6.5&nbsp;h</div><div class="l">tracked Kindle reading</div></div>
+      <div class="stat"><div class="n">55</div><div class="l">reading sessions logged</div></div>
+      <div class="stat"><div class="n">20</div><div class="l">highlights (text not exported)</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">titles also heard on Audible</div></div>
+      <div class="stat"><div class="n">~7%</div><div class="l">avg completion on Kindle</div></div>
+      <div class="stat"><div class="n">$0</div><div class="l">tooling cost · pandas only</div></div>
+    </div></section>
+
+  <section><h2>What he buys — genre breakdown</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:14px">Amazon tags each owned title with one or more genres. Across 75 titles, the tag counts make the adult reading diet unmistakable: business and self-help dominate, with a fossil layer of engineering &amp; test-prep underneath from the college years.</p>
+      <div class="bar-row"><span class="bar-label">Business &amp; Money</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">44</span></div>
+      <div class="bar-row"><span class="bar-label">Self-Help</span><span class="bar-track"><span class="bar-fill" style="width:75%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+      <div class="bar-row"><span class="bar-label">Science &amp; Math</span><span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span><span class="bar-val">11</span></div>
+      <div class="bar-row"><span class="bar-label">Health &amp; Fitness</span><span class="bar-track"><span class="bar-fill" style="width:13.6%;background:var(--grad)"></span></span><span class="bar-val">6</span></div>
+      <div class="bar-row"><span class="bar-label">Engineering &amp; Transport</span><span class="bar-track"><span class="bar-fill" style="width:11.4%;background:var(--grad)"></span></span><span class="bar-val">5</span></div>
+      <div class="bar-row"><span class="bar-label">Test Preparation</span><span class="bar-track"><span class="bar-fill" style="width:9.1%;background:var(--grad)"></span></span><span class="bar-val">4</span></div>
+      <div class="bar-row"><span class="bar-label">Education &amp; Teaching</span><span class="bar-track"><span class="bar-fill" style="width:6.8%;background:var(--grad)"></span></span><span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">History</span><span class="bar-track"><span class="bar-fill" style="width:6.8%;background:var(--grad)"></span></span><span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">Biography &amp; Memoir</span><span class="bar-track"><span class="bar-fill" style="width:4.5%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Religion &amp; Spirituality</span><span class="bar-track"><span class="bar-fill" style="width:4.5%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <p class="muted" style="margin-bottom:0;font-size:12px">121 genre tags across 75 titles (books carry multiple tags). Long tail of single-tag genres — Romance, Medical, Literature, Sports, YA — omitted.</p>
+    </div></section>
+
+  <section><h2>The pivot, drawn by acquisition date</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:14px">Each bar is the number of titles added that year, colored by era. The wall between school and work is visible to the naked eye: textbooks taper off after 2015, and the leadership/self-help wave begins in 2018 and never stops.</p>
+      <div class="tl">
+        <div class="yr"><span class="yv">3</span><span class="col" style="height:25%;background:var(--accent)"></span><span class="yl">'10</span></div>
+        <div class="yr"><span class="yv">2</span><span class="col" style="height:17%;background:var(--accent)"></span><span class="yl">'11</span></div>
+        <div class="yr"><span class="yv">7</span><span class="col" style="height:58%;background:var(--accent)"></span><span class="yl">'12</span></div>
+        <div class="yr"><span class="yv">1</span><span class="col" style="height:8%;background:var(--accent)"></span><span class="yl">'13</span></div>
+        <div class="yr"><span class="yv">2</span><span class="col" style="height:17%;background:var(--accent)"></span><span class="yl">'14</span></div>
+        <div class="yr"><span class="yv">8</span><span class="col" style="height:67%;background:var(--accent)"></span><span class="yl">'15</span></div>
+        <div class="yr"><span class="yv">1</span><span class="col" style="height:8%;background:#5a6080"></span><span class="yl">'17</span></div>
+        <div class="yr"><span class="yv">1</span><span class="col" style="height:8%;background:var(--accent2)"></span><span class="yl">'18</span></div>
+        <div class="yr"><span class="yv">9</span><span class="col" style="height:75%;background:var(--accent2)"></span><span class="yl">'19</span></div>
+        <div class="yr"><span class="yv">12</span><span class="col" style="height:100%;background:var(--accent2)"></span><span class="yl">'20</span></div>
+        <div class="yr"><span class="yv">8</span><span class="col" style="height:67%;background:var(--accent2)"></span><span class="yl">'21</span></div>
+        <div class="yr"><span class="yv">11</span><span class="col" style="height:92%;background:var(--accent2)"></span><span class="yl">'22</span></div>
+        <div class="yr"><span class="yv">5</span><span class="col" style="height:42%;background:var(--accent2)"></span><span class="yl">'23</span></div>
+        <div class="yr"><span class="yv">1</span><span class="col" style="height:8%;background:var(--accent2)"></span><span class="yl">'24</span></div>
+        <div class="yr"><span class="yv">5</span><span class="col" style="height:42%;background:var(--accent2)"></span><span class="yl">'25</span></div>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i>Textbook era (2010–15): 23 titles</span>
+        <span><i style="background:#5a6080"></i>Bridge year (2017)</span>
+        <span><i style="background:var(--accent2)"></i>Leadership / self-help era (2018+): 52 titles</span>
+      </div>
+    </div></section>
+
+  <section><h2>What he actually reads — top books by Kindle time</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:14px">Of everything owned, only six titles have logged on-device reading time. These are the books he sat down with pen-in-hand. <b>The Greatness Mindset</b> and <b>Relentless</b> tower over the rest.</p>
+      <div class="bar-row"><span class="bar-label">The Greatness Mindset</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">2.7h · 18s</span></div>
+      <div class="bar-row"><span class="bar-label">Relentless</span><span class="bar-track"><span class="bar-fill" style="width:81%;background:var(--grad)"></span></span><span class="bar-val">2.2h · 22s</span></div>
+      <div class="bar-row"><span class="bar-label">Naming Elephants</span><span class="bar-track"><span class="bar-fill" style="width:29.3%;background:var(--grad)"></span></span><span class="bar-val">0.8h · 4s</span></div>
+      <div class="bar-row"><span class="bar-label">Future Belongs / Dare</span><span class="bar-track"><span class="bar-fill" style="width:28.2%;background:var(--grad)"></span></span><span class="bar-val">0.8h · 7s</span></div>
+      <div class="bar-row"><span class="bar-label">Hidden Potential</span><span class="bar-track"><span class="bar-fill" style="width:1.5%;background:var(--grad)"></span></span><span class="bar-val">&lt;1m · 3s</span></div>
+      <div class="bar-row"><span class="bar-label">The DOSE Effect</span><span class="bar-track"><span class="bar-fill" style="width:1.5%;background:var(--grad)"></span></span><span class="bar-val">&lt;1m · 1s</span></div>
+      <p class="muted" style="margin-bottom:0;font-size:12px">Bars scaled by reading minutes; "s" = sessions. The last two are book-open blips. Total tracked: 6.5h across 55 sessions.</p>
+    </div></section>
+
+  <section><h2>The library, by genre — click to expand</h2>
+
+    <details><summary><span>📈 Business, leadership &amp; teams</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">the canon</span></summary>
+      <div class="det-body">
+        <p class="muted" style="font-size:14px">The spine of the adult library. Navy-SEAL leadership, sports psychology, org culture.</p>
+        <div class="bar-row"><span class="bar-label">Extreme Ownership</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Willink</span></div>
+        <div class="bar-row"><span class="bar-label">Dichotomy of Leadership</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Willink</span></div>
+        <div class="bar-row"><span class="bar-label">Leadership Strategy &amp; Tactics</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Willink</span></div>
+        <div class="bar-row"><span class="bar-label">Discipline Equals Freedom</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Willink</span></div>
+        <div class="bar-row"><span class="bar-label">Relentless</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Grover</span></div>
+        <div class="bar-row"><span class="bar-label">Winning</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Grover</span></div>
+        <div class="bar-row"><span class="bar-label">Start with Why</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Sinek</span></div>
+        <div class="bar-row"><span class="bar-label">Five Dysfunctions of a Team</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Lencioni</span></div>
+        <div class="bar-row"><span class="bar-label">Ideal Team Player</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Lencioni</span></div>
+        <div class="bar-row"><span class="bar-label">Good to Great</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Collins</span></div>
+        <div class="bar-row"><span class="bar-label">Radical Candor</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Scott</span></div>
+        <div class="bar-row"><span class="bar-label">No Rules Rules</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Hastings</span></div>
+        <div class="bar-row"><span class="bar-label">The Culture Map</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Meyer</span></div>
+        <div class="bar-row"><span class="bar-label">The Talent War</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Walker</span></div>
+      </div></details>
+
+    <details><summary><span>🧠 Self-help, mindset &amp; money</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">personal growth</span></summary>
+      <div class="det-body">
+        <p class="muted" style="font-size:14px">The biggest single genre. Mindset, habits, productivity, and a strong financial-independence streak.</p>
+        <div class="bar-row"><span class="bar-label">The Greatness Mindset</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Howes</span></div>
+        <div class="bar-row"><span class="bar-label">The 5 Types of Wealth</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Bloom</span></div>
+        <div class="bar-row"><span class="bar-label">Die With Zero</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Perkins</span></div>
+        <div class="bar-row"><span class="bar-label">The Subtle Art of Not Giving…</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Manson</span></div>
+        <div class="bar-row"><span class="bar-label">The Four Agreements</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Ruiz</span></div>
+        <div class="bar-row"><span class="bar-label">Unfu*k Yourself</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Bishop</span></div>
+        <div class="bar-row"><span class="bar-label">7 Habits of Highly Effective…</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Covey</span></div>
+        <div class="bar-row"><span class="bar-label">Ego Is the Enemy</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Holiday</span></div>
+        <div class="bar-row"><span class="bar-label">You Are a Badass at Money</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Sincero</span></div>
+        <div class="bar-row"><span class="bar-label">Smarter Faster Better</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Duhigg</span></div>
+        <div class="bar-row"><span class="bar-label">The Power of When</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Breus</span></div>
+        <div class="bar-row"><span class="bar-label">Tribe of Mentors</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Ferriss</span></div>
+      </div></details>
+
+    <details><summary><span>🔬 Science, thinking &amp; ideas</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">the curious shelf</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Range</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Epstein</span></div>
+        <div class="bar-row"><span class="bar-label">Hidden Potential</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Grant</span></div>
+        <div class="bar-row"><span class="bar-label">Blink</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Gladwell</span></div>
+        <div class="bar-row"><span class="bar-label">Freakonomics</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Levitt</span></div>
+        <div class="bar-row"><span class="bar-label">A Short History of Nearly…</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">Bryson</span></div>
+      </div></details>
+
+    <details><summary><span>🎓 The textbook fossil layer (2010–15)</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">23 titles</span></summary>
+      <div class="det-body">
+        <p class="muted" style="font-size:14px">The college years, preserved in amber. Aerospace, math, physics, and the SAT/ACT prep that came before.</p>
+        <div class="bar-row"><span class="bar-label">Fundamentals of Aerodynamics</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Anderson</span></div>
+        <div class="bar-row"><span class="bar-label">Aircraft Control &amp; Simulation</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Stevens</span></div>
+        <div class="bar-row"><span class="bar-label">Intro to Aircraft Flight Mech.</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Yechout</span></div>
+        <div class="bar-row"><span class="bar-label">Advanced Engineering Math</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Kreyszig</span></div>
+        <div class="bar-row"><span class="bar-label">Single Variable Calculus</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Stewart</span></div>
+        <div class="bar-row"><span class="bar-label">Physics, Volume 1</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Resnick</span></div>
+        <div class="bar-row"><span class="bar-label">The Practice of Statistics</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Starnes</span></div>
+        <div class="bar-row"><span class="bar-label">Advanced Mechanics of Materials</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">Boresi</span></div>
+        <div class="bar-row"><span class="bar-label">Barron's SAT</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">prep</span></div>
+        <div class="bar-row"><span class="bar-label">The Real ACT Prep Guide</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--accent)"></span></span><span class="bar-val">prep</span></div>
+      </div></details>
+  </section>
+
+  <section><h2>The authors he collects</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:14px">Counting distinct titles owned per author (names normalized across Amazon's inconsistent "Last, First" formatting). One name laps the field.</p>
+      <div class="bar-row"><span class="bar-label">Jocko Willink</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">4</span></div>
+      <div class="bar-row"><span class="bar-label">Tim S. Grover</span><span class="bar-track"><span class="bar-fill" style="width:75%;background:var(--grad)"></span></span><span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">Erin Meyer</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Stephen R. Covey</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Malcolm Gladwell</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Simon Sinek</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">David Epstein</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Sahil Bloom</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Erwin Kreyszig</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--accent)"></span></span><span class="bar-val">2</span></div>
+      <p class="muted" style="margin-bottom:0;font-size:12px">Counts include series editions and a few duplicate-format buys. Kreyszig (gold) is the lone textbook author with repeats.</p>
+    </div></section>
+
+  <section><h2>The most persuasive part: raw vs. resolved</h2>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw ReadingSession row</div>
+        <div class="mono">2024-08-18T00:00:19Z,<br><b style="color:var(--accent2)">B0B6ML61NP</b>,www.amazon.com,<br>Kindle&nbsp;E-reader,E-Book,<br>356300,&nbsp;24</div></div>
+      <div class="box"><div class="h">After joining the library index</div>
+        <div class="mono">title: <b style="color:#fff">The Greatness Mindset</b><br>author: Lewis Howes<br>genre: Self-Help<br>session: 5.9 min · 24 page-flips<br>signal: <b style="color:var(--accent2)">most-read book on Kindle</b></div></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:10px">Every reading row is just an opaque ASIN and a millisecond count. The library index is the Rosetta stone that turns <span class="mono">B0B6ML61NP</span> into a title, an author, a genre — and a story.</p>
+  </section>
+
+  <section><h2>Highlighting: counts only, no quotes</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:14px">Whispersync records that 20 highlights exist and which books they're in — but Amazon strips the highlighted <i>text</i> from the export. The two books Kevin marked up most:</p>
+      <div class="bar-row"><span class="bar-label">Relentless</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">13</span></div>
+      <div class="bar-row"><span class="bar-label">Naming Elephants</span><span class="bar-track"><span class="bar-fill" style="width:46%;background:var(--grad)"></span></span><span class="bar-val">6</span></div>
+      <div class="bar-row"><span class="bar-label">The Greatness Mindset</span><span class="bar-track"><span class="bar-fill" style="width:7.7%;background:var(--grad)"></span></span><span class="bar-val">1</span></div>
+    </div></section>
+
+  <section><h2>The snags (an honest data-limitations note)</h2>
+    <p class="muted">This export is more redacted and lopsided than it looks. Four caveats kept the analysis honest:</p>
+    <table class="tbl">
+      <tr><th>Limitation</th><th>What it means</th><th></th></tr>
+      <tr><td><b>Highlight text isn't exported</b></td><td>We know <i>how many</i> passages he marked and in which books, but not <i>what</i> they said. The actual quotes are unrecoverable from this data.</td><td><span class="lv md">noted</span></td></tr>
+      <tr><td><b>Kindle hours undercount badly</b></td><td>Only 6.5 hours are logged because Kevin is <b>audiobook-first</b> — 15 titles carry Audible "last heard" markers (Range, Blink, Freakonomics, No Rules Rules, Die With Zero…). Kindle is his sampling/highlighting layer; Audible does the heavy lifting. This is <i>not</i> "Kevin barely reads."</td><td><span class="lv md">framed</span></td></tr>
+      <tr><td><b>~7% completion is a Kindle artifact</b></td><td>Amazon's rollup pegs average percent-read at ~7% (max ~13%) — because completion is measured on the device he <i>opens</i> books on, not the one he <i>finishes</i> them on. A sampler-not-finisher pattern, on Kindle specifically.</td><td><span class="lv md">framed</span></td></tr>
+      <tr><td><b>Library = owned, not read</b></td><td>The 75-title catalog mixes purchases, Kindle Unlimited borrows, duplicate formats, and one non-book (a Rocketbook reusable notebook). Ownership ≠ completion. Session times are also UTC, so "evening reader" is an inference.</td><td><span class="lv md">caveat</span></td></tr>
+    </table>
+  </section>
+
+  <section><h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f">The textbook→self-help pivot isn't gradual — it's a <b>cliff</b>. The last engineering text lands in 2015; the leadership wave starts in 2018. The library is a snapshot of leaving school and entering a career.</div>
+      <div class="f"><b>Jocko Willink</b> is the most-owned author with 4 titles — Extreme Ownership, Dichotomy of Leadership, Discipline Equals Freedom, and Leadership Strategy &amp; Tactics. The whole Navy-SEAL leadership canon, collected.</div>
+      <div class="f"><b>Relentless</b> is the most highlighted (13) <i>and</i> 2nd most-read by time (2.2h) — the book he engaged with hardest, pen in hand.</div>
+      <div class="f">The independent <b>Instagram-saves</b> analysis flagged Sahil Bloom's <i>The 5 Types of Wealth</i> as a saved idea — and here it is, actually owned. Two separate data exports corroborating the same taste.</div>
+      <div class="f">Reading sessions cluster in the <b>evening</b> (6pm–midnight UTC) — short, infrequent bursts, never a marathon. He's a Kindle Unlimited member who dips in, not a couch-bound binge-reader.</div>
+    </div></section>
+
+  <section><h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Request your Kindle data</div>
+        <div class="d">Amazon → Privacy Central → "Request My Data" → Kindle. Arrives as a zip of CSV folders.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Ignore the telemetry</div>
+        <div class="d">Skip the power-state, Wi-Fi, and hibernate logs. Keep UnifiedLibraryIndex, ReadingSession, Whispersync, ReadingBehaviorCounts.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Join on ASIN with pandas</div>
+        <div class="d">Merge reading sessions and annotations against the library index to resolve titles, authors, and genres.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Date the library, count the genres</div>
+        <div class="d">groupby acquisition year for the era story; value_counts the genre tags for the breakdown bars.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Reconcile with Audible</div>
+        <div class="d">Check for audible.last_heard rows before concluding anything about "hours read" — the e-reader only tells half the story.</div></div></div>
+    </div></section>
+
+  <footer>Built with Python + pandas · charts hand-rolled in CSS · single self-contained file · June 5, 2026</footer>
+
+</div></body></html>

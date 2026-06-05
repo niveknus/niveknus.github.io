@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Six Years in Motion — Kevin's Garmin History</title>
+<style>
+  :root{
+    --bg:#0d0f17; --bg2:#141826; --card:#171c2b; --card2:#1f2538; --line:#2a3150;
+    --ink:#e9ecf6; --muted:#97a0bd; --dim:#5d6b8f;
+    --garmin:#00a6e0; --brain:#2dd4bf; --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+    --run:#34d399; --cardio:#22d3ee; --walk:#818cf8; --pickle:#fbbf24;
+    --strength:#fb7185; --cycle:#a78bfa; --hike:#4ade80; --tennis:#f0abfc; --other:#475569;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;
+    background:radial-gradient(1100px 560px at 84% -12%,rgba(0,166,224,.20),transparent),
+               radial-gradient(900px 520px at -10% 6%,rgba(45,212,191,.14),transparent),var(--bg);
+    color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.18;margin:0}
+  a{color:var(--brain);text-decoration:none}
+  .muted{color:var(--muted)}
+  /* hero */
+  header{padding:64px 0 26px}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--garmin);font-weight:700}
+  h1{font-size:clamp(30px,5vw,50px);font-weight:820;margin:12px 0 10px;
+     background:linear-gradient(95deg,#fff 18%,var(--brain) 64%,var(--garmin));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:18px;color:var(--muted);max-width:720px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:14px}
+  .chip b{color:var(--brain);font-weight:800}
+  /* sections */
+  section{margin:30px 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 30px}
+  section h2{font-size:22px;font-weight:780;display:flex;align-items:center;gap:10px}
+  section h2 .dot{width:10px;height:10px;border-radius:3px;background:var(--garmin)}
+  .lead{color:var(--muted);margin:10px 0 22px;max-width:840px}
+  .insight{border-left:3px solid var(--garmin);background:rgba(0,166,224,.07);
+    padding:12px 16px;border-radius:0 10px 10px 0;margin-top:18px;font-size:14.5px;color:#cfd6ee}
+  .insight b{color:#fff}
+  /* heatmap */
+  .hm-year{display:flex;align-items:center;gap:14px;margin:5px 0}
+  .hm-year .yr{width:42px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+  .hm-grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;gap:2px}
+  .hm-cell{width:9px;height:9px;border-radius:2px;background:#1d2336}
+  .hm-scroll{overflow-x:auto;padding-bottom:6px}
+  .legend{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin-top:14px;flex-wrap:wrap}
+  .legend .sw{width:11px;height:11px;border-radius:3px}
+  .months{display:flex;gap:2px;margin-left:56px;font-size:10px;color:var(--dim)}
+  /* type evolution */
+  .te-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+  .te-row .yr{width:42px;font-weight:800;color:var(--muted)}
+  .te-bar{flex:1;display:flex;height:26px;border-radius:7px;overflow:hidden;background:#10131f}
+  .te-seg{height:100%}
+  .te-count{width:42px;text-align:right;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .cat-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;font-size:13px}
+  .cat-legend span{display:flex;align-items:center;gap:6px;color:var(--muted)}
+  .cat-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:6px}
+  .tile{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .tile .n{font-size:26px;font-weight:820;color:var(--brain)}
+  .tile .l{font-size:12.5px;color:var(--muted);margin-top:3px}
+  /* tooltip */
+  #tip{position:fixed;pointer-events:none;background:#0a0d15;border:1px solid var(--line);
+    border-radius:8px;padding:7px 10px;font-size:12.5px;color:var(--ink);opacity:0;transition:opacity .08s;z-index:50;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+  svg text{fill:var(--muted);font-size:11px}
+  .footer{color:var(--muted);font-size:13px;padding:26px 0 56px;text-align:center}
+  .footer code{background:var(--card2);padding:2px 7px;border-radius:5px;color:#cfd6ee}
+</style>
+</head>
+<body>
+<div id="tip"></div>
+<div class="wrap">
+  <header>
+    <div class="kicker">Garmin Connect · 2020 – 2026</div>
+    <h1>Six Years in Motion</h1>
+    <p class="sub">Every tracked workout and weigh-in Kevin's watch has recorded, pulled in one backfill and read end to end — the ramps, the dormant stretch, the crash, and the comeback.</p>
+    <div class="chips" id="chips"></div>
+  </header>
+
+  <section>
+    <h2><span class="dot"></span>The activity heat map</h2>
+    <p class="lead">Every active day since June 2020. Darker = more minutes that day. Hover any square for the detail.</p>
+    <div class="months" id="months"></div>
+    <div id="heatmap"></div>
+    <div class="legend" id="hm-legend"></div>
+    <div class="insight" id="hm-insight"></div>
+  </section>
+
+  <section>
+    <h2><span class="dot"></span>Training volume by year</h2>
+    <p class="lead">Active hours per year, with the activity count on each bar. The shape of the story in one chart.</p>
+    <div id="volume"></div>
+    <div class="insight">Two big build years — <b>2023 (192 h / 187 activities)</b> and <b>2025 (227 h / 230 activities, his biggest ever)</b> — bracket a steep <b>2024 crash</b> and a near-total <b>2021 dormancy</b>. The pattern is ramp → over-reach → collapse → smarter rebuild.</div>
+  </section>
+
+  <section>
+    <h2><span class="dot"></span>How the training mix evolved</h2>
+    <p class="lead">Share of each year's activities by type. Watch endurance give way to a broader, more sustainable mix.</p>
+    <div id="typeevo"></div>
+    <div class="cat-legend" id="cat-legend"></div>
+    <div class="insight"><b>Pickleball</b> debuts May 2023 and climbs to a near-weekly staple. <b>Strength and cycling</b> only appear from 2025 on — the deliberate shift from monomaniacal running toward mixed-modal, recomposition-minded training.</div>
+  </section>
+
+  <section>
+    <h2><span class="dot"></span>The weight curve — 8 years, 546 weigh-ins</h2>
+    <p class="lead">Monthly average body weight, Oct 2018 → May 2026. The dashed line is the recurring 165 lb goal.</p>
+    <div id="weight"></div>
+    <div class="insight">The cut isn't a one-off. Kevin has reached the <b>low-to-mid 160s three times</b> (162.7 in Apr 2020 — his all-time low; 166 in 2023; ~172 in 2025) and regained each time to ~200+. The <b>all-time high was 210.4 on Jan 11, 2025</b>, right before the proven cut. <b>Maintenance, not the cut, is the real challenge.</b></div>
+  </section>
+
+  <section>
+    <h2><span class="dot"></span>Steps &amp; resting heart rate — the body's response</h2>
+    <p class="lead">Average daily steps per year (bars) against average resting heart rate (line). Lower resting HR = fitter.</p>
+    <div id="steps"></div>
+    <div class="insight">Resting HR tracks the training arc almost perfectly: it bottoms at <b>56 bpm in 2023</b> and <b>58 in 2025</b> — the high-volume years — and climbs into the 60s when training lapses. Daily steps made a regime change in 2023, jumping from a sedentary ~3,300 to 7,000+.</div>
+  </section>
+
+  <div class="footer">
+    Built from <code>garmin-activity-history.json</code> + <code>garmin-health-history.json</code> ·
+    616 activities, 546 weigh-ins · pulled via the Fitness Coach pipeline ·
+    self-contained, no external dependencies.
+  </div>
+</div>
+
+<script>
+const D = {"tot":{"activities":616,"hours":596,"km":1854,"kcal":263653,"runs":159,"run_km":846,"pickleball":70,"weighins":546,"first":"2020-06-23","last":"2026-05-29","lo":[162.7,"2020-04-24"],"hi":[210.4,"2025-01-11"]},"daymap":{"2020-06-23":[1,1,"walking"],"2020-06-24":[3,49,"walking"],"2020-06-25":[1,15,"running"],"2020-06-27":[1,18,"running"],"2020-06-28":[1,17,"running"],"2020-06-29":[2,32,"walking"],"2020-06-30":[1,14,"running"],"2020-07-01":[1,12,"running"],"2020-07-02":[1,13,"treadmill_running"],"2020-07-03":[3,18,"breathwork"],"2020-07-05":[2,80,"walking"],"2020-07-06":[1,27,"treadmill_running"],"2020-07-07":[1,14,"running"],"2020-07-08":[1,12,"running"],"2020-07-10":[1,11,"strength_training"],"2020-07-12":[1,47,"treadmill_running"],"2020-07-17":[1,50,"treadmill_running"],"2020-07-20":[1,20,"treadmill_running"],"2020-07-22":[1,18,"running"],"2020-07-25":[1,34,"walking"],"2020-07-26":[1,50,"indoor_cardio"],"2020-07-30":[1,12,"running"],"2020-08-06":[1,12,"running"],"2020-08-10":[1,32,"walking"],"2020-09-05":[1,30,"treadmill_running"],"2020-09-06":[1,58,"walking"],"2020-09-18":[1,40,"walking"],"2020-09-19":[1,10,"walking"],"2020-09-20":[1,13,"running"],"2020-09-27":[1,342,"walking"],"2020-10-03":[1,66,"walking"],"2020-10-10":[1,34,"walking"],"2020-10-11":[1,19,"running"],"2020-10-12":[1,14,"running"],"2020-10-13":[1,28,"running"],"2020-10-16":[1,33,"running"],"2020-10-17":[1,21,"treadmill_running"],"2020-10-18":[1,21,"running"],"2020-10-24":[1,8,"strength_training"],"2020-10-30":[1,14,"running"],"2020-10-31":[1,14,"indoor_cardio"],"2020-11-08":[1,33,"treadmill_running"],"2020-11-15":[1,13,"treadmill_running"],"2020-11-24":[1,29,"walking"],"2020-12-05":[1,23,"walking"],"2020-12-18":[1,71,"hiking"],"2021-05-15":[1,68,"indoor_cardio"],"2021-09-26":[1,135,"walking"],"2021-10-02":[1,33,"walking"],"2021-10-16":[1,50,"walking"],"2021-11-13":[1,70,"hiking"],"2021-12-17":[1,69,"walking"],"2022-01-15":[1,226,"hiking"],"2022-02-02":[1,7,"resort_skiing_snowboarding_ws"],"2022-02-03":[2,63,"resort_skiing_snowboarding_ws"],"2022-02-04":[1,53,"resort_skiing_snowboarding_ws"],"2022-02-06":[1,99,"indoor_cardio"],"2022-02-19":[1,80,"tennis_v2"],"2022-02-20":[1,72,"indoor_cardio"],"2022-02-26":[1,50,"indoor_cardio"],"2022-03-11":[2,136,"indoor_cardio"],"2022-03-20":[1,74,"walking"],"2022-03-22":[1,18,"walking"],"2022-03-26":[1,30,"walking"],"2022-03-27":[1,44,"walking"],"2022-03-29":[1,22,"walking"],"2022-03-30":[1,36,"walking"],"2022-03-31":[1,73,"walking"],"2022-04-02":[1,174,"treadmill_running"],"2022-04-03":[1,23,"walking"],"2022-04-04":[1,22,"walking"],"2022-04-08":[1,88,"indoor_cardio"],"2022-04-11":[1,50,"walking"],"2022-04-12":[1,28,"walking"],"2022-04-13":[1,32,"walking"],"2022-04-24":[3,109,"walking"],"2022-05-08":[1,26,"walking"],"2022-05-15":[1,38,"walking"],"2022-06-19":[1,40,"walking"],"2022-07-22":[1,45,"walking"],"2022-07-30":[1,35,"walking"],"2022-08-05":[1,41,"walking"],"2022-08-20":[1,27,"walking"],"2022-08-22":[1,7,"treadmill_running"],"2022-08-25":[1,9,"treadmill_running"],"2022-08-27":[1,51,"walking"],"2022-09-03":[1,55,"walking"],"2022-09-17":[1,26,"running"],"2022-09-23":[2,31,"indoor_cycling"],"2022-09-24":[1,31,"indoor_cardio"],"2022-09-28":[1,25,"indoor_cardio"],"2022-10-04":[1,6,"indoor_cycling"],"2022-10-05":[1,28,"indoor_cycling"],"2022-10-06":[1,57,"indoor_cardio"],"2022-10-07":[1,25,"indoor_cycling"],"2022-10-15":[1,90,"walking"],"2022-10-21":[1,86,"hiking"],"2022-11-14":[1,46,"indoor_cycling"],"2022-11-15":[1,81,"indoor_cardio"],"2022-11-27":[1,64,"walking"],"2022-12-17":[1,9,"running"],"2023-01-02":[1,0,"indoor_cardio"],"2023-01-07":[1,60,"indoor_cardio"],"2023-01-10":[1,57,"indoor_cardio"],"2023-01-11":[2,0,"indoor_cardio"],"2023-01-12":[1,62,"indoor_cardio"],"2023-01-14":[1,31,"walking"],"2023-01-16":[1,73,"indoor_cardio"],"2023-01-18":[1,62,"indoor_cardio"],"2023-01-22":[1,60,"indoor_cardio"],"2023-01-26":[1,67,"indoor_cardio"],"2023-01-28":[1,66,"indoor_cardio"],"2023-01-29":[1,19,"running"],"2023-01-31":[1,69,"indoor_cardio"],"2023-02-02":[1,60,"indoor_cardio"],"2023-02-03":[1,74,"indoor_cardio"],"2023-02-04":[1,36,"walking"],"2023-02-07":[1,62,"walking"],"2023-02-09":[1,66,"walking"],"2023-02-14":[1,63,"indoor_cardio"],"2023-02-21":[1,64,"indoor_cardio"],"2023-02-23":[1,93,"indoor_cardio"],"2023-02-25":[1,249,"tennis_v2"],"2023-02-26":[1,41,"running"],"2023-02-28":[1,69,"indoor_cardio"],"2023-03-02":[1,71,"indoor_cardio"],"2023-03-03":[1,54,"tennis_v2"],"2023-03-04":[1,48,"indoor_cardio"],"2023-03-05":[1,48,"running"],"2023-03-07":[1,60,"indoor_cardio"],"2023-03-09":[1,65,"indoor_cardio"],"2023-03-10":[2,172,"tennis_v2"],"2023-03-11":[1,27,"running"],"2023-03-12":[1,36,"running"],"2023-03-14":[1,68,"treadmill_running"],"2023-03-16":[1,68,"indoor_cardio"],"2023-03-18":[1,13,"running"],"2023-03-19":[1,35,"running"],"2023-03-21":[1,67,"indoor_cardio"],"2023-03-23":[1,128,"indoor_cardio"],"2023-03-24":[1,28,"indoor_cardio"],"2023-03-26":[3,124,"running"],"2023-03-28":[1,142,"indoor_cardio"],"2023-03-30":[1,68,"indoor_cardio"],"2023-04-01":[1,69,"indoor_cardio"],"2023-04-02":[1,41,"running"],"2023-04-09":[1,14,"running"],"2023-04-11":[1,64,"indoor_cardio"],"2023-04-14":[1,47,"indoor_cardio"],"2023-04-15":[1,43,"running"],"2023-04-20":[1,25,"walking"],"2023-04-27":[1,110,"indoor_cardio"],"2023-04-28":[1,58,"indoor_cardio"],"2023-04-29":[1,64,"indoor_cardio"],"2023-04-30":[1,9,"running"],"2023-05-04":[1,40,"running"],"2023-05-08":[1,32,"hiking"],"2023-05-10":[2,157,"hiking"],"2023-05-15":[1,40,"running"],"2023-05-19":[1,40,"walking"],"2023-05-20":[1,88,"strength_training"],"2023-05-21":[1,31,"running"],"2023-05-23":[1,80,"running"],"2023-05-25":[1,71,"indoor_cardio"],"2023-05-26":[1,54,"walking"],"2023-05-27":[4,111,"indoor_cardio"],"2023-05-28":[1,92,"running"],"2023-05-29":[1,113,"pickleball"],"2023-05-30":[1,60,"indoor_cardio"],"2023-06-03":[1,70,"running"],"2023-06-05":[1,11,"running"],"2023-06-06":[1,66,"indoor_cardio"],"2023-06-08":[1,66,"indoor_cardio"],"2023-06-09":[2,143,"indoor_cardio"],"2023-06-10":[2,61,"walking"],"2023-06-11":[1,18,"running"],"2023-06-13":[1,58,"indoor_cardio"],"2023-06-14":[1,42,"running"],"2023-06-15":[1,62,"indoor_cardio"],"2023-06-16":[1,207,"pickleball"],"2023-06-17":[1,37,"walking"],"2023-06-18":[2,167,"running"],"2023-06-20":[1,89,"indoor_cardio"],"2023-06-22":[1,61,"indoor_cardio"],"2023-06-23":[1,28,"running"],"2023-06-25":[2,115,"indoor_cardio"],"2023-06-28":[1,71,"indoor_cardio"],"2023-06-29":[1,60,"indoor_cardio"],"2023-07-01":[1,28,"running"],"2023-07-02":[1,101,"running"],"2023-07-04":[1,43,"running"],"2023-07-06":[1,64,"indoor_cardio"],"2023-07-07":[1,28,"running"],"2023-07-09":[1,73,"running"],"2023-07-11":[1,73,"indoor_cardio"],"2023-07-13":[1,73,"indoor_cardio"],"2023-07-14":[1,34,"running"],"2023-07-16":[1,118,"running"],"2023-07-18":[1,61,"indoor_cardio"],"2023-07-19":[1,24,"running"],"2023-07-20":[1,72,"indoor_cardio"],"2023-07-21":[1,93,"pickleball"],"2023-07-22":[1,42,"walking"],"2023-07-23":[1,94,"running"],"2023-07-25":[1,75,"indoor_cardio"],"2023-07-27":[1,64,"indoor_cardio"],"2023-07-28":[1,45,"running"],"2023-07-29":[1,66,"running"],"2023-07-30":[2,140,"running"],"2023-08-06":[1,38,"walking"],"2023-08-08":[1,107,"indoor_cardio"],"2023-08-10":[1,59,"indoor_cardio"],"2023-08-11":[1,62,"indoor_cardio"],"2023-08-12":[1,74,"walking"],"2023-08-13":[1,63,"indoor_cardio"],"2023-08-15":[1,66,"indoor_cardio"],"2023-08-17":[1,61,"indoor_cardio"],"2023-08-19":[1,28,"running"],"2023-08-22":[1,84,"indoor_cardio"],"2023-08-24":[1,75,"indoor_cardio"],"2023-08-25":[1,60,"walking"],"2023-08-26":[1,62,"walking"],"2023-08-27":[1,88,"running"],"2023-08-28":[1,63,"indoor_cardio"],"2023-08-29":[1,62,"indoor_cardio"],"2023-08-31":[1,62,"indoor_cardio"],"2023-09-02":[1,29,"walking"],"2023-09-03":[1,84,"running"],"2023-09-05":[1,64,"indoor_cardio"],"2023-09-07":[1,65,"indoor_cardio"],"2023-09-08":[2,35,"indoor_cardio"],"2023-09-09":[2,70,"running"],"2023-09-10":[1,108,"running"],"2023-09-12":[1,66,"indoor_cardio"],"2023-09-15":[1,20,"running"],"2023-09-17":[1,86,"running"],"2023-09-19":[1,66,"indoor_cardio"],"2023-09-21":[1,61,"indoor_cardio"],"2023-09-24":[1,118,"running"],"2023-09-26":[1,70,"indoor_cardio"],"2023-10-01":[1,74,"running"],"2023-10-03":[1,108,"indoor_cardio"],"2023-10-05":[1,102,"indoor_cardio"],"2023-10-06":[1,100,"indoor_cardio"],"2023-10-07":[1,33,"running"],"2023-10-10":[1,66,"indoor_cardio"],"2023-10-12":[1,63,"indoor_cardio"],"2023-10-14":[1,102,"running"],"2023-10-24":[1,67,"indoor_cardio"],"2023-10-26":[1,74,"indoor_cardio"],"2023-10-27":[2,46,"running"],"2023-10-28":[1,53,"running"],"2023-10-29":[1,60,"indoor_cardio"],"2023-10-31":[1,70,"indoor_cardio"],"2023-11-02":[1,77,"indoor_cardio"],"2023-11-04":[2,40,"running"],"2023-11-05":[1,96,"running"],"2023-11-07":[1,59,"indoor_cardio"],"2023-11-09":[1,60,"indoor_cardio"],"2023-11-12":[1,120,"running"],"2023-11-14":[1,66,"indoor_cardio"],"2023-11-16":[1,62,"indoor_cardio"],"2023-11-17":[1,53,"pickleball"],"2023-11-19":[1,151,"running"],"2023-11-24":[1,21,"running"],"2023-11-26":[1,78,"running"],"2023-11-30":[1,25,"running"],"2023-12-02":[1,152,"running"],"2023-12-19":[1,66,"indoor_cardio"],"2023-12-22":[1,60,"pickleball"],"2023-12-29":[1,64,"walking"],"2024-01-04":[1,77,"pickleball"],"2024-01-07":[1,59,"pickleball"],"2024-01-26":[1,124,"pickleball"],"2024-02-01":[1,63,"indoor_cardio"],"2024-02-03":[1,34,"walking"],"2024-02-04":[1,17,"walking"],"2024-02-06":[1,60,"indoor_cardio"],"2024-02-10":[1,12,"running"],"2024-03-10":[1,50,"indoor_cardio"],"2024-03-23":[1,78,"walking"],"2024-04-05":[1,43,"pickleball"],"2024-04-07":[1,48,"cycling"],"2024-04-12":[1,73,"pickleball"],"2024-04-19":[1,55,"pickleball"],"2024-04-26":[1,92,"pickleball"],"2024-05-03":[1,184,"pickleball"],"2024-05-05":[1,50,"walking"],"2024-06-07":[1,58,"pickleball"],"2024-06-16":[1,18,"pickleball"],"2024-07-12":[1,47,"indoor_cardio"],"2024-07-13":[1,17,"indoor_cardio"],"2024-08-02":[1,46,"walking"],"2024-08-09":[1,53,"pickleball"],"2024-08-17":[1,19,"walking"],"2024-08-24":[1,60,"indoor_cardio"],"2024-09-02":[1,30,"walking"],"2024-10-05":[1,65,"pickleball"],"2024-10-17":[1,29,"walking"],"2024-12-20":[1,110,"pickleball"],"2025-01-11":[1,32,"walking"],"2025-01-12":[1,53,"walking"],"2025-01-17":[2,55,"walking"],"2025-01-18":[1,54,"walking"],"2025-01-19":[2,36,"cycling"],"2025-01-24":[1,158,"pickleball"],"2025-01-25":[1,60,"cycling"],"2025-01-26":[1,35,"walking"],"2025-01-31":[2,68,"cycling"],"2025-02-01":[1,27,"cycling"],"2025-02-02":[1,40,"cycling"],"2025-02-07":[1,169,"pickleball"],"2025-02-08":[1,74,"walking"],"2025-02-09":[1,25,"cycling"],"2025-02-11":[1,40,"cycling"],"2025-02-14":[1,156,"pickleball"],"2025-02-15":[1,28,"cycling"],"2025-02-16":[1,68,"cycling"],"2025-02-18":[1,29,"indoor_rowing"],"2025-02-19":[1,34,"indoor_cardio"],"2025-02-21":[1,45,"treadmill_running"],"2025-02-22":[1,62,"cycling"],"2025-02-23":[1,93,"pickleball"],"2025-02-28":[1,169,"pickleball"],"2025-03-05":[1,27,"walking"],"2025-03-07":[1,250,"resort_skiing"],"2025-03-08":[2,322,"resort_skiing"],"2025-03-09":[1,249,"resort_skiing"],"2025-03-10":[1,91,"walking"],"2025-03-11":[1,31,"street_running"],"2025-03-12":[1,28,"running"],"2025-03-14":[2,170,"pickleball"],"2025-03-15":[1,27,"running"],"2025-03-16":[2,54,"cycling"],"2025-03-17":[1,28,"running"],"2025-03-18":[1,47,"walking"],"2025-03-21":[4,224,"pickleball"],"2025-03-22":[3,103,"running"],"2025-03-23":[1,26,"running"],"2025-03-25":[1,28,"running"],"2025-03-27":[1,19,"running"],"2025-03-28":[2,160,"pickleball"],"2025-03-29":[2,51,"cycling"],"2025-03-30":[1,32,"running"],"2025-04-01":[1,26,"running"],"2025-04-03":[1,27,"running"],"2025-04-04":[2,191,"pickleball"],"2025-04-05":[1,34,"running"],"2025-04-06":[1,48,"cycling"],"2025-04-08":[1,81,"hiking"],"2025-04-09":[3,165,"running"],"2025-04-10":[1,49,"running"],"2025-04-12":[1,38,"running"],"2025-04-13":[1,14,"running"],"2025-04-14":[1,24,"running"],"2025-04-16":[1,12,"running"],"2025-04-18":[1,138,"pickleball"],"2025-04-19":[1,63,"running"],"2025-04-20":[2,50,"cycling"],"2025-04-22":[1,24,"running"],"2025-04-23":[1,36,"running"],"2025-04-24":[1,34,"running"],"2025-04-25":[1,42,"running"],"2025-04-26":[2,58,"running"],"2025-04-27":[2,58,"running"],"2025-04-28":[1,29,"walking"],"2025-05-01":[1,23,"running"],"2025-05-02":[1,73,"pickleball"],"2025-05-03":[2,71,"running"],"2025-05-04":[1,95,"pickleball"],"2025-05-05":[1,37,"walking"],"2025-05-06":[1,27,"walking"],"2025-05-14":[1,26,"hiking"],"2025-05-21":[2,91,"hiking"],"2025-05-22":[1,82,"hiking"],"2025-05-28":[1,41,"running"],"2025-05-30":[2,125,"pickleball"],"2025-05-31":[1,15,"running"],"2025-06-01":[1,49,"running"],"2025-06-06":[1,25,"running"],"2025-06-07":[3,102,"running"],"2025-06-08":[1,67,"indoor_cardio"],"2025-06-09":[1,31,"strength_training"],"2025-06-13":[2,155,"pickleball"],"2025-06-14":[2,144,"tennis_v2"],"2025-06-15":[2,215,"pickleball"],"2025-06-17":[1,66,"strength_training"],"2025-06-20":[2,141,"running"],"2025-06-21":[1,52,"indoor_cardio"],"2025-06-22":[2,104,"running"],"2025-06-23":[1,22,"running"],"2025-06-24":[2,56,"strength_training"],"2025-06-27":[1,76,"strength_training"],"2025-06-29":[1,42,"running"],"2025-07-03":[1,67,"strength_training"],"2025-07-04":[2,86,"pickleball"],"2025-07-05":[2,100,"strength_training"],"2025-07-06":[1,63,"running"],"2025-07-08":[1,37,"running"],"2025-07-10":[1,103,"pickleball"],"2025-07-11":[2,158,"pickleball"],"2025-07-12":[1,61,"strength_training"],"2025-07-13":[1,69,"running"],"2025-07-14":[1,144,"pickleball"],"2025-07-15":[1,10,"running"],"2025-07-18":[1,97,"pickleball"],"2025-07-19":[2,90,"running"],"2025-07-21":[1,14,"indoor_cardio"],"2025-07-22":[1,22,"running"],"2025-07-24":[1,19,"running"],"2025-07-25":[2,105,"running"],"2025-07-26":[2,107,"other"],"2025-07-28":[1,102,"pickleball"],"2025-08-03":[1,24,"strength_training"],"2025-08-05":[1,36,"strength_training"],"2025-08-07":[1,59,"strength_training"],"2025-08-08":[1,62,"indoor_cardio"],"2025-08-10":[1,29,"indoor_cardio"],"2025-08-11":[1,20,"running"],"2025-08-12":[1,61,"strength_training"],"2025-08-13":[1,15,"running"],"2025-08-14":[1,61,"strength_training"],"2025-08-15":[1,54,"indoor_cardio"],"2025-08-16":[3,132,"indoor_cardio"],"2025-08-17":[1,55,"indoor_cardio"],"2025-08-18":[1,28,"strength_training"],"2025-08-20":[1,37,"running"],"2025-08-21":[1,78,"strength_training"],"2025-08-22":[2,173,"pickleball"],"2025-08-23":[1,67,"indoor_cardio"],"2025-08-24":[1,25,"running"],"2025-08-28":[1,67,"indoor_cardio"],"2025-08-31":[1,143,"indoor_cardio"],"2025-09-01":[1,62,"indoor_cardio"],"2025-09-03":[1,47,"walking"],"2025-09-05":[3,267,"pickleball"],"2025-09-07":[2,132,"indoor_cardio"],"2025-09-08":[1,122,"pickleball"],"2025-09-14":[1,70,"indoor_cardio"],"2025-09-15":[1,91,"pickleball"],"2025-09-16":[1,56,"indoor_cardio"],"2025-09-18":[1,85,"pickleball"],"2025-09-19":[3,111,"cycling"],"2025-09-20":[1,51,"indoor_cardio"],"2025-09-26":[2,188,"pickleball"],"2025-09-27":[2,196,"indoor_cardio"],"2025-10-01":[1,60,"walking"],"2025-10-03":[1,102,"pickleball"],"2025-10-11":[2,86,"strength_training"],"2025-10-12":[2,187,"strength_training"],"2025-10-15":[2,108,"walking"],"2025-10-17":[2,204,"pickleball"],"2025-10-22":[2,76,"indoor_cardio"],"2025-10-24":[1,165,"pickleball"],"2025-10-29":[1,54,"indoor_cardio"],"2025-11-01":[2,166,"yoga"],"2025-11-02":[1,44,"indoor_cardio"],"2025-11-08":[1,108,"walking"],"2025-11-19":[1,69,"indoor_cardio"],"2025-11-21":[1,149,"pickleball"],"2025-11-23":[1,46,"walking"],"2025-11-26":[1,21,"strength_training"],"2025-11-28":[1,29,"strength_training"],"2025-12-05":[1,112,"pickleball"],"2025-12-12":[1,144,"pickleball"],"2025-12-13":[2,154,"pickleball"],"2025-12-19":[1,50,"indoor_cardio"],"2025-12-21":[4,89,"indoor_cardio"],"2025-12-22":[1,110,"walking"],"2025-12-23":[1,22,"indoor_cardio"],"2025-12-24":[1,21,"indoor_cardio"],"2025-12-28":[1,130,"indoor_cardio"],"2025-12-29":[1,22,"walking"],"2025-12-31":[1,96,"indoor_cardio"],"2026-01-02":[1,81,"pickleball"],"2026-01-03":[1,85,"indoor_cardio"],"2026-01-06":[1,33,"strength_training"],"2026-01-13":[1,35,"indoor_cardio"],"2026-01-15":[1,27,"strength_training"],"2026-01-16":[1,125,"pickleball"],"2026-01-20":[1,55,"strength_training"],"2026-01-22":[1,49,"indoor_cardio"],"2026-01-23":[2,196,"pickleball"],"2026-01-27":[1,46,"strength_training"],"2026-01-29":[1,27,"indoor_cardio"],"2026-01-30":[2,198,"pickleball"],"2026-02-03":[1,24,"indoor_cardio"],"2026-02-13":[1,154,"pickleball"],"2026-02-17":[1,39,"indoor_cardio"],"2026-02-19":[1,38,"indoor_cardio"],"2026-02-20":[1,160,"pickleball"],"2026-02-21":[1,24,"indoor_cardio"],"2026-03-05":[1,57,"strength_training"],"2026-03-06":[1,145,"pickleball"],"2026-03-07":[1,83,"cycling"],"2026-03-10":[1,29,"indoor_cardio"],"2026-03-13":[1,154,"pickleball"],"2026-03-14":[1,115,"walking"],"2026-03-15":[1,63,"cycling"],"2026-03-17":[1,56,"indoor_cardio"],"2026-03-18":[1,53,"indoor_cardio"],"2026-03-20":[1,118,"pickleball"],"2026-03-21":[1,102,"cycling"],"2026-03-22":[1,98,"pickleball"],"2026-03-28":[1,24,"running"],"2026-03-29":[1,80,"cycling"],"2026-04-03":[1,118,"pickleball"],"2026-04-10":[1,150,"pickleball"],"2026-04-11":[1,42,"walking"],"2026-04-12":[1,75,"cycling"],"2026-04-14":[1,25,"indoor_cardio"],"2026-04-17":[1,50,"indoor_cardio"],"2026-04-22":[1,56,"indoor_cardio"],"2026-04-23":[1,31,"indoor_cardio"],"2026-04-24":[1,128,"pickleball"],"2026-04-30":[1,71,"indoor_cardio"],"2026-05-03":[2,248,"indoor_cardio"],"2026-05-05":[1,69,"indoor_cardio"],"2026-05-08":[1,144,"pickleball"],"2026-05-11":[1,44,"indoor_cardio"],"2026-05-13":[1,20,"running"],"2026-05-15":[1,69,"strength_training"],"2026-05-16":[1,57,"yoga"],"2026-05-18":[1,69,"strength_training"],"2026-05-22":[1,132,"pickleball"],"2026-05-24":[1,88,"strength_training"],"2026-05-25":[1,46,"yoga"],"2026-05-28":[1,28,"strength_training"],"2026-05-29":[1,38,"walking"]},"yearly":[{"year":"2020","count":52,"hours":26,"km":90,"kcal":11844},{"year":"2021","count":6,"hours":7,"km":12,"kcal":3273},{"year":"2022","count":54,"hours":43,"km":100,"kcal":19893},{"year":"2023","count":187,"hours":192,"km":620,"kcal":96280},{"year":"2024","count":29,"hours":28,"km":44,"kcal":16025},{"year":"2025","count":230,"hours":227,"km":818,"kcal":87523},{"year":"2026","count":58,"hours":73,"km":170,"kcal":28815}],"cats":["Running","Indoor cardio","Walking","Pickleball","Strength","Cycling","Hiking","Tennis","Other"],"typematrix":{"2020":{"Running":29,"Indoor cardio":2,"Walking":17,"Pickleball":0,"Strength":2,"Cycling":0,"Hiking":1,"Tennis":0,"Other":1},"2021":{"Running":0,"Indoor cardio":1,"Walking":4,"Pickleball":0,"Strength":0,"Cycling":0,"Hiking":1,"Tennis":0,"Other":0},"2022":{"Running":5,"Indoor cardio":11,"Walking":26,"Pickleball":0,"Strength":0,"Cycling":5,"Hiking":2,"Tennis":1,"Other":4},"2023":{"Running":60,"Indoor cardio":90,"Walking":17,"Pickleball":7,"Strength":2,"Cycling":0,"Hiking":2,"Tennis":5,"Other":4},"2024":{"Running":1,"Indoor cardio":6,"Walking":8,"Pickleball":13,"Strength":0,"Cycling":1,"Hiking":0,"Tennis":0,"Other":0},"2025":{"Running":62,"Indoor cardio":48,"Walking":27,"Pickleball":35,"Strength":23,"Cycling":21,"Hiking":6,"Tennis":1,"Other":7},"2026":{"Running":2,"Indoor cardio":22,"Walking":3,"Pickleball":15,"Strength":9,"Cycling":5,"Hiking":0,"Tennis":0,"Other":2}},"runpace":{"2020":{"runs":29,"km":69,"pace_min_km":8.97,"avg_km":2.4},"2022":{"runs":5,"km":6,"pace_min_km":40.32,"avg_km":1.1},"2023":{"runs":60,"km":507,"pace_min_km":6.64,"avg_km":8.4},"2024":{"runs":1,"km":2,"pace_min_km":7.12,"avg_km":1.6},"2025":{"runs":62,"km":258,"pace_min_km":7.21,"avg_km":4.2},"2026":{"runs":2,"km":6,"pace_min_km":7.94,"avg_km":2.8}},"monthly_weight":[{"m":"2018-10","w":192.8,"bf":28.6},{"m":"2018-11","w":187.8,"bf":28.1},{"m":"2018-12","w":187.4,"bf":27.3},{"m":"2019-01","w":190.3,"bf":27.4},{"m":"2019-02","w":188.6,"bf":27.8},{"m":"2019-03","w":189.1,"bf":27.0},{"m":"2019-04","w":187.4,"bf":26.2},{"m":"2019-05","w":186.5,"bf":26.6},{"m":"2019-06","w":184.6,"bf":27.1},{"m":"2019-07","w":181.4,"bf":27.8},{"m":"2019-08","w":182.2,"bf":27.7},{"m":"2019-09","w":184.1,"bf":27.7},{"m":"2019-10","w":185.0,"bf":27.9},{"m":"2019-11","w":184.2,"bf":27.0},{"m":"2019-12","w":186.4,"bf":27.6},{"m":"2020-01","w":183.5,"bf":26.9},{"m":"2020-02","w":175.2,"bf":23.7},{"m":"2020-03","w":170.5,"bf":22.0},{"m":"2020-04","w":164.6,"bf":21.4},{"m":"2020-05","w":166.1,"bf":21.4},{"m":"2020-06","w":167.4,"bf":22.1},{"m":"2020-07","w":169.2,"bf":21.6},{"m":"2020-08","w":170.2,"bf":21.6},{"m":"2020-09","w":172.0,"bf":22.2},{"m":"2020-10","w":175.7,"bf":null},{"m":"2020-11","w":176.0,"bf":null},{"m":"2020-12","w":177.0,"bf":null},{"m":"2021-01","w":181.0,"bf":null},{"m":"2021-02","w":183.2,"bf":26.5},{"m":"2021-03","w":184.9,"bf":null},{"m":"2021-06","w":194.8,"bf":null},{"m":"2021-07","w":194.6,"bf":null},{"m":"2021-08","w":192.6,"bf":null},{"m":"2021-09","w":193.7,"bf":null},{"m":"2021-10","w":194.8,"bf":null},{"m":"2021-12","w":200.6,"bf":null},{"m":"2022-01","w":198.9,"bf":null},{"m":"2022-02","w":196.5,"bf":null},{"m":"2022-03","w":198.3,"bf":null},{"m":"2022-04","w":200.2,"bf":null},{"m":"2022-05","w":198.8,"bf":31.0},{"m":"2022-06","w":200.0,"bf":null},{"m":"2022-07","w":202.4,"bf":null},{"m":"2022-08","w":203.1,"bf":31.8},{"m":"2022-09","w":200.2,"bf":30.5},{"m":"2022-10","w":196.6,"bf":30.0},{"m":"2022-11","w":196.4,"bf":null},{"m":"2022-12","w":194.9,"bf":null},{"m":"2023-01","w":195.0,"bf":null},{"m":"2023-02","w":192.2,"bf":29.9},{"m":"2023-03","w":187.4,"bf":26.2},{"m":"2023-04","w":185.1,"bf":24.7},{"m":"2023-05","w":177.7,"bf":25.4},{"m":"2023-06","w":174.1,"bf":22.3},{"m":"2023-07","w":170.3,"bf":21.0},{"m":"2023-08","w":169.3,"bf":20.3},{"m":"2023-09","w":171.3,"bf":21.5},{"m":"2023-10","w":173.0,"bf":23.1},{"m":"2023-11","w":173.9,"bf":22.9},{"m":"2023-12","w":177.3,"bf":26.3},{"m":"2024-01","w":182.8,"bf":26.2},{"m":"2024-02","w":184.1,"bf":26.8},{"m":"2024-10","w":203.7,"bf":null},{"m":"2025-01","w":203.7,"bf":32.6},{"m":"2025-02","w":198.3,"bf":31.3},{"m":"2025-03","w":192.9,"bf":27.4},{"m":"2025-04","w":186.8,"bf":25.2},{"m":"2025-05","w":178.9,"bf":25.3},{"m":"2025-06","w":175.8,"bf":24.3},{"m":"2025-07","w":173.9,"bf":23.0},{"m":"2025-08","w":177.2,"bf":23.4},{"m":"2025-09","w":177.5,"bf":25.3},{"m":"2026-03","w":197.0,"bf":null},{"m":"2026-05","w":199.7,"bf":26.6}],"steps_yearly":[{"year":"2020","avg":3312,"days":192},{"year":"2021","avg":3355,"days":360},{"year":"2022","avg":3366,"days":364},{"year":"2023","avg":7333,"days":365},{"year":"2024","avg":4454,"days":366},{"year":"2025","avg":7992,"days":365},{"year":"2026","avg":5959,"days":148}],"rhr_yearly":{"2020":63,"2021":69,"2022":65,"2023":56,"2024":63,"2025":58,"2026":62}};
+const tip = document.getElementById('tip');
+function showTip(e, html){ tip.innerHTML=html; tip.style.opacity=1; moveTip(e); }
+function moveTip(e){ const p=12; let x=e.clientX+p, y=e.clientY+p;
+  if(x+tip.offsetWidth>innerWidth) x=e.clientX-tip.offsetWidth-p;
+  if(y+tip.offsetHeight>innerHeight) y=e.clientY-tip.offsetHeight-p;
+  tip.style.left=x+'px'; tip.style.top=y+'px'; }
+function hideTip(){ tip.style.opacity=0; }
+const NICE={running:'Running',treadmill_running:'Treadmill run',street_running:'Street run',
+  indoor_cardio:'Indoor cardio',walking:'Walking',pickleball:'Pickleball',
+  strength_training:'Strength',cycling:'Cycling',indoor_cycling:'Indoor cycling',
+  hiking:'Hiking',tennis_v2:'Tennis',yoga:'Yoga',lap_swimming:'Swim'};
+
+// ---------- chips ----------
+const t=D.tot;
+const chips=[['616','activities'],[t.hours.toLocaleString()+' h','active time'],
+  [t.km.toLocaleString()+' km','distance moved'],[(t.kcal/1000).toFixed(0)+'k','kcal burned'],
+  [t.runs+' runs','/ '+t.run_km+' km'],[t.pickleball+'','pickleball sessions'],
+  [t.weighins+'','weigh-ins'],['Jun 2020','first tracked day']];
+document.getElementById('chips').innerHTML=chips.map(c=>`<span class="chip"><b>${c[0]}</b> ${c[1]}</span>`).join('');
+
+// ---------- heat map ----------
+const TYPECOLOR={Running:'--run','Indoor cardio':'--cardio',Walking:'--walk',Pickleball:'--pickle',
+  Strength:'--strength',Cycling:'--cycle',Hiking:'--hike',Tennis:'--tennis',Other:'--other'};
+function cvar(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+// intensity scale by minutes
+function shade(min){
+  if(min<=0) return '#1d2336';
+  if(min<25)  return 'rgba(0,166,224,.30)';
+  if(min<50)  return 'rgba(0,166,224,.52)';
+  if(min<90)  return 'rgba(45,212,191,.78)';
+  return 'rgba(45,212,191,1)';
+}
+const years=D.yearly.map(y=>y.year);
+const hm=document.getElementById('heatmap');
+function dstr(d){return d.toISOString().slice(0,10);}
+years.forEach(yr=>{
+  const row=document.createElement('div'); row.className='hm-year';
+  const lab=document.createElement('div'); lab.className='yr'; lab.textContent=yr; row.appendChild(lab);
+  const scroll=document.createElement('div'); scroll.className='hm-scroll';
+  const grid=document.createElement('div'); grid.className='hm-grid';
+  let start=new Date(Date.UTC(+yr,0,1));
+  // pad to start on Sunday
+  const pad=start.getUTCDay();
+  for(let i=0;i<pad;i++){const c=document.createElement('div');c.className='hm-cell';c.style.visibility='hidden';grid.appendChild(c);}
+  const end=new Date(Date.UTC(+yr,11,31));
+  for(let d=new Date(start); d<=end; d.setUTCDate(d.getUTCDate()+1)){
+    const key=dstr(d);
+    const cell=document.createElement('div'); cell.className='hm-cell';
+    const rec=D.daymap[key];
+    if(rec){
+      cell.style.background=shade(rec[1]);
+      cell.addEventListener('mouseenter',e=>showTip(e,
+        `<b>${key}</b><br>${rec[0]} ${rec[0]>1?'activities':'activity'} · ${rec[1]} min<br>${NICE[rec[2]]||rec[2]}`));
+      cell.addEventListener('mousemove',moveTip);
+      cell.addEventListener('mouseleave',hideTip);
+    }
+    grid.appendChild(cell);
+  }
+  scroll.appendChild(grid); row.appendChild(scroll); hm.appendChild(row);
+});
+document.getElementById('hm-legend').innerHTML='Less '+
+  ['#1d2336','rgba(0,166,224,.30)','rgba(0,166,224,.52)','rgba(45,212,191,.78)','rgba(45,212,191,1)']
+  .map(c=>`<span class="sw" style="background:${c}"></span>`).join('')+' More &nbsp;·&nbsp; shade = minutes active that day';
+const activeDays=Object.keys(D.daymap).length;
+document.getElementById('hm-insight').innerHTML=
+  `<b>${activeDays} active days</b> recorded across the six years. The empty band through 2021 and the thin 2024 row are visible at a glance — the dormant year and the crash.`;
+
+// ---------- volume bars (SVG) ----------
+(function(){
+  const W=1000,H=300,m={l:44,r:16,t:18,b:42};
+  const max=Math.max(...D.yearly.map(y=>y.hours));
+  const bw=(W-m.l-m.r)/D.yearly.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+  for(let g=0;g<=4;g++){const v=Math.round(max*g/4);const y=m.t+(H-m.t-m.b)*(1-g/4);
+    s+=`<line x1="${m.l}" y1="${y}" x2="${W-m.r}" y2="${y}" stroke="#2a3150" stroke-width="1"/>`;
+    s+=`<text x="${m.l-8}" y="${y+4}" text-anchor="end">${v}h</text>`;}
+  D.yearly.forEach((y,i)=>{
+    const h=(H-m.t-m.b)*(y.hours/max);const x=m.l+i*bw+bw*0.18;const w=bw*0.64;const yy=H-m.b-h;
+    const peak=(y.year==='2023'||y.year==='2025');
+    s+=`<rect x="${x}" y="${yy}" width="${w}" height="${h}" rx="5" fill="${peak?'var(--brain)':'var(--garmin)'}" opacity="${peak?1:.82}">`+
+       `<title>${y.year}: ${y.hours} active hours · ${y.count} activities · ${y.km} km</title></rect>`;
+    s+=`<text x="${x+w/2}" y="${yy-7}" text-anchor="middle" fill="#cfd6ee" font-weight="700">${y.count}</text>`;
+    s+=`<text x="${x+w/2}" y="${H-m.b+18}" text-anchor="middle" font-weight="700">${y.year}</text>`;
+  });
+  s+=`<text x="${m.l+4}" y="${H-m.b+34}" font-size="10.5">bar = active hours · number above = activity count</text>`;
+  s+='</svg>';
+  document.getElementById('volume').innerHTML=s;
+})();
+
+// ---------- type evolution ----------
+(function(){
+  const cats=D.cats;
+  const cl=document.getElementById('cat-legend');
+  cl.innerHTML=cats.map(c=>`<span><i style="background:var(${TYPECOLOR[c]})"></i>${c}</span>`).join('');
+  const box=document.getElementById('typeevo');
+  D.yearly.map(y=>y.year).forEach(yr=>{
+    const tm=D.typematrix[yr];const total=cats.reduce((a,c)=>a+tm[c],0)||1;
+    let segs='';
+    cats.forEach(c=>{const v=tm[c];if(v>0){const pct=(v/total*100);
+      segs+=`<div class="te-seg" style="width:${pct}%;background:var(${TYPECOLOR[c]})" `+
+            `data-tip="${yr} · ${c}: ${v} (${pct.toFixed(0)}%)"></div>`;}});
+    box.insertAdjacentHTML('beforeend',
+      `<div class="te-row"><div class="yr">${yr}</div><div class="te-bar">${segs}</div><div class="te-count">${total}</div></div>`);
+  });
+  box.querySelectorAll('.te-seg').forEach(el=>{
+    el.addEventListener('mouseenter',e=>showTip(e,el.dataset.tip));
+    el.addEventListener('mousemove',moveTip); el.addEventListener('mouseleave',hideTip);
+  });
+})();
+
+// ---------- weight curve (SVG) ----------
+(function(){
+  const mw=D.monthly_weight;const W=1000,H=340,m={l:40,r:18,t:22,b:40};
+  const xs=mw.map((_,i)=>i);const ws=mw.map(p=>p.w);
+  const wmin=155,wmax=215;
+  const X=i=>m.l+(W-m.l-m.r)*(i/(mw.length-1));
+  const Y=w=>m.t+(H-m.t-m.b)*(1-(w-wmin)/(wmax-wmin));
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+  // gridlines + y labels
+  [160,170,180,190,200,210].forEach(w=>{const y=Y(w);
+    s+=`<line x1="${m.l}" y1="${y}" x2="${W-m.r}" y2="${y}" stroke="#2a3150"/>`;
+    s+=`<text x="${m.l-7}" y="${y+4}" text-anchor="end">${w}</text>`;});
+  // goal line 165
+  s+=`<line x1="${m.l}" y1="${Y(165)}" x2="${W-m.r}" y2="${Y(165)}" stroke="var(--good)" stroke-dasharray="5 4" stroke-width="1.5"/>`;
+  s+=`<text x="${W-m.r}" y="${Y(165)-6}" text-anchor="end" fill="var(--good)">165 lb goal</text>`;
+  // year ticks
+  let lastYr='';
+  mw.forEach((p,i)=>{const yr=p.m.slice(0,4);if(yr!==lastYr){lastYr=yr;
+    s+=`<text x="${X(i)}" y="${H-m.b+18}" text-anchor="middle" font-weight="700">${yr}</text>`;
+    s+=`<line x1="${X(i)}" y1="${m.t}" x2="${X(i)}" y2="${H-m.b}" stroke="#222a44" stroke-dasharray="2 4"/>`;}});
+  // area + line
+  let path=mw.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(p.w).toFixed(1)}`).join(' ');
+  s+=`<path d="${path} L ${X(mw.length-1)} ${H-m.b} L ${X(0)} ${H-m.b} Z" fill="url(#wg)" opacity=".18"/>`;
+  s+=`<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00a6e0"/><stop offset="1" stop-color="#00a6e0" stop-opacity="0"/></linearGradient></defs>`;
+  s+=`<path d="${path}" fill="none" stroke="var(--garmin)" stroke-width="2.4"/>`;
+  // points + tooltip
+  mw.forEach((p,i)=>{s+=`<circle cx="${X(i).toFixed(1)}" cy="${Y(p.w).toFixed(1)}" r="3.4" fill="#0d0f17" stroke="var(--brain)" stroke-width="1.6">`+
+    `<title>${p.m}: ${p.w} lb${p.bf?' · '+p.bf+'% body fat':''}</title></circle>`;});
+  // annotate low + high
+  function ann(mkey,txt,color,dy){const i=mw.findIndex(p=>p.m===mkey);if(i<0)return;
+    const x=X(i),y=Y(mw[i].w);
+    s+=`<circle cx="${x}" cy="${y}" r="5" fill="${color}"/>`;
+    s+=`<text x="${x}" y="${y+dy}" text-anchor="middle" fill="${color}" font-weight="700" font-size="11.5">${txt}</text>`;}
+  ann('2020-04','162.7 — all-time low','var(--good)',-12);
+  ann('2025-01','210.4 — all-time high','var(--bad)',-12);
+  s+='</svg>';
+  document.getElementById('weight').innerHTML=s;
+})();
+
+// ---------- steps + RHR ----------
+(function(){
+  const sy=D.steps_yearly;const W=1000,H=300,m={l:48,r:48,t:20,b:42};
+  const smax=Math.max(...sy.map(d=>d.avg));const bw=(W-m.l-m.r)/sy.length;
+  const rvals=Object.values(D.rhr_yearly);const rmin=Math.min(...rvals)-3,rmax=Math.max(...rvals)+3;
+  const RY=r=>m.t+(H-m.t-m.b)*(1-(r-rmin)/(rmax-rmin));
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+  for(let g=0;g<=4;g++){const v=Math.round(smax*g/4/100)*100;const y=m.t+(H-m.t-m.b)*(1-g/4);
+    s+=`<line x1="${m.l}" y1="${y}" x2="${W-m.r}" y2="${y}" stroke="#2a3150"/>`;
+    s+=`<text x="${m.l-8}" y="${y+4}" text-anchor="end">${(v/1000).toFixed(0)}k</text>`;}
+  sy.forEach((d,i)=>{const h=(H-m.t-m.b)*(d.avg/smax);const x=m.l+i*bw+bw*0.2;const w=bw*0.6;const yy=H-m.b-h;
+    s+=`<rect x="${x}" y="${yy}" width="${w}" height="${h}" rx="5" fill="var(--walk)" opacity=".55"><title>${d.year}: ${d.avg.toLocaleString()} steps/day avg (${d.days} days)</title></rect>`;
+    s+=`<text x="${x+w/2}" y="${H-m.b+18}" text-anchor="middle" font-weight="700">${d.year}</text>`;});
+  // RHR line
+  const pts=sy.map((d,i)=>{const r=D.rhr_yearly[d.year];if(r==null)return null;return [m.l+i*bw+bw*0.5, RY(r), r, d.year];}).filter(Boolean);
+  let pp=pts.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  s+=`<path d="${pp}" fill="none" stroke="var(--warn)" stroke-width="2.4"/>`;
+  pts.forEach(p=>{s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="var(--warn)"><title>${p[3]}: ${p[2]} bpm resting HR</title></circle>`;
+    s+=`<text x="${p[0].toFixed(1)}" y="${p[1]-9}" text-anchor="middle" fill="var(--warn)" font-weight="700">${p[2]}</text>`;});
+  s+=`<text x="${W-m.r}" y="${m.t+2}" text-anchor="end" fill="var(--warn)" font-weight="700">resting HR (bpm)</text>`;
+  s+=`<text x="${m.l}" y="${m.t-4}" fill="var(--walk)" font-weight="700">avg daily steps</text>`;
+  s+='</svg>';
+  document.getElementById('steps').innerHTML=s;
+})();
+</script>
+</body>
+</html>

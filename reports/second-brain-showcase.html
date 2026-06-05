@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Second Brain — a living, self-maintaining knowledge graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090f; --bg2:#0e1220; --card:#13182a; --card2:#1b2138; --line:#262d4a;
+    --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+    --teal:#2dd4bf; --indigo:#818cf8; --pink:#f472b6; --amber:#facc15; --orange:#fb923c;
+    --serif:"Fraunces",Georgia,serif; --sans:"Manrope",system-ui,sans-serif;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:
+      radial-gradient(1200px 640px at 78% -10%,rgba(129,140,248,.20),transparent),
+      radial-gradient(1000px 560px at -8% 4%,rgba(45,212,191,.15),transparent),
+      radial-gradient(900px 700px at 50% 130%,rgba(244,114,182,.10),transparent),
+      var(--bg);
+    color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:var(--teal);text-decoration:none}
+  h1,h2,h3{margin:0;line-height:1.08;font-family:var(--serif);font-weight:900;letter-spacing:-.015em}
+  .grad{background:linear-gradient(95deg,var(--teal),var(--indigo) 45%,var(--pink) 80%,var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .banner{background:linear-gradient(90deg,rgba(129,140,248,.16),rgba(45,212,191,.10));border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted);text-align:center;padding:9px 16px;font-weight:500}
+  .banner b{color:var(--ink)}
+  header{padding:78px 0 40px;text-align:center;border-bottom:1px solid var(--line)}
+  .kicker{font-family:var(--sans);letter-spacing:.28em;text-transform:uppercase;font-size:11.5px;color:var(--teal);font-weight:700}
+  header h1{font-size:clamp(38px,7vw,76px);margin:18px 0 14px;font-optical-sizing:auto}
+  header p.sub{color:var(--muted);max-width:660px;margin:0 auto;font-size:18.5px;font-weight:500}
+  .byline{margin-top:18px;font-size:13px;color:var(--dim);font-weight:600;letter-spacing:.02em}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:30px}
+  .chip{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;color:var(--muted)}
+  .chip b{color:var(--ink);font-weight:700}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;font-family:var(--sans)}
+  section h2{font-size:clamp(28px,4.4vw,46px)}
+  .lead{color:var(--muted);max-width:720px;margin:16px 0 0;font-size:17.5px;font-weight:500}
+  .stage{position:relative;margin-top:30px;border:1px solid var(--line);border-radius:24px;overflow:hidden;
+    background:radial-gradient(800px 500px at 72% -5%,rgba(129,140,248,.12),transparent),radial-gradient(640px 460px at 8% 105%,rgba(45,212,191,.09),transparent),#05070d;
+    box-shadow:0 30px 80px -40px rgba(129,140,248,.5)}
+  #graph{width:100%;height:600px;display:block;cursor:grab}
+  #graph:active{cursor:grabbing}
+  .stage-top{position:absolute;left:16px;top:14px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none;z-index:5}
+  .toggle{pointer-events:auto;display:inline-flex;background:rgba(8,11,20,.72);border:1px solid var(--line);border-radius:11px;overflow:hidden;backdrop-filter:blur(8px)}
+  .toggle button{background:none;border:0;color:var(--muted);font:600 13px var(--sans);padding:9px 16px;cursor:pointer}
+  .toggle button.on{background:linear-gradient(135deg,var(--indigo),var(--teal));color:#06080f}
+  .legend{pointer-events:none;display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--muted);background:rgba(8,11,20,.55);border:1px solid var(--line);border-radius:11px;padding:10px 12px;backdrop-filter:blur(8px)}
+  .legend .lg{display:flex;align-items:center;gap:7px}.legend .sw{width:9px;height:9px;border-radius:50%}
+  .stage-cap{position:absolute;left:18px;bottom:14px;font-size:12.5px;color:var(--muted);background:rgba(8,11,20,.6);border:1px solid var(--line);border-radius:10px;padding:8px 12px;backdrop-filter:blur(6px);max-width:58%;z-index:5}
+  .fallback{display:none;padding:50px 24px;text-align:center;color:var(--muted)}
+  .counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:22px}
+  .counter{background:linear-gradient(165deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:20px 16px;text-align:center}
+  .counter .n{font-family:var(--serif);font-size:38px;font-weight:900;letter-spacing:-.02em;line-height:1}
+  .counter .l{font-size:12px;color:var(--muted);margin-top:7px;font-weight:600;letter-spacing:.02em}
+  .callout{background:linear-gradient(135deg,rgba(45,212,191,.10),rgba(129,140,248,.07));border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;padding:18px 20px;margin-top:22px}
+  .callout h4{font-family:var(--sans);margin:0 0 6px;font-size:15px;font-weight:700}
+  .callout p{margin:0;color:var(--muted);font-size:15px}
+  .llmw{margin-top:28px;display:grid;grid-template-columns:1fr 54px 1fr 54px 1fr;align-items:center;gap:0;background:#0a0d16;border:1px solid var(--line);border-radius:18px;padding:26px 20px}
+  .llmw .col{text-align:center}
+  .llmw .clab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;font-family:var(--sans)}
+  .docs{display:flex;flex-direction:column;gap:6px;align-items:center}
+  .docs .d{width:78%;height:13px;border-radius:3px;background:rgba(255,255,255,.06);position:relative}
+  .docs .d::after{content:"";position:absolute;left:7px;top:4px;width:42%;height:4px;border-radius:2px;background:rgba(255,255,255,.12)}
+  .docs .tags{font-size:11px;color:var(--muted);margin-top:9px}
+  .core{width:84px;height:84px;margin:0 auto;border-radius:20px;background:radial-gradient(circle at 35% 30%,rgba(129,140,248,.55),rgba(45,212,191,.25));border:1px solid rgba(129,140,248,.5);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:900;font-size:20px;color:#fff;box-shadow:0 0 40px -6px rgba(129,140,248,.6)}
+  .larrow{color:var(--dim);font-size:22px;text-align:center}
+  .miniglyph{width:100%;max-width:150px;margin:0 auto}
+  .llmw .cap{grid-column:1/-1;text-align:center;margin-top:18px;font-size:13px;color:var(--muted)}
+  .llmw .cap b{color:var(--ink)}
+  .palette{margin-top:28px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0a0d16;box-shadow:0 24px 60px -36px rgba(0,0,0,.8)}
+  .palette .pin{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);font-size:15px;color:var(--ink);font-weight:600}
+  .palette .pin .car{color:var(--teal)}
+  .palette .pin .cursor{display:inline-block;width:8px;height:17px;background:var(--teal);margin-left:2px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .popt{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid rgba(38,45,74,.5)}
+  .popt:last-child{border-bottom:0}
+  .popt .pdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .popt .pname{font-weight:700;font-size:14.5px;min-width:150px}
+  .popt .pmeta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:6px}
+  .popt .pmeta b{color:var(--ink);font-weight:600}
+  .badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .badge.go{color:var(--teal);background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.25)}
+  .trackgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:18px}
+  .track{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .track .e{font-size:22px}.track h4{font-family:var(--sans);font-size:15px;font-weight:700;margin:8px 0 3px}
+  .track p{margin:0;color:var(--muted);font-size:13px}
+  .actwrap{margin-top:30px;border:1px solid var(--line);border-radius:20px;background:#0a0d16;padding:24px}
+  .acthead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;justify-content:space-between}
+  .acthead h3{font-family:var(--serif);font-size:24px}
+  .actchips{display:flex;flex-wrap:wrap;gap:8px}
+  .actchips span{font-size:12px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+  .actsub{font-size:12px;color:var(--dim);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:22px 0 10px}
+  .timeline{display:flex;align-items:flex-end;gap:3px;height:120px}
+  .tl-bar{flex:1;min-width:0;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--teal),var(--indigo));opacity:.9;transition:opacity .15s}
+  .tl-bar:hover{opacity:1}
+  .tl-axis{display:flex;justify-content:space-between;font-size:10.5px;color:var(--dim);margin-top:8px}
+  .heat{display:grid;grid-template-columns:34px repeat(24,1fr);gap:3px;margin-top:6px}
+  .heat .hh{font-size:9.5px;color:var(--dim);display:flex;align-items:center}
+  .heat .hc{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.03)}
+  .heat .hx{grid-column:2/-1;display:grid;grid-template-columns:repeat(24,1fr);gap:3px;font-size:7.5px;color:var(--dim);margin-top:5px}
+  .heatleg{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--dim);margin-top:12px;justify-content:flex-end}
+  .heatleg .sc{width:13px;height:13px;border-radius:3px}
+  .sysrow{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:26px;align-items:stretch}
+  .sysrow.rev{grid-template-columns:.85fr 1.15fr}
+  .embed{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0a0d16;position:relative;min-height:340px;display:flex;flex-direction:column}
+  .embed .bar{display:flex;align-items:center;gap:7px;padding:10px 13px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);font-size:12px;color:var(--dim)}
+  .embed .bar .dot{width:10px;height:10px;border-radius:50%}
+  .embed .bar .url{margin-left:8px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .embed .bar .live{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--teal);background:rgba(45,212,191,.12);padding:3px 8px;border-radius:6px;letter-spacing:.04em}
+  .embed iframe{flex:1;width:100%;border:0;background:#0a0d16;min-height:300px}
+  .embed .opn{position:absolute;right:10px;bottom:10px;font-size:11px;background:rgba(8,11,20,.8);border:1px solid var(--line);border-radius:7px;padding:5px 9px}
+  .syscard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:center}
+  .syscard .e{font-size:30px}
+  .syscard h3{font-family:var(--serif);font-size:25px;margin:12px 0 2px}
+  .syscard .tagline{color:var(--teal);font-size:13px;font-weight:700;letter-spacing:.02em}
+  .syscard p{color:var(--muted);font-size:14.5px;margin:12px 0 0}
+  .scchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .scchips span{font-size:12px;font-weight:600;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+  .phone{margin:0 auto;width:270px;background:#0a0d16;border:8px solid #1b2138;border-radius:34px;padding:14px 12px 18px;box-shadow:0 26px 60px -30px rgba(0,0,0,.8)}
+  .phone .notch{width:90px;height:5px;background:#2a3150;border-radius:5px;margin:2px auto 14px}
+  .phone .tgh{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .phone .tgh .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--teal))}
+  .bubble{background:#15233a;border-radius:4px 16px 16px 16px;padding:12px 13px;font-size:13px;line-height:1.5;color:#dce3f5}
+  .bubble b{color:#fff}.bubble .t{font-size:10px;color:var(--dim);text-align:right;margin-top:6px}
+  .cmp{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;margin-top:20px;align-items:stretch}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+  .cmp .raw{border-color:#3a2740}.cmp .res{border-color:#1f4a44}
+  .cmp .tag{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:inline-block;padding:3px 9px;border-radius:6px;font-family:var(--sans)}
+  .cmp .raw .tag{background:rgba(244,114,182,.16);color:#f7a8ce}.cmp .res .tag{background:rgba(45,212,191,.14);color:var(--teal)}
+  .cmp .arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:20px}
+  .cmp pre,.cmp .body{white-space:pre-wrap;font:11.5px/1.55 ui-monospace,Menlo,monospace;color:#c3cbe6;margin:0;max-height:250px;overflow:auto}
+  .cmp .body{font-family:var(--sans);font-size:13px;color:#d3daf0}
+  .pipe{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;counter-reset:s}
+  .pstage{flex:1 1 160px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+  .pstage::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;right:8px;font-family:var(--serif);font-size:62px;font-weight:900;color:rgba(255,255,255,.05)}
+  .pstage .e{font-size:22px}.pstage h4{font-family:var(--sans);margin:8px 0 4px;font-size:15px;font-weight:700}
+  .pstage p{margin:0;font-size:12.5px;color:var(--muted)}
+  .note{font-size:12.5px;color:var(--dim);margin-top:14px}
+  footer{padding:52px 0 80px;text-align:center;color:var(--dim);font-size:13px}
+  .nextlink{display:inline-flex;align-items:center;gap:9px;margin-top:6px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 20px;color:var(--ink);font-weight:600;font-family:var(--sans)}
+  .nextlink:hover{border-color:var(--indigo)}
+  /* motion + polish (ui-ux-pro-max: aurora glow, reveal-on-scroll, live pulse) */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease-out,transform .6s ease-out}
+  .reveal.in{opacity:1;transform:none}
+  .syscard,.track,.counter{transition:transform .2s ease-out,box-shadow .2s ease-out,border-color .2s ease-out}
+  .syscard:hover,.track:hover{transform:translateY(-3px);border-color:rgba(129,140,248,.45);box-shadow:0 16px 40px -24px rgba(129,140,248,.55)}
+  .embed .live{animation:livepulse 2.6s ease-in-out infinite}
+  @keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,0)}50%{box-shadow:0 0 9px 1px rgba(45,212,191,.55)}}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important;transform:none !important;transition:none}
+    .embed .live{animation:none}
+    html{scroll-behavior:auto}
+  }
+  @media(max-width:780px){
+    .sysrow,.sysrow.rev{grid-template-columns:1fr}
+    .cmp{grid-template-columns:1fr;gap:10px}.cmp .arrow{transform:rotate(90deg);height:22px}
+    #graph{height:460px}.stage-cap{max-width:78%}
+    .popt{flex-wrap:wrap;gap:8px}.popt .pname{min-width:0}
+    .llmw{grid-template-columns:1fr;gap:14px}.larrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">A personal build log · <b>real data throughout</b> · best viewed full-screen</div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Nights &amp; weekends · 2026</div>
+    <h1>My <span class="grad">Second&nbsp;Brain</span></h1>
+    <p class="sub">A personal knowledge base an AI builds, cross-links, and keeps tidy for me — plus the assistants I grew out of it. Here's the actual thing, live.</p>
+    <div class="byline">Built with Claude · every number below is real</div>
+    <div class="chips">
+      <div class="chip"><b>80+</b> pages</div>
+      <div class="chip"><b>620</b> entries</div>
+      <div class="chip"><b>10</b> hubs</div>
+      <div class="chip"><b>504</b> commits</div>
+      <div class="chip"><b>4</b> live AI systems</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">This is the real thing</div>
+    <h2>My actual knowledge graph</h2>
+    <p class="lead">Every dot is a page; every line is a connection the AI wrote between them. Same colors as my Obsidian vault. Drag a node, zoom in, or flip it into 3D.</p>
+
+    <div class="stage">
+      <div class="stage-top">
+        <div class="toggle">
+          <button id="b2d" class="on">2D</button>
+          <button id="b3d">3D</button>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div id="graph"></div>
+      <div class="fallback" id="fallback">
+        <p>The interactive graph needs an internet connection to load.<br>
+        It shows <b>79 pages</b> connected by <b>352 links</b>, colored by topic — exactly as it looks in my Obsidian vault.</p>
+      </div>
+      <div class="stage-cap">Hover a node to spotlight its connections · drag · scroll to zoom · 3D spins with labels.</div>
+    </div>
+
+    <div class="counters">
+      <div class="counter"><div class="n grad" data-to="10">0</div><div class="l">topic hubs</div></div>
+      <div class="counter"><div class="n grad" data-to="79">0</div><div class="l">pages shown</div></div>
+      <div class="counter"><div class="n grad" data-to="352">0</div><div class="l">connections</div></div>
+      <div class="counter"><div class="n grad" data-to="620">0</div><div class="l">sourced entries</div></div>
+      <div class="counter"><div class="n grad" data-to="896">0</div><div class="l">media transcribed</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The idea in one line</div>
+    <h2>Keep the shoebox. Also write the summary.</h2>
+    <p class="lead">Years of my own data — ChatGPT chats, Garmin health history, Instagram saves, Netflix, Google Takeout — sit underneath as a searchable archive. On top, an AI distills them into clean, linked notes I can actually find. I decide what matters; it does the reading, summarizing, linking, and bookkeeping.</p>
+
+    <div class="llmw">
+      <div class="col">
+        <div class="clab">Raw archive</div>
+        <div class="docs">
+          <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+          <div class="tags">ChatGPT · Garmin · Netflix · IG · Takeout</div>
+        </div>
+      </div>
+      <div class="larrow">→</div>
+      <div class="col">
+        <div class="clab">An LLM reads &amp; distills</div>
+        <div class="core">LLM</div>
+      </div>
+      <div class="larrow">→</div>
+      <div class="col">
+        <div class="clab">Linked notes &amp; a graph</div>
+        <svg class="miniglyph" viewBox="0 0 150 90" xmlns="http://www.w3.org/2000/svg">
+          <line x1="75" y1="45" x2="30" y2="22" stroke="#2dd4bf" stroke-width="1.4" opacity=".5"/>
+          <line x1="75" y1="45" x2="120" y2="24" stroke="#818cf8" stroke-width="1.4" opacity=".5"/>
+          <line x1="75" y1="45" x2="36" y2="70" stroke="#f472b6" stroke-width="1.4" opacity=".5"/>
+          <line x1="75" y1="45" x2="118" y2="68" stroke="#fb923c" stroke-width="1.4" opacity=".5"/>
+          <line x1="30" y1="22" x2="36" y2="70" stroke="#9aa4c4" stroke-width="1" opacity=".3"/>
+          <line x1="120" y1="24" x2="118" y2="68" stroke="#9aa4c4" stroke-width="1" opacity=".3"/>
+          <circle cx="75" cy="45" r="8" fill="#eef1fa"/>
+          <circle cx="30" cy="22" r="5" fill="#2dd4bf"/>
+          <circle cx="120" cy="24" r="5" fill="#818cf8"/>
+          <circle cx="36" cy="70" r="5" fill="#f472b6"/>
+          <circle cx="118" cy="68" r="5" fill="#fb923c"/>
+        </svg>
+      </div>
+      <div class="cap">That's what an <b>"LLM wiki"</b> is — the archive stays underneath, and the AI turns it into the connected graph you saw above. <b>The maintenance is the AI's job</b>, which is exactly why it doesn't die like every other note system.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The part I didn't expect to love</div>
+    <h2>It also runs all my projects</h2>
+    <p class="lead">It tracks every project the way I used to — badly — in my head: why it exists, what I want to build, what I've shipped, what's broken. So I open a session, ask "what should we work on?", and get options back. No re-loading context, no "where was I?"</p>
+
+    <div class="palette">
+      <div class="pin"><span class="car">▸</span> what do you want to work on today?<span class="cursor"></span></div>
+      <div class="popt"><span class="pdot" style="background:#818cf8"></span><span class="pname">Second Brain</span><span class="pmeta"><span class="badge go">session 17</span> self-maintaining · lint routine live</span></div>
+      <div class="popt"><span class="pdot" style="background:#f87171"></span><span class="pname">Fitness Coach</span><span class="pmeta"><span class="badge go">Sprint 14 P1 ✓</span> <span class="badge">3 backlog</span> next: Withings sync</span></div>
+      <div class="popt"><span class="pdot" style="background:#818cf8"></span><span class="pname">Personal Assistant</span><span class="pmeta"><span class="badge">Sprint 3</span> monthly retro shipped · scheduling next</span></div>
+      <div class="popt"><span class="pdot" style="background:#fb923c"></span><span class="pname">Work Brain</span><span class="pmeta"><span class="badge">spec'd</span> weekly status report · ingest in progress</span></div>
+      <div class="popt"><span class="pdot" style="background:#9aa4c4"></span><span class="pname">Career &amp; Life Coach</span><span class="pmeta"><span class="badge">backlog</span> queued for when there's time</span></div>
+    </div>
+
+    <div class="trackgrid">
+      <div class="track"><div class="e">🎯</div><h4>Intent</h4><p>Why each project exists — so I never lose the thread.</p></div>
+      <div class="track"><div class="e">🧩</div><h4>Features</h4><p>The backlog of what I want to build next, prioritized.</p></div>
+      <div class="track"><div class="e">🏁</div><h4>Sprints</h4><p>What actually shipped, dated — a real record, not memory.</p></div>
+      <div class="track"><div class="e">🐞</div><h4>Bugs</h4><p>What's broken or half-done, captured before I forget.</p></div>
+    </div>
+
+    <div class="callout">
+      <h4>We track an astonishing amount in our heads</h4>
+      <p>Intents, half-finished features, "oh I should fix that" — we carry it all and call it normal. Writing it down used to be the chore that killed every system. Now the AI does the writing-down. I just decide what's next.</p>
+    </div>
+
+    <div class="actwrap">
+      <div class="acthead">
+        <h3>And it shows — 504 commits, basically every day</h3>
+        <div class="actchips"><span>504 commits</span><span>~14/day</span><span>35 days</span><span>peak 55 · May 29</span></div>
+      </div>
+      <div class="actsub">Daily commits · Apr 27 → May 31</div>
+      <div class="timeline" id="timeline"></div>
+      <div class="tl-axis"><span>Apr 27</span><span>May 13</span><span>May 31</span></div>
+      <div class="actsub">When the work happens · hour of day × day of week</div>
+      <div class="heat" id="heat"></div>
+      <div class="heatleg"><span>less</span><span class="sc" style="background:rgba(129,140,248,.12)"></span><span class="sc" style="background:rgba(129,140,248,.4)"></span><span class="sc" style="background:rgba(129,140,248,.7)"></span><span class="sc" style="background:#818cf8"></span><span>more</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">From knowledge → action</div>
+    <h2>Four systems, each running on its own</h2>
+
+    <div class="sysrow">
+      <div class="embed">
+        <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">niveknus.github.io/fitness</span><span class="live">● LIVE</span></div>
+        <iframe loading="lazy" src="https://niveknus.github.io/fitness/" title="Fitness Coach live dashboard"></iframe>
+        <a class="opn" href="https://niveknus.github.io/fitness/" target="_blank" rel="noopener">open ↗</a>
+      </div>
+      <div class="syscard">
+        <div class="e">🏋️</div>
+        <h3>Fitness Coach</h3>
+        <div class="tagline">Adaptive coaching off real biometrics</div>
+        <p>Reads my Garmin every morning, reasons over recovery, and texts me a tailored plan. The dashboard on the left is live — it updates on every data pull.</p>
+        <div class="scchips"><span>Garmin OAuth</span><span>daily Telegram brief</span><span>36 lifts backfilled</span><span>14 sprints</span></div>
+      </div>
+    </div>
+
+    <div class="sysrow rev" style="margin-top:18px">
+      <div class="syscard">
+        <div class="e">🧠</div>
+        <h3>Second Brain</h3>
+        <div class="tagline">The self-maintaining wiki</div>
+        <p>The graph up top is this system. It also auto-publishes project dashboards to the web — that's the live page on the right.</p>
+        <div class="scchips"><span>620 entries</span><span>auto search index</span><span>syncs Mac · phone · web</span></div>
+      </div>
+      <div class="embed">
+        <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">niveknus.github.io/dashboards</span><span class="live">● LIVE</span></div>
+        <iframe loading="lazy" src="https://niveknus.github.io/dashboards/" title="Project dashboards"></iframe>
+        <a class="opn" href="https://niveknus.github.io/dashboards/" target="_blank" rel="noopener">open ↗</a>
+      </div>
+    </div>
+
+    <div class="sysrow" style="margin-top:18px">
+      <div class="syscard">
+        <div class="e">🤖</div>
+        <h3>Personal Assistant</h3>
+        <div class="tagline">Proactive, not on-demand</div>
+        <p>Wired to my calendar, tasks, and email — running in the cloud on a schedule. It briefs me before I ask, and flags commitments before they slip.</p>
+        <div class="scchips"><span>Todoist</span><span>Calendar</span><span>Gmail</span><span>Telegram</span><span>8:30 AM daily</span></div>
+      </div>
+      <div class="syscard" style="background:transparent;border:0;padding:0">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="tgh"><span class="av"></span> Assistant · 8:30 AM</div>
+          <div class="bubble">Morning, Kev — busy one today.<br><br>📅 <b>3 events</b>: pickleball 8–10:30, 1:1 at 2pm, dinner w/ Dad 7pm.<br>✅ <b>2 due</b>: renew registration, reply to Crissy.<br>⚠️ Heads-up: "book flights" has slipped <b>9 days</b>.<div class="t">delivered via Telegram ✓</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sysrow rev" style="margin-top:18px">
+      <div class="syscard" style="grid-column:1 / -1;text-align:center">
+        <div class="e">💼</div>
+        <h3>Work Brain</h3>
+        <div class="tagline">The same pattern, pointed at work</div>
+        <p style="margin-left:auto;margin-right:auto;max-width:640px">A work-focused version of all of the above — a private thinking layer that captures how the team operates and auto-assembles a weekly status report. <em>(That's its own story — see Part 2.)</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">What "the AI does the labor" looks like</div>
+    <h2>Messy in. Clean out.</h2>
+    <p class="lead">Two real examples. The point isn't magic — it's that the tedious 90% is automated, so I only spend time on the judgment.</p>
+
+    <div class="cmp">
+      <div class="col raw"><span class="tag">Raw — a Garmin morning payload</span>
+<pre>{
+ "date":"2026-05-31",
+ "sleep":{"score":61,"hrs":6.2,"deep":0.7},
+ "bodyBattery":{"wake":54},
+ "restingHR":58,"hrv":41,
+ "yesterday":{"steps":14820,"load":312},
+ "plan":"Split A — Arms + Shoulders"
+}</pre></div>
+      <div class="arrow">→</div>
+      <div class="col res"><span class="tag">Result — the brief on my phone</span>
+        <div class="body">Morning, Kev — recovery's a notch low.
+
+Sleep 6.2h (score 61) and HRV 41 are
+both under baseline; Body Battery woke
+at 54, and yesterday was big (14.8k steps).
+
+Today is <b>Split A — Arms + Shoulders</b>:
+keep it, but cap top sets at RPE 8 and
+skip the finisher. Hydrate early.
+
+🗓 Booked 5:30–6:15 PM (no conflict)</div>
+      </div>
+    </div>
+
+    <div class="cmp">
+      <div class="col raw"><span class="tag">Raw — 844 rows of Netflix history</span>
+<pre>Title,Date
+"White Collar: S2: Front Man",1/14/24
+"Money Heist: Part 3: Ep 1",2/2/24
+"Better Call Saul: S4: Coushatta",...
+"The Night Agent: S1: ...",...
+   ...839 more rows...</pre></div>
+      <div class="arrow">→</div>
+      <div class="col res"><span class="tag">Result — a taste profile, linked</span>
+        <div class="body"><b>Netflix viewing-taste profile</b>
+<i>2026-05-31</i>
+
+844 plays (2020–2026). Clear heist/spy/
+crime lean: White Collar (70), Better
+Call Saul (63), Money Heist (48). 2024
+was the megayear (287) → 2025 drop.
+Weekend + December peaks.
+
+→ linked into [[podcasts-and-media]]</div>
+      </div>
+    </div>
+    <p class="note">Same fidelity bar every time — names, numbers, mechanisms kept; the bloat dropped. Do that 620 times and you get the graph up top.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>One repeatable loop</h2>
+    <p class="lead">Nothing bespoke. The same small loop, run over and over — the AI does each step, I approve the direction.</p>
+    <div class="pipe">
+      <div class="pstage"><div class="e">📦</div><h4>Ingest</h4><p>Drop any export into one inbox.</p></div>
+      <div class="pstage"><div class="e">🧠</div><h4>Synthesize</h4><p>Distill to a fixed bar: keep detail, drop bloat.</p></div>
+      <div class="pstage"><div class="e">🔗</div><h4>Cross-link</h4><p>Auto-wire related pages so the graph stays dense.</p></div>
+      <div class="pstage"><div class="e">🔎</div><h4>Index</h4><p>Regenerate a semantic search index automatically.</p></div>
+      <div class="pstage"><div class="e">🩺</div><h4>Self-maintain</h4><p>A scheduled pass fixes counts &amp; links, flags conflicts.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built with <span class="grad" style="font-family:var(--serif);font-weight:900">Claude</span> · Second Brain · Personal Assistant · Fitness Coach · Work Brain<br><br>
+    <a class="nextlink" href="team-ai-strategy-DRAFT.html">Part 2 → Why this matters for our team (separate page)</a>
+    <p style="margin-top:20px;color:var(--dim)">Every personal number here is real.</p>
+  </div>
+</footer>
+
+<script id="graph-data" type="application/json">
+{"nodes":[{"id":"2025-year-in-review","g":"_special","c":"#FFFFFF","v":8,"hub":false},{"id":"ai-and-automation-tools","g":"ai-and-automation","c":"#818CF8","v":8,"hub":false},{"id":"ai-and-automation","g":"ai-and-automation","c":"#818CF8","v":9,"hub":true},{"id":"ai-prompts-and-creators","g":"ai-and-automation","c":"#818CF8","v":6.6,"hub":false},{"id":"annual-goals","g":"relationships-and-personal","c":"#F472B6","v":8,"hub":false},{"id":"apple-and-devices","g":"tech","c":"#A3E635","v":5.2,"hub":false},{"id":"asia-travel","g":"travel","c":"#2DD4BF","v":8,"hub":false},{"id":"books-and-reading","g":"miscellaneous","c":"#FACC15","v":6.6,"hub":false},{"id":"budgeting-and-finances","g":"finance-and-legal","c":"#38BDF8","v":8,"hub":false},{"id":"car-and-transportation","g":"home-and-living","c":"#C084FC","v":5.7,"hub":false},{"id":"career-and-performance","g":"work","c":"#FB923C","v":8,"hub":false},{"id":"career-coach","g":"work","c":"#FB923C","v":5.2,"hub":false},{"id":"caribbean-cruise","g":"travel","c":"#2DD4BF","v":7.5,"hub":false},{"id":"close-friends","g":"relationships-and-personal","c":"#F472B6","v":4.3,"hub":false},{"id":"cooking-and-recipes","g":"food","c":"#4ADE80","v":7.0,"hub":false},{"id":"credit-cards-and-rewards","g":"finance-and-legal","c":"#38BDF8","v":5.7,"hub":false},{"id":"crissy","g":"relationships-and-personal","c":"#F472B6","v":7.0,"hub":false},{"id":"dashboard","g":"_special","c":"#FFFFFF","v":3.5,"hub":false},{"id":"dating-and-romance","g":"relationships-and-personal","c":"#F472B6","v":8,"hub":false},{"id":"domestic-us-trips","g":"travel","c":"#2DD4BF","v":8,"hub":false},{"id":"egypt-and-rome-trip","g":"travel","c":"#2DD4BF","v":8,"hub":false},{"id":"family","g":"relationships-and-personal","c":"#F472B6","v":5.2,"hub":false},{"id":"finance-and-legal","g":"finance-and-legal","c":"#38BDF8","v":9,"hub":true},{"id":"fitness-and-nutrition","g":"health-and-fitness","c":"#F87171","v":8,"hub":false},{"id":"fitness-coach","g":"health-and-fitness","c":"#F87171","v":8,"hub":false},{"id":"florida-getaways","g":"travel","c":"#2DD4BF","v":6.6,"hub":false},{"id":"flourish-counseling-rebuild","g":"relationships-and-personal","c":"#F472B6","v":5.7,"hub":false},{"id":"food-knowledge","g":"food","c":"#4ADE80","v":5.7,"hub":false},{"id":"food","g":"food","c":"#4ADE80","v":9,"hub":true},{"id":"health-and-fitness","g":"health-and-fitness","c":"#F87171","v":9,"hub":true},{"id":"home-and-living","g":"home-and-living","c":"#C084FC","v":9,"hub":true},{"id":"home-buying","g":"home-and-living","c":"#C084FC","v":5.7,"hub":false},{"id":"home-improvement","g":"home-and-living","c":"#C084FC","v":5.2,"hub":false},{"id":"home-maintenance","g":"home-and-living","c":"#C084FC","v":8,"hub":false},{"id":"home-server","g":"tech","c":"#A3E635","v":6.2,"hub":false},{"id":"home","g":"_special","c":"#FFFFFF","v":7.5,"hub":false},{"id":"illness-and-recovery","g":"health-and-fitness","c":"#F87171","v":6.2,"hub":false},{"id":"industrial-engineering","g":"work","c":"#FB923C","v":5.2,"hub":false},{"id":"ingest-workflow","g":"_special","c":"#FFFFFF","v":8,"hub":false},{"id":"injuries-and-pain","g":"health-and-fitness","c":"#F87171","v":7.5,"hub":false},{"id":"instagram-profile","g":"relationships-and-personal","c":"#F472B6","v":8,"hub":false},{"id":"insurance-and-legal","g":"finance-and-legal","c":"#38BDF8","v":7.0,"hub":false},{"id":"language-practice","g":"miscellaneous","c":"#FACC15","v":4.3,"hub":false},{"id":"log","g":"_special","c":"#FFFFFF","v":4.3,"hub":false},{"id":"manufacturing-engineering","g":"work","c":"#FB923C","v":7.5,"hub":false},{"id":"medications-and-supplements","g":"health-and-fitness","c":"#F87171","v":8.0,"hub":false},{"id":"miscellaneous","g":"miscellaneous","c":"#FACC15","v":9,"hub":true},{"id":"monthly-checkins","g":"relationships-and-personal","c":"#F472B6","v":5.2,"hub":false},{"id":"moving-and-relocation","g":"home-and-living","c":"#C084FC","v":6.2,"hub":false},{"id":"orlando-life","g":"home-and-living","c":"#C084FC","v":8,"hub":false},{"id":"people","g":"relationships-and-personal","c":"#F472B6","v":7.5,"hub":false},{"id":"personal-assistant","g":"ai-and-automation","c":"#818CF8","v":5.7,"hub":false},{"id":"personal-growth-and-spirituality","g":"relationships-and-personal","c":"#F472B6","v":8,"hub":false},{"id":"pets","g":"relationships-and-personal","c":"#F472B6","v":4.8,"hub":false},{"id":"playbook-financial-decisions","g":"_special","c":"#FFFFFF","v":4.8,"hub":false},{"id":"playbook-travel","g":"_special","c":"#FFFFFF","v":5.7,"hub":false},{"id":"playbook-vehicle","g":"_special","c":"#FFFFFF","v":4.3,"hub":false},{"id":"podcasts-and-media","g":"miscellaneous","c":"#FACC15","v":6.6,"hub":false},{"id":"principles-and-quotes","g":"relationships-and-personal","c":"#F472B6","v":7.0,"hub":false},{"id":"professional-writing","g":"work","c":"#FB923C","v":5.2,"hub":false},{"id":"random-knowledge","g":"miscellaneous","c":"#FACC15","v":8,"hub":false},{"id":"random-tech","g":"tech","c":"#A3E635","v":6.6,"hub":false},{"id":"relationships-and-personal","g":"relationships-and-personal","c":"#F472B6","v":9,"hub":true},{"id":"restaurants-and-recommendations","g":"food","c":"#4ADE80","v":8.0,"hub":false},{"id":"sap-and-automation","g":"work","c":"#FB923C","v":7.0,"hub":false},{"id":"ski-trips","g":"travel","c":"#2DD4BF","v":7.0,"hub":false},{"id":"sleep-and-recovery","g":"health-and-fitness","c":"#F87171","v":6.2,"hub":false},{"id":"social-media-and-captions","g":"relationships-and-personal","c":"#F472B6","v":6.2,"hub":false},{"id":"system-review-methodology","g":"ai-and-automation","c":"#818CF8","v":3.9,"hub":false},{"id":"tech","g":"tech","c":"#A3E635","v":9,"hub":true},{"id":"travel-logistics","g":"travel","c":"#2DD4BF","v":8,"hub":false},{"id":"travel","g":"travel","c":"#2DD4BF","v":9,"hub":true},{"id":"vancouver-and-seattle","g":"travel","c":"#2DD4BF","v":6.2,"hub":false},{"id":"weekly-report-spec-phase1","g":"work","c":"#FB923C","v":4.8,"hub":false},{"id":"weekly-report-templates","g":"work","c":"#FB923C","v":5.2,"hub":false},{"id":"weight-loss-journey","g":"health-and-fitness","c":"#F87171","v":5.7,"hub":false},{"id":"work-brain","g":"work","c":"#FB923C","v":6.6,"hub":false},{"id":"work-people","g":"work","c":"#FB923C","v":6.6,"hub":false},{"id":"work","g":"work","c":"#FB923C","v":9,"hub":true}],"links":[[29,45],[24,51],[28,27],[29,66],[19,27],[16,45],[42,60],[20,70],[19,31],[65,70],[23,75],[78,76],[23,57],[44,77],[28,35],[6,19],[25,71],[46,60],[37,78],[40,49],[73,78],[45,49],[20,71],[0,43],[18,49],[18,42],[4,58],[22,65],[15,70],[1,24],[47,62],[27,60],[1,45],[9,33],[37,76],[10,64],[73,76],[44,74],[15,22],[0,18],[41,60],[12,18],[20,55],[41,56],[76,77],[21,29],[49,63],[40,52],[0,10],[23,49],[4,22],[29,58],[18,52],[23,27],[61,69],[23,24],[23,45],[1,23],[7,52],[16,19],[16,25],[1,68],[20,66],[33,38],[38,63],[24,38],[13,50],[38,46],[18,23],[52,57],[1,61],[19,25],[14,63],[58,62],[31,49],[8,9],[18,67],[19,70],[39,75],[24,66],[49,60],[12,45],[4,29],[6,49],[3,64],[74,76],[55,70],[6,36],[20,63],[3,46],[23,39],[18,62],[70,72],[11,59],[59,64],[58,78],[7,62],[31,52],[33,53],[41,49],[15,41],[18,33],[44,64],[53,62],[38,60],[40,57],[1,40],[35,69],[0,39],[19,55],[35,46],[1,10],[19,72],[18,26],[62,77],[18,40],[6,14],[12,67],[25,70],[1,76],[7,57],[39,45],[7,40],[55,72],[0,6],[36,45],[6,67],[37,74],[34,69],[73,74],[23,40],[39,52],[18,21],[1,38],[22,41],[66,75],[0,70],[31,32],[50,62],[12,70],[0,33],[10,59],[8,54],[21,50],[16,53],[41,54],[18,48],[36,65],[9,56],[28,63],[5,34],[19,63],[4,8],[37,44],[0,78],[7,38],[18,45],[0,71],[12,71],[52,62],[30,49],[55,65],[13,62],[38,49],[46,57],[50,78],[34,61],[50,71],[11,78],[14,49],[6,18],[33,34],[6,40],[34,51],[24,29],[23,66],[0,72],[14,28],[48,60],[40,67],[64,78],[20,36],[8,40],[4,75],[2,1],[19,60],[2,3],[38,52],[5,69],[0,20],[8,10],[25,63],[40,62],[23,63],[32,49],[64,76],[23,65],[11,38],[26,48],[21,52],[6,27],[16,50],[29,75],[18,19],[18,25],[14,23],[7,58],[44,59],[18,70],[14,67],[8,38],[9,41],[44,73],[5,23],[10,78],[8,48],[8,31],[23,58],[35,30],[5,61],[30,32],[71,72],[20,67],[52,66],[10,11],[17,43],[2,51],[30,33],[51,61],[57,58],[38,43],[39,66],[29,36],[21,62],[4,52],[47,52],[26,61],[15,54],[38,57],[0,19],[19,49],[9,54],[0,8],[12,19],[12,25],[0,4],[14,18],[12,60],[29,35],[14,40],[22,35],[4,47],[26,62],[50,77],[4,23],[3,33],[23,50],[8,15],[7,29],[1,5],[18,20],[16,52],[35,62],[3,26],[6,70],[32,33],[47,51],[52,58],[65,71],[23,29],[3,10],[4,62],[29,39],[59,78],[24,75],[1,3],[3,11],[30,48],[13,77],[1,64],[30,31],[24,34],[0,44],[6,71],[44,78],[14,27],[8,56],[18,53],[63,72],[18,63],[25,49],[8,22],[18,65],[35,78],[0,29],[39,60],[35,71],[23,36],[7,46],[44,76],[4,18],[2,24],[16,62],[6,55],[71,70],[61,64],[2,35],[6,72],[40,58],[10,77],[33,49],[20,45],[22,70],[0,12],[32,38],[33,48],[12,36],[74,78],[1,4],[23,52],[10,60],[6,20],[1,51],[33,45],[18,60],[16,18],[16,26],[2,68],[42,46],[24,52],[20,39],[19,71],[9,30],[0,52],[78,77],[62,67],[10,50],[6,63],[24,39],[1,57],[24,47],[10,44],[18,50],[1,34],[48,49],[15,65],[0,23],[8,41],[37,77],[33,61],[8,64],[41,65]]}
+</script>
+<script id="commit-data" type="application/json">
+{"daily":[["04-27",3],["04-28",5],["04-29",3],["04-30",1],["05-01",24],["05-02",4],["05-03",1],["05-04",2],["05-05",16],["05-06",0],["05-07",4],["05-08",4],["05-09",1],["05-10",27],["05-11",8],["05-12",16],["05-13",26],["05-14",2],["05-15",22],["05-16",0],["05-17",13],["05-18",5],["05-19",3],["05-20",9],["05-21",9],["05-22",25],["05-23",27],["05-24",24],["05-25",42],["05-26",27],["05-27",12],["05-28",20],["05-29",55],["05-30",25],["05-31",39]],
+"heat":[[2,1,0,0,0,0,0,0,1,1,4,5,3,0,3,4,2,1,1,7,4,7,8,6],[6,5,4,0,3,1,1,4,1,4,9,6,1,0,0,4,0,2,0,2,4,7,2,1],[2,0,1,0,0,0,0,0,0,1,8,1,3,3,0,2,4,1,2,2,0,6,11,3],[1,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,1,2,8,9,5,4],[8,2,3,0,2,0,0,0,0,4,5,2,9,11,9,6,9,4,12,16,7,6,8,7],[3,0,1,1,1,0,0,0,0,0,1,2,0,0,2,9,4,2,4,8,6,5,1,7],[4,2,3,6,2,1,1,1,1,3,3,3,7,7,7,4,7,6,6,9,6,6,5,4]]}
+</script>
+
+<script src="https://unpkg.com/force-graph@1/dist/force-graph.min.js"></script>
+<script src="https://unpkg.com/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
+<script src="https://unpkg.com/three-spritetext@1"></script>
+<script>
+(function(){
+  "use strict";
+  var raw = JSON.parse(document.getElementById('graph-data').textContent);
+  var HUBS = [
+    ['Travel','#2DD4BF'],['Work','#FB923C'],['AI & Automation','#818CF8'],['Food','#4ADE80'],
+    ['Health & Fitness','#F87171'],['Finance','#38BDF8'],['Home & Living','#C084FC'],
+    ['Tech','#A3E635'],['Relationships','#F472B6'],['Misc','#FACC15']
+  ];
+  var legend=document.getElementById('legend');
+  HUBS.forEach(function(h){var d=document.createElement('div');d.className='lg';d.innerHTML='<span class="sw" style="background:'+h[1]+'"></span>'+h[0];legend.appendChild(d);});
+  function pretty(id){return id.replace(/-and-/g,' & ').replace(/-/g,' ');}
+  // pull nodes toward center so the layout forms a round, dense ball (like Obsidian) instead of sprawling
+  function radialGravity(strength){
+    var nodes;
+    function force(alpha){ if(!nodes)return; for(var i=0;i<nodes.length;i++){var n=nodes[i]; n.vx-=n.x*strength*alpha; n.vy-=n.y*strength*alpha;} }
+    force.initialize=function(n){nodes=n;};
+    return force;
+  }
+
+  function runCounters(){
+    document.querySelectorAll('.counter .n').forEach(function(el){
+      var to=+el.getAttribute('data-to'),dur=1500,s=performance.now();
+      function step(t){var k=Math.min((t-s)/dur,1),e=1-Math.pow(1-k,3);
+        el.textContent=Math.round(to*e).toLocaleString();if(k<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    });
+  }
+  (function activity(){
+    var cd=JSON.parse(document.getElementById('commit-data').textContent);
+    var tl=document.getElementById('timeline'), mx=Math.max.apply(null,cd.daily.map(function(d){return d[1];}));
+    cd.daily.forEach(function(d){
+      var b=document.createElement('div'); b.className='tl-bar';
+      b.style.height=Math.max(3,(d[1]/mx)*100)+'%'; b.title=d[0]+': '+d[1]+' commits';
+      tl.appendChild(b);
+    });
+    var heat=document.getElementById('heat'); var days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var hmax=Math.max.apply(null,cd.heat.map(function(r){return Math.max.apply(null,r);}));
+    cd.heat.forEach(function(row,i){
+      var lab=document.createElement('div'); lab.className='hh'; lab.textContent=days[i]; heat.appendChild(lab);
+      row.forEach(function(v,h){
+        var c=document.createElement('div'); c.className='hc';
+        if(v>0){var a=0.12+0.88*(v/hmax); c.style.background='rgba(129,140,248,'+a.toFixed(2)+')';}
+        c.title=days[i]+' '+(h<10?'0':'')+h+':00 — '+v+' commits';
+        heat.appendChild(c);
+      });
+    });
+    var sp=document.createElement('div'); sp.className='hh'; heat.appendChild(sp);
+    var hx=document.createElement('div'); hx.className='hx';
+    for(var hh=0;hh<24;hh++){ var hl=document.createElement('div'); hl.style.textAlign='center'; hl.textContent=(hh===0?'12a':hh===12?'12p':hh<12?hh+'a':(hh-12)+'p'); hx.appendChild(hl); }
+    heat.appendChild(hx);
+  })();
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){runCounters();io.disconnect();}});},{threshold:0.3});
+    io.observe(document.querySelector('.counters'));
+  } else runCounters();
+
+  var host=document.getElementById('graph');
+  function gd(){
+    var nodes=raw.nodes.map(function(n){return {id:n.id,c:n.c,v:n.v,hub:n.hub};});
+    var hi=0; nodes.forEach(function(n,i){ n._d = n.hub ? (hi++*0.09) : (0.6 + i*0.02); });
+    return { nodes:nodes, links: raw.links.map(function(l){return {source:raw.nodes[l[0]].id,target:raw.nodes[l[1]].id};}) };
+  }
+  if(typeof ForceGraph==='undefined'){
+    host.style.display='none';
+    document.getElementById('fallback').style.display='block';
+    document.querySelector('.toggle').style.display='none';
+    return;
+  }
+
+  var mode='2d', G=null, G3=null, spinning=false;
+  var hoverNode=null, hlNodes=new Set(), hlLinks=new Set();
+  var appearStart=0; var reduceMotion=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var b2d=document.getElementById('b2d'), b3d=document.getElementById('b3d');
+  function W(){return host.clientWidth || 1000;}
+
+  function clearHost(){
+    if(G&&G._destructor){try{G._destructor();}catch(e){}} G=null;
+    if(G3&&G3._destructor){try{G3._destructor();}catch(e){}} G3=null;
+    spinning=false; host.innerHTML='';
+  }
+
+  function build2d(){
+    clearHost(); mode='2d'; hoverNode=null; hlNodes=new Set(); hlLinks=new Set(); appearStart=performance.now();
+    function rad(n){return (n.hub || n.id==='home') ? 2.6 : (0.5 + Math.sqrt(n.v)*0.32);}
+    G=ForceGraph()(host)
+      .width(W()).height(600)
+      .backgroundColor('rgba(0,0,0,0)')
+      .graphData(gd())
+      .nodeRelSize(1)
+      .nodeVal('v').nodeColor('c').nodeLabel(function(n){return pretty(n.id);})
+      .linkColor(function(l){ var ap=reduceMotion?1:Math.max(0,Math.min(1,((performance.now()-appearStart)/1000-0.3)/0.9)); if(!hoverNode) return 'rgba(150,162,210,'+(0.12*ap).toFixed(3)+')'; return hlLinks.has(l)?'rgba(205,214,255,0.6)':'rgba(150,162,210,0.035)'; })
+      .linkWidth(function(l){ return (hoverNode&&hlLinks.has(l))?1.3:0.5; })
+      .linkDirectionalParticles(function(l){ return (hoverNode&&hlLinks.has(l))?3:(hoverNode?0:1); })
+      .linkDirectionalParticleWidth(1.6).linkDirectionalParticleSpeed(0.006)
+      .nodeCanvasObject(function(n,ctx,scale){
+        var ap = reduceMotion?1:Math.max(0,Math.min(1,((performance.now()-appearStart)/1000-(n._d||0))/0.55));
+        if(ap<=0.001) return;
+        ap = 1-Math.pow(1-ap,3);
+        var lit = !hoverNode || hlNodes.has(n.id);
+        var r=rad(n)*(0.35+0.65*ap);
+        ctx.globalAlpha = (lit?1:0.10)*ap;
+        ctx.beginPath(); ctx.arc(n.x,n.y,r,0,6.2832); ctx.fillStyle=n.c; ctx.fill();
+        if(n.hub && lit){ ctx.lineWidth=0.5; ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.stroke(); }
+        var show = ap>0.9 && lit && (n.hub || n.id==='home' || (hoverNode&&hlNodes.has(n.id)));
+        if(show){
+          var fs=Math.max(2.6,(n.hub?8:6.2)/scale);
+          ctx.font=(n.hub?'700 ':'600 ')+fs+'px Manrope, sans-serif';
+          ctx.fillStyle=n.hub?'rgba(255,255,255,0.95)':'rgba(228,233,248,0.82)';
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText(pretty(n.id), n.x, n.y + r + fs*0.85);
+        }
+        ctx.globalAlpha=1;
+      })
+      .nodePointerAreaPaint(function(n,color,ctx){ ctx.fillStyle=color; ctx.beginPath(); ctx.arc(n.x,n.y,rad(n)+1.5,0,6.2832); ctx.fill(); })
+      .onNodeHover(function(node){
+        hoverNode=node||null; hlNodes=new Set(); hlLinks=new Set();
+        if(node){ hlNodes.add(node.id);
+          G.graphData().links.forEach(function(l){
+            var s=(typeof l.source==='object')?l.source.id:l.source;
+            var t=(typeof l.target==='object')?l.target.id:l.target;
+            if(s===node.id||t===node.id){ hlLinks.add(l); hlNodes.add(s); hlNodes.add(t); }
+          });
+        }
+        host.style.cursor=node?'pointer':'grab';
+      })
+      .onNodeDragEnd(function(n){n.fx=n.x;n.fy=n.y;})
+      .cooldownTicks(140)
+      .onEngineStop(function(){ if(G) G.zoomToFit(420,60); });
+    // round, dense ball (mirrors Obsidian): even repulsion + center gravity + medium springy links
+    G.d3Force('charge').strength(-34);
+    G.d3Force('link').distance(24).strength(0.55);
+    G.d3Force('gravity', radialGravity(0.62));
+    G.d3VelocityDecay(0.42);
+    setTimeout(function(){ if(G) G.zoomToFit(420,60); }, 1700);
+  }
+
+  function build3d(){
+    clearHost(); mode='3d';
+    G3=ForceGraph3D()(host)
+      .width(W()).height(600)
+      .backgroundColor('rgba(0,0,0,0)')
+      .graphData(gd())
+      .nodeRelSize(3)
+      .nodeVal('v').nodeColor('c').nodeOpacity(0.9)
+      .linkColor(function(){return 'rgba(150,162,210,0.28)';}).linkWidth(0.4)
+      .linkDirectionalParticles(2).linkDirectionalParticleWidth(1.4).linkDirectionalParticleSpeed(0.006)
+      .showNavInfo(false);
+    if(typeof SpriteText!=='undefined'){
+      G3.nodeThreeObjectExtend(true).nodeThreeObject(function(n){
+        var s=new SpriteText(pretty(n.id));
+        s.color = n.hub ? '#ffffff' : n.c;
+        s.textHeight = n.hub ? 6 : 3.2;
+        s.material.depthWrite=false; s.material.transparent=true; s.material.opacity=n.hub?1:0.82;
+        s.position.y = (n.hub?9:5);
+        return s;
+      });
+    }
+    G3.d3Force('charge').strength(-60);
+    var R=340; spinning=true; var ang=0;
+    setTimeout(function(){
+      if(!G3) return;
+      G3.cameraPosition({x:0,y:30,z:R});
+      (function spin(){ if(!spinning||mode!=='3d'||!G3)return; ang+=0.0016;
+        G3.cameraPosition({x:R*Math.sin(ang),y:R*0.16,z:R*Math.cos(ang)}); requestAnimationFrame(spin); })();
+    },400);
+  }
+
+  function setBtns(){ b2d.classList.toggle('on',mode==='2d'); b3d.classList.toggle('on',mode==='3d'); }
+  b2d.addEventListener('click',function(){ if(mode==='2d')return; build2d(); setBtns(); });
+  b3d.addEventListener('click',function(){
+    if(mode==='3d')return;
+    if(typeof ForceGraph3D==='undefined'){ alert('The 3D engine could not load (needs internet). Showing 2D.'); return; }
+    build3d(); setBtns();
+  });
+
+  build2d();
+  (function appearOnView(){
+    var st=document.querySelector('.stage');
+    if(!st||!('IntersectionObserver' in window))return;
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){ if(en.isIntersecting){ appearStart=performance.now(); if(G&&G.d3ReheatSimulation){try{G.d3ReheatSimulation();}catch(e){}} io.unobserve(en.target); } });},{threshold:0.4});
+    io.observe(st);
+  })();
+  (function reveal(){
+    var els=Array.prototype.slice.call(document.querySelectorAll('section .wrap')).slice(1);
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    els.forEach(function(e){e.classList.add('reveal');});
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.1});
+    els.forEach(function(e){io.observe(e);});
+  })();
+  var rt; window.addEventListener('resize',function(){
+    clearTimeout(rt); rt=setTimeout(function(){
+      if(mode==='2d'&&G){G.width(W()).height(600); G.zoomToFit(300,60);}
+      else if(mode==='3d'&&G3){G3.width(W()).height(600);}
+    },200);
+  });
+})();
+</script>
+</body>
+</html>

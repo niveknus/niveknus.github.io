@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google + Garmin → Second Brain: turning my own data exhaust into self-knowledge</title>
+<style>
+  :root{
+    --bg:#0d0f17; --bg2:#141826; --card:#1a1f30; --card2:#222840;
+    --ink:#e8ebf5; --muted:#9aa3bd; --line:#2c3350;
+    --g-blue:#4285F4; --g-red:#EA4335; --g-yellow:#FBBC05; --g-green:#34A853;
+    --garmin:#00a6e0; --brain:#2dd4bf; --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1100px 560px at 82% -10%,rgba(66,133,244,.18),transparent),radial-gradient(900px 500px at -8% 8%,rgba(0,166,224,.14),transparent),var(--bg);
+    color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  a{color:var(--brain);text-decoration:none}
+  h1,h2,h3{line-height:1.2;margin:0}
+  .grad{background:linear-gradient(90deg,var(--g-blue),var(--g-green),var(--g-yellow),var(--g-red),var(--garmin));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header{padding:74px 0 38px;text-align:center;border-bottom:1px solid var(--line)}
+  .kicker{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--muted);font-weight:700}
+  header h1{font-size:clamp(30px,5vw,50px);font-weight:850;margin:14px 0 10px;letter-spacing:-.02em}
+  header p.sub{color:var(--muted);max-width:700px;margin:0 auto;font-size:18px}
+  .byline{margin-top:16px;font-size:13px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600}
+  .chip b{color:var(--g-yellow)}
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(22px,3.2vw,32px);font-weight:800;letter-spacing:-.01em}
+  .lead{color:var(--muted);max-width:780px;margin:12px 0 0;font-size:17px}
+  .eyebrow{color:var(--garmin);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  .pipe{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;counter-reset:step}
+  .stage{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;position:relative;overflow:hidden}
+  .stage::before{counter-increment:step;content:counter(step);position:absolute;top:-8px;right:6px;font-size:54px;font-weight:900;color:rgba(255,255,255,.04)}
+  .stage .ico{font-size:22px}
+  .stage h4{margin:8px 0 4px;font-size:14.5px}
+  .stage p{margin:0;font-size:12.5px;color:var(--muted)}
+  .stage .tool{margin-top:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--garmin);word-break:break-all}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:24px}
+  .stat{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat .n{font-size:32px;font-weight:850;letter-spacing:-.02em}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:2px}
+  .bars{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+  .bar{display:grid;grid-template-columns:64px 1fr 92px;align-items:center;gap:12px;font-size:14px}
+  .bar .track{height:22px;background:var(--bg2);border-radius:7px;overflow:hidden}
+  .bar .fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--garmin),var(--g-blue))}
+  .bar .v{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;font-size:13px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .cmp{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;margin-top:16px;align-items:stretch}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+  .cmp .raw{border-color:#3a2740}
+  .cmp .wiki{border-color:#23414a}
+  .cmp .tag{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:inline-block;padding:3px 9px;border-radius:6px}
+  .cmp .raw .tag{background:rgba(234,67,53,.16);color:#f6a79c}
+  .cmp .wiki .tag{background:rgba(45,212,191,.14);color:var(--brain)}
+  .cmp .arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:22px}
+  .cmp pre,.cmp .body{white-space:pre-wrap;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#cfd6ea;margin:0;max-height:320px;overflow:auto}
+  .cmp .body{font-family:inherit;font-size:13.5px}
+  .acc{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  details[open]{border-color:var(--g-blue)}
+  summary{cursor:pointer;padding:16px 18px;font-weight:700;display:flex;align-items:center;gap:12px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary .cnt{margin-left:auto;color:var(--muted);font-size:12px;font-weight:600}
+  details .inner{padding:14px 18px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+  details .inner b{color:var(--ink)}
+  details .inner ul{margin:8px 0 0;padding-left:18px}
+  details .inner li{margin:6px 0}
+  .callout{background:linear-gradient(135deg,rgba(45,212,191,.08),rgba(66,133,244,.06));border:1px solid var(--line);border-left:4px solid var(--brain);border-radius:12px;padding:16px 18px;margin-top:18px}
+  .callout h4{margin:0 0 6px;font-size:15px}
+  .callout p{margin:0;color:var(--muted);font-size:14px}
+  ul.clean{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:15px}
+  ul.clean li{margin:7px 0}
+  ul.clean b{color:var(--ink)}
+  code{background:var(--bg2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font:12.5px ui-monospace,Menlo,monospace;color:var(--g-yellow)}
+  .fun{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
+  .fun .f{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .fun .f .e{font-size:24px}
+  .fun .f h4{margin:8px 0 5px;font-size:15px}
+  .fun .f p{margin:0;color:var(--muted);font-size:13.5px}
+  .chartwrap{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .chartwrap h4{margin:0 0 4px;font-size:15px}
+  .chartwrap .cap{color:var(--muted);font-size:13px;margin:0 0 14px}
+  .axis{fill:var(--muted);font-size:11px;font-family:ui-monospace,Menlo,monospace}
+  .steps{counter-reset:s;margin-top:22px;display:flex;flex-direction:column;gap:12px}
+  .step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .step .num{counter-increment:s;flex:0 0 30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--g-blue),var(--garmin));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .step .num::before{content:counter(s)}
+  .step .t{font-size:14.5px}
+  .step .t b{color:var(--ink)}
+  .step .t span{color:var(--muted)}
+  footer{padding:40px 0 70px;text-align:center;color:var(--muted);font-size:13px}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pill{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:var(--bg2);border:1px solid var(--line);border-radius:7px;padding:6px 10px;color:#cfd6ea}
+  @media(max-width:740px){
+    .grid2{grid-template-columns:1fr}
+    .cmp{grid-template-columns:1fr;gap:10px}
+    .cmp .arrow{transform:rotate(90deg);height:24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">A Second-Brain Build Log</div>
+    <h1>I turned <span class="grad">6 years of Google &amp; Garmin data</span><br>into a Second Brain that knows me</h1>
+    <p class="sub">One session: export the data exhaust I'd been generating for years — Google Calendar, Maps, and Garmin — then resolve, distill, and cross-reference it into a personal wiki. The result knows where I've been, who's in my life, and how my body has changed since 2018.</p>
+    <div class="byline">Built in a single Cowork session with Claude · May 30, 2026 · fully replicable</div>
+    <div class="chips">
+      <div class="chip"><b>2,712</b> calendar events</div>
+      <div class="chip"><b>147</b> places resolved for <b>$0</b></div>
+      <div class="chip"><b>616</b> workouts</div>
+      <div class="chip"><b>546</b> weigh-ins</div>
+      <div class="chip"><b>8</b> years deep</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">30-second TL;DR</div>
+    <h2>The stuff you already generate is a goldmine — if you distill it</h2>
+    <p class="lead">Every app quietly logs your life. This project pulled three of those logs — Google Takeout (Calendar + Maps), the on-device Maps Timeline, and the Garmin API — and turned raw rows into curated knowledge: a life timeline back to college, a master roster of the people in my orbit, a six-year fitness and weight arc, and a named map of where I actually go. Nothing was stored raw; everything was synthesized, cross-checked against what the wiki already knew, and linked together.</p>
+    <div class="callout">
+      <h4>The core principle: synthesis-on-archive</h4>
+      <p>Don't dump 2,712 rows into your notes. Distill them into the ~40 things that matter, write them in prose, cross-reference them, and verify against what you already know — <b>flagging conflicts instead of overwriting them</b>. The raw export stays on disk; the knowledge goes in the brain.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The pipeline</div>
+    <h2>From export to knowledge in six stages</h2>
+    <div class="pipe">
+      <div class="stage"><div class="ico">📦</div><h4>Export</h4><p>Google Takeout, the on-device Maps Timeline, and the Garmin API.</p><div class="tool">Takeout · Timeline.json · garminconnect</div></div>
+      <div class="stage"><div class="ico">🔍</div><h4>Triage</h4><p>Sort each source into "rich enough as-is" vs. "needs enrichment."</p><div class="tool">analyze before ingest</div></div>
+      <div class="stage"><div class="ico">🗺️</div><h4>Resolve</h4><p>Turn opaque place IDs + raw API data into named, structured facts.</p><div class="tool">resolve_places.py · garmin_*_history.py</div></div>
+      <div class="stage"><div class="ico">✍️</div><h4>Synthesize</h4><p>Distill into dated wiki entries; build a new people roster.</p><div class="tool">people.md · timeline.md · …</div></div>
+      <div class="stage"><div class="ico">✅</div><h4>Verify</h4><p>Cross-check against existing entries; flag conflicts, don't overwrite.</p><div class="tool">manual reconciliation</div></div>
+      <div class="stage"><div class="ico">🔁</div><h4>Automate</h4><p>Schedule a quarterly re-pull so the record keeps growing.</p><div class="tool">scheduled task</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">By the numbers</div>
+    <h2>What came out of it</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">2,712</div><div class="l">calendar events mined (2013–2026)</div></div>
+      <div class="stat"><div class="n">147</div><div class="l">Google place IDs → named places ($0, free tier)</div></div>
+      <div class="stat"><div class="n">430</div><div class="l">map visits given real names</div></div>
+      <div class="stat"><div class="n">616</div><div class="l">workouts pulled (2020–2026)</div></div>
+      <div class="stat"><div class="n">546</div><div class="l">weigh-ins, back to Oct 2018</div></div>
+      <div class="stat"><div class="n">~17</div><div class="l">wiki pages created or enriched</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">reusable pull scripts written</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">scheduled job to keep it fresh</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Real data</div>
+    <h2>The charts the data drew</h2>
+
+    <div class="chartwrap">
+      <h4>Weight by month, 2018–2026 — the cut-and-regain cycles</h4>
+      <p class="cap">Monthly-average lbs from 546 weigh-ins. Plotted by month (not year) so the real story shows: not one cut, but repeated cuts to the 160s–170s — including a clear <b>2025 cut (204→174)</b> — each followed by a regain. Line interpolates across the months where weigh-ins are sparse.</p>
+      <svg viewBox="0 0 1000 250" width="100%" role="img" aria-label="Weight by month line chart 2018 to 2026">
+        <!-- y gridlines -->
+        <line x1="44" y1="200" x2="980" y2="200" stroke="#2c3350"/>
+        <line x1="44" y1="166" x2="980" y2="166" stroke="#222840"/><text x="36" y="170" text-anchor="end" class="axis">170</text>
+        <line x1="44" y1="98" x2="980" y2="98" stroke="#222840"/><text x="36" y="102" text-anchor="end" class="axis">190</text>
+        <line x1="44" y1="30" x2="980" y2="30" stroke="#222840"/><text x="36" y="34" text-anchor="end" class="axis">210</text>
+        <!-- weight line -->
+        <polyline fill="none" stroke="#00a6e0" stroke-width="2.5"
+          points="44.0,88.5 54.3,105.6 64.6,106.7 74.9,97.1 85.1,102.7 95.4,101.1 105.7,106.7 116.0,109.9 126.3,116.4 136.6,127.3 146.9,124.7 157.1,118.1 167.4,115.1 177.7,117.5 188.0,110.2 198.3,120.1 208.6,148.5 218.9,164.3 229.1,184.5 239.4,179.3 249.7,174.7 260.0,168.7 270.3,165.2 280.6,159.3 290.9,146.7 301.1,145.7 311.4,142.3 321.7,128.6 332.0,121.1 342.3,115.2 373.1,81.7 383.4,82.4 393.7,89.2 404.0,85.3 414.3,81.7 434.9,62.0 445.1,67.9 455.4,75.8 465.7,69.9 476.0,63.5 486.3,68.1 496.6,64.0 506.9,55.8 517.1,53.6 527.4,63.3 537.7,75.6 548.0,76.1 558.3,81.2 568.6,81.0 578.9,90.6 589.1,106.7 599.4,114.8 609.7,139.9 620.0,151.9 630.3,165.1 640.6,168.4 650.9,161.7 661.1,155.9 671.4,152.9 681.7,141.2 692.0,122.6 702.3,118.1 784.6,51.4 815.4,51.3 825.7,69.8 836.0,88.3 846.3,109.0 856.6,135.6 866.9,146.1 877.1,152.7 887.4,141.6 897.7,140.5 959.4,74.2 980.0,65.0"/>
+        <!-- cycle annotations -->
+        <circle cx="229.1" cy="184.5" r="4" fill="#34d399"/><text x="229" y="199" text-anchor="middle" class="axis" fill="#34d399">2020 cut ↓165</text>
+        <circle cx="517.1" cy="53.6" r="4" fill="#f87171"/><text x="517" y="46" text-anchor="middle" class="axis" fill="#f87171">2022 ~203 (heaviest)</text>
+        <circle cx="640.6" cy="168.4" r="4" fill="#34d399"/><text x="636" y="183" text-anchor="middle" class="axis" fill="#34d399">2023 cut ↓169</text>
+        <circle cx="815.4" cy="51.3" r="4" fill="#f87171"/><circle cx="877.1" cy="152.7" r="4" fill="#34d399"/>
+        <text x="858" y="44" text-anchor="middle" class="axis" fill="#34d399">2025 cut 204→174</text>
+        <text x="968" y="58" text-anchor="end" class="axis">…regain</text>
+        <!-- year ticks -->
+        <text x="74.9" y="222" text-anchor="middle" class="axis">2019</text>
+        <text x="198.3" y="222" text-anchor="middle" class="axis">2020</text>
+        <text x="321.7" y="222" text-anchor="middle" class="axis">2021</text>
+        <text x="445.1" y="222" text-anchor="middle" class="axis">2022</text>
+        <text x="568.6" y="222" text-anchor="middle" class="axis">2023</text>
+        <text x="692.0" y="222" text-anchor="middle" class="axis">2024</text>
+        <text x="815.4" y="222" text-anchor="middle" class="axis">2025</text>
+        <text x="938.9" y="222" text-anchor="middle" class="axis">2026</text>
+      </svg>
+    </div>
+
+    <div class="chartwrap">
+      <h4>Workouts logged per year — the ramp, the crash, the comeback</h4>
+      <p class="cap">Garmin activity counts. 2021 went dormant; 2023 was a half-marathon-training year; 2024 collapsed; 2025 was the biggest, most varied year yet.</p>
+      <div class="bars">
+        <div class="bar"><span>2020</span><div class="track"><div class="fill" style="width:23%"></div></div><span class="v">52</span></div>
+        <div class="bar"><span>2021</span><div class="track"><div class="fill" style="width:3%"></div></div><span class="v">6 · dormant</span></div>
+        <div class="bar"><span>2022</span><div class="track"><div class="fill" style="width:23%"></div></div><span class="v">54</span></div>
+        <div class="bar"><span>2023</span><div class="track"><div class="fill" style="width:81%"></div></div><span class="v">187 · peak run</span></div>
+        <div class="bar"><span>2024</span><div class="track"><div class="fill" style="width:13%"></div></div><span class="v">29 · crash</span></div>
+        <div class="bar"><span>2025</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">230 · biggest</span></div>
+        <div class="bar"><span>2026</span><div class="track"><div class="fill" style="width:25%"></div></div><span class="v">58 · YTD</span></div>
+      </div>
+      <div class="callout"><h4>The body confirmed it</h4><p>Resting heart rate tracked the same arc almost perfectly: <b>56 bpm</b> at the 2023 fitness peak vs. <b>63–69 bpm</b> in the dormant/crash years. When I train, my RHR drops into the mid-50s; when I stop, it climbs into the 60s.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">What it learned</div>
+    <h2>By source — click to expand</h2>
+    <div class="acc">
+      <details><summary>🗓️ Google Calendar — a life timeline back to college<span class="cnt">2,712 events</span></summary>
+        <div class="inner">Distilled into a five-chapter life spine and a behavioral layer:
+          <ul>
+            <li><b>The eras:</b> UF Aerospace Engineering (grad May 2015) → a 1:1 tutoring business (2015–17) → Lockheed Martin, Orlando (Feb 2017 → today).</li>
+            <li><b>A spending shift:</b> college-era money events were all credit-card due dates and rent; today they're jetskis, kayaking, and dinners — a clean "bills → experiences" arc.</li>
+            <li><b>A social graph:</b> 40 birthdays + recurring names became a master <b>people roster</b> — family, inner circle, work crew, and the friend who introduced me to my girlfriend.</li>
+          </ul>
+        </div>
+      </details>
+      <details><summary>🗺️ Google Maps — reviews, saved spots, and a named visit map<span class="cnt">147 places</span></summary>
+        <div class="inner">
+          <ul>
+            <li><b>Taste, revealed:</b> 19 written reviews show a clear love of ramen, Italian, and Latin food across Orlando, San Diego, Chicago, and Tokyo.</li>
+            <li><b>A secret second city:</b> San Diego is by far my most-visited non-Florida destination — repeat trips in 2018, 2019, and heavily 2021–2022.</li>
+            <li><b>Daily life, mapped:</b> resolving 147 place IDs named all 430 recent visits — home base, work, the gym, the coffee habit, and where the weekends actually go.</li>
+          </ul>
+        </div>
+      </details>
+      <details><summary>⌚ Garmin — six years of training and body data<span class="cnt">616 + 546</span></summary>
+        <div class="inner">
+          <ul>
+            <li><b>The training arc:</b> a running base in 2020 → dormant 2021 → a 2023 endurance peak (half-marathon-distance long runs) → a 2024 crash → a broader 2025 comeback adding strength, cycling, and weekly pickleball.</li>
+            <li><b>The weight curve:</b> 546 weigh-ins back to 2018 reveal repeated successful cuts to the 160s — each followed by a regain.</li>
+            <li><b>Feeds the coach:</b> all of it became the historical baseline my existing AI Fitness Coach project was missing.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Raw → result</div>
+    <h2>The most persuasive part: before and after</h2>
+
+    <div class="cmp">
+      <div class="col raw"><span class="tag">raw export</span>
+        <pre>{
+ "visit": {
+  "topCandidate": {
+   "placeId": "ChIJQ-3SNVBl54gR…",
+   "semanticType": "UNKNOWN",
+   "placeLocation": {
+     "latLng": "28.5718°, -81.3302°"
+   }
+}}}  ×23 visits</pre>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col wiki"><span class="tag">in the brain</span>
+        <div class="body">"A lot of time at Crissy's: her place drew <b>23 visits totaling ~79 hours</b> — my single biggest 'third place' outside home and work."</div>
+      </div>
+    </div>
+
+    <div class="cmp">
+      <div class="col raw"><span class="tag">raw export</span>
+        <pre>BEGIN:VEVENT
+SUMMARY:Lockheed Start Date
+DTSTART:20170206
+END:VEVENT
+SUMMARY:Graduation!
+DTSTART:20150503</pre>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col wiki"><span class="tag">in the brain</span>
+        <div class="body">"UF Aerospace Engineering (grad <b>May 3, 2015</b>) → a tutoring business → joined Lockheed Martin <b>Feb 6, 2017</b>, where I've been since — the career spine the rest of the timeline hangs off of."</div>
+      </div>
+    </div>
+
+    <div class="cmp">
+      <div class="col raw"><span class="tag">raw export</span>
+        <pre>activity: running
+distance: 21410 m
+duration: 8520 s
+avgHR: 163
+date: 2023-11-19</pre>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col wiki"><span class="tag">in the brain</span>
+        <div class="body">"2023 was my breakout endurance year — 60 runs / 507 km, including my longest runs ever at <b>half-marathon distance (~21 km)</b>. It was followed by a 2024 crash — a sustainability lesson the coach now watches for."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How it works + war stories</div>
+    <h2>The clever bits (and the honest snags)</h2>
+    <div class="grid2">
+      <div class="card"><h3>🗺️ The Maps Timeline mystery</h3><p>Google Takeout only returned ~1 year of location data. Turns out Google moved Timeline <b>onto the phone</b> in 2024 — so the full history lives in an on-device export, not Takeout. I pulled that… and it still only reached back to my new phone's setup date. The deep history was gone (old phone wiped). Lesson logged; we leaned on reviews, photos, and the calendar for the older years.</p></div>
+      <div class="card"><h3>💸 Naming 147 places for $0</h3><p>Map visits ship as opaque IDs (<code>ChIJ…</code>) with no names. A short script ran each through the Google Places API — 147 lookups sat comfortably under the free tier, so the whole thing cost nothing and named every visit.</p></div>
+      <div class="card"><h3>⏱️ Dodging Garmin's rate limiter</h3><p>Sleep, HRV, and heart-rate are per-day API calls — pulling 6 years daily would've triggered rate-limiting. The fix: tier the pull. Range calls for weight + steps (cheap), monthly sampling for slow-moving VO2/RHR, and daily data only for a recent window.</p></div>
+      <div class="card"><h3>⚖️ A discrepancy I refused to paper over</h3><p>My notes said the 2025 cut hit 165 lb. The Garmin weigh-ins show a 2025 low of ~172 — and the true all-time low (162.7) was back in <b>2020</b>. Rather than overwrite either, I flagged the conflict in the wiki for me to reconcile. Trust beats tidiness.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Fun findings</div>
+    <h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f"><div class="e">📉</div><h4>The real challenge isn't cutting</h4><p>I've cut to the 160s three separate times (2020, 2023, 2025). Each was followed by a regain to ~200. The hard part is <b>maintenance</b> — a reframe the data made obvious.</p></div>
+      <div class="f"><div class="e">🌅</div><h4>San Diego is my second home</h4><p>By a wide margin my most-visited non-Florida city — years of repeat trips, which is exactly why my restaurant reviews cluster there.</p></div>
+      <div class="f"><div class="e">🤝</div><h4>One friend connects the whole story</h4><p>"V," who I met at a Timeleft group dinner, turned out to be the mutual friend who introduced me and Crissy — a single node tying the social graph together.</p></div>
+      <div class="f"><div class="e">🍿</div><h4>I have a type (on Netflix)</h4><p>844 episodes later: crime, heist, and spy thrillers — White Collar, Better Call Saul, Money Heist, Lupin — with a sci-fi side.</p></div>
+      <div class="f"><div class="e">❤️‍🔥</div><h4>My resting HR is a lie detector</h4><p>It dropped to 56 bpm in my fittest year and rose to the high 60s when I stopped training — a cleaner fitness signal than the VO2 estimate.</p></div>
+      <div class="f"><div class="e">🥒</div><h4>Pickleball quietly took over</h4><p>From a one-off novelty in May 2023 to a near-weekly staple — now my most durable social-exercise habit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Replicate it</div>
+    <h2>Do this with your own data</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div class="t"><b>Export everything you can.</b> <span>Google Takeout (Calendar, Maps), the on-device Maps Timeline from your phone, and your fitness platform's data. Drop it all in one inbox folder.</span></div></div>
+      <div class="step"><div class="num"></div><div class="t"><b>Triage before you ingest.</b> <span>For each source, decide what's rich enough to use as-is vs. what needs enrichment. Skip the noise (settings files, automated-question answers).</span></div></div>
+      <div class="step"><div class="num"></div><div class="t"><b>Resolve the opaque bits.</b> <span>Run map place IDs through the Google Places API (free at this scale); pull fitness history via the platform's API, tiered to avoid rate limits.</span></div></div>
+      <div class="step"><div class="num"></div><div class="t"><b>Synthesize, don't store.</b> <span>Distill into dated prose entries and cross-reference them. Build a people roster as a single "who is this?" lookup.</span></div></div>
+      <div class="step"><div class="num"></div><div class="t"><b>Verify against what you know.</b> <span>Cross-check new facts against existing notes and flag conflicts instead of overwriting — your memory and the data won't always agree.</span></div></div>
+      <div class="step"><div class="num"></div><div class="t"><b>Automate the refresh.</b> <span>Schedule a quarterly re-pull so the record keeps compounding instead of going stale.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built in one Cowork session with Claude · May 30, 2026<br>
+    <div class="pillrow" style="justify-content:center">
+      <span class="pill">Google Takeout</span>
+      <span class="pill">Maps Timeline</span>
+      <span class="pill">Google Places API</span>
+      <span class="pill">garminconnect</span>
+      <span class="pill">Python (stdlib)</span>
+      <span class="pill">Obsidian</span>
+      <span class="pill">Claude / Cowork</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

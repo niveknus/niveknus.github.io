@@ -1,0 +1,523 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1,495 Delivery Orders — Kevin's Food-Delivery + Rideshare Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#ff3008; --accent2:#ff7a45;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --dd:#ff3008; --ue:#46c000;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.tldr p{margin:0 0 12px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:155px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden;display:flex}
+.bar-fill{display:block;height:100%}
+.bar-val{flex:none;width:64px;font-size:13px;font-weight:700;text-align:left}
+
+/* stacked year columns */
+.yearchart{display:flex;align-items:flex-end;gap:10px;height:220px;padding:8px 4px 0}
+.ycol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.ystack{width:100%;max-width:46px;display:flex;flex-direction:column-reverse;border-radius:5px 5px 0 0;overflow:hidden}
+.yseg{width:100%}
+.ylab{font-size:11px;color:var(--muted);margin-top:7px}
+.ytot{font-size:11px;color:var(--ink);font-weight:700;margin-bottom:5px}
+.legend{display:flex;gap:18px;justify-content:center;margin-top:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* hour-of-day shape */
+.hours{display:flex;align-items:flex-end;gap:3px;height:150px;padding-top:8px}
+.hcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.hbar{width:100%;background:var(--grad);border-radius:3px 3px 0 0;min-height:2px}
+.hlab{font-size:9px;color:var(--dim);margin-top:4px}
+.mealbands{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.mb{flex:1;min-width:120px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.mb .mn{font-size:22px;font-weight:800}
+.mb .ml{font-size:12px;color:var(--muted)}
+
+/* line/area AOV trend */
+.trendwrap{position:relative}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:175px}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#cfcfe0;word-break:break-word;line-height:1.5}
+
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+
+.trail{display:grid;gap:12px}
+.thome{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.thome .dot{flex:none;width:14px;height:14px;border-radius:50%;background:var(--grad);margin-top:5px}
+.thome .ta{font-weight:700}
+.thome .td{color:var(--muted);font-size:13px}
+.thome .tn{margin-left:auto;text-align:right;flex:none}
+.thome .tn b{font-size:22px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:block}
+.thome .tn span{font-size:11px;color:var(--dim)}
+
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.cty{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px}
+.cty b{color:var(--accent2)}
+.cty.big{font-size:15px;border-color:color-mix(in srgb,var(--accent2) 45%,transparent)}
+
+.caveat{background:color-mix(in srgb,var(--warn) 8%,transparent);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);
+  border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin-top:14px;font-size:14px;color:var(--muted)}
+.caveat b{color:var(--ink)}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp,.split{grid-template-columns:1fr}.bar-label{width:104px}.det-body .bar-label{width:118px}.hlab{display:none}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>1,495 delivery orders, ~$28.6K</h1>
+    <p class="sub">Nine years of Uber Eats and DoorDash, deduped and decoded — plus a side of
+       87 Uber rides that turn out to be one thing: a way to get to the airport. Here's what
+       the data actually says.</p>
+    <div class="meta">Uber Eats 2017-03 → 2026-05 · DoorDash 2019-08 → 2026-05 · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>1,495</b> delivery orders</div>
+      <div class="chip"><b>~$28.6K</b> food subtotals</div>
+      <div class="chip"><b>209×</b> Chick-fil-A</div>
+      <div class="chip"><b>161×</b> Chick-n-Strips</div>
+      <div class="chip"><b>3</b> Orlando homes traced</div>
+      <div class="chip"><b>13</b> cities (rides)</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Two official data exports — DoorDash (852 orders) and Uber Eats (643 orders) — were
+         deduplicated from <b>3,000+ raw line-items</b> into <b>1,495 real orders</b> spanning 2017–2026,
+         almost entirely in Orlando. Together they total roughly <b>$28,600 in food subtotals</b>
+         (fees, tax, and tips aren't in the exports, so true spend is higher). A third file —
+         Uber rides — is small but tells its own story.</p>
+      <p>The combined picture is remarkably consistent: a few loyal restaurants, a daytime
+         delivery rhythm, and order sizes that have roughly tripled as the habit matured from
+         "$7 fast-food runs" into "$25 proper meals."</p>
+      <div class="callout"><b>Core insight:</b> Food delivery is a <b>lunch-and-breakfast work-fuel
+         habit, not a late-night vice</b> — Chick-fil-A and 4 Rivers anchor a fiercely local
+         Orlando rotation — and the Uber app is basically <b>an airport shuttle</b> (48% of rides).</div>
+    </div></section>
+
+  <section><h2>From raw line-items to clean orders</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull two official exports</div>
+        <div class="d">DoorDash order archive + Uber's full data request (Eats orders, rider trips, profile).</div>
+        <span class="tag">doordash.com · privacy.uber.com</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Dedupe line-items into orders</div>
+        <div class="d">Each export lists one row per item. Grouped by order timestamp: 1,258 DD rows → 852 orders, 1,781 UE rows → 643 orders.</div>
+        <span class="tag">pandas .groupby(timestamp)</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Fix the timezone trap</div>
+        <div class="d">Timestamps are stored in UTC despite a "local" label. Converting to America/New_York flipped a fake "55% late-night" artifact into the real daytime pattern.</div>
+        <span class="tag">tz_convert('America/New_York')</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Merge &amp; normalize across services</div>
+        <div class="d">Reconciled "Chick-fil-A" vs "Chick-fil-A®", joined restaurants across both apps, and converted ride fares to USD across 7 currencies.</div>
+        <span class="tag">combined analysis</span></div></div>
+    </div></section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">1,495</div><div class="l">delivery orders (deduped)</div></div>
+      <div class="stat"><div class="n">$28.6K</div><div class="l">food subtotals (excl. fees/tip)</div></div>
+      <div class="stat"><div class="n">9.2 yr</div><div class="l">of delivery history</div></div>
+      <div class="stat"><div class="n">204</div><div class="l">distinct Uber Eats restaurants</div></div>
+      <div class="stat"><div class="n">209</div><div class="l">Chick-fil-A orders</div></div>
+      <div class="stat"><div class="n">~$320</div><div class="l">largest single order</div></div>
+      <div class="stat"><div class="n">87</div><div class="l">Uber rides (recent sample)</div></div>
+      <div class="stat"><div class="n">48%</div><div class="l">of rides are airport runs</div></div>
+    </div></section>
+
+  <section><h2>Orders by year — DoorDash vs Uber Eats</h2>
+    <div class="card">
+      <div class="yearchart">
+        <!-- max stacked total = 468 (2021). heights as % of 200px usable -->
+        <div class="ycol"><div class="ytot">24</div><div class="ystack" style="height:10.3%"><div class="yseg" style="height:100%;background:var(--ue)"></div></div><div class="ylab">'17</div></div>
+        <div class="ycol"><div class="ytot">68</div><div class="ystack" style="height:29.1%"><div class="yseg" style="height:100%;background:var(--ue)"></div></div><div class="ylab">'18</div></div>
+        <div class="ycol"><div class="ytot">109</div><div class="ystack" style="height:46.6%"><div class="yseg" style="height:2.8%;background:var(--dd)"></div><div class="yseg" style="height:97.2%;background:var(--ue)"></div></div><div class="ylab">'19</div></div>
+        <div class="ycol"><div class="ytot">242</div><div class="ystack" style="height:51.7%"><div class="yseg" style="height:60.3%;background:var(--dd)"></div><div class="yseg" style="height:39.7%;background:var(--ue)"></div></div><div class="ylab">'20</div></div>
+        <div class="ycol"><div class="ytot">468</div><div class="ystack" style="height:100%"><div class="yseg" style="height:78.4%;background:var(--dd)"></div><div class="yseg" style="height:21.6%;background:var(--ue)"></div></div><div class="ylab">'21</div></div>
+        <div class="ycol"><div class="ytot">147</div><div class="ystack" style="height:31.4%"><div class="yseg" style="height:16.3%;background:var(--dd)"></div><div class="yseg" style="height:83.7%;background:var(--ue)"></div></div><div class="ylab">'22</div></div>
+        <div class="ycol"><div class="ytot">146</div><div class="ystack" style="height:31.2%"><div class="yseg" style="height:76.7%;background:var(--dd)"></div><div class="yseg" style="height:23.3%;background:var(--ue)"></div></div><div class="ylab">'23</div></div>
+        <div class="ycol"><div class="ytot">187</div><div class="ystack" style="height:40.0%"><div class="yseg" style="height:66.8%;background:var(--dd)"></div><div class="yseg" style="height:33.2%;background:var(--ue)"></div></div><div class="ylab">'24</div></div>
+        <div class="ycol"><div class="ytot">47</div><div class="ystack" style="height:10.0%"><div class="yseg" style="height:74.5%;background:var(--dd)"></div><div class="yseg" style="height:25.5%;background:var(--ue)"></div></div><div class="ylab">'25</div></div>
+        <div class="ycol"><div class="ytot">57</div><div class="ystack" style="height:12.2%"><div class="yseg" style="height:70.2%;background:var(--dd)"></div><div class="yseg" style="height:29.8%;background:var(--ue)"></div></div><div class="ylab">'26*</div></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--dd)"></i>DoorDash</span><span><i style="background:var(--ue)"></i>Uber Eats</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">The pandemic spike is unmistakable: <b>2021 alone was 468 orders</b> (367 of them DoorDash). 2026* is a partial year (through May). Uber Eats carried the early years; DoorDash took over in 2020–21.</p>
+    </div></section>
+
+  <section><h2>Spend per year — where the ~$28.6K went</h2>
+    <div class="card">
+      <div class="yearchart">
+        <!-- max stacked total = $5,494 (2021). dd=red ue=green. heights as % of usable -->
+        <div class="ycol"><div class="ytot">$553</div><div class="ystack" style="height:10.1%"><div class="yseg" style="height:100%;background:var(--ue)"></div></div><div class="ylab">'17</div></div>
+        <div class="ycol"><div class="ytot">$1.6K</div><div class="ystack" style="height:28.9%"><div class="yseg" style="height:100%;background:var(--ue)"></div></div><div class="ylab">'18</div></div>
+        <div class="ycol"><div class="ytot">$2.4K</div><div class="ystack" style="height:44.2%"><div class="yseg" style="height:0.9%;background:var(--dd)"></div><div class="yseg" style="height:99.1%;background:var(--ue)"></div></div><div class="ylab">'19</div></div>
+        <div class="ycol"><div class="ytot">$3.3K</div><div class="ystack" style="height:60.2%"><div class="yseg" style="height:31.1%;background:var(--dd)"></div><div class="yseg" style="height:68.9%;background:var(--ue)"></div></div><div class="ylab">'20</div></div>
+        <div class="ycol"><div class="ytot">$5.5K</div><div class="ystack" style="height:100%"><div class="yseg" style="height:53.1%;background:var(--dd)"></div><div class="yseg" style="height:46.9%;background:var(--ue)"></div></div><div class="ylab">'21</div></div>
+        <div class="ycol"><div class="ytot">$3.2K</div><div class="ystack" style="height:58.9%"><div class="yseg" style="height:7.7%;background:var(--dd)"></div><div class="yseg" style="height:92.3%;background:var(--ue)"></div></div><div class="ylab">'22</div></div>
+        <div class="ycol"><div class="ytot">$3.6K</div><div class="ystack" style="height:65.0%"><div class="yseg" style="height:71.6%;background:var(--dd)"></div><div class="yseg" style="height:28.4%;background:var(--ue)"></div></div><div class="ylab">'23</div></div>
+        <div class="ycol"><div class="ytot">$5.5K</div><div class="ystack" style="height:99.6%"><div class="yseg" style="height:53.7%;background:var(--dd)"></div><div class="yseg" style="height:46.3%;background:var(--ue)"></div></div><div class="ylab">'24</div></div>
+        <div class="ycol"><div class="ytot">$1.5K</div><div class="ystack" style="height:26.5%"><div class="yseg" style="height:64.7%;background:var(--dd)"></div><div class="yseg" style="height:35.3%;background:var(--ue)"></div></div><div class="ylab">'25</div></div>
+        <div class="ycol"><div class="ytot">$1.5K</div><div class="ystack" style="height:27.6%"><div class="yseg" style="height:58.5%;background:var(--dd)"></div><div class="yseg" style="height:41.5%;background:var(--ue)"></div></div><div class="ylab">'26*</div></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--dd)"></i>DoorDash</span><span><i style="background:var(--ue)"></i>Uber Eats</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">Spend tracks orders, but the bigger AOV smooths the curve: the two peak years were <b>2021 (~$5.5K)</b> and <b>2024 (~$5.5K)</b> — one driven by pandemic volume, the other by pricier sit-down orders. Lifetime split is <b>Uber Eats ~$17.1K / DoorDash ~$11.5K</b>. 2025–26 are quieter ($1.5K each, 2026* partial through May).</p>
+      <p class="muted" style="font-size:12px;margin:8px 0 0;font-style:italic">Figures are food subtotals only — no fees, tax, or tip — so true spend is meaningfully higher.</p>
+    </div></section>
+
+  <section><h2>Top restaurants — combined across both apps</h2>
+    <div class="card">
+      <!-- max = 209 Chick-fil-A. width = total/209*100. split DD(red) + UE(green) within bar -->
+      <div class="bar-row"><span class="bar-label">Chick-fil-A</span><span class="bar-track" style="width:100%"><span class="bar-fill" style="width:90.0%;background:var(--dd)"></span><span class="bar-fill" style="width:10.0%;background:var(--ue)"></span></span><span class="bar-val">209</span></div>
+      <div class="bar-row"><span class="bar-label">Black Rooster Taqueria</span><span class="bar-track" style="width:32.1%"><span class="bar-fill" style="width:55.2%;background:var(--dd)"></span><span class="bar-fill" style="width:44.8%;background:var(--ue)"></span></span><span class="bar-val">67</span></div>
+      <div class="bar-row"><span class="bar-label">4 Rivers Smokehouse</span><span class="bar-track" style="width:31.1%"><span class="bar-fill" style="width:47.7%;background:var(--dd)"></span><span class="bar-fill" style="width:52.3%;background:var(--ue)"></span></span><span class="bar-val">65</span></div>
+      <div class="bar-row"><span class="bar-label">McDonald's</span><span class="bar-track" style="width:20.6%"><span class="bar-fill" style="width:100%;background:var(--dd)"></span></span><span class="bar-val">43</span></div>
+      <div class="bar-row"><span class="bar-label">Zaza Cuban Comfort</span><span class="bar-track" style="width:20.6%"><span class="bar-fill" style="width:81.4%;background:var(--dd)"></span><span class="bar-fill" style="width:18.6%;background:var(--ue)"></span></span><span class="bar-val">43</span></div>
+      <div class="bar-row"><span class="bar-label">Metro Diner</span><span class="bar-track" style="width:20.1%"><span class="bar-fill" style="width:73.8%;background:var(--dd)"></span><span class="bar-fill" style="width:26.2%;background:var(--ue)"></span></span><span class="bar-val">42</span></div>
+      <div class="bar-row"><span class="bar-label">Chipotle</span><span class="bar-track" style="width:15.8%"><span class="bar-fill" style="width:100%;background:var(--dd)"></span></span><span class="bar-val">33</span></div>
+      <div class="bar-row"><span class="bar-label">Fresh Kitchen</span><span class="bar-track" style="width:15.3%"><span class="bar-fill" style="width:68.8%;background:var(--dd)"></span><span class="bar-fill" style="width:31.2%;background:var(--ue)"></span></span><span class="bar-val">32</span></div>
+      <div class="bar-row"><span class="bar-label">Ms Tea's Bento</span><span class="bar-track" style="width:12.0%"><span class="bar-fill" style="width:100%;background:var(--dd)"></span></span><span class="bar-val">25</span></div>
+      <div class="bar-row"><span class="bar-label">Panda Express</span><span class="bar-track" style="width:11.0%"><span class="bar-fill" style="width:73.9%;background:var(--dd)"></span><span class="bar-fill" style="width:26.1%;background:var(--ue)"></span></span><span class="bar-val">23</span></div>
+      <div class="legend"><span><i style="background:var(--dd)"></i>DoorDash</span><span><i style="background:var(--ue)"></i>Uber Eats</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">Chick-fil-A isn't close — <b>209 combined orders</b>, more than the next four spots stacked. After that it's all local Orlando: a taqueria, a BBQ smokehouse, a Cuban comfort spot, and a since-closed diner.</p>
+    </div></section>
+
+  <section><h2>Kevin's top dishes — what's actually in the cart</h2>
+    <div class="card">
+      <p class="muted" style="font-size:14px;margin:0 0 12px">Both exports carry one row per <i>item</i> — so we can rank the actual food, not just the restaurants. Counted across both apps (Chick-n-Strips variants merged):</p>
+      <!-- max = 161 Chick-n-Strips -->
+      <div class="bar-row"><span class="bar-label">Chick-n-Strips</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">161</span></div>
+      <div class="bar-row"><span class="bar-label">Waffle Fries</span><span class="bar-track"><span class="bar-fill" style="width:64.0%;background:var(--grad)"></span></span><span class="bar-val">103</span></div>
+      <div class="bar-row"><span class="bar-label">Guacamole</span><span class="bar-track"><span class="bar-fill" style="width:37.9%;background:var(--grad)"></span></span><span class="bar-val">61</span></div>
+      <div class="bar-row"><span class="bar-label">French Fries</span><span class="bar-track"><span class="bar-fill" style="width:31.1%;background:var(--grad)"></span></span><span class="bar-val">50</span></div>
+      <div class="bar-row"><span class="bar-label">Hashbrowns</span><span class="bar-track"><span class="bar-fill" style="width:28.6%;background:var(--grad)"></span></span><span class="bar-val">46</span></div>
+      <div class="bar-row"><span class="bar-label">Grains Bowl</span><span class="bar-track"><span class="bar-fill" style="width:24.8%;background:var(--grad)"></span></span><span class="bar-val">40</span></div>
+      <div class="bar-row"><span class="bar-label">Empanadas</span><span class="bar-track"><span class="bar-fill" style="width:24.2%;background:var(--grad)"></span></span><span class="bar-val">39</span></div>
+      <div class="bar-row"><span class="bar-label">Six Bowl (Fresh Kitchen)</span><span class="bar-track"><span class="bar-fill" style="width:24.2%;background:var(--grad)"></span></span><span class="bar-val">39</span></div>
+      <div class="bar-row"><span class="bar-label">Tacos</span><span class="bar-track"><span class="bar-fill" style="width:20.5%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+      <div class="bar-row"><span class="bar-label">Burrito Bowl (Chipotle)</span><span class="bar-track"><span class="bar-fill" style="width:18.6%;background:var(--grad)"></span></span><span class="bar-val">30</span></div>
+      <div class="bar-row"><span class="bar-label">Chips &amp; Chili-Corn Salsa</span><span class="bar-track"><span class="bar-fill" style="width:18.0%;background:var(--grad)"></span></span><span class="bar-val">29</span></div>
+      <div class="bar-row"><span class="bar-label">#9 Club Supreme (sub)</span><span class="bar-track"><span class="bar-fill" style="width:16.8%;background:var(--grad)"></span></span><span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">Sesame Chicken</span><span class="bar-track"><span class="bar-fill" style="width:16.8%;background:var(--grad)"></span></span><span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">Fried Chicken Rice Bowl</span><span class="bar-track"><span class="bar-fill" style="width:16.8%;background:var(--grad)"></span></span><span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">Three Egg Breakfast</span><span class="bar-track"><span class="bar-fill" style="width:15.5%;background:var(--grad)"></span></span><span class="bar-val">25</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">The order is unmistakable: <b>Chick-n-Strips + Waffle Fries is THE meal</b> (264 line-items between them). After that, the cart is <b>guac and salsa</b> (Chipotle/taqueria sides), <b>build-your-own bowls</b>, <b>empanadas</b>, and <b>chicken in every cuisine</b> — sesame chicken, fried-chicken rice bowls, Greek chicken pita. Note that high-ranking sides (fries, guac) ride along with nearly every order at their restaurant.</p>
+    </div></section>
+
+  <section><h2>When the orders land — a daytime habit</h2>
+    <div class="card">
+      <p class="muted" style="font-size:14px;margin:0 0 6px">Combined orders by hour of day (Orlando local time). Two clean humps — a late-morning/lunch wave and an early-evening DoorDash dinner wave — with a near-empty midnight.</p>
+      <div class="hours">
+        <!-- combined_hourly, max=235 @18 -->
+        <div class="hcol"><div class="hbar" style="height:0%"></div><div class="hlab">12a</div></div>
+        <div class="hcol"><div class="hbar" style="height:0%"></div><div class="hlab">1</div></div>
+        <div class="hcol"><div class="hbar" style="height:1.3%"></div><div class="hlab">2</div></div>
+        <div class="hcol"><div class="hbar" style="height:3.4%"></div><div class="hlab">3</div></div>
+        <div class="hcol"><div class="hbar" style="height:11.9%"></div><div class="hlab">4</div></div>
+        <div class="hcol"><div class="hbar" style="height:16.2%"></div><div class="hlab">5</div></div>
+        <div class="hcol"><div class="hbar" style="height:19.1%"></div><div class="hlab">6</div></div>
+        <div class="hcol"><div class="hbar" style="height:26.8%"></div><div class="hlab">7</div></div>
+        <div class="hcol"><div class="hbar" style="height:17.4%"></div><div class="hlab">8</div></div>
+        <div class="hcol"><div class="hbar" style="height:31.1%"></div><div class="hlab">9</div></div>
+        <div class="hcol"><div class="hbar" style="height:14.9%"></div><div class="hlab">10</div></div>
+        <div class="hcol"><div class="hbar" style="height:54.0%"></div><div class="hlab">11</div></div>
+        <div class="hcol"><div class="hbar" style="height:38.7%"></div><div class="hlab">12p</div></div>
+        <div class="hcol"><div class="hbar" style="height:45.5%"></div><div class="hlab">1</div></div>
+        <div class="hcol"><div class="hbar" style="height:71.9%"></div><div class="hlab">2</div></div>
+        <div class="hcol"><div class="hbar" style="height:52.3%"></div><div class="hlab">3</div></div>
+        <div class="hcol"><div class="hbar" style="height:14.0%"></div><div class="hlab">4</div></div>
+        <div class="hcol"><div class="hbar" style="height:20.9%"></div><div class="hlab">5</div></div>
+        <div class="hcol"><div class="hbar" style="height:100%"></div><div class="hlab">6</div></div>
+        <div class="hcol"><div class="hbar" style="height:79.6%"></div><div class="hlab">7</div></div>
+        <div class="hcol"><div class="hbar" style="height:13.6%"></div><div class="hlab">8</div></div>
+        <div class="hcol"><div class="hbar" style="height:0.9%"></div><div class="hlab">9</div></div>
+        <div class="hcol"><div class="hbar" style="height:0.4%"></div><div class="hlab">10</div></div>
+        <div class="hcol"><div class="hbar" style="height:2.1%"></div><div class="hlab">11</div></div>
+      </div>
+      <div class="mealbands">
+        <div class="mb"><div class="mn">505</div><div class="ml">Dinner (5–10p)</div></div>
+        <div class="mb"><div class="mn">494</div><div class="ml">Lunch (11–3p)</div></div>
+        <div class="mb"><div class="mn">323</div><div class="ml">Breakfast (4–11a)</div></div>
+        <div class="mb"><div class="mn">17</div><div class="ml">Late night (10p–4a)</div></div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">The two services split the day: <b>Uber Eats is the breakfast/lunch tool</b> (478 of its orders before 3pm) while <b>DoorDash owns dinner</b> (493 of its 852 orders, 6–7pm). Combine them and late-night is a rounding error — just <b>17 orders in 9 years</b>.</p>
+    </div></section>
+
+  <section><h2>Order sizes tripled as the habit grew up</h2>
+    <div class="card">
+      <p class="muted" style="font-size:14px;margin:0 0 10px">Average order value by year, combined. The pandemic fast-food era dragged the average down to ~$12; since 2023 it's been climbing toward $30 as cheap McDonald's runs gave way to real meals.</p>
+      <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+        <!-- grid -->
+        <line x1="40" y1="20" x2="40" y2="200" stroke="var(--line)" stroke-width="1"/>
+        <line x1="40" y1="200" x2="700" y2="200" stroke="var(--line)" stroke-width="1"/>
+        <!-- y labels: 0..40 -->
+        <text x="32" y="204" fill="var(--dim)" font-size="11" text-anchor="end">$0</text>
+        <text x="32" y="155" fill="var(--dim)" font-size="11" text-anchor="end">$10</text>
+        <text x="32" y="110" fill="var(--dim)" font-size="11" text-anchor="end">$20</text>
+        <text x="32" y="65" fill="var(--dim)" font-size="11" text-anchor="end">$30</text>
+        <text x="32" y="24" fill="var(--dim)" font-size="11" text-anchor="end">$40</text>
+        <!-- area: x from 70..680 across 10 yrs (2017..2026). y = 200 - aov/40*180 -->
+        <!-- aov: 23.05,23.34,22.27,13.68,11.74,22.03,24.47,29.28,31.0,26.66 -->
+        <polyline points="70,96.3 138,95.0 206,99.8 274,138.4 342,147.2 410,100.9 478,89.9 546,68.3 614,60.5 682,80.0"
+          fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <polygon points="70,200 70,96.3 138,95.0 206,99.8 274,138.4 342,147.2 410,100.9 478,89.9 546,68.3 614,60.5 682,80.0 682,200"
+          fill="url(#ga)" opacity="0.25"/>
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3008"/><stop offset="1" stop-color="#ff7a45"/></linearGradient>
+          <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a45"/><stop offset="1" stop-color="#ff7a45" stop-opacity="0"/></linearGradient>
+        </defs>
+        <!-- points -->
+        <circle cx="70" cy="96.3" r="3.5" fill="#ff7a45"/><circle cx="138" cy="95.0" r="3.5" fill="#ff7a45"/>
+        <circle cx="206" cy="99.8" r="3.5" fill="#ff7a45"/><circle cx="274" cy="138.4" r="3.5" fill="#ff7a45"/>
+        <circle cx="342" cy="147.2" r="3.5" fill="#ff7a45"/><circle cx="410" cy="100.9" r="3.5" fill="#ff7a45"/>
+        <circle cx="478" cy="89.9" r="3.5" fill="#ff7a45"/><circle cx="546" cy="68.3" r="3.5" fill="#ff7a45"/>
+        <circle cx="614" cy="60.5" r="3.5" fill="#ff7a45"/><circle cx="682" cy="80.0" r="3.5" fill="#ff7a45"/>
+        <!-- x labels -->
+        <text x="70" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'17</text>
+        <text x="138" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'18</text>
+        <text x="206" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'19</text>
+        <text x="274" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'20</text>
+        <text x="342" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'21</text>
+        <text x="410" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'22</text>
+        <text x="478" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'23</text>
+        <text x="546" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'24</text>
+        <text x="614" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'25</text>
+        <text x="682" y="218" fill="var(--dim)" font-size="11" text-anchor="middle">'26</text>
+      </svg>
+      <p class="muted" style="font-size:13px;margin:6px 0 0">Looking at DoorDash alone, the climb is even starker: its average order went from <b>~$7 in 2020–21</b> to <b>~$27 in 2025</b> — a near-quadrupling as the pandemic snack-runs gave way to sit-down meals.</p>
+    </div></section>
+
+  <section><h2>What Kevin likes to eat — the flavor profile</h2>
+    <div class="tldr">
+      <p>Classifying all 1,495 orders by cuisine reveals a clear taste fingerprint: <b>chicken-forward, comfort-leaning, and fiercely repetitive, with a strong Mexican streak and a wide Asian range</b>. Three buckets — chicken, Asian, and Mexican — are <b>nearly half of everything ordered</b>.</p>
+      <div class="callout"><b>The one-liner:</b> Kevin defaults to <b>fast-casual over fine dining</b>, eats the <b>same handful of dishes over and over</b>, and is <b>savory and protein-driven, not sweet</b> — his indulgence is fried chicken and BBQ, not dessert.</div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0">Cuisine mix — share of 1,495 orders</h3>
+      <!-- max = 258 Chicken. width = count/258*100. show % of all orders + spend in val -->
+      <div class="bar-row"><span class="bar-label">Chicken (fast-food)</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">17%</span></div>
+      <div class="bar-row"><span class="bar-label">Asian — JP/CN/Thai</span><span class="bar-track"><span class="bar-fill" style="width:91.9%;background:var(--grad)"></span></span><span class="bar-val">16%</span></div>
+      <div class="bar-row"><span class="bar-label">Mexican</span><span class="bar-track"><span class="bar-fill" style="width:86.4%;background:var(--grad)"></span></span><span class="bar-val">15%</span></div>
+      <div class="bar-row"><span class="bar-label">Breakfast / diner</span><span class="bar-track"><span class="bar-fill" style="width:65.1%;background:var(--grad)"></span></span><span class="bar-val">11%</span></div>
+      <div class="bar-row"><span class="bar-label">American / burgers</span><span class="bar-track"><span class="bar-fill" style="width:57.0%;background:var(--grad)"></span></span><span class="bar-val">10%</span></div>
+      <div class="bar-row"><span class="bar-label">Sandwiches / subs</span><span class="bar-track"><span class="bar-fill" style="width:30.2%;background:var(--grad)"></span></span><span class="bar-val">5%</span></div>
+      <div class="bar-row"><span class="bar-label">BBQ / smokehouse</span><span class="bar-track"><span class="bar-fill" style="width:27.5%;background:var(--grad)"></span></span><span class="bar-val">5%</span></div>
+      <div class="bar-row"><span class="bar-label">Pizza / Italian</span><span class="bar-track"><span class="bar-fill" style="width:23.6%;background:var(--grad)"></span></span><span class="bar-val">4%</span></div>
+      <div class="bar-row"><span class="bar-label">Healthy / bowls</span><span class="bar-track"><span class="bar-fill" style="width:23.3%;background:var(--grad)"></span></span><span class="bar-val">4%</span></div>
+      <div class="bar-row"><span class="bar-label">Latin / Cuban</span><span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span><span class="bar-val">4%</span></div>
+      <div class="bar-row"><span class="bar-label">Mediterranean / Greek</span><span class="bar-track"><span class="bar-fill" style="width:22.5%;background:var(--grad)"></span></span><span class="bar-val">4%</span></div>
+      <div class="bar-row"><span class="bar-label">Dessert / boba</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--grad)"></span></span><span class="bar-val">1%</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">By <i>spend</i> the top three reshuffle slightly — <b>Mexican (~$4.8K)</b> and <b>Asian (~$4.7K)</b> edge out chicken (~$3.1K), because tacos and ramen run pricier than fast-food strips. But by frequency, chicken is king.</p>
+    </div>
+
+    <div class="split" style="margin-top:14px">
+      <div class="card">
+        <h3 style="margin-top:0">The synthesis</h3>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>Proteins:</b> heavily chicken-forward — fast-food chicken is the #1 bucket and #1 dish, and chicken shows up <i>inside</i> every other cuisine (sesame chicken, fried-chicken rice bowls, Greek chicken pita, Bonchon). Beef via burgers and BBQ brisket; pork via Cuban, ramen, and tacos.</p>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>Spice:</b> mild-to-medium. Plenty of tacos, salsa, and carne asada (Mexican is 15%), but little explicit Thai/Indian/Szechuan — his "spicy" is Tex-Mex, not chili-forward.</p>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>Comfort vs healthy:</b> comfort wins decisively — fried chicken, burgers, BBQ, diner breakfast, Cuban. The healthy/bowls lane (Fresh Kitchen, CAVA, Just Salad, Bolay, poke) is real but secondary (~4%).</p>
+        <p class="muted" style="font-size:14px;margin:0"><b>Sweet tooth:</b> essentially none on delivery — 12 dessert/boba orders in nine years. He indulges in fried chicken, not sugar.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">How the palate matured</h3>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>2017–19:</b> subs, Chinese, and burgers — a younger, cheaper, fast-food palate.</p>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>2020–21 (peak, ~710 orders):</b> dominated by fast-food chicken and Mexican — quick, cheap, repeatable comfort runs (~$7 orders).</p>
+        <p class="muted" style="font-size:14px;margin:0 0 10px"><b>2022–24:</b> broadened — ramen and healthy bowls climbed, AOV roughly tripled toward ~$25–30 as snack-runs became real meals.</p>
+        <p class="muted" style="font-size:14px;margin:0"><b>2025–26:</b> lower-volume, more varied — pizza, Mediterranean, and sit-down American rising. Fewer, nicer, more deliberate orders.</p>
+      </div>
+    </div>
+
+    <div class="fun" style="margin-top:14px">
+      <div class="f"><b>Chicken in every cuisine.</b> Chick-n-Strips, sesame chicken, Greek chicken pita, fried-chicken rice bowls, Bonchon, Huey Magoo's — no matter the menu, Kevin finds the chicken.</div>
+      <div class="f"><b>Weekday chicken, weekend diner.</b> Chicken and Mexican over-index hard on weekday lunches (work fuel); breakfast/diner and pub food skew toward weekends (Metro Diner, First Watch, Gator's Dockside).</div>
+      <div class="f"><b>Adventurous across, repetitive within.</b> He'll try Cuban, ramen, Malaysian (Mamak), and Argentine (Alma Argentina) — but then orders the <i>same dish</i> at each, dozens of times.</div>
+      <div class="f"><b>One party-order outlier.</b> Tacos Chely 5y10: just 3 orders but ~$688 — huge group orders, not a personal habit. A reminder that spend and taste aren't the same signal.</div>
+    </div>
+  </section>
+
+  <section><h2>DoorDash favorites — click to expand</h2>
+    <details><summary><span>852 DoorDash orders · top spots</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">$11,547</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Chick-fil-A</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">188</span></div>
+        <div class="bar-row"><span class="bar-label">McDonald's</span><span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span><span class="bar-val">43</span></div>
+        <div class="bar-row"><span class="bar-label">Black Rooster Taqueria</span><span class="bar-track"><span class="bar-fill" style="width:19.7%;background:var(--grad)"></span></span><span class="bar-val">37</span></div>
+        <div class="bar-row"><span class="bar-label">Zaza Cuban Comfort</span><span class="bar-track"><span class="bar-fill" style="width:18.6%;background:var(--grad)"></span></span><span class="bar-val">35</span></div>
+        <div class="bar-row"><span class="bar-label">Chipotle</span><span class="bar-track"><span class="bar-fill" style="width:17.6%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+        <div class="bar-row"><span class="bar-label">Metro Diner</span><span class="bar-track"><span class="bar-fill" style="width:16.5%;background:var(--grad)"></span></span><span class="bar-val">31</span></div>
+        <div class="bar-row"><span class="bar-label">4 Rivers Smokehouse</span><span class="bar-track"><span class="bar-fill" style="width:16.5%;background:var(--grad)"></span></span><span class="bar-val">31</span></div>
+        <div class="bar-row"><span class="bar-label">Ms Tea's Bento</span><span class="bar-track"><span class="bar-fill" style="width:13.3%;background:var(--grad)"></span></span><span class="bar-val">25</span></div>
+        <div class="bar-row"><span class="bar-label">Little Greek Fresh Grill</span><span class="bar-track"><span class="bar-fill" style="width:11.7%;background:var(--grad)"></span></span><span class="bar-val">22</span></div>
+        <div class="bar-row"><span class="bar-label">Fresh Kitchen</span><span class="bar-track"><span class="bar-fill" style="width:11.7%;background:var(--grad)"></span></span><span class="bar-val">22</span></div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">Top item overall: <b>Chick-fil-A Chick-n-Strips (94×)</b>, with Waffle Fries close behind. Chick-fil-A alone is <b>$1,641</b> — 14% of all DoorDash spend.</p>
+      </div>
+    </details></section>
+
+  <section><h2>Uber Eats favorites — click to expand</h2>
+    <details><summary><span>643 Uber Eats orders · top spots</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">$17,086</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">4 Rivers Smokehouse</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">34</span></div>
+        <div class="bar-row"><span class="bar-label">Black Rooster Taqueria</span><span class="bar-track"><span class="bar-fill" style="width:88.2%;background:var(--grad)"></span></span><span class="bar-val">30</span></div>
+        <div class="bar-row"><span class="bar-label">Chick-fil-A</span><span class="bar-track"><span class="bar-fill" style="width:61.8%;background:var(--grad)"></span></span><span class="bar-val">21</span></div>
+        <div class="bar-row"><span class="bar-label">Metro Diner (closed)</span><span class="bar-track"><span class="bar-fill" style="width:58.8%;background:var(--grad)"></span></span><span class="bar-val">20</span></div>
+        <div class="bar-row"><span class="bar-label">Starbucks</span><span class="bar-track"><span class="bar-fill" style="width:50.0%;background:var(--grad)"></span></span><span class="bar-val">17</span></div>
+        <div class="bar-row"><span class="bar-label">Friendly Confines</span><span class="bar-track"><span class="bar-fill" style="width:44.1%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+        <div class="bar-row"><span class="bar-label">CAVA</span><span class="bar-track"><span class="bar-fill" style="width:44.1%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+        <div class="bar-row"><span class="bar-label">Gator's Dockside</span><span class="bar-track"><span class="bar-fill" style="width:41.2%;background:var(--grad)"></span></span><span class="bar-val">14</span></div>
+        <div class="bar-row"><span class="bar-label">Peter's Kitchen China Bistro</span><span class="bar-track"><span class="bar-fill" style="width:38.2%;background:var(--grad)"></span></span><span class="bar-val">13</span></div>
+        <div class="bar-row"><span class="bar-label">Bonchon Chicken</span><span class="bar-track"><span class="bar-fill" style="width:35.3%;background:var(--grad)"></span></span><span class="bar-val">12</span></div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">By <i>spend</i>, the order reshuffles: <b>Black Rooster ($835)</b>, <b>4 Rivers ($768)</b>, and the taco truck <b>Tacos Chely 5y10 ($688)</b> top the list — a different signal than raw frequency, surfacing the bigger-ticket favorites.</p>
+      </div>
+    </details></section>
+
+  <section><h2>Three Orlando homes, traced through delivery addresses</h2>
+    <div class="card">
+      <p class="muted" style="font-size:14px;margin:0 0 14px">DoorDash's delivery-address field is an accidental relocation log. Three addresses account for 836 of 852 orders — and the dates line up cleanly with three moves around east Orlando.</p>
+      <div class="trail">
+        <div class="thome"><div class="dot"></div>
+          <div><div class="ta">562 Short Pine Cir · 32807</div><div class="td">Aug 2019 → Feb 2021 · the early-pandemic apartment</div></div>
+          <div class="tn"><b>188</b><span>orders</span></div></div>
+        <div class="thome"><div class="dot"></div>
+          <div><div class="ta">5587 Elizabeth Rose Sq</div><div class="td">Feb 2021 → Apr 2021 · a brief 2-month stint</div></div>
+          <div class="tn"><b>50</b><span>orders</span></div></div>
+        <div class="thome"><div class="dot"></div>
+          <div><div class="ta">12705 Paddle Ct · 32828</div><div class="td">May 2021 → present · current home (Waterford Lakes)</div></div>
+          <div class="tn"><b>598</b><span>orders</span></div></div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">The remaining ~16 orders are one-offs — Waterford Lakes Pkwy, N Orlando Ave, N Alafaya Trail — that read as travel, visits, or office deliveries rather than residences.</p>
+    </div></section>
+
+  <section><h2>Raw vs. result — the dedupe that made it real</h2>
+    <p class="muted" style="margin:0 0 12px">Every export lists one row <i>per item</i>. A single Little Greek dinner showed up as multiple rows sharing one timestamp. Grouping by that timestamp collapses them into one true order.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw DoorDash CSV — 2 rows, 1 order</div>
+        <div class="mono">"GYRO PITA",...,18.94,"2026-05-26&nbsp;23:12:58"<br>"Fresh-Cut&nbsp;Fries",...,5.14,"2026-05-26&nbsp;23:12:58"</div></div>
+      <div class="box"><div class="h">Deduped order</div>
+        <div class="mono">store: <b style="color:#fff">Little Greek Fresh Grill</b><br>items: 2<br>subtotal: <b style="color:#fff">$24.08</b><br>time (ET): 2026-05-26 19:12 → dinner<br>address: 12705 Paddle Ct</div></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin:12px 0 0">Across both services this turned <b>3,039 raw line-items into 1,495 orders</b>. The same trick fixed the clock: that 23:12 UTC stamp is really <b>7:12pm Orlando</b> — which is why "late-night ordering" evaporated once the timezone was corrected.</p>
+  </section>
+
+  <section><h2>And then there's the Uber rides file — basically an airport shuttle</h2>
+    <div class="card">
+      <div class="grid" style="margin-bottom:18px">
+        <div class="stat"><div class="n">87</div><div class="l">completed rides</div></div>
+        <div class="stat"><div class="n">48%</div><div class="l">flagged airport trips</div></div>
+        <div class="stat"><div class="n">13</div><div class="l">cities, 7 currencies</div></div>
+        <div class="stat"><div class="n">~$2,177</div><div class="l">USD-equiv fares</div></div>
+        <div class="stat"><div class="n">~1,009</div><div class="l">miles ridden</div></div>
+        <div class="stat"><div class="n">4.96</div><div class="l">lifetime rider rating</div></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin:0 0 10px">The rides export is small but it doubles as a travel map. For just 87 rides, the city footprint is wildly global — Uber gets used as the "land somewhere new, get to the hotel" tool:</p>
+      <div class="cities">
+        <span class="cty big">Orlando <b>34</b></span>
+        <span class="cty big">Cairo <b>14</b></span>
+        <span class="cty big">Taipei <b>11</b></span>
+        <span class="cty">Chicago <b>6</b></span>
+        <span class="cty">San Diego <b>5</b></span>
+        <span class="cty">Seoul <b>5</b></span>
+        <span class="cty">Austin <b>4</b></span>
+        <span class="cty">Tokyo <b>2</b></span>
+        <span class="cty">Tainan <b>2</b></span>
+        <span class="cty">Rome <b>1</b></span>
+        <span class="cty">Bogotá <b>1</b></span>
+        <span class="cty">Medellín <b>1</b></span>
+        <span class="cty">Seattle <b>1</b></span>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">Product mix skews comfort (Comfort 29, UberX 25). <b>19 rides hit surge</b> (peaking 2.5×). Usage is lumpy: 13 rides in 2019, just 1 in the COVID year, then a jump to <b>41 in 2025</b> — a heavy-travel year. The export only keeps the most recent 100 rows, so this is a recent-history sample, not a lifetime total.</p>
+    </div></section>
+
+  <section><h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>Chick-fil-A is the whole personality.</b> 209 combined orders — more than McDonald's, Chipotle, Metro Diner and Panda Express <i>put together</i>. Chick-n-Strips ordered 94 separate times.</div>
+      <div class="f"><b>There is essentially no late-night delivery.</b> 17 orders after 10pm in 9 years (~1%). The "55% late-night" you'd see in the raw data is a pure UTC artifact — corrected, it's a 9-to-5 habit.</div>
+      <div class="f"><b>The two apps quietly split the day.</b> Uber Eats handles breakfast and lunch; DoorDash owns dinner (493 of its orders at 6–7pm). Same person, two different mealtime tools.</div>
+      <div class="f"><b>Order value nearly quadrupled.</b> ~$7 DoorDash orders in the 2020–21 fast-food era climbed to ~$27 by 2025 — the habit grew from snack-runs into actual meals.</div>
+      <div class="f"><b>Half of all Uber rides are airport runs</b> — and the 13-city spread (Cairo, Taipei, Seoul, Rome, Bogotá…) doubles as a corroboration of every major trip taken.</div>
+      <div class="f"><b>The delivery addresses are a move log.</b> Three Orlando homes, three date ranges, no calendar required — the food just followed Kevin around.</div>
+    </div></section>
+
+  <section><h2>Honest caveats</h2>
+    <div class="caveat"><b>Spend is understated.</b> Both exports give <b>item subtotals only</b> — no delivery fees, service fees, tax, or tips. Real out-of-pocket is meaningfully higher than the ~$28.6K shown, and <b>tip behavior can't be computed at all</b>.</div>
+    <div class="caveat"><b>Uber rides are capped at 100 rows.</b> Uber's export keeps only the most recent ~100 trips, so the 87 completed rides are a <b>recent sample (2019–2025), not a lifetime count</b> — the account dates to 2015 in Gainesville.</div>
+    <div class="caveat"><b>Timezones were UTC despite a "local" label.</b> All meal-time figures were converted to America/New_York (Orlando). Orders placed while traveling in other timezones may be off by a few hours.</div>
+    <div class="caveat"><b>AOV is a floor, not a ceiling.</b> Many DoorDash orders show only a single line-item, which likely undercounts real cart contents and depresses the average — treat AOV as conservative.</div>
+    <div class="caveat"><b>Cuisine mix is heuristic.</b> Restaurants were classified into cuisines by name-keyword matching, so ~4% land in "Other" and a few fusion/gastropub spots are judgment calls — treat the percentages as <b>directional, not exact</b>.</div>
+    <div class="caveat"><b>Modifiers inflate item counts.</b> Add-ons (a guac side, "Garlic Rice") read as their own rows, so high-ranking sides like Waffle Fries and Guacamole partly reflect that they ride along with nearly every order at their restaurant — not standalone cravings.</div>
+  </section>
+
+  <section><h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Request your exports</div>
+        <div class="d">DoorDash: account → data export. Uber: privacy.uber.com → download your data (Eats + rides come together).</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Dedupe line-items into orders</div>
+        <div class="d">Load each CSV in pandas, group by the order timestamp, sum the subtotals. That's the single most important step.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Convert UTC → your local timezone</div>
+        <div class="d"><code>pd.to_datetime(..., utc=True).dt.tz_convert('America/New_York')</code> before doing any meal-time analysis.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Normalize names, then count</div>
+        <div class="d">Merge "Chick-fil-A" / "Chick-fil-A®", strip "(Orlando)" suffixes, convert ride fares to one currency. Then chart frequency, spend, by-year, by-hour, and address.</div></div></div>
+    </div></section>
+
+  <footer>Built with Python + pandas · charts hand-rolled in CSS/SVG · no external libraries · one session, 2026-06-05<br>
+  Sources: DoorDash data archive · Uber data request (Eats + Rider + Profile) · all numbers re-derived from raw exports</footer>
+
+</div></body></html>

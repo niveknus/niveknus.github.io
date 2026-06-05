@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3,467 Hours of Spotify, Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#1db954; --accent2:#1ed760;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.tldr p{margin:0 0 12px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:62px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:160px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word;line-height:1.7}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.muted{color:var(--muted)}
+.lead{color:var(--muted);font-size:15px;margin:-4px 0 16px}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+/* year timeline (SVG-ish CSS columns) */
+.timeline{display:flex;align-items:flex-end;gap:10px;height:230px;padding:14px 6px 0}
+.tl-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.tl-bar{width:100%;max-width:62px;border-radius:7px 7px 3px 3px;background:var(--grad);position:relative}
+.tl-bar.peak{box-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,transparent)}
+.tl-v{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.tl-y{font-size:12px;color:var(--muted);margin-top:7px}
+/* hour-of-day shape */
+.hours{display:flex;align-items:flex-end;gap:3px;height:150px;padding-top:10px}
+.hr{flex:1;background:var(--grad);border-radius:3px 3px 0 0;min-height:2px;position:relative}
+.hr.peak{box-shadow:0 0 12px color-mix(in srgb,var(--accent) 70%,transparent)}
+.hr-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-top:8px}
+/* day-of-week dots */
+.dow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center}
+.dow .d{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 4px}
+.dow .d .bar{height:6px;border-radius:3px;background:var(--grad);margin:8px auto 0}
+.dow .d.hot{border-color:color-mix(in srgb,var(--accent2) 50%,transparent)}
+.dow .d .dn{font-size:13px;font-weight:700}
+.dow .d .dv{font-size:11px;color:var(--muted);margin-top:2px}
+.era-row{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+.era-row:last-child{border-bottom:none}
+.era-yr{flex:none;width:54px;font-weight:800;font-size:18px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.era-t b{color:#fff}
+.era-t{font-size:14px}
+.era-tag{display:inline-block;font-size:11px;letter-spacing:.04em;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent);color:var(--accent2);border-radius:6px;padding:1px 8px;margin-top:5px;font-family:ui-monospace,Menlo,monospace}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:96px}.timeline{height:180px;gap:5px}.era-yr{width:42px;font-size:15px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>3,467 Hours of Spotify, Decoded</h1>
+    <p class="sub">Eight years, 90,490 plays, 5,122 artists. One melodic-EDM spine, a parade of heartbreak ballads, and a listener who almost never hits shuffle. Here's what the data says.</p>
+    <div class="meta">Aug 6, 2018 → May 29, 2026 · built in one session from the raw Spotify export</div>
+    <div class="chips">
+      <div class="chip"><b>90,490</b> plays</div>
+      <div class="chip"><b>3,467</b> hours</div>
+      <div class="chip"><b>144</b> days of audio</div>
+      <div class="chip"><b>5,122</b> artists</div>
+      <div class="chip"><b>2,386</b> listening days</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>This is Kevin's complete Spotify <b>Extended Streaming History</b> — every play event from his first logged track in 2018 through May 2026 — parsed into a taste-and-behavior profile. Across the window he listened to <b>3,467 hours (144 full days)</b> of music spanning <b>5,122 artists</b> and <b>12,842 distinct tracks</b>, on <b>2,386 different days</b>. The all-time #1 artist is <b>ILLENIUM</b> (87 hours, 2,094 plays); the #1 track is Benson Boone's <b>"Beautiful Things"</b> (216 plays).</p>
+      <p>The core sound is <b>melodic EDM / future-bass</b> (ILLENIUM, Gryffin, Seven Lions, Martin Garrix, Kygo) fused with <b>emotive pop and heartbreak balladry</b> (Benson Boone, Teddy Swims, Lewis Capaldi, Ed Sheeran) — with eclectic detours into classic rock, UK rap, and reggaeton along the way.</p>
+      <div class="callout"><b>Core insight:</b> ILLENIUM is the spine of the taste, but the <i>behavior</i> is the real signature — Kevin is a <b>completionist, anti-shuffle</b> listener. Only <b>7% of plays are shuffled</b>, <b>72% of tracks play to completion</b>, and the skip rate is just <b>12%</b>. He builds and replays curated lists; he doesn't let the algorithm drive.</div>
+    </div>
+  </section>
+
+  <section><h2>From raw export to profile in five stages</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the raw export</div><div class="d">Eight years of audio history arrives as 10 JSON files — one giant array of play events per year.</div>
+        <span class="tag">spotify.com/account · Extended Streaming History</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Parse every play event</div><div class="d">90,540 records loaded; filter to the 90,490 with a real track name (podcasts/audiobooks barely register).</div>
+        <span class="tag">python + json</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Convert time to Eastern</div><div class="d">Every <span class="mono">ts</span> is UTC — re-zoned to America/New_York so the hour-of-day shape reflects Kevin's actual clock.</div>
+        <span class="tag">zoneinfo · America/New_York</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Aggregate the signals</div><div class="d">Sum <span class="mono">ms_played</span> by year / artist / track / hour / weekday / device / country; roll up skip &amp; shuffle rates.</div>
+        <span class="tag">collections.Counter</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Read the eras</div><div class="d">Rank the top artist per year to surface taste evolution, then hand-build every chart in CSS.</div>
+        <span class="tag">no chart library</span></div></div>
+    </div>
+  </section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">3,467</div><div class="l">hours of music</div></div>
+      <div class="stat"><div class="n">90,490</div><div class="l">plays logged</div></div>
+      <div class="stat"><div class="n">5,122</div><div class="l">distinct artists</div></div>
+      <div class="stat"><div class="n">12,842</div><div class="l">distinct tracks</div></div>
+      <div class="stat"><div class="n">2,386</div><div class="l">days with listening</div></div>
+      <div class="stat"><div class="n">775</div><div class="l">hrs in 2025 (peak yr)</div></div>
+      <div class="stat"><div class="n">7.0%</div><div class="l">plays shuffled</div></div>
+      <div class="stat"><div class="n">12.3%</div><div class="l">skip rate</div></div>
+      <div class="stat"><div class="n">72%</div><div class="l">played to completion</div></div>
+      <div class="stat"><div class="n">95.6%</div><div class="l">listened in the US</div></div>
+    </div>
+  </section>
+
+  <section><h2>Listening hours, year by year</h2>
+    <p class="lead">A quiet 2018, a steady ~420 hrs/yr cruise, a 2020–2021 dip, then a relentless climb to a 775-hour blowout in 2025. (2026 is year-to-date through May.)</p>
+    <div class="card">
+      <div class="timeline">
+        <div class="tl-col"><div class="tl-v">0.4</div><div class="tl-bar" style="height:1%"></div><div class="tl-y">'18</div></div>
+        <div class="tl-col"><div class="tl-v">420</div><div class="tl-bar" style="height:54%"></div><div class="tl-y">'19</div></div>
+        <div class="tl-col"><div class="tl-v">344</div><div class="tl-bar" style="height:44%"></div><div class="tl-y">'20</div></div>
+        <div class="tl-col"><div class="tl-v">234</div><div class="tl-bar" style="height:30%"></div><div class="tl-y">'21</div></div>
+        <div class="tl-col"><div class="tl-v">435</div><div class="tl-bar" style="height:56%"></div><div class="tl-y">'22</div></div>
+        <div class="tl-col"><div class="tl-v">514</div><div class="tl-bar" style="height:66%"></div><div class="tl-y">'23</div></div>
+        <div class="tl-col"><div class="tl-v">499</div><div class="tl-bar" style="height:64%"></div><div class="tl-y">'24</div></div>
+        <div class="tl-col"><div class="tl-v">775</div><div class="tl-bar peak" style="height:100%"></div><div class="tl-y">'25</div></div>
+        <div class="tl-col"><div class="tl-v">244</div><div class="tl-bar" style="height:31%;opacity:.7"></div><div class="tl-y">'26*</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section><h2>Top 20 artists, all-time (by hours)</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">ILLENIUM</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">87.0h</span></div>
+      <div class="bar-row"><span class="bar-label">Benson Boone</span><span class="bar-track"><span class="bar-fill" style="width:76.4%;background:var(--grad)"></span></span><span class="bar-val">66.5h</span></div>
+      <div class="bar-row"><span class="bar-label">Sofi Tukker</span><span class="bar-track"><span class="bar-fill" style="width:47.2%;background:var(--grad)"></span></span><span class="bar-val">41.1h</span></div>
+      <div class="bar-row"><span class="bar-label">Dave</span><span class="bar-track"><span class="bar-fill" style="width:42.1%;background:var(--grad)"></span></span><span class="bar-val">36.6h</span></div>
+      <div class="bar-row"><span class="bar-label">Bad Bunny</span><span class="bar-track"><span class="bar-fill" style="width:40.2%;background:var(--grad)"></span></span><span class="bar-val">35.0h</span></div>
+      <div class="bar-row"><span class="bar-label">Martin Garrix</span><span class="bar-track"><span class="bar-fill" style="width:40.0%;background:var(--grad)"></span></span><span class="bar-val">34.8h</span></div>
+      <div class="bar-row"><span class="bar-label">Gryffin</span><span class="bar-track"><span class="bar-fill" style="width:36.2%;background:var(--grad)"></span></span><span class="bar-val">31.5h</span></div>
+      <div class="bar-row"><span class="bar-label">Steven Rodriguez</span><span class="bar-track"><span class="bar-fill" style="width:34.6%;background:var(--grad)"></span></span><span class="bar-val">30.1h</span></div>
+      <div class="bar-row"><span class="bar-label">Teddy Swims</span><span class="bar-track"><span class="bar-fill" style="width:34.0%;background:var(--grad)"></span></span><span class="bar-val">29.6h</span></div>
+      <div class="bar-row"><span class="bar-label">Ed Sheeran</span><span class="bar-track"><span class="bar-fill" style="width:32.0%;background:var(--grad)"></span></span><span class="bar-val">27.8h</span></div>
+      <div class="bar-row"><span class="bar-label">Shawn Mendes</span><span class="bar-track"><span class="bar-fill" style="width:30.7%;background:var(--grad)"></span></span><span class="bar-val">26.7h</span></div>
+      <div class="bar-row"><span class="bar-label">Kygo</span><span class="bar-track"><span class="bar-fill" style="width:30.7%;background:var(--grad)"></span></span><span class="bar-val">26.7h</span></div>
+      <div class="bar-row"><span class="bar-label">Bon Jovi</span><span class="bar-track"><span class="bar-fill" style="width:29.8%;background:var(--grad)"></span></span><span class="bar-val">25.9h</span></div>
+      <div class="bar-row"><span class="bar-label">Lewis Capaldi</span><span class="bar-track"><span class="bar-fill" style="width:29.4%;background:var(--grad)"></span></span><span class="bar-val">25.6h</span></div>
+      <div class="bar-row"><span class="bar-label">Seven Lions</span><span class="bar-track"><span class="bar-fill" style="width:29.3%;background:var(--grad)"></span></span><span class="bar-val">25.5h</span></div>
+      <div class="bar-row"><span class="bar-label">BONNIE X CLYDE</span><span class="bar-track"><span class="bar-fill" style="width:26.4%;background:var(--grad)"></span></span><span class="bar-val">23.0h</span></div>
+      <div class="bar-row"><span class="bar-label">Harry Styles</span><span class="bar-track"><span class="bar-fill" style="width:26.2%;background:var(--grad)"></span></span><span class="bar-val">22.8h</span></div>
+      <div class="bar-row"><span class="bar-label">The Chainsmokers</span><span class="bar-track"><span class="bar-fill" style="width:24.6%;background:var(--grad)"></span></span><span class="bar-val">21.4h</span></div>
+      <div class="bar-row"><span class="bar-label">David Guetta</span><span class="bar-track"><span class="bar-fill" style="width:24.3%;background:var(--grad)"></span></span><span class="bar-val">21.1h</span></div>
+      <div class="bar-row"><span class="bar-label">Alex Warren</span><span class="bar-track"><span class="bar-fill" style="width:24.0%;background:var(--grad)"></span></span><span class="bar-val">20.9h</span></div>
+    </div>
+  </section>
+
+  <section><h2>When the music plays — hour of day (ET)</h2>
+    <p class="lead">A soundtrack-to-the-day shape: it ramps through the morning, holds a broad noon-to-8pm plateau, and peaks hard at <b>6pm</b>. Late nights are nearly silent. This is workday/evening listening, not a 2am habit.</p>
+    <div class="card">
+      <div class="hours">
+        <div class="hr" style="height:16%"></div>
+        <div class="hr" style="height:7%"></div>
+        <div class="hr" style="height:5%"></div>
+        <div class="hr" style="height:3%"></div>
+        <div class="hr" style="height:2%"></div>
+        <div class="hr" style="height:2%"></div>
+        <div class="hr" style="height:4%"></div>
+        <div class="hr" style="height:25%"></div>
+        <div class="hr" style="height:46%"></div>
+        <div class="hr" style="height:41%"></div>
+        <div class="hr" style="height:50%"></div>
+        <div class="hr" style="height:63%"></div>
+        <div class="hr" style="height:66%"></div>
+        <div class="hr" style="height:59%"></div>
+        <div class="hr" style="height:69%"></div>
+        <div class="hr" style="height:76%"></div>
+        <div class="hr" style="height:73%"></div>
+        <div class="hr" style="height:86%"></div>
+        <div class="hr peak" style="height:100%"></div>
+        <div class="hr" style="height:84%"></div>
+        <div class="hr" style="height:50%"></div>
+        <div class="hr" style="height:55%"></div>
+        <div class="hr" style="height:38%"></div>
+        <div class="hr" style="height:26%"></div>
+      </div>
+      <div class="hr-axis"><span>12a</span><span>6a</span><span>noon</span><span>6p</span><span>11p</span></div>
+    </div>
+  </section>
+
+  <section><h2>The weekend is the loud part</h2>
+    <p class="lead">Friday, Saturday, and Sunday each rack up ~18–20k plays — more than double a typical Tue/Wed. The work-week tapers; the weekend turns it up.</p>
+    <div class="card">
+      <div class="dow">
+        <div class="d"><div class="dn">Mon</div><div class="dv">8,372</div><div class="bar" style="width:42%"></div></div>
+        <div class="d"><div class="dn">Tue</div><div class="dv">8,316</div><div class="bar" style="width:42%"></div></div>
+        <div class="d"><div class="dn">Wed</div><div class="dv">8,065</div><div class="bar" style="width:41%"></div></div>
+        <div class="d"><div class="dn">Thu</div><div class="dv">8,982</div><div class="bar" style="width:46%"></div></div>
+        <div class="d hot"><div class="dn">Fri</div><div class="dv">19,665</div><div class="bar" style="width:100%"></div></div>
+        <div class="d hot"><div class="dn">Sat</div><div class="dv">18,040</div><div class="bar" style="width:92%"></div></div>
+        <div class="d hot"><div class="dn">Sun</div><div class="dv">19,050</div><div class="bar" style="width:97%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section><h2>Eight years, eight eras</h2>
+    <p class="lead">Ranking the #1 artist per year (by plays) turns the history into a story. Genre/era labels are inference; the artists and play counts are real.</p>
+    <div class="card">
+      <div class="era-row"><div class="era-yr">'19</div><div class="era-t"><b>Lewis Capaldi</b> — 528 plays. The heartbreak-ballad era: Billie Eilish (285), FLETCHER (260), SHAED in heavy rotation.<br><span class="era-tag">sad-ballad era</span></div></div>
+      <div class="era-row"><div class="era-yr">'20</div><div class="era-t"><b>Bon Jovi</b> — 402 plays. A full classic-rock detour (Mötley Crüe shows up too) wedged between two ballad years.<br><span class="era-tag">classic-rock detour</span></div></div>
+      <div class="era-row"><div class="era-yr">'21</div><div class="era-t"><b>James Arthur</b> — 241 plays. Back to the feelings: Ed Sheeran (205), Justin Bieber (174).<br><span class="era-tag">ballad return</span></div></div>
+      <div class="era-row"><div class="era-yr">'22</div><div class="era-t"><b>Dave</b> — 527 plays. A UK-rap year, with Måneskin's rock revival riding shotgun (376).<br><span class="era-tag">UK-rap + rock revival</span></div></div>
+      <div class="era-row"><div class="era-yr">'23</div><div class="era-t"><b>Steven Rodriguez</b> — 485 plays. The hard-EDM / phonk turn — percussive, gym-leaning, with Vin Jay and 2nd Life close behind.<br><span class="era-tag">gym-EDM turn</span></div></div>
+      <div class="era-row"><div class="era-yr">'24</div><div class="era-t"><b>ILLENIUM</b> — 987 plays. Future-bass takes the throne; Benson Boone (476) and Teddy Swims (413) merge EDM with big emotive pop.<br><span class="era-tag">future-bass peak</span></div></div>
+      <div class="era-row"><div class="era-yr">'25</div><div class="era-t"><b>Sofi Tukker</b> — 1,019 plays. The biggest year ever (775 hrs). Benson Boone (814) and Bad Bunny (658) right behind.<br><span class="era-tag">dance-pop blowout</span></div></div>
+      <div class="era-row"><div class="era-yr">'26</div><div class="era-t"><b>ILLENIUM</b> — 484 plays (YTD). The spine reasserts itself; BONNIE X CLYDE (416) and Benson Boone (317) follow.<br><span class="era-tag">back to the core</span></div></div>
+    </div>
+  </section>
+
+  <section><h2>Dig in — top artists per year</h2>
+    <p class="lead">The top 3 by plays for each year. Click to expand.</p>
+    <details><summary><span>2019 — heartbreak ballads</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">11,009 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Lewis Capaldi</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">528</span></div>
+        <div class="bar-row"><span class="bar-label">Billie Eilish</span><span class="bar-track"><span class="bar-fill" style="width:54%;background:var(--grad)"></span></span><span class="bar-val">285</span></div>
+        <div class="bar-row"><span class="bar-label">FLETCHER</span><span class="bar-track"><span class="bar-fill" style="width:49%;background:var(--grad)"></span></span><span class="bar-val">260</span></div>
+      </div></details>
+    <details><summary><span>2020 — classic-rock detour</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">7,546 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Bon Jovi</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">402</span></div>
+        <div class="bar-row"><span class="bar-label">Harry Styles</span><span class="bar-track"><span class="bar-fill" style="width:40%;background:var(--grad)"></span></span><span class="bar-val">162</span></div>
+        <div class="bar-row"><span class="bar-label">Lewis Capaldi</span><span class="bar-track"><span class="bar-fill" style="width:34%;background:var(--grad)"></span></span><span class="bar-val">138</span></div>
+      </div></details>
+    <details><summary><span>2021 — ballad return</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">5,399 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">James Arthur</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">241</span></div>
+        <div class="bar-row"><span class="bar-label">Ed Sheeran</span><span class="bar-track"><span class="bar-fill" style="width:85%;background:var(--grad)"></span></span><span class="bar-val">205</span></div>
+        <div class="bar-row"><span class="bar-label">Justin Bieber</span><span class="bar-track"><span class="bar-fill" style="width:72%;background:var(--grad)"></span></span><span class="bar-val">174</span></div>
+      </div></details>
+    <details><summary><span>2022 — UK rap + rock revival</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">11,065 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Dave</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">527</span></div>
+        <div class="bar-row"><span class="bar-label">Måneskin</span><span class="bar-track"><span class="bar-fill" style="width:71%;background:var(--grad)"></span></span><span class="bar-val">376</span></div>
+        <div class="bar-row"><span class="bar-label">Jack Harlow</span><span class="bar-track"><span class="bar-fill" style="width:33%;background:var(--grad)"></span></span><span class="bar-val">176</span></div>
+      </div></details>
+    <details><summary><span>2023 — gym-EDM turn</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">14,451 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Steven Rodriguez</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">485</span></div>
+        <div class="bar-row"><span class="bar-label">Vin Jay</span><span class="bar-track"><span class="bar-fill" style="width:67%;background:var(--grad)"></span></span><span class="bar-val">323</span></div>
+        <div class="bar-row"><span class="bar-label">2nd Life</span><span class="bar-track"><span class="bar-fill" style="width:65%;background:var(--grad)"></span></span><span class="bar-val">315</span></div>
+      </div></details>
+    <details><summary><span>2024 — future-bass peak</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">12,882 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">ILLENIUM</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">987</span></div>
+        <div class="bar-row"><span class="bar-label">Benson Boone</span><span class="bar-track"><span class="bar-fill" style="width:48%;background:var(--grad)"></span></span><span class="bar-val">476</span></div>
+        <div class="bar-row"><span class="bar-label">Teddy Swims</span><span class="bar-track"><span class="bar-fill" style="width:42%;background:var(--grad)"></span></span><span class="bar-val">413</span></div>
+      </div></details>
+    <details><summary><span>2025 — dance-pop blowout (peak year)</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">21,100 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Sofi Tukker</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">1,019</span></div>
+        <div class="bar-row"><span class="bar-label">Benson Boone</span><span class="bar-track"><span class="bar-fill" style="width:80%;background:var(--grad)"></span></span><span class="bar-val">814</span></div>
+        <div class="bar-row"><span class="bar-label">Bad Bunny</span><span class="bar-track"><span class="bar-fill" style="width:65%;background:var(--grad)"></span></span><span class="bar-val">658</span></div>
+      </div></details>
+    <details><summary><span>2026 — back to the core (YTD)</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">6,974 plays</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">ILLENIUM</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">484</span></div>
+        <div class="bar-row"><span class="bar-label">BONNIE X CLYDE</span><span class="bar-track"><span class="bar-fill" style="width:86%;background:var(--grad)"></span></span><span class="bar-val">416</span></div>
+        <div class="bar-row"><span class="bar-label">Benson Boone</span><span class="bar-track"><span class="bar-fill" style="width:65%;background:var(--grad)"></span></span><span class="bar-val">317</span></div>
+      </div></details>
+  </section>
+
+  <section><h2>The most-replayed tracks</h2>
+    <p class="lead">Top 15 by play count, all-time. A few of these passed 200 spins.</p>
+    <details open><summary><span>Top 15 tracks by plays</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">216 max</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Beautiful Things — Benson Boone</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">216</span></div>
+        <div class="bar-row"><span class="bar-label">W.I.T.C.H. — Devon Cole</span><span class="bar-track"><span class="bar-fill" style="width:99.5%;background:var(--grad)"></span></span><span class="bar-val">215</span></div>
+        <div class="bar-row"><span class="bar-label">Escapism. — RAYE</span><span class="bar-track"><span class="bar-fill" style="width:97.7%;background:var(--grad)"></span></span><span class="bar-val">211</span></div>
+        <div class="bar-row"><span class="bar-label">Heat Waves — Glass Animals</span><span class="bar-track"><span class="bar-fill" style="width:93.5%;background:var(--grad)"></span></span><span class="bar-val">202</span></div>
+        <div class="bar-row"><span class="bar-label">Lose Control — Teddy Swims</span><span class="bar-track"><span class="bar-fill" style="width:92.1%;background:var(--grad)"></span></span><span class="bar-val">199</span></div>
+        <div class="bar-row"><span class="bar-label">Bruises — Lewis Capaldi</span><span class="bar-track"><span class="bar-fill" style="width:85.6%;background:var(--grad)"></span></span><span class="bar-val">185</span></div>
+        <div class="bar-row"><span class="bar-label">Ordinary — Alex Warren</span><span class="bar-track"><span class="bar-fill" style="width:84.7%;background:var(--grad)"></span></span><span class="bar-val">183</span></div>
+        <div class="bar-row"><span class="bar-label">Watermelon Sugar — Harry Styles</span><span class="bar-track"><span class="bar-fill" style="width:82.4%;background:var(--grad)"></span></span><span class="bar-val">178</span></div>
+        <div class="bar-row"><span class="bar-label">Gimme — BANKS</span><span class="bar-track"><span class="bar-fill" style="width:81.0%;background:var(--grad)"></span></span><span class="bar-val">175</span></div>
+        <div class="bar-row"><span class="bar-label">Trampoline — SHAED</span><span class="bar-track"><span class="bar-fill" style="width:77.8%;background:var(--grad)"></span></span><span class="bar-val">168</span></div>
+        <div class="bar-row"><span class="bar-label">broken — lovelytheband</span><span class="bar-track"><span class="bar-fill" style="width:75.0%;background:var(--grad)"></span></span><span class="bar-val">162</span></div>
+        <div class="bar-row"><span class="bar-label">One Thing Right — Marshmello</span><span class="bar-track"><span class="bar-fill" style="width:74.1%;background:var(--grad)"></span></span><span class="bar-val">160</span></div>
+        <div class="bar-row"><span class="bar-label">By Myself — Christian French</span><span class="bar-track"><span class="bar-fill" style="width:73.6%;background:var(--grad)"></span></span><span class="bar-val">159</span></div>
+        <div class="bar-row"><span class="bar-label">Come to Brazil — Why Don't We</span><span class="bar-track"><span class="bar-fill" style="width:73.1%;background:var(--grad)"></span></span><span class="bar-val">158</span></div>
+        <div class="bar-row"><span class="bar-label">Someone You Loved — Lewis Capaldi</span><span class="bar-track"><span class="bar-fill" style="width:72.2%;background:var(--grad)"></span></span><span class="bar-val">156</span></div>
+      </div></details>
+  </section>
+
+  <section><h2>Where the listening happens</h2>
+    <div class="card">
+      <h3 style="margin-top:0">Devices (by hours)</h3>
+      <div class="bar-row"><span class="bar-label">Android phone</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">2,097h</span></div>
+      <div class="bar-row"><span class="bar-label">Windows desktop</span><span class="bar-track"><span class="bar-fill" style="width:27.4%;background:var(--grad)"></span></span><span class="bar-val">574h</span></div>
+      <div class="bar-row"><span class="bar-label">Cast / speaker</span><span class="bar-track"><span class="bar-fill" style="width:14.6%;background:var(--grad)"></span></span><span class="bar-val">307h</span></div>
+      <div class="bar-row"><span class="bar-label">Other / offline</span><span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span><span class="bar-val">349h</span></div>
+      <div class="bar-row"><span class="bar-label">Partner device</span><span class="bar-track"><span class="bar-fill" style="width:6.2%;background:var(--grad)"></span></span><span class="bar-val">130h</span></div>
+      <div class="bar-row"><span class="bar-label">Mac</span><span class="bar-track"><span class="bar-fill" style="width:0.5%;background:var(--grad)"></span></span><span class="bar-val">11h</span></div>
+      <h3>Country footprint (by plays)</h3>
+      <div class="bar-row"><span class="bar-label">United States</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">95.6%</span></div>
+      <div class="bar-row"><span class="bar-label">Great Britain</span><span class="bar-track"><span class="bar-fill" style="width:3.5%;background:var(--grad)"></span></span><span class="bar-val">303</span></div>
+      <div class="bar-row"><span class="bar-label">Guatemala</span><span class="bar-track"><span class="bar-fill" style="width:0.37%;background:var(--grad)"></span></span><span class="bar-val">32</span></div>
+      <div class="bar-row"><span class="bar-label">Puerto Rico</span><span class="bar-track"><span class="bar-fill" style="width:0.17%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+      <div class="bar-row"><span class="bar-label">Taiwan</span><span class="bar-track"><span class="bar-fill" style="width:0.15%;background:var(--grad)"></span></span><span class="bar-val">13</span></div>
+      <div class="bar-row"><span class="bar-label">Japan</span><span class="bar-track"><span class="bar-fill" style="width:0.06%;background:var(--grad)"></span></span><span class="bar-val">5</span></div>
+      <p class="muted" style="font-size:13px;margin:12px 0 0">Those foreign blips — GB, GT, PR, TW, JP — are travel fingerprints: a handful of plays logged abroad while the connection registered in another country.</p>
+    </div>
+  </section>
+
+  <section><h2>Raw vs. result</h2>
+    <p class="lead">One row in the export is a single play event — a timestamp, a track, and a few behavioral flags. Multiply by 90,490 and a taste profile falls out. Here's one play of the #1 track:</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw JSON play event</div>
+        <div class="mono">{<br>
+&nbsp;"ts": "2024-03-25T23:19:34Z",<br>
+&nbsp;"platform": "android",<br>
+&nbsp;"ms_played": 180304,<br>
+&nbsp;"conn_country": "US",<br>
+&nbsp;"master_metadata_track_name": "Beautiful Things",<br>
+&nbsp;"master_metadata_album_artist_name": "Benson Boone",<br>
+&nbsp;"reason_start": "trackdone",<br>
+&nbsp;"reason_end": "trackdone",<br>
+&nbsp;"shuffle": false,<br>
+&nbsp;"skipped": false<br>
+}</div></div>
+      <div class="box"><div class="h">Parsed listening signal</div>
+        <div class="mono">artist: <b style="color:#fff">Benson Boone</b><br>
+track: <b style="color:#fff">Beautiful Things</b><br>
+played: <b style="color:#fff">3:00</b> (full song)<br>
+local time: <b style="color:#fff">7:19pm ET</b> (peak hour)<br>
+device: <b style="color:#fff">Android phone</b><br>
+intent: <b style="color:#fff">deliberate</b> (no shuffle)<br>
+completion: <b style="color:#fff">played to the end</b><br>
+<br>→ 1 of <b style="color:#fff">216</b> plays of this track<br>→ 1 of <b style="color:#fff">1,668</b> Benson Boone plays</div></div>
+    </div>
+  </section>
+
+  <section><h2>The clever bits (and the honest snags)</h2>
+    <h3>The timezone trap</h3>
+    <p class="muted">Every <span class="mono">ts</span> in the export is UTC. Bucketing by raw hour would smear the daily shape by 4–5 hours and put the "peak" in the wrong place. Re-zoning each event to America/New_York before bucketing is what makes the 6pm peak real instead of an artifact.</p>
+    <h3>🐛 Where the draft and the data disagreed</h3>
+    <p class="muted">The earlier draft pegged the biggest single-day binge at <b>105 Måneskin plays</b> and counted <b>11,747</b> distinct tracks. Re-running the numbers from scratch put the Måneskin binge at <b>103</b> (a James Arthur day in 2021 actually edges it at 104), and counted <b>12,842</b> distinct tracks — the gap comes from how remix/feature variants collapse. Where the draft and a clean re-run disagreed, this report uses the re-run.</p>
+    <h3>What's <i>not</i> here</h3>
+    <p class="muted">Podcasts and audiobooks barely register (~10 hrs total) — that listening lives elsewhere. And 8,043 plays carry a <span class="mono">not_applicable</span> platform (offline syncs and cast hand-offs), folded into "Other / offline" rather than dropped, so the hours still add up.</p>
+  </section>
+
+  <section><h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>2019 was a heartbreak record.</b> Lewis Capaldi, Billie Eilish, FLETCHER, SHAED — and a single day (Jan 31, 2019) with 68 plays of Alice Fredenham. That's not a playlist, that's a mood.</div>
+      <div class="f"><b>The 2020 Bon Jovi detour is unmistakable.</b> 402 plays in a year with zero EDM at the top — including a 79-play "Livin' on a Prayer" kind of day on Feb 29, 2020, and another 61-play run on Apr 3. A genuine classic-rock phase.</div>
+      <div class="f"><b>2023 was when the gym took over the queue.</b> Steven Rodriguez (485 plays), Vin Jay, 2nd Life — hard, percussive, phonk-adjacent EDM, with an 86-play stretch on Dec 10. The kind of music you only loop while lifting.</div>
+      <div class="f"><b>The 2025 Benson Boone binge ran into December.</b> 73 plays on Dec 18 and 67 on Dec 14, 2025 — two single days that each out-listen most people's entire week.</div>
+      <div class="f"><b>Travel left fingerprints.</b> A few hundred plays in Great Britain, plus dozens scattered across Guatemala, Puerto Rico, Taiwan, and Japan — the connection country quietly logging where the trips went.</div>
+      <div class="f"><b>Anti-shuffle to the core.</b> 93% of plays were in deliberate order, and 72% played to the very last second. This is a listener who curates, not one who lets the algorithm pick.</div>
+    </div>
+  </section>
+
+  <section><h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Request your Extended Streaming History</div><div class="d">Spotify → Account → Privacy. It emails a ZIP of yearly JSON files (allow a few weeks).</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Load and filter to music</div><div class="d">Read every <span class="mono">Streaming_History_Audio_*.json</span>; keep rows with a non-null <span class="mono">master_metadata_track_name</span>.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Convert UTC → your timezone</div><div class="d">Re-zone <span class="mono">ts</span> with <span class="mono">zoneinfo</span> before any hour-of-day or weekday bucketing.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Aggregate with Counters</div><div class="d">Sum <span class="mono">ms_played</span> by year / artist / track / hour / device / country; tally <span class="mono">skipped</span> &amp; <span class="mono">shuffle</span>.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Hand-build the charts in CSS</div><div class="d">Each bar's width is <span class="mono">value / max × 100%</span>. No library, no JS — one HTML file you can open offline.</div></div></div>
+    </div>
+  </section>
+
+  <footer>Built with Python + zoneinfo · charts hand-rolled in CSS · one session, June 5, 2026<br>
+  Source: Spotify Extended Streaming History (2018-08-06 → 2026-05-29) · 90,490 music plays · all numbers real, re-derived from the raw export</footer>
+
+</div></body></html>

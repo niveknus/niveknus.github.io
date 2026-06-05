@@ -1,0 +1,454 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>16 Years of Amazon, Decoded — a revealed-spending profile</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+
+  /* ACCENT — Amazon orange */
+  --accent:#ff9900; --accent2:#ffb84d;
+
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.tldr p{margin:0 0 12px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#1a1205}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:64px;font-size:13px;font-weight:700;text-align:left}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:165px}
+.det-note{color:var(--muted);font-size:14px;margin:2px 0 12px}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#cfcfe0;word-break:break-word;line-height:1.5}
+
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.tbl td.r{text-align:right;font-weight:700;white-space:nowrap}
+.tbl td .yr{color:var(--dim);font-size:12px}
+
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:96px}.det-body .bar-label{width:120px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>16 Years of Amazon, Decoded</h1>
+    <p class="sub">2,990 things bought. ~$95,300 spent. One full data export, parsed
+       into a portrait of what a person actually buys when nobody's watching — the
+       hobbies, the routines, and the one purchase that quietly announced an electric car.</p>
+    <div class="meta">Dec 30, 2009 → May 26, 2026 · 18 calendar years · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>$95.3K</b> retail spend</div>
+      <div class="chip"><b>2,990</b> items</div>
+      <div class="chip"><b>1,597</b> orders</div>
+      <div class="chip"><b>$31.73</b> avg item</div>
+      <div class="chip"><b>18</b> years on record</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>This is a <b>revealed-spending profile</b> — not what someone says they care about,
+         but what they actually paid for, line by line, for sixteen-plus years. The export
+         covers <b>2,990 retail line items across 1,597 orders</b>, Dec 2009 → May 2026,
+         totaling <b>~$95,300</b> in retail spend (plus a separate ~$6,900 in digital/Audible).</p>
+      <p>Spending was thin through the college years (under ~$3.5K/yr), then detonated in
+         <b>2016 ($13,162) and 2017 ($11,332)</b> — the Prime-era, first-real-job buying spike —
+         before settling into a steady <b>$5K–$8K/yr</b> rhythm that holds to today.</p>
+      <div class="callout"><b>Core insight:</b> the receipts don't lie. This is a gadget-forward,
+         hobby-cycling, DIY-capable household optimizer who buys <i>deep</i> into each new interest,
+         maintains his own car and home, and keeps the boring consumables on repeat.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From CSV dump to a spending portrait</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the full Amazon data export</div>
+        <div class="d">Order History, Returns, Subscriptions — every line item Amazon has on file.</div>
+        <span class="tag">amazon.com/privacy → Request My Data</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Parse the 28-column Order History CSV</div>
+        <div class="d">3,003 rows → drop 13 cancelled lines → 2,990 real purchases, dates + dollars normalized.</div>
+        <span class="tag">python + pandas</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Roll up by year, category, and product</div>
+        <div class="d">Spend timelines, keyword-classified categories, and repeat-buy detection by ASIN.</div>
+        <span class="tag">groupby + keyword rules</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Mine the hobby clusters &amp; tells</div>
+        <div class="d">Where the money concentrates — and what a single $585 charger gives away.</div>
+        <span class="tag">pattern-matching by hand</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">$95.3K</div><div class="l">total retail spend</div></div>
+      <div class="stat"><div class="n">2,990</div><div class="l">items bought</div></div>
+      <div class="stat"><div class="n">1,597</div><div class="l">distinct orders</div></div>
+      <div class="stat"><div class="n">3,151</div><div class="l">total units shipped</div></div>
+      <div class="stat"><div class="n">$13.2K</div><div class="l">peak year (2016)</div></div>
+      <div class="stat"><div class="n">$31.73</div><div class="l">avg per line item</div></div>
+      <div class="stat"><div class="n">89</div><div class="l">returns / refunds</div></div>
+      <div class="stat"><div class="n">$809</div><div class="l">biggest single item</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Spend by year — the shape of a buying life</h2>
+    <div class="card">
+      <p class="det-note">Each bar is a calendar year of retail spend. The 2016–17 spike is unmistakable;
+         2026 is partial (through May).</p>
+      <div class="bar-row"><span class="bar-label">2010</span><span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span><span class="bar-val">$2,199</span></div>
+      <div class="bar-row"><span class="bar-label">2011</span><span class="bar-track"><span class="bar-fill" style="width:8.7%;background:var(--grad)"></span></span><span class="bar-val">$1,151</span></div>
+      <div class="bar-row"><span class="bar-label">2012</span><span class="bar-track"><span class="bar-fill" style="width:25.5%;background:var(--grad)"></span></span><span class="bar-val">$3,354</span></div>
+      <div class="bar-row"><span class="bar-label">2013</span><span class="bar-track"><span class="bar-fill" style="width:26.7%;background:var(--grad)"></span></span><span class="bar-val">$3,513</span></div>
+      <div class="bar-row"><span class="bar-label">2014</span><span class="bar-track"><span class="bar-fill" style="width:8.9%;background:var(--grad)"></span></span><span class="bar-val">$1,174</span></div>
+      <div class="bar-row"><span class="bar-label">2015</span><span class="bar-track"><span class="bar-fill" style="width:24.1%;background:var(--grad)"></span></span><span class="bar-val">$3,166</span></div>
+      <div class="bar-row"><span class="bar-label">2016</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$13,162</span></div>
+      <div class="bar-row"><span class="bar-label">2017</span><span class="bar-track"><span class="bar-fill" style="width:86.1%;background:var(--grad)"></span></span><span class="bar-val">$11,332</span></div>
+      <div class="bar-row"><span class="bar-label">2018</span><span class="bar-track"><span class="bar-fill" style="width:57.4%;background:var(--grad)"></span></span><span class="bar-val">$7,549</span></div>
+      <div class="bar-row"><span class="bar-label">2019</span><span class="bar-track"><span class="bar-fill" style="width:58.5%;background:var(--grad)"></span></span><span class="bar-val">$7,697</span></div>
+      <div class="bar-row"><span class="bar-label">2020</span><span class="bar-track"><span class="bar-fill" style="width:44.6%;background:var(--grad)"></span></span><span class="bar-val">$5,866</span></div>
+      <div class="bar-row"><span class="bar-label">2021</span><span class="bar-track"><span class="bar-fill" style="width:32.8%;background:var(--grad)"></span></span><span class="bar-val">$4,318</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><span class="bar-track"><span class="bar-fill" style="width:54.5%;background:var(--grad)"></span></span><span class="bar-val">$7,178</span></div>
+      <div class="bar-row"><span class="bar-label">2023</span><span class="bar-track"><span class="bar-fill" style="width:51.1%;background:var(--grad)"></span></span><span class="bar-val">$6,729</span></div>
+      <div class="bar-row"><span class="bar-label">2024</span><span class="bar-track"><span class="bar-fill" style="width:38.2%;background:var(--grad)"></span></span><span class="bar-val">$5,034</span></div>
+      <div class="bar-row"><span class="bar-label">2025</span><span class="bar-track"><span class="bar-fill" style="width:62.3%;background:var(--grad)"></span></span><span class="bar-val">$8,199</span></div>
+      <div class="bar-row"><span class="bar-label">2026 *</span><span class="bar-track"><span class="bar-fill" style="width:27.8%;background:linear-gradient(135deg,#7a5a1f,#9c7426)"></span></span><span class="bar-val">$3,657</span></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:8px">* 2026 is partial — January through May only.</p>
+  </section>
+
+  <section>
+    <h2>The biggest thing Kevin bought each year</h2>
+    <p class="muted" style="margin-top:-6px">One row per year: the single most expensive line item that year. The throughline
+       is <b>tech</b> — laptops, phones, monitors, a GPS watch, a podcast console — with the genre drifting from
+       <i>gaming &amp; optics</i> in the 2016–18 peak toward <i>home, audio, EV, and fitness</i> as the years roll on.
+       Expand any year to see its top 3.</p>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>Year</th><th>Top purchase</th><th style="text-align:right">Price</th></tr>
+        <tr><td><b>2010</b></td><td>Apple iPod touch 32GB (4th gen) <span class="yr">· Oct 29</span></td><td class="r">$293</td></tr>
+        <tr><td><b>2011</b></td><td>Klipsch Image S4 in-ear headphones <span class="yr">· Aug 1</span></td><td class="r">$68</td></tr>
+        <tr><td><b>2012</b></td><td>Blade MQX RTF micro quadcopter <span class="yr">· Sep 10</span></td><td class="r">$170</td></tr>
+        <tr><td><b>2013</b></td><td>ASUS VivoBook 14" touch ultrabook <span class="yr">· Jan 16</span></td><td class="r">$703</td></tr>
+        <tr><td><b>2014</b></td><td>Walker Edison 3-piece corner desk <span class="yr">· Aug 11</span></td><td class="r">$105</td></tr>
+        <tr><td><b>2015</b></td><td><i>Aircraft Control and Simulation</i> (textbook) <span class="yr">· Jan 23</span></td><td class="r">$121</td></tr>
+        <tr><td><b>2016</b></td><td>EOTech EXPS3-2 holographic weapon sight <span class="yr">· Apr 13</span></td><td class="r">$627</td></tr>
+        <tr><td><b>2017</b></td><td>Casper Sleep memory-foam mattress <span class="yr">· Nov 28</span></td><td class="r">$809</td></tr>
+        <tr><td><b>2018</b></td><td>Dell UltraSharp U2715H 27" monitor <span class="yr">· Feb 25</span></td><td class="r">$497</td></tr>
+        <tr><td><b>2019</b></td><td>Samsung Galaxy Tab S5e 128GB tablet <span class="yr">· May 30</span></td><td class="r">$509</td></tr>
+        <tr><td><b>2020</b></td><td>Garmin Fenix 6X Sapphire GPS watch <span class="yr">· Jun 22</span></td><td class="r">$745</td></tr>
+        <tr><td><b>2021</b></td><td>Shure MV7 USB podcast microphone <span class="yr">· Dec 11</span></td><td class="r">$233</td></tr>
+        <tr><td><b>2022</b></td><td>Rode Rodecaster Pro II console <span class="yr">· Nov 19</span></td><td class="r">$744</td></tr>
+        <tr><td><b>2023</b></td><td>Brother monochrome laser printer <span class="yr">· Feb 18</span></td><td class="r">$213</td></tr>
+        <tr><td><b>2024</b></td><td>ChargePoint Home Flex Level-2 EV charger <span class="yr">· Apr 12</span></td><td class="r">$585</td></tr>
+        <tr><td><b>2025</b></td><td>Cuisinart outdoor wok station <span class="yr">· Jan 19</span></td><td class="r">$319</td></tr>
+        <tr><td><b>2026 *</b></td><td>Withings Body Comp smart scale <span class="yr">· Mar 30</span></td><td class="r">$202</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px;margin-top:10px">Prices are the line-item <span class="mono">Total Amount</span> (item + its share of tax/shipping),
+         the same field the $95.3K total is built from. <b>2026 *</b> is partial — Jan–May only. <i>2009</i>'s two December items
+         (max $11) roll into the 2010 bar above.</p>
+    </div>
+
+    <details style="margin-top:14px"><summary><span>📋 Top 3 per year — expand</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">2010 → 2026</span></summary>
+      <div class="det-body">
+        <table class="tbl">
+          <tr><th>Year</th><th>#1 · #2 · #3</th><th style="text-align:right">Prices</th></tr>
+          <tr><td><b>2010</b></td><td>iPod touch 32GB · ASUS 23.6" monitor · HP Photosmart printer</td><td class="r">$293 / $216 / $150</td></tr>
+          <tr><td><b>2011</b></td><td>Klipsch S4 earphones · (two textbooks) <span class="yr">·</span></td><td class="r">$68 / $54 / $50</td></tr>
+          <tr><td><b>2012</b></td><td>Blade quadcopter · Alera leather office chair · <i>Adv. Eng. Math</i></td><td class="r">$170 / $165 / $144</td></tr>
+          <tr><td><b>2013</b></td><td>ASUS VivoBook ultrabook · Wilson signal booster · Samsung 840 SSD</td><td class="r">$703 / $227 / $183</td></tr>
+          <tr><td><b>2014</b></td><td>Walker Edison corner desk · <i>Adv. Mechanics of Materials</i> · flight-mech text</td><td class="r">$105 / $62 / $59</td></tr>
+          <tr><td><b>2015</b></td><td><i>Aircraft Control &amp; Simulation</i> · micro-cut shredder · London Fog car coat</td><td class="r">$121 / $106 / $106</td></tr>
+          <tr><td><b>2016</b></td><td>EOTech EXPS3-2 sight · Huawei Nexus 6P 64GB · EOTech G33 magnifier</td><td class="r">$627 / $585 / $547</td></tr>
+          <tr><td><b>2017</b></td><td>Casper mattress · Samsung 55" 4K TV · EVGA GTX 1070 FTW2</td><td class="r">$809 / $639 / $471</td></tr>
+          <tr><td><b>2018</b></td><td>Dell U2715H monitor · ASUS 144Hz gaming monitor · CyberPower 1500VA UPS</td><td class="r">$497 / $315 / $192</td></tr>
+          <tr><td><b>2019</b></td><td>Galaxy Tab S5e · Holosun HS515CU sight · Holosun HM3X magnifier</td><td class="r">$509 / $276 / $200</td></tr>
+          <tr><td><b>2020</b></td><td>Garmin Fenix 6X Sapphire · Samsung 970 EVO Plus 1TB · WD Red 6TB NAS</td><td class="r">$745 / $245 / $167</td></tr>
+          <tr><td><b>2021</b></td><td>Shure MV7 mic · Speakman shower head · (a second one)</td><td class="r">$233 / $186 / $186</td></tr>
+          <tr><td><b>2022</b></td><td>Rodecaster Pro II · Google Pixel 6a · Oral-B iO Series 9</td><td class="r">$744 / $425 / $319</td></tr>
+          <tr><td><b>2023</b></td><td>Brother laser printer · Kindle Paperwhite Sig. · Jabra Evolve2 65</td><td class="r">$213 / $202 / $191</td></tr>
+          <tr><td><b>2024</b></td><td>ChargePoint EV charger · Sony WH-1000XM4 · Fitcamx 4K dash cam</td><td class="r">$585 / $211 / $162</td></tr>
+          <tr><td><b>2025</b></td><td>Cuisinart wok station · JOOLA Hyperion Pro IV paddle · CyberPower UPS</td><td class="r">$319 / $298 / $202</td></tr>
+          <tr><td><b>2026 *</b></td><td>Withings Body Comp scale · Musugy recovery boots · Triumph (book)</td><td class="r">$202 / $181 / $144</td></tr>
+        </table>
+        <p class="det-note" style="margin-top:10px">* 2026 partial (Jan–May). Prices rounded; the EV charger and Nexus 6P tie at $584.69.</p>
+      </div></details>
+  </section>
+
+  <section>
+    <h2>Where the $95K actually went</h2>
+    <div class="card">
+      <p class="det-note">Top spending categories. Electronics &amp; computing dwarfs everything —
+         more than a quarter of every dollar.</p>
+      <div class="bar-row"><span class="bar-label">Electronics / Computing</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$25.1K</span></div>
+      <div class="bar-row"><span class="bar-label">Home &amp; Kitchen</span><span class="bar-track"><span class="bar-fill" style="width:62.2%;background:var(--grad)"></span></span><span class="bar-val">$15.6K</span></div>
+      <div class="bar-row"><span class="bar-label">Books &amp; Reading</span><span class="bar-track"><span class="bar-fill" style="width:18.3%;background:var(--grad)"></span></span><span class="bar-val">$4.6K</span></div>
+      <div class="bar-row"><span class="bar-label">Tools / Home Improve</span><span class="bar-track"><span class="bar-fill" style="width:17.5%;background:var(--grad)"></span></span><span class="bar-val">$4.4K</span></div>
+      <div class="bar-row"><span class="bar-label">Health &amp; Personal</span><span class="bar-track"><span class="bar-fill" style="width:17.1%;background:var(--grad)"></span></span><span class="bar-val">$4.3K</span></div>
+      <div class="bar-row"><span class="bar-label">Fitness &amp; Outdoors</span><span class="bar-track"><span class="bar-fill" style="width:13.9%;background:var(--grad)"></span></span><span class="bar-val">$3.5K</span></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:8px">Categories derived by keyword-classifying product names; the long tail of
+       grocery, apparel, and misc purchases makes up the remainder.</p>
+  </section>
+
+  <section>
+    <h2>The hobby clusters — click to expand</h2>
+    <p class="muted" style="margin-top:-6px">The signature of someone who doesn't dabble. When an interest lands, the money goes <i>deep</i>.</p>
+
+    <details><summary><span>🖥️ PC building &amp; gaming</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$3.3K</span></summary>
+      <div class="det-body">
+        <p class="det-note">A full custom rig, assembled from parts over 2016–17.</p>
+        <div class="bar-row"><span class="bar-label">EVGA GTX 1070 FTW2</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$471</span></div>
+        <div class="bar-row"><span class="bar-label">Intel Core i7-6700K</span><span class="bar-track"><span class="bar-fill" style="width:75.4%;background:var(--grad)"></span></span><span class="bar-val">$355</span></div>
+        <div class="bar-row"><span class="bar-label">144Hz gaming monitor</span><span class="bar-track"><span class="bar-fill" style="width:66.9%;background:var(--grad)"></span></span><span class="bar-val">$315</span></div>
+        <div class="bar-row"><span class="bar-label">Phanteks case fans (×4)</span><span class="bar-track"><span class="bar-fill" style="width:18.5%;background:var(--grad)"></span></span><span class="bar-val">$87</span></div>
+        <div class="det-note">…plus motherboard, RAM, SSD, PSU, and case to finish the build.</div>
+      </div></details>
+
+    <details><summary><span>🎙️ Podcast &amp; audio rig</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$2.9K</span></summary>
+      <div class="det-body">
+        <p class="det-note">A serious studio setup — anchored by a near-$750 production console.</p>
+        <div class="bar-row"><span class="bar-label">Rode Rodecaster Pro II</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$744</span></div>
+        <div class="bar-row"><span class="bar-label">Sony WH-1000XM2</span><span class="bar-track"><span class="bar-fill" style="width:38%;background:var(--grad)"></span></span><span class="bar-val">~$283</span></div>
+        <div class="det-note">…plus microphones, boom arms, and interface gear rounding out the kit.</div>
+      </div></details>
+
+    <details><summary><span>🎯 Rifle optics</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$2.8K</span></summary>
+      <div class="det-body">
+        <p class="det-note">Premium glass, mostly in a single 2016 buying run — the highest avg-item category in the whole export.</p>
+        <div class="bar-row"><span class="bar-label">EOTech EXPS3-2</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$627</span></div>
+        <div class="bar-row"><span class="bar-label">EOTech G33 magnifier</span><span class="bar-track"><span class="bar-fill" style="width:87.2%;background:var(--grad)"></span></span><span class="bar-val">$547</span></div>
+        <div class="bar-row"><span class="bar-label">Meprolight reflex sight</span><span class="bar-track"><span class="bar-fill" style="width:82.4%;background:var(--grad)"></span></span><span class="bar-val">$517</span></div>
+      </div></details>
+
+    <details><summary><span>⌚ Garmin &amp; fitness wearables</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$2.0K</span></summary>
+      <div class="det-body">
+        <p class="det-note">The hardware behind the Fitness Coach project.</p>
+        <div class="bar-row"><span class="bar-label">Garmin Fenix 6X Sapphire</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$745</span></div>
+        <div class="det-note">…plus bands, chargers, and earlier-generation watches.</div>
+      </div></details>
+
+    <details><summary><span>🔥 Grilling &amp; outdoor cooking</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$1.3K</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">Cuisinart wok station</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$319</span></div>
+        <div class="bar-row"><span class="bar-label">Kona grill mats (×7)</span><span class="bar-track"><span class="bar-fill" style="width:61.4%;background:var(--grad)"></span></span><span class="bar-val">$196</span></div>
+        <div class="det-note">…plus thermometers, charcoal gear, and accessories.</div>
+      </div></details>
+
+    <details><summary><span>🏓 Pickleball (the new one)</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$575</span></summary>
+      <div class="det-body">
+        <p class="det-note">A fresh interest — first paddle in 2023, upgraded to the pro model in 2025.</p>
+        <div class="bar-row"><span class="bar-label">JOOLA Hyperion Pro IV</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$298</span></div>
+        <div class="bar-row"><span class="bar-label">JOOLA Hyperion CAS 13.5</span><span class="bar-track"><span class="bar-fill" style="width:48.3%;background:var(--grad)"></span></span><span class="bar-val">$144</span></div>
+        <div class="det-note">…plus balls and a bag. A textbook "got into a new sport" curve.</div>
+      </div></details>
+
+    <details><summary><span>🧊 3D printing</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">~$486</span></summary>
+      <div class="det-body">
+        <p class="det-note">Filament and printer consumables — a smaller but persistent maker habit.</p>
+      </div></details>
+  </section>
+
+  <section>
+    <h2>The big-ticket anchors</h2>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>Item</th><th style="text-align:right">Price</th></tr>
+        <tr><td>Casper Sleep Mattress <span class="yr">· 2017</span></td><td class="r">$809</td></tr>
+        <tr><td>Garmin Fenix 6X Sapphire GPS watch <span class="yr">· 2020</span></td><td class="r">$745</td></tr>
+        <tr><td>Rode Rodecaster Pro II console <span class="yr">· 2022</span></td><td class="r">$744</td></tr>
+        <tr><td>ASUS VivoBook 14" touch ultrabook <span class="yr">· 2013</span></td><td class="r">$703</td></tr>
+        <tr><td>Samsung 55" 4K Ultra HD smart TV <span class="yr">· 2017</span></td><td class="r">$639</td></tr>
+        <tr><td>EOTech EXPS3-2 holographic sight <span class="yr">· 2016</span></td><td class="r">$627</td></tr>
+        <tr><td>ChargePoint Home Flex Level-2 EV charger <span class="yr">· 2024</span></td><td class="r">$585</td></tr>
+        <tr><td>Huawei Nexus 6P (64GB) <span class="yr">· 2016</span></td><td class="r">$585</td></tr>
+        <tr><td>EOTech G33 magnifier + mount <span class="yr">· 2016</span></td><td class="r">$547</td></tr>
+        <tr><td>Samsung Galaxy Tab S5e tablet <span class="yr">· 2019</span></td><td class="r">$509</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px;margin-top:10px">The single biggest <i>order</i> ever placed: <b>$1,174</b> in 2016 — peak-spike season.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The boring stuff, on repeat</h2>
+    <p class="muted" style="margin-top:-6px">Recurring buys are where routines hide. These are the items bought four or more times — the autopilot layer of a life.</p>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">Jocko GO energy (all SKUs)</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">38×</span></div>
+      <div class="bar-row"><span class="bar-label">Kona BBQ grill mats</span><span class="bar-track"><span class="bar-fill" style="width:18.4%;background:var(--grad)"></span></span><span class="bar-val">7×</span></div>
+      <div class="bar-row"><span class="bar-label">Whole Foods empanadas</span><span class="bar-track"><span class="bar-fill" style="width:18.4%;background:var(--grad)"></span></span><span class="bar-val">7×</span></div>
+      <div class="bar-row"><span class="bar-label">Mann oil / air filters</span><span class="bar-track"><span class="bar-fill" style="width:26.3%;background:var(--grad)"></span></span><span class="bar-val">10×</span></div>
+      <div class="bar-row"><span class="bar-label">Stain-X Pro grout cleaner</span><span class="bar-track"><span class="bar-fill" style="width:13.2%;background:var(--grad)"></span></span><span class="bar-val">5×</span></div>
+      <div class="bar-row"><span class="bar-label">Cremo hair cream</span><span class="bar-track"><span class="bar-fill" style="width:13.2%;background:var(--grad)"></span></span><span class="bar-val">5×</span></div>
+      <div class="bar-row"><span class="bar-label">Old Spice deodorant</span><span class="bar-track"><span class="bar-fill" style="width:10.5%;background:var(--grad)"></span></span><span class="bar-val">4×</span></div>
+      <div class="bar-row"><span class="bar-label">Whirlpool fridge filter</span><span class="bar-track"><span class="bar-fill" style="width:10.5%;background:var(--grad)"></span></span><span class="bar-val">4×</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Returns &amp; refunds</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">89</div><div class="l">return records</div></div>
+      <div class="stat"><div class="n">$6,767</div><div class="l">total refunded</div></div>
+      <div class="stat"><div class="n">72</div><div class="l">straight refunds</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">exchanges</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <p class="det-note">Top return reasons across the whole history — low drama, mostly logistics and changed minds:</p>
+      <div class="bar-row"><span class="bar-label">No longer needed</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">22</span></div>
+      <div class="bar-row"><span class="bar-label">Defective</span><span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span><span class="bar-val">11</span></div>
+      <div class="bar-row"><span class="bar-label">Refused on arrival</span><span class="bar-track"><span class="bar-fill" style="width:40.9%;background:var(--grad)"></span></span><span class="bar-val">9</span></div>
+      <div class="bar-row"><span class="bar-label">Missed delivery date</span><span class="bar-track"><span class="bar-fill" style="width:36.4%;background:var(--grad)"></span></span><span class="bar-val">8</span></div>
+      <div class="bar-row"><span class="bar-label">Accidental order</span><span class="bar-track"><span class="bar-fill" style="width:31.8%;background:var(--grad)"></span></span><span class="bar-val">7</span></div>
+      <div class="bar-row"><span class="bar-label">Item never arrived</span><span class="bar-track"><span class="bar-fill" style="width:31.8%;background:var(--grad)"></span></span><span class="bar-val">7</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Raw row in, spending signal out</h2>
+    <p class="muted" style="margin-top:-6px">The Order History CSV is 28 columns of Amazon noise. The whole job is turning one messy line into a clean, queryable fact.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw CSV row (28 cols, trimmed)</div>
+        <div class="mono">B005PJJ89U,"Kevin Sun … ORLANDO FL …",
+"UPS_NEXT_SAVER(1ZX0015X136…)",USD,…,
+2012-07-03T23:18:54Z,104-5716541-5634620,
+Closed,1,"Visa - 7010",New,
+"AmazonBasics Programmable Digital Tire
+Gauge",…,22.46,0,Shipped,…,3.99,next,
+<b style="color:#fff">26.45</b>,0,22.46,0,Amazon.com</div></div>
+      <div class="box"><div class="h">Parsed signal</div>
+        <div class="mono">product: <b style="color:#fff">AmazonBasics Tire Gauge</b><br>
+date: 2012-07-03<br>
+year: 2012<br>
+category: <b style="color:#fff">Tools / Home Improvement</b><br>
+total: <b style="color:#fff">$26.45</b><br>
+status: Closed (counts)<br>
+payment: Visa ··7010</div></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:10px">Do that 3,003 times, drop the 13 cancelled rows, and the buying life falls out of the spreadsheet.</p>
+  </section>
+
+  <section>
+    <h2>The clever bits (and the honest snags)</h2>
+    <h3>🐛 Two return files that disagreed</h3>
+    <p class="muted">The export ships returns in more than one place. A small <span class="mono">Returns.1</span> file
+       listed only 8 rows; the real <span class="mono">Returns Status.csv</span> held <b>89</b>. Easy to under-count
+       if you grab the first file you find — the report uses the complete 89-record set ($6,767 refunded).</p>
+    <h3>🧹 "Closed" vs "Cancelled"</h3>
+    <p class="muted">3,003 raw rows include 13 <span class="mono">Cancelled</span> lines that were never paid for.
+       Counting them would have inflated both the item count and spend, so they're dropped — leaving 2,990 real purchases.</p>
+    <h3>🏷️ Categories are best-effort, not gospel</h3>
+    <p class="muted">There's no category field in the export, so categories are inferred by keyword-matching product names.
+       The big buckets (electronics, home, tools) are solid; a long tail of one-off items lands in "misc."
+       The year/spend timeline, big-ticket list, repeat-buys, and returns are exact — those come straight from the columns.</p>
+  </section>
+
+  <section>
+    <h2>Things the receipts quietly knew</h2>
+    <div class="fun">
+      <div class="f">A <b>$585 ChargePoint Level-2 EV charger</b> bought in 2024 is a dead giveaway: you don't hardwire a home fast-charger unless there's an electric car in the garage. The data knew about the EV before any "I bought an EV" note did.</div>
+      <div class="f">The <b>Jocko GO energy drink</b> habit is real — <b>38 orders</b> (~$1,246) clustered tightly between mid-2021 and early-2023. A whole caffeine era with a clear beginning and end.</div>
+      <div class="f">The <b>2016 spike</b> wasn't lifestyle creep — it was a <b>PC build, a phone, a TV, and a full optics setup</b> all landing in one year. First-real-job money meeting a backlog of wants.</div>
+      <div class="f">Rifle optics is the <b>highest average-price category</b> in the entire export — only ~10 items, but they're <i>expensive</i> items. When this buyer commits, he buys the good glass.</div>
+      <div class="f">Pickleball shows the classic <b>new-hobby arc</b>: a starter paddle in 2023, then the $298 pro model in 2025 once it stuck. You can watch an interest harden into a commitment.</div>
+      <div class="f"><b>Mann oil and air filters</b> bought on repeat is a quiet tell of a DIY car owner — nobody buys their own OEM filters unless they're turning the wrench themselves.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Request your Amazon data</div>
+        <div class="d">amazon.com → Account → Request Your Information → "Your Orders." Arrives as a zip in a day or two.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Load Order History.csv with pandas</div>
+        <div class="d">Filter to <span class="mono">Order Status == "Closed"</span>, parse <span class="mono">Order Date</span>, coerce <span class="mono">Total Amount</span> to numeric.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Group by year and by ASIN</div>
+        <div class="d">Year groups give the timeline; ASIN groups with count ≥ 4 surface your recurring buys instantly.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Keyword-classify product names</div>
+        <div class="d">A dictionary of substrings → categories does 80% of the work. Eyeball the "misc" pile and add rules.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Render it in one HTML file</div>
+        <div class="d">Bars are just divs with a percentage width. No chart library — opens offline, shares as a single file.</div></div></div>
+    </div>
+  </section>
+
+  <footer>Built with Python + pandas · charts hand-rolled in CSS · one session, June 5, 2026 ·
+     source: Amazon "Your Orders" data export (Dec 2009 → May 2026)</footer>
+
+</div></body></html>

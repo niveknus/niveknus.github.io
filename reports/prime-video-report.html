@@ -1,0 +1,504 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10.5 Years of Prime Video, Decoded — Kevin's 4K Rental Theater</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#00a8e1; --accent2:#1fb6ff;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:150px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:54px;font-size:13px;font-weight:700;text-align:left}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:170px}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.lv{font-size:11px;font-weight:800;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.lv.hi{background:#3a0d12;color:#ff6b78;border:1px solid #6e1620}
+.lv.lo{background:#143a23;color:#6bff9e;border:1px solid #1a6e3e}
+.lv.uhd{background:#062a36;color:#3fd0ff;border:1px solid #0c4a5e}
+
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+
+/* timeline (year plays) */
+.tl{display:flex;align-items:flex-end;gap:6px;height:170px;padding:10px 4px 0}
+.tl .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.tl .barv{width:100%;max-width:34px;border-radius:5px 5px 0 0;background:var(--grad);min-height:2px}
+.tl .yl{font-size:11px;color:var(--dim);margin-top:6px}
+.tl .vv{font-size:11px;color:var(--muted);margin-bottom:4px}
+.gap{background:repeating-linear-gradient(45deg,#1a1f33,#1a1f33 5px,#141828 5px,#141828 10px)!important}
+.gapnote{margin-top:8px;font-size:12px;color:var(--warn)}
+
+/* hour of day */
+.hod{display:flex;align-items:flex-end;gap:3px;height:130px;padding-top:8px}
+.hod .h{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.hod .h .b{width:100%;border-radius:3px 3px 0 0;background:var(--grad)}
+.hod-ax{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:6px}
+
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}.det-body .bar-label{width:118px}.tl .yl{font-size:9px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>10.5 Years of Prime Video, Decoded</h1>
+    <p class="sub">579 real plays. 236 hours. 20 distinct shows and 57 films — and a wallet
+       that only opens for one thing: action tentpoles, rented in 4K. Here's what the data says.</p>
+    <div class="meta">Oct 25, 2015 → May 29, 2026 · built in one session · complements the Netflix report</div>
+    <div class="chips">
+      <div class="chip"><b>579</b> content plays</div>
+      <div class="chip"><b>236</b> hours streamed</div>
+      <div class="chip"><b>216</b> episodes of <i>24</i></div>
+      <div class="chip"><b>19</b> paid rentals/buys</div>
+      <div class="chip"><b>170</b> days watching</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>This is Kevin's full Amazon Prime Video export, cleaned to <b>his own</b> viewing —
+         1,093 playback events, of which 579 are real Kevin content (the rest are ~25% auto-playing
+         promos and trailers, plus all shared-account plays from old roommate/family logins in
+         Tallahassee and Columbus, now stripped out). Two volume eras bracket a five-year silence:
+         a 2015–16 <i>24</i> marathon on a Windows 8.1 PC — much of it streamed from London during
+         travel — then steady streaming on a Roku-connected LG OLED from 2023 onward. The through-line
+         is unmistakable: when Kevin <b>pays</b>, he pays for blockbusters — 18 of 19 transactions are
+         <span class="lv uhd">UHD</span> rentals of Fast &amp; Furious, Dune, and MCU tentpoles.</p>
+      <div class="callout"><b>Core insight:</b> Netflix is Kevin's <i>serialized</i> theater —
+        charming criminals, spies, slow-burn heists. Prime Video is his <i>4K rental cinema</i> —
+        big-budget action he pays to watch in the best quality available. Same viewer, two completely
+        different jobs-to-be-done.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From raw export to profile in five stages</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the Prime Video data export</div>
+        <div class="d">14 CSVs across viewing activity, library &amp; purchases, and preferences.</div>
+        <span class="tag">amazon.com/gp/privacycentral</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Strip promos, trailers &amp; shared-account plays</div>
+        <div class="d">Drop Promo / Trailer / External material types (276 of 1,093, 25%), then remove every play geolocated to Tallahassee &amp; Columbus — old shared logins that aren't Kevin.</div>
+        <span class="tag">Material Type · City</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Regex-parse the episode encoding</div>
+        <div class="d">Series rows pack "Episode-Show Season N" into one string — split to recover show + season.</div>
+        <span class="tag">re.match + rsplit</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Aggregate the behavioral signals</div>
+        <div class="d">Top series by plays, films by hours, plays-by-year, hour-of-day (UTC→ET), locations, quality.</div>
+        <span class="tag">groupby · tz_convert</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Cross-reference intent vs. behavior</div>
+        <div class="d">Layer in the 47-item watchlist, 49 searches, 11 reactions, and 19 paid transactions.</div>
+        <span class="tag">Watchlist · Reactions · Purchases</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">579</div><div class="l">real content plays</div></div>
+      <div class="stat"><div class="n">236</div><div class="l">hours streamed</div></div>
+      <div class="stat"><div class="n">20</div><div class="l">distinct shows</div></div>
+      <div class="stat"><div class="n">57</div><div class="l">distinct films</div></div>
+      <div class="stat"><div class="n">216</div><div class="l">episodes of <i>24</i></div></div>
+      <div class="stat"><div class="n">19</div><div class="l">paid transactions</div></div>
+      <div class="stat"><div class="n">289</div><div class="l">UHD/4K plays</div></div>
+      <div class="stat"><div class="n">170</div><div class="l">distinct days watched</div></div>
+      <div class="stat"><div class="n">25%</div><div class="l">rows were promos</div></div>
+      <div class="stat"><div class="n">9</div><div class="l">cities, 10.5 years</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Top series by episode-plays</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label"><i>24</i></span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">216</span></div>
+      <div class="bar-row"><span class="bar-label">The Boys</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">36</span></div>
+      <div class="bar-row"><span class="bar-label">The Wheel of Time</span>
+        <span class="bar-track"><span class="bar-fill" style="width:12%;background:var(--grad)"></span></span>
+        <span class="bar-val">26</span></div>
+      <div class="bar-row"><span class="bar-label">Fallout</span>
+        <span class="bar-track"><span class="bar-fill" style="width:12%;background:var(--grad)"></span></span>
+        <span class="bar-val">26</span></div>
+      <div class="bar-row"><span class="bar-label">Countdown</span>
+        <span class="bar-track"><span class="bar-fill" style="width:12%;background:var(--grad)"></span></span>
+        <span class="bar-val">26</span></div>
+      <div class="bar-row"><span class="bar-label">Rings of Power</span>
+        <span class="bar-track"><span class="bar-fill" style="width:11.1%;background:var(--grad)"></span></span>
+        <span class="bar-val">24</span></div>
+      <div class="bar-row"><span class="bar-label">Citadel</span>
+        <span class="bar-track"><span class="bar-fill" style="width:10.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">22</span></div>
+      <div class="bar-row"><span class="bar-label">Reacher</span>
+        <span class="bar-track"><span class="bar-fill" style="width:10.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">22</span></div>
+      <div class="bar-row"><span class="bar-label">Mr. &amp; Mrs. Smith</span>
+        <span class="bar-track"><span class="bar-fill" style="width:6%;background:var(--grad)"></span></span>
+        <span class="bar-val">13</span></div>
+      <div class="bar-row"><span class="bar-label">The Terminal List</span>
+        <span class="bar-track"><span class="bar-fill" style="width:5.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">12</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0"><i>24</i> alone is 64.5 hours — more than
+        every other show combined. The chart literally can't show the rest at the same scale.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Plays by year — the five-year gap</h2>
+    <div class="card">
+      <div class="tl">
+        <div class="col"><span class="vv">3</span><span class="barv" style="height:2%"></span><span class="yl">'15</span></div>
+        <div class="col"><span class="vv">234</span><span class="barv" style="height:100%"></span><span class="yl">'16</span></div>
+        <div class="col"><span class="vv">1</span><span class="barv gap" style="height:1%"></span><span class="yl">'17</span></div>
+        <div class="col"><span class="vv">0</span><span class="barv gap" style="height:1%"></span><span class="yl">'18</span></div>
+        <div class="col"><span class="vv">0</span><span class="barv gap" style="height:1%"></span><span class="yl">'19</span></div>
+        <div class="col"><span class="vv">1</span><span class="barv gap" style="height:1%"></span><span class="yl">'20</span></div>
+        <div class="col"><span class="vv">0</span><span class="barv gap" style="height:1%"></span><span class="yl">'21</span></div>
+        <div class="col"><span class="vv">5</span><span class="barv gap" style="height:2%"></span><span class="yl">'22</span></div>
+        <div class="col"><span class="vv">51</span><span class="barv" style="height:22%"></span><span class="yl">'23</span></div>
+        <div class="col"><span class="vv">88</span><span class="barv" style="height:38%"></span><span class="yl">'24</span></div>
+        <div class="col"><span class="vv">122</span><span class="barv" style="height:52%"></span><span class="yl">'25</span></div>
+        <div class="col"><span class="vv">74</span><span class="barv" style="height:32%"></span><span class="yl">'26</span></div>
+      </div>
+      <p class="gapnote">▦ 2017–2022: essentially dormant — 7 plays across six years. The 2016
+        <i>24</i> marathon ended, and Prime Video sat unused until the Roku/LG-OLED living-room
+        setup brought it back in 2023.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>When Kevin watches — hour of day (ET)</h2>
+    <div class="card">
+      <div class="hod">
+        <!-- heights as % of peak (70 @ 11am ET) -->
+        <div class="h"><span class="b" style="height:2%"></span></div>
+        <div class="h"><span class="b" style="height:4%"></span></div>
+        <div class="h"><span class="b" style="height:13%"></span></div>
+        <div class="h"><span class="b" style="height:7%"></span></div>
+        <div class="h"><span class="b" style="height:3%"></span></div>
+        <div class="h"><span class="b" style="height:13%"></span></div>
+        <div class="h"><span class="b" style="height:10%"></span></div>
+        <div class="h"><span class="b" style="height:16%"></span></div>
+        <div class="h"><span class="b" style="height:54%"></span></div>
+        <div class="h"><span class="b" style="height:33%"></span></div>
+        <div class="h"><span class="b" style="height:47%"></span></div>
+        <div class="h"><span class="b" style="height:100%"></span></div>
+        <div class="h"><span class="b" style="height:80%"></span></div>
+        <div class="h"><span class="b" style="height:53%"></span></div>
+        <div class="h"><span class="b" style="height:59%"></span></div>
+        <div class="h"><span class="b" style="height:51%"></span></div>
+        <div class="h"><span class="b" style="height:13%"></span></div>
+        <div class="h"><span class="b" style="height:13%"></span></div>
+        <div class="h"><span class="b" style="height:53%"></span></div>
+        <div class="h"><span class="b" style="height:71%"></span></div>
+        <div class="h"><span class="b" style="height:54%"></span></div>
+        <div class="h"><span class="b" style="height:37%"></span></div>
+        <div class="h"><span class="b" style="height:31%"></span></div>
+        <div class="h"><span class="b" style="height:11%"></span></div>
+      </div>
+      <div class="hod-ax"><span>12a</span><span>6a</span><span>12p</span><span>6p</span><span>11p</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">A distinctly <b>midday-skewed</b> shape:
+        the peak is <b>late morning to early afternoon</b> (70 @ 11am, 56 @ noon), not prime time.
+        There's a strong secondary <b>evening bump around 7pm</b> (50), but Kevin's Prime Video leans
+        daytime — unlike the weekend-evening-anchored Netflix pattern.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The two true binges — click to expand</h2>
+    <details open>
+      <summary><span><i>24</i> — the all-time obsession</span>
+        <span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">216 eps · 64.5h</span></summary>
+      <div class="det-body">
+        <p class="muted" style="font-size:14px;margin:6px 0 12px">Kevin's marathon ran on a Windows 8.1 PC
+          in 2015–16, with the bulk of it (183 plays) streamed <b>from London</b> during travel. The episode
+          titles are literal clock hours ("6:00 A.M. – 7:00 A.M."), so the export is a perfect record of a
+          real-time binge. Even after the shared-account cleanup, this single show is ~37% of all content
+          plays — still more than every other title combined.</p>
+        <div class="bar-row"><span class="bar-label">Kevin's <i>24</i> plays</span>
+          <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+          <span class="bar-val">216</span></div>
+      </div>
+    </details>
+    <details>
+      <summary><span>Amazon Originals — the modern era</span>
+        <span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">2023→2026</span></summary>
+      <div class="det-body">
+        <div class="bar-row"><span class="bar-label">The Boys</span>
+          <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+          <span class="bar-val">36</span></div>
+        <div class="bar-row"><span class="bar-label">The Wheel of Time</span>
+          <span class="bar-track"><span class="bar-fill" style="width:72%;background:var(--grad)"></span></span>
+          <span class="bar-val">26</span></div>
+        <div class="bar-row"><span class="bar-label">Fallout</span>
+          <span class="bar-track"><span class="bar-fill" style="width:72%;background:var(--grad)"></span></span>
+          <span class="bar-val">26</span></div>
+        <div class="bar-row"><span class="bar-label">Countdown</span>
+          <span class="bar-track"><span class="bar-fill" style="width:72%;background:var(--grad)"></span></span>
+          <span class="bar-val">26</span></div>
+        <div class="bar-row"><span class="bar-label">Rings of Power</span>
+          <span class="bar-track"><span class="bar-fill" style="width:67%;background:var(--grad)"></span></span>
+          <span class="bar-val">24</span></div>
+        <div class="bar-row"><span class="bar-label">Citadel</span>
+          <span class="bar-track"><span class="bar-fill" style="width:61%;background:var(--grad)"></span></span>
+          <span class="bar-val">22</span></div>
+        <div class="bar-row"><span class="bar-label">Reacher</span>
+          <span class="bar-track"><span class="bar-fill" style="width:61%;background:var(--grad)"></span></span>
+          <span class="bar-val">22</span></div>
+        <div class="bar-row"><span class="bar-label">Mr. &amp; Mrs. Smith</span>
+          <span class="bar-track"><span class="bar-fill" style="width:36%;background:var(--grad)"></span></span>
+          <span class="bar-val">13</span></div>
+        <div class="bar-row"><span class="bar-label">The Terminal List</span>
+          <span class="bar-track"><span class="bar-fill" style="width:33%;background:var(--grad)"></span></span>
+          <span class="bar-val">12</span></div>
+        <div class="bar-row"><span class="bar-label">Steal</span>
+          <span class="bar-track"><span class="bar-fill" style="width:28%;background:var(--grad)"></span></span>
+          <span class="bar-val">10</span></div>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Top films by hours watched</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">Dune: Part Two</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.7h</span></div>
+      <div class="bar-row"><span class="bar-label">Dune</span>
+        <span class="bar-track"><span class="bar-fill" style="width:96%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.6h</span></div>
+      <div class="bar-row"><span class="bar-label">M:I — Final Reckoning</span>
+        <span class="bar-track"><span class="bar-fill" style="width:94%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.5h</span></div>
+      <div class="bar-row"><span class="bar-label">Top Gun: Maverick</span>
+        <span class="bar-track"><span class="bar-fill" style="width:89%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.4h</span></div>
+      <div class="bar-row"><span class="bar-label">Den of Thieves 2</span>
+        <span class="bar-track"><span class="bar-fill" style="width:87%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.4h</span></div>
+      <div class="bar-row"><span class="bar-label">The Fate of the Furious</span>
+        <span class="bar-track"><span class="bar-fill" style="width:87%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.4h</span></div>
+      <div class="bar-row"><span class="bar-label">Furious 7</span>
+        <span class="bar-track"><span class="bar-fill" style="width:87%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.3h</span></div>
+      <div class="bar-row"><span class="bar-label">The Martian</span>
+        <span class="bar-track"><span class="bar-fill" style="width:84%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.3h</span></div>
+      <div class="bar-row"><span class="bar-label">Crime 101</span>
+        <span class="bar-track"><span class="bar-fill" style="width:83%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.2h</span></div>
+      <div class="bar-row"><span class="bar-label">Fast X</span>
+        <span class="bar-track"><span class="bar-fill" style="width:81%;background:var(--grad)"></span></span>
+        <span class="bar-val">2.2h</span></div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">Sci-fi epics and the Fast &amp; Furious
+        franchise dominate. These are watched once, in full, in the best quality available — the
+        opposite of background TV.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What he actually pays for — 19 rentals &amp; buys</h2>
+    <div class="card">
+      <p class="muted" style="font-size:14px;margin:0 0 12px">Prime is a subscription, but Kevin still
+        opened his wallet 19 times — and <b>18 of 19 were UHD/4K</b>. Only one is a purchase
+        (<i>Fast X</i>); everything else is a 48-hour rental of a recent action tentpole.</p>
+      <table class="tbl">
+        <tr><th>Title</th><th>Type</th><th>When</th></tr>
+        <tr><td>Now You See Me: Now You Don't</td><td><span class="lv uhd">UHD rental</span></td><td>Feb 2026</td></tr>
+        <tr><td>Mission: Impossible — The Final Reckoning</td><td><span class="lv uhd">UHD rental</span></td><td>Jan 2026</td></tr>
+        <tr><td>The Fantastic Four: First Steps</td><td><span class="lv uhd">UHD rental</span></td><td>Dec 2025 / Jan 2026</td></tr>
+        <tr><td>Juror #2</td><td><span class="lv uhd">UHD rental</span></td><td>Sep 2025</td></tr>
+        <tr><td>The Martian</td><td><span class="lv uhd">UHD rental</span></td><td>Apr 2025</td></tr>
+        <tr><td>Den of Thieves 2: Pantera</td><td><span class="lv uhd">UHD rental</span></td><td>Feb 2025</td></tr>
+        <tr><td>Weekend in Taipei</td><td><span class="lv uhd">UHD rental</span></td><td>Jan 2025</td></tr>
+        <tr><td>Dune: Part Two</td><td><span class="lv uhd">UHD rental</span></td><td>Jun 2024</td></tr>
+        <tr><td>Aquaman and The Lost Kingdom</td><td><span class="lv uhd">UHD rental</span></td><td>Apr 2024</td></tr>
+        <tr><td>The Marvels</td><td><span class="lv uhd">UHD rental</span></td><td>Feb 2024</td></tr>
+        <tr><td>Dune · Infinite</td><td><span class="lv uhd">UHD rentals</span></td><td>Jan 2024</td></tr>
+        <tr><td>Fast X — Bonus X-Ray Edition</td><td><span class="lv hi">UHD purchase</span></td><td>Aug 2023</td></tr>
+        <tr><td>Fate of the Furious · Furious 7 · Fast &amp; Furious 6</td><td><span class="lv uhd">UHD rentals</span></td><td>Aug 2023</td></tr>
+        <tr><td>Simulant · The Channel</td><td><span class="lv lo">HD rentals</span></td><td>2023–25</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px;margin:12px 0 0">The August 2023 cluster is a three-night
+        Fast &amp; Furious re-run, capped by buying <i>Fast X</i> outright — the only thing he chose
+        to <b>own</b> in 10.5 years.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Thumbs up, thumbs down</h2>
+    <div class="cmp">
+      <div class="box"><div class="h">👍 Liked (9)</div>
+        <div class="mono">Dune · Fallout · Reacher · Citadel<br>Crime 101 · Countdown<br>
+        The Wheel of Time · Infinite · Role Play</div></div>
+      <div class="box"><div class="h">👎 Disliked (2)</div>
+        <div class="mono">The Naked Gun (2025)<br>Nikita</div>
+        <div class="h" style="margin-top:14px">🚫 Not interested (2)</div>
+        <div class="mono">Upload · Butterfly</div></div>
+    </div>
+    <p class="muted" style="font-size:13px;margin:12px 2px 0">Every single like is sci-fi, spy, or
+      action. The two dislikes are a comedy reboot and a stylized assassin drama — the lane is
+      that consistent.</p>
+  </section>
+
+  <section>
+    <h2>The most persuasive part: before &amp; after</h2>
+    <p class="muted" style="margin:0 0 14px">Series rows arrive as one ugly string with the episode
+      title, show, and season all mashed together — and the 2015-era encoding uses a different
+      separator than the modern one. Both had to be parsed to count shows correctly.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw CSV row (Title field)</div>
+        <div class="mono">"6:00 A.M. - 7:00 A.M.-24 Season 4"<br><br>
+          "Blood and Bone-The Boys - Season 5"</div></div>
+      <div class="box"><div class="h">Parsed</div>
+        <div class="mono">episode: <b style="color:#fff">6:00 A.M. – 7:00 A.M.</b><br>
+          show: <b style="color:#fff">24</b> · season: 4<br><br>
+          episode: <b style="color:#fff">Blood and Bone</b><br>
+          show: <b style="color:#fff">The Boys</b> · season: 5</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The clever bits (and the honest snags)</h2>
+    <h3>🐛 War story: the regex that ate the show name</h3>
+    <p class="muted">First pass anchored on the <b>first</b> hyphen and required " - Season N".
+      That worked for modern Amazon Originals but quietly mangled the 2015 catalog: <i>24</i>'s
+      episode titles are clock times ("6:00 A.M. - 7:00 A.M."), so a naive split grabbed
+      "12:00 A.M." as the show name and reported <i>24</i> as having <b>zero</b> plays while
+      inventing fake "shows" like "12:00 A.M.-24". The fix: strip the trailing
+      <span class="mono">(?: -)? Season N</span> first, then take the show from the
+      <b>rightmost</b> hyphen. (A later wrinkle: <i>The Boys</i> Season 4 uses an en-dash separator
+      while Season 5 uses a hyphen, so the split had to accept both.) That recovered the real number —
+      <b>216 of Kevin's own <i>24</i> plays</b> — and collapsed the phantom shows down to a true count of 20.</p>
+    <h3>🧹 Filtering the noise (twice)</h3>
+    <p class="muted">A quarter of all rows (276 of 1,093) are auto-played promos and trailers, not
+      things Kevin chose to watch. On top of that, a chunk of the early library was watched on
+      <b>shared logins in Tallahassee and Columbus</b> — old roommate/family accounts, not Kevin —
+      surfaced cleanly by the per-play <span class="mono">City</span> field. Both layers are stripped:
+      every content metric here is Kevin's own viewing only.</p>
+    <h3>🕒 Timezone honesty</h3>
+    <p class="muted">All timestamps are UTC; the hour-of-day chart converts to US Eastern. Because
+      Kevin streamed from London during travel and the export doesn't localize per-play, the
+      hour shape is accurate to ±1 hour — fine for "midday vs. evening," not for the exact minute.</p>
+  </section>
+
+  <section>
+    <h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f"><i>24</i> is <b>64.5 hours</b> — 37% of his cleaned Prime Video history, and
+        more than every other title combined. The export logs it as a literal real-time clock.</div>
+      <div class="f">A <b>five-year dead zone</b> (2017–2022, 7 plays total) sits between two completely
+        different setups: a 2016 Windows-PC <i>24</i> era and a Roku-on-LG-OLED living-room era.</div>
+      <div class="f">Kevin watches Prime <b>midday</b> — the peak is 11am–noon, not prime time.
+        It reads as a daytime, background-of-the-day habit, opposite to his Netflix evenings.</div>
+      <div class="f">In 10.5 years he <b>bought exactly one thing</b>: <i>Fast X</i>. Everything else he
+        rents — and almost always in 4K.</div>
+      <div class="f">The data is a quiet travel log: <b>200 plays streamed from London</b> during trips
+        (much of the <i>24</i> binge), with the bulk of the rest in Orlando (342).</div>
+      <div class="f">His searches are pure muscle memory — he types <span class="mono">j → ju → jur →
+        juro → juror</span> hunting <i>Juror #2</i>, a film he'd later rent in UHD.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Request your Prime Video export</div>
+        <div class="d">Amazon Privacy Central → "Request Your Information" → Prime Video. Arrives as a CSV bundle.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Load &amp; de-noise</div>
+        <div class="d">Read Viewing History.csv with pandas; drop rows where Material Type is Promo / Trailer / External.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Parse the episode strings</div>
+        <div class="d">Strip a trailing "(- )?Season N", then take the show from the rightmost hyphen. Handles both old and new encodings.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Aggregate &amp; chart</div>
+        <div class="d">groupby show/film, sum Seconds Viewed for hours, convert UTC to your timezone for hour-of-day. Hand-build the bars in CSS.</div></div></div>
+    </div>
+  </section>
+
+  <footer>Built with Python + pandas · charts hand-rolled in CSS/SVG · self-contained, offline-safe ·
+    one session, June 5, 2026 · companion to the Netflix viewing report</footer>
+
+</div></body></html>

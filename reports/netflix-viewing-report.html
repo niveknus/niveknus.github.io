@@ -1,0 +1,337 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Netflix Viewing History — Decoded</title>
+<style>
+:root{--bg:#0b0b0f;--card:#15151d;--ink:#f5f5f7;--mut:#a0a0b0;--line:#2a2a37;
+--red:#e50914;--red2:#ff424f;--grad:linear-gradient(135deg,#e50914,#b1060f 60%,#7a0a12);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--red2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--red2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+background:linear-gradient(120deg,#fff 30%,#ff424f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);font-size:18px;max-width:640px;margin:0 auto}
+.meta{margin-top:14px;color:#6f6f80;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--red2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red2);font-weight:800;margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,#17171f,#121219);border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:rgba(229,9,20,.08);border:1px solid rgba(255,66,79,.35);border-left:4px solid var(--red2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--mut);font-size:13px;margin-top:4px}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--mut);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;background:#26101266;border:1px solid #5a1a1f;color:#ff8a92;border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--mut);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:#101018;border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:46px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--red2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body .bar-label{width:155px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:#101018;border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--red2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.priv{background:linear-gradient(180deg,#1b1116,#15101a);border:1px solid #4a2230}
+.priv h2{color:#ff7a96}.priv h2:before{background:linear-gradient(135deg,#ff7a96,#b1060f)}
+.flagtbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.flagtbl th,.flagtbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.flagtbl th{color:var(--mut);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.lv{font-size:11px;font-weight:800;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.lv.hi{background:#3a0d12;color:#ff6b78;border:1px solid #6e1620}
+.lv.md{background:#3a230d;color:#ffb86b;border:1px solid #6e4416}
+.lv.lo{background:#143a23;color:#6bff9e;border:1px solid #1a6e3e}
+.muted{color:var(--mut)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:#6f6f80;font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:96px}}
+</style></head><body><div class='wrap'>
+<div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>5.8 Years of Netflix, Decoded</h1>
+    <p class="sub">844 plays. 45 series. ~250 films. A profile that's basically one sentence: charming criminals, spies, and people pulling off heists. Here's what the data actually says.</p>
+    <div class="meta">May 22, 2020 → Mar 22, 2026 · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>844</b> plays logged</div>
+      <div class="chip"><b>591</b> episodes</div>
+      <div class="chip"><b>31</b> shows binged</div>
+      <div class="chip"><b>18.0%</b> of days watching</div>
+    </div></div>
+<section><h2>30-second TL;DR</h2><div class="tldr">
+    <p>I parsed my raw Netflix export — 844 timestamped plays from May 22, 2020 to Mar 22, 2026 — and broke it down by show, format, year, weekday, and month. The verdict: I'm a <b>completionist binger</b> with a laser focus on <b>heists, con artists, crime, and spy thrillers</b>. My #1 show isn't a prestige drama — it's <b>White Collar</b>, the charming-con-man comfort watch, at 70 episodes.</p>
+    <div class="callout"><b>Core finding:</b> I don't sample — I commit. 31 different series got 5+ episodes, led by full-series runs of White Collar (70), Better Call Saul (63), and Money Heist (48). And the volume isn't steady: <b>2024 alone was 287 plays</b> — more than double any other year.</div>
+    </div></section>
+<section><h2>How the data got here</h2><div class="steps">
+    <div class="step"><div class="num"></div><div><div class="t">Export the raw history</div><div class="d">Netflix → Viewing Activity → downloaded as a flat CSV of Title + Date.<div class="tag">NetflixViewingHistory.csv</div></div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Parse titles into shows vs. films</div><div class="d">Regex splits episode rows ("Show: Season X: Episode") from standalone films, then rolls episodes up to a series name.<div class="tag">python · csv + re</div></div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Aggregate every dimension</div><div class="d">Counters by show, year, calendar month, weekday, and per-day binge size.<div class="tag">collections.Counter</div></div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Verify, then render</div><div class="d">Every total re-checked to sum to 844, then drawn as hand-built CSS — no chart libraries.<div class="tag">Second Brain · report-style</div></div></div></div>
+    </div></section>
+<section><h2>By the numbers</h2><div class="grid">
+    <div class="stat"><div class="n">844</div><div class="l">total plays</div></div>
+    <div class="stat"><div class="n">45</div><div class="l">distinct series</div></div>
+    <div class="stat"><div class="n">~250</div><div class="l">distinct films</div></div>
+    <div class="stat"><div class="n">591</div><div class="l">episodes watched</div></div>
+    <div class="stat"><div class="n">383</div><div class="l">days with a play</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">biggest single day</div></div>
+    </div></section>
+<section><h2>Top 15 series by episodes</h2><div class="card">
+    <div class="bar-row"><span class="bar-label">White Collar</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">70</span></div>
+<div class="bar-row"><span class="bar-label">Better Call Saul</span>
+        <span class="bar-track"><span class="bar-fill" style="width:90.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">63</span></div>
+<div class="bar-row"><span class="bar-label">Money Heist</span>
+        <span class="bar-track"><span class="bar-fill" style="width:68.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">48</span></div>
+<div class="bar-row"><span class="bar-label">Manifest</span>
+        <span class="bar-track"><span class="bar-fill" style="width:47.1%;background:var(--grad)"></span></span>
+        <span class="bar-val">33</span></div>
+<div class="bar-row"><span class="bar-label">The Night Agent</span>
+        <span class="bar-track"><span class="bar-fill" style="width:42.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">30</span></div>
+<div class="bar-row"><span class="bar-label">StartUp</span>
+        <span class="bar-track"><span class="bar-fill" style="width:42.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">30</span></div>
+<div class="bar-row"><span class="bar-label">Lucifer</span>
+        <span class="bar-track"><span class="bar-fill" style="width:35.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">25</span></div>
+<div class="bar-row"><span class="bar-label">The Diplomat</span>
+        <span class="bar-track"><span class="bar-fill" style="width:31.4%;background:var(--grad)"></span></span>
+        <span class="bar-val">22</span></div>
+<div class="bar-row"><span class="bar-label">Warrior</span>
+        <span class="bar-track"><span class="bar-fill" style="width:28.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">20</span></div>
+<div class="bar-row"><span class="bar-label">The Umbrella Academy</span>
+        <span class="bar-track"><span class="bar-fill" style="width:27.1%;background:var(--grad)"></span></span>
+        <span class="bar-val">19</span></div>
+<div class="bar-row"><span class="bar-label">Lupin</span>
+        <span class="bar-track"><span class="bar-fill" style="width:24.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">17</span></div>
+<div class="bar-row"><span class="bar-label">The Lazarus Project</span>
+        <span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">FUBAR</span>
+        <span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Shadow and Bone</span>
+        <span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Taken</span>
+        <span class="bar-track"><span class="bar-fill" style="width:22.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+    </div></section>
+<section><h2>Plays by year</h2><div class="card">
+    <div class="bar-row"><span class="bar-label">2020</span>
+        <span class="bar-track"><span class="bar-fill" style="width:46.3%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">133</span></div>
+<div class="bar-row"><span class="bar-label">2021</span>
+        <span class="bar-track"><span class="bar-fill" style="width:51.6%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">148</span></div>
+<div class="bar-row"><span class="bar-label">2022</span>
+        <span class="bar-track"><span class="bar-fill" style="width:19.5%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">56</span></div>
+<div class="bar-row"><span class="bar-label">2023</span>
+        <span class="bar-track"><span class="bar-fill" style="width:43.6%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">125</span></div>
+<div class="bar-row"><span class="bar-label">2024</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">287</span></div>
+<div class="bar-row"><span class="bar-label">2025</span>
+        <span class="bar-track"><span class="bar-fill" style="width:28.6%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">82</span></div>
+<div class="bar-row"><span class="bar-label">2026</span>
+        <span class="bar-track"><span class="bar-fill" style="width:4.5%;background:linear-gradient(90deg,#e50914,#ff424f)"></span></span>
+        <span class="bar-val">13</span></div>
+    <p class="muted" style="margin:14px 0 0;font-size:14px"><b style="color:#fff">2024 was the megayear (287 plays)</b> — more than double any other. Then it craters to 82 in 2025 — a big year for my life off the couch — with solo streaming dropping hard. 2026 is a partial year.</p>
+    </div></section>
+<section><h2>When I watch</h2><div class="card">
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:8px">By weekday</div>
+    <div class="bar-row"><span class="bar-label">Mon</span>
+        <span class="bar-track"><span class="bar-fill" style="width:53.6%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">118</span></div>
+<div class="bar-row"><span class="bar-label">Tue</span>
+        <span class="bar-track"><span class="bar-fill" style="width:31.4%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">69</span></div>
+<div class="bar-row"><span class="bar-label">Wed</span>
+        <span class="bar-track"><span class="bar-fill" style="width:29.5%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">65</span></div>
+<div class="bar-row"><span class="bar-label">Thu</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25.0%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">55</span></div>
+<div class="bar-row"><span class="bar-label">Fri</span>
+        <span class="bar-track"><span class="bar-fill" style="width:54.5%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">120</span></div>
+<div class="bar-row"><span class="bar-label">Sat</span>
+        <span class="bar-track"><span class="bar-fill" style="width:89.5%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">197</span></div>
+<div class="bar-row"><span class="bar-label">Sun</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:linear-gradient(90deg,#b1060f,#ff424f)"></span></span>
+        <span class="bar-val">220</span></div>
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:20px 0 8px">By calendar month</div>
+    <div class="bar-row"><span class="bar-label">Jan</span>
+        <span class="bar-track"><span class="bar-fill" style="width:31.9%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">51</span></div>
+<div class="bar-row"><span class="bar-label">Feb</span>
+        <span class="bar-track"><span class="bar-fill" style="width:40.6%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">65</span></div>
+<div class="bar-row"><span class="bar-label">Mar</span>
+        <span class="bar-track"><span class="bar-fill" style="width:28.8%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">46</span></div>
+<div class="bar-row"><span class="bar-label">Apr</span>
+        <span class="bar-track"><span class="bar-fill" style="width:40.6%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">65</span></div>
+<div class="bar-row"><span class="bar-label">May</span>
+        <span class="bar-track"><span class="bar-fill" style="width:66.9%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">107</span></div>
+<div class="bar-row"><span class="bar-label">Jun</span>
+        <span class="bar-track"><span class="bar-fill" style="width:33.1%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">53</span></div>
+<div class="bar-row"><span class="bar-label">Jul</span>
+        <span class="bar-track"><span class="bar-fill" style="width:30.6%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">49</span></div>
+<div class="bar-row"><span class="bar-label">Aug</span>
+        <span class="bar-track"><span class="bar-fill" style="width:58.1%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">93</span></div>
+<div class="bar-row"><span class="bar-label">Sep</span>
+        <span class="bar-track"><span class="bar-fill" style="width:18.1%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">29</span></div>
+<div class="bar-row"><span class="bar-label">Oct</span>
+        <span class="bar-track"><span class="bar-fill" style="width:36.2%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">58</span></div>
+<div class="bar-row"><span class="bar-label">Nov</span>
+        <span class="bar-track"><span class="bar-fill" style="width:42.5%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">68</span></div>
+<div class="bar-row"><span class="bar-label">Dec</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:linear-gradient(90deg,#7a0a12,#e50914)"></span></span>
+        <span class="bar-val">160</span></div>
+    <p class="muted" style="margin:14px 0 0;font-size:14px">Sunday (220) and Saturday (197) dominate — a weekend habit — with Friday and Monday close behind. <b style="color:#fff">December is the biggest month by far (160)</b>, powered by holiday-break bingeing; May is second. September is the quietest.</p>
+    </div></section>
+<section><h2>Taste, by genre</h2>
+    <p class="muted" style="margin:-6px 0 12px;font-size:14px">Four lanes do almost all the work: heists, spies, crime, and sci-fi/fantasy.</p>
+    <details><summary><span>Heist &amp; con artists</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">168 eps</span></summary>
+        <div class="det-body"><div class="bar-row"><span class="bar-label">White Collar</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">70</span></div>
+<div class="bar-row"><span class="bar-label">Money Heist</span>
+        <span class="bar-track"><span class="bar-fill" style="width:68.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">48</span></div>
+<div class="bar-row"><span class="bar-label">Lupin</span>
+        <span class="bar-track"><span class="bar-fill" style="width:24.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">17</span></div>
+<div class="bar-row"><span class="bar-label">Imposters</span>
+        <span class="bar-track"><span class="bar-fill" style="width:14.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">Kaleidoscope</span>
+        <span class="bar-track"><span class="bar-fill" style="width:12.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">9</span></div>
+<div class="bar-row"><span class="bar-label">The Gentlemen</span>
+        <span class="bar-track"><span class="bar-fill" style="width:11.4%;background:var(--grad)"></span></span>
+        <span class="bar-val">8</span></div>
+<div class="bar-row"><span class="bar-label">Griselda</span>
+        <span class="bar-track"><span class="bar-fill" style="width:8.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">6</span></div></div></details><details><summary><span>Spy &amp; political thriller</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">98 eps</span></summary>
+        <div class="det-body"><div class="bar-row"><span class="bar-label">The Night Agent</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">30</span></div>
+<div class="bar-row"><span class="bar-label">The Diplomat</span>
+        <span class="bar-track"><span class="bar-fill" style="width:73.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">22</span></div>
+<div class="bar-row"><span class="bar-label">FUBAR</span>
+        <span class="bar-track"><span class="bar-fill" style="width:53.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">The Recruit</span>
+        <span class="bar-track"><span class="bar-fill" style="width:46.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">14</span></div>
+<div class="bar-row"><span class="bar-label">Zero Day</span>
+        <span class="bar-track"><span class="bar-fill" style="width:20.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">6</span></div>
+<div class="bar-row"><span class="bar-label">Treason</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">5</span></div>
+<div class="bar-row"><span class="bar-label">Hostage</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">5</span></div></div></details><details><summary><span>Crime &amp; antiheroes</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">100 eps</span></summary>
+        <div class="det-body"><div class="bar-row"><span class="bar-label">Better Call Saul</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">63</span></div>
+<div class="bar-row"><span class="bar-label">Lucifer</span>
+        <span class="bar-track"><span class="bar-fill" style="width:39.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">25</span></div>
+<div class="bar-row"><span class="bar-label">BEEF</span>
+        <span class="bar-track"><span class="bar-fill" style="width:15.9%;background:var(--grad)"></span></span>
+        <span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">Ozark</span>
+        <span class="bar-track"><span class="bar-fill" style="width:3.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div></div></details><details><summary><span>Sci-fi &amp; fantasy</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">112 eps</span></summary>
+        <div class="det-body"><div class="bar-row"><span class="bar-label">Manifest</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">33</span></div>
+<div class="bar-row"><span class="bar-label">The Umbrella Academy</span>
+        <span class="bar-track"><span class="bar-fill" style="width:57.6%;background:var(--grad)"></span></span>
+        <span class="bar-val">19</span></div>
+<div class="bar-row"><span class="bar-label">The Lazarus Project</span>
+        <span class="bar-track"><span class="bar-fill" style="width:48.5%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Shadow and Bone</span>
+        <span class="bar-track"><span class="bar-fill" style="width:48.5%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">The Witcher</span>
+        <span class="bar-track"><span class="bar-fill" style="width:36.4%;background:var(--grad)"></span></span>
+        <span class="bar-val">12</span></div>
+<div class="bar-row"><span class="bar-label">3 Body Problem</span>
+        <span class="bar-track"><span class="bar-fill" style="width:24.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">8</span></div>
+<div class="bar-row"><span class="bar-label">KAOS</span>
+        <span class="bar-track"><span class="bar-fill" style="width:24.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">8</span></div></div></details><details><summary><span>Action &amp; martial arts</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">38 eps</span></summary>
+        <div class="det-body"><div class="bar-row"><span class="bar-label">Warrior</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">20</span></div>
+<div class="bar-row"><span class="bar-label">Taken</span>
+        <span class="bar-track"><span class="bar-fill" style="width:80.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Wu Assassins</span>
+        <span class="bar-track"><span class="bar-fill" style="width:10.0%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div></div></details></section>
+<section><h2>Raw vs. result</h2><div class="cmp">
+    <div class="box"><div class="h">Raw CSV row</div><div class="mono">"White Collar: Season 1: Out of the Box","8/26/20"</div></div>
+    <div class="box"><div class="h">Parsed</div><div class="mono">series: <b style="color:#fff">White Collar</b><br>type: episode<br>date: 2020-08-26</div></div>
+    <div class="box"><div class="h">844 messy rows</div><div class="mono">a flat list of titles + dates, episodes and films mixed together, no structure</div></div>
+    <div class="box"><div class="h">Structured insight</div><div class="mono">45 series · ~250 films · 31 binges · ranked by year, weekday & month</div></div>
+    </div></section>
+<section><h2>How it works + a war story</h2><div class="card">
+    <p>The clever bit is the title parser. Netflix stores episodes as <span class="mono">"Show: Season N: Episode"</span> but films are just <span class="mono">"Title"</span> — and plenty of films have colons too (<i>Jack Reacher: Never Go Back</i>). The fix: only treat a row as an episode when it contains a season/part/episode/chapter keyword, then roll up to the text before the first colon.</p>
+    <p class="muted" style="margin-top:12px"><b style="color:#fff">War story:</b> mid-analysis the working environment started returning garbled and duplicated output — even stray text that didn't belong. Rather than trust a flaky readout, every figure here was re-derived from a single structured data file and cross-checked three ways: the by-year, by-weekday, and by-month breakdowns each independently sum to exactly 844. Trust the source and verify the totals — not the screen.</p>
+    </div></section>
+<section><h2>Fun findings</h2><div class="fun">
+    <div class="f"><b>White Collar is the comfort blanket.</b> At 70 episodes it's my single most-watched title — a charming art-thief solving crimes for the FBI. Cozy crime, not prestige darkness.</div>
+    <div class="f"><b>Heist brain, confirmed.</b> White Collar + Money Heist + Lupin + Imposters + Kaleidoscope + The Gentlemen, plus the Ocean's trilogy, both Now You See Me films, Den of Thieves and Army of Thieves. I really like watching clever people steal things.</div>
+    <div class="f"><b>The December 2024 blowout.</b> 80 plays in one month, including an 11-episode day on Dec 6, 2024. Holiday break = maximum couch.</div>
+    <div class="f"><b>The 2024 → 2025 cliff.</b> 287 plays in 2024 fell to 82 in 2025. Turns out a fuller life off the couch shows up clearly in the data.</div>
+    <div class="f"><b>Action-franchise completionist.</b> The film list holds the entire Fast &amp; Furious saga, the Rush Hour trilogy, the Taken films, the Sniper franchise, and both Extractions. When I like a world, I finish it.</div>
+    </div></section>
+<footer>Built from a Netflix viewing export · parsed with Python · hand-rendered HTML · Kevin's Second Brain · shareable copy</footer>
+</div></body></html>
