@@ -1,15 +1,15 @@
 {
-  "date_label": "Thursday, Jun 04",
+  "date_label": "Friday, Jun 05",
   "recovery_status": "watch",
   "today": {
-    "time": "6:00 PM",
-    "session": "Planet Fitness — Split B (chest + back)",
-    "subtitle": "Chest + Back · 3–4 sets × 8–12",
+    "time": "8:00 AM",
+    "session": "Pickleball",
+    "subtitle": "2-hr recreational play · ~1,200 cal",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "HRV 8% below baseline (under 10% threshold), RHR slightly elevated at 69 vs 65 avg. Full session; drop to 3 sets if early sets feel heavy.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "why": "No rules fire — sleep FAIR (61), HRV UNBALANCED but at baseline numerically. Full pickleball as planned.",
+    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
+    "expected_duration_minutes": 120
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read (806 cal). 6-day complete avg ~2,695 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read (774 cal). 6-day complete avg ~2,673 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "1,800",
+    "calories": "2,100",
     "water": "3 L"
   }
 }
