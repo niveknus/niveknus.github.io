@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Kevin Eats — a flavor profile</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#f97316; --accent2:#facc15;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:150px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:48px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px;color:var(--muted);font-size:14.5px}
+.det-body b{color:var(--ink)}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.muted{color:var(--muted)}
+.big{font-size:46px;font-weight:800;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.bar-label{width:116px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain flavor profile</div>
+    <h1>How Kevin Eats</h1>
+    <p class="sub">Nine years of delivery orders and restaurant reviews, distilled into one taste profile.
+       The short version: chicken in every cuisine, savory over sweet, and the same handful of dishes on
+       heavy repeat.</p>
+    <div class="meta">2017 → 2026 · 1,495 orders · ~$28,600 in food · almost all of it in Orlando</div>
+    <div class="chips">
+      <div class="chip"><b>1,495</b> delivery orders</div>
+      <div class="chip"><b>210×</b> Chick-fil-A</div>
+      <div class="chip"><b>161×</b> Chick-n-Strips</div>
+      <div class="chip"><b>~1%</b> dessert</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Built from item-level analysis of Kevin's full DoorDash and Uber Eats history — what he actually
+         put in the cart, not just where he ordered. The pattern is remarkably consistent: a
+         <b>chicken-forward, comfort-leaning, fiercely repetitive eater</b> with a strong Mexican streak and a
+         wide Asian range. Adventurous <i>across</i> cuisines — Cuban, ramen, Argentine, Greek all show up — but
+         deeply repetitive <i>within</i> them.</p>
+      <div class="callout"><b>The one-sentence palate:</b> savory not sweet, protein over carbs, loyal to a small
+         Orlando rotation — his idea of indulgence is fried chicken and BBQ, not sugar.</div>
+    </div>
+  </section>
+
+  <section><h2>The cuisine mix</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Share of 1,495 orders. The top three buckets are nearly half of everything.</p>
+      <div class="bar-row"><span class="bar-label">Fast-food chicken</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">~17%</span></div>
+      <div class="bar-row"><span class="bar-label">Asian (JP/CN/TH/SEA)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:94%;background:var(--grad)"></span></span>
+        <span class="bar-val">~16%</span></div>
+      <div class="bar-row"><span class="bar-label">Mexican</span>
+        <span class="bar-track"><span class="bar-fill" style="width:88%;background:var(--grad)"></span></span>
+        <span class="bar-val">~15%</span></div>
+      <div class="bar-row"><span class="bar-label">Breakfast / diner</span>
+        <span class="bar-track"><span class="bar-fill" style="width:65%;background:var(--grad)"></span></span>
+        <span class="bar-val">~11%</span></div>
+      <div class="bar-row"><span class="bar-label">American / burgers</span>
+        <span class="bar-track"><span class="bar-fill" style="width:59%;background:var(--grad)"></span></span>
+        <span class="bar-val">~10%</span></div>
+      <div class="bar-row"><span class="bar-label">Dessert / boba</span>
+        <span class="bar-track"><span class="bar-fill" style="width:6%;background:var(--grad)"></span></span>
+        <span class="bar-val">~1%</span></div>
+    </div>
+  </section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">1,495</div><div class="l">deduplicated orders</div></div>
+      <div class="stat"><div class="n">~$28.6K</div><div class="l">food subtotals (9 yrs)</div></div>
+      <div class="stat"><div class="n">210</div><div class="l">Chick-fil-A orders</div></div>
+      <div class="stat"><div class="n">17</div><div class="l">orders ever after 10pm</div></div>
+      <div class="stat"><div class="n">18/19</div><div class="l">Google reviews are 5★</div></div>
+      <div class="stat"><div class="n">~$7→$28</div><div class="l">avg order, 2021→2024</div></div>
+    </div>
+  </section>
+
+  <section><h2>The Chick-fil-A monument</h2>
+    <div class="card" style="text-align:center">
+      <div class="big">210 orders · ~$2,088</div>
+      <p class="muted" style="margin:10px auto 0;max-width:560px">Chick-fil-A is the whole personality — more spend than
+         the next four favorite spots <i>combined</i>. The order barely changes: <b>Chick-n-Strips</b> (his #1 item,
+         ordered <b>161 times</b>) plus <b>Waffle Fries</b>. The throughline across every cuisine is chicken —
+         strips, sesame chicken, Greek chicken pita, fried-chicken rice bowls.</p>
+    </div>
+    <div class="callout"><b>Repetitive within, adventurous across:</b> he'll try Cuban, Argentine, ramen, and Greek —
+       but once he finds the dish, he orders it on a loop.</div>
+  </section>
+
+  <section><h2>The restaurant hall of fame — tap to open</h2>
+    <p class="muted" style="margin-top:-6px">From the 19 reviews Kevin has written on Google Maps (he's a generous
+       rater — 18 of 19 are five stars). A revealed-preference record of what he went back for.</p>
+
+    <details><summary><span>🍜 Ramen — the clearest love</span><span class="muted" style="font-weight:600">San Diego &amp; Orlando</span></summary>
+      <div class="det-body"><b>Menya Ultra</b> and <b>Sukiya Ramen</b> (both San Diego) lead the pack, with
+        <b>Domu</b> in Orlando (he saved its 7-year anniversary at East End Market). Ramen is the single most
+        consistent craving across both his delivery data and his travel — a bowl he hunts for in every city.</div></details>
+
+    <details><summary><span>🍝 Italian — the comfort default</span><span class="muted" style="font-weight:600">San Diego</span></summary>
+      <div class="det-body"><b>Buon Appetito</b>, <b>Garage Buona Forchetta</b>, and <b>Bigalora Cucina</b> —
+        a dense San Diego Italian run from his 2021–2022 trips. Pairs with a documented hunt for the best
+        <b>cacio e pepe</b> in two cities (San Diego and, later, Rome).</div></details>
+
+    <details><summary><span>🌮 Latin American — wide range</span><span class="muted" style="font-weight:600">FL · Chicago · Orlando</span></summary>
+      <div class="det-body"><b>AUTANA Arepas Grill</b> (Venezuelan, Orlando), <b>QuesaBirria Jalisco</b> (Pilsen, Chicago),
+        and <b>Cocina Maya</b> (Sanford — "Josue brought the flames" tableside). On the delivery side, <b>Black Rooster
+        Taqueria</b> and <b>Zaza Cuban Comfort</b> are rotation staples. Mexican alone is ~15% of all orders.</div></details>
+
+    <details><summary><span>🥗 Healthy bowls — the addiction he admits to</span><span class="muted" style="font-weight:600">Orlando</span></summary>
+      <div class="det-body"><b>CAVA</b> ("easy to say I'm addicted"), <b>Fresh Kitchen</b> build-your-own bowls, and
+        <b>Purple Ocean Superfood Bar</b>. These are the bridge foods — the healthy lane already living in his data.</div></details>
+
+    <details><summary><span>🥩 Special-occasion steak</span><span class="muted" style="font-weight:600">Orlando</span></summary>
+      <div class="det-body">When it's a Sunday-night occasion: <b>Kres Chophouse</b>, <b>Christner's</b>, <b>Vito's Chop House</b>,
+        plus the Brazilian churrascarias (Fogo de Chão, Texas de Brazil, Adega Gaucha). Steak is an event, not a habit.</div></details>
+
+  </section>
+
+  <section><h2>What he actually cooks</h2>
+    <div class="card">
+      <h3 style="margin-top:0">High-protein bowls</h3>
+      <p class="muted">The home-cooking pattern mirrors the eating-out one — <b>protein-forward, bowl-shaped</b>.
+         Street-corn chicken bowls, cilantro-lime chicken bowls (a recreation of the Just Salad version), and
+         honey-garlic steak noodles saved <i>with macros</i> (~566 cal / 59g protein per serving). The nutrition
+         rule of thumb he's internalized: carbs energize, protein satisfies, both do both.</p>
+      <h3>A real Taiwanese street-food streak</h3>
+      <p class="muted">Beyond the protein bowls, a clear sub-interest: <b>Taiwanese popcorn chicken</b>
+         ("one of the best fried chicken recipes in the world") and <b>scallion pancakes</b> that recur again and again —
+         the green-onion-log dough technique, night-market versions, even a scallion-pancake BEC. The same Taiwan pull
+         that shows up in his travel shows up in his kitchen.</p>
+      <h3>Host mode</h3>
+      <p class="muted">Two Friendsgivings in one season, a Costco smoked turkey with a paprika-thyme compound butter,
+         pizza-stone-on-the-grill, and vegetarian date-night menus built for Crissy (grilled halloumi, air-fryer fries,
+         chocolate-dipped strawberries).</p>
+    </div>
+  </section>
+
+  <section><h2>Things the food data quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>No sweet tooth.</b> Dessert and boba are a combined ~1% of orders. The indulgence is fried, not sugary.</div>
+      <div class="f"><b>Delivery is work fuel, not a vice.</b> Only <b>17 of 1,495</b> orders in nine years ever landed after 10pm.</div>
+      <div class="f"><b>The palate matured on a curve.</b> Average order climbed from ~$7 pandemic snack-runs (2021) to ~$25–30 real meals by 2024 as ramen and healthy bowls rose.</div>
+      <div class="f"><b>The order history doubles as a move log.</b> The delivery address trail — Short Pine → Elizabeth Rose → Paddle Ct — traces three successive Orlando homes.</div>
+      <div class="f"><b>He credits service by name.</b> Reviews praise staff like Emma and Josue personally — he notices who took care of him.</div>
+    </div>
+  </section>
+
+  <footer>Built from DoorDash + Uber Eats item-level exports and Google Maps reviews · charts hand-rolled in CSS · June 2026<br>
+    <span class="muted">Spend is food subtotals only (no fees/tips/tax), so true out-of-pocket is higher. Cuisine classification is heuristic.</span></footer>
+
+</div></body></html>

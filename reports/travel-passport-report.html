@@ -1,0 +1,257 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where Kevin's Been — a passport, decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#f59e0b; --accent2:#fbbf24;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:62px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px;color:var(--muted);font-size:14.5px}
+.det-body b{color:var(--ink)}
+.regions{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.region{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.region .rt{font-weight:800;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.region .rl{color:var(--muted);font-size:14px}
+.stamp{display:inline-block;border:2px solid color-mix(in srgb,var(--accent2) 55%,transparent);color:var(--accent2);
+  border-radius:8px;padding:3px 9px;font-size:12px;font-weight:800;letter-spacing:.04em;transform:rotate(-3deg);
+  font-family:ui-monospace,Menlo,monospace;margin:4px 5px 4px 0;white-space:nowrap}
+.stamp.alt{transform:rotate(2deg);border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.stampwrap{display:flex;flex-wrap:wrap;margin-top:6px}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.bar-label{width:104px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain travel log</div>
+    <h1>Where Kevin's Been</h1>
+    <p class="sub">Nine countries, four continents, and a stack of US states — a decade of trips
+       pulled from the wiki and the calendar. From the Pyramids at golden hour to a sunset on Sunset Cliffs
+       for the eighth time.</p>
+    <div class="meta">Nov 2015 → May 2026 · reconstructed from the travel wiki + Google Calendar</div>
+    <div class="chips">
+      <div class="chip"><b>9</b> countries abroad</div>
+      <div class="chip"><b>4</b> continents</div>
+      <div class="chip"><b>15</b> US states</div>
+      <div class="chip"><b>11</b> years on record</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Kevin travels like a foodie with a passport: city exploration, night markets, sunset viewpoints,
+         and the local dish done right. 2025 was the breakout year — a three-country Asia run (Tokyo → Seoul → Taiwan),
+         a two-week Egypt &amp; Rome trip built around a Cairo wedding, and a Western Caribbean cruise to close it out.
+         Underneath the headline trips is a quieter pattern: an almost gravitational pull back to <b>San Diego</b>
+         and to <b>Taiwan</b>, where his mom lives.</p>
+      <div class="callout"><b>The one-sentence profile:</b> a food-first city traveler with two home-away gravities —
+         San Diego for the coast, Taiwan for family — who in 2025 went fully international.</div>
+    </div>
+  </section>
+
+  <section><h2>The map, by region</h2>
+    <div class="regions">
+      <div class="region">
+        <div class="rt">🌏 Asia</div>
+        <div class="rl">Three trips' worth of night markets, temples, and hot springs.</div>
+        <div class="stampwrap">
+          <span class="stamp">TAIWAN ×3+</span><span class="stamp alt">JAPAN</span><span class="stamp">S. KOREA</span>
+        </div>
+      </div>
+      <div class="region">
+        <div class="rt">🌍 Africa</div>
+        <div class="rl">Cairo, Giza &amp; the old city — a friend's wedding at the Pyramids.</div>
+        <div class="stampwrap"><span class="stamp">EGYPT</span></div>
+      </div>
+      <div class="region">
+        <div class="rt">🌍 Europe</div>
+        <div class="rl">Rome on the back half of the Egypt trip — sunsets, cacio e pepe, Colosseum.</div>
+        <div class="stampwrap"><span class="stamp alt">ITALY</span><span class="stamp muted" style="border-style:dashed">SWITZERLAND ✈ transit</span></div>
+      </div>
+      <div class="region">
+        <div class="rt">🌎 North America</div>
+        <div class="rl">Home turf plus the Caribbean cruise and a Tijuana day-cross.</div>
+        <div class="stampwrap">
+          <span class="stamp">USA ×15 states</span><span class="stamp alt">MEXICO</span><span class="stamp">BELIZE</span><span class="stamp alt">HONDURAS</span><span class="stamp">CANADA</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:14px"><b>Note:</b> Switzerland was a Zurich layover en route to Cairo, not a real visit — counted as transit, not one of the nine.</div>
+  </section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">9</div><div class="l">countries (excl. US &amp; transit)</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">continents</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">US states</div></div>
+      <div class="stat"><div class="n">8+</div><div class="l">San Diego trips</div></div>
+      <div class="stat"><div class="n">2&nbsp;wk</div><div class="l">longest trip (Egypt + Rome)</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">countries in one May (Asia)</div></div>
+    </div>
+  </section>
+
+  <section><h2>The destination he keeps returning to</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Trips by destination (the repeat offenders). San Diego is the runaway —
+         a coastal habit that spans 2018 through 2026.</p>
+      <div class="bar-row"><span class="bar-label">San Diego, CA</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">8+ trips</span></div>
+      <div class="bar-row"><span class="bar-label">Taiwan</span>
+        <span class="bar-track"><span class="bar-fill" style="width:44%;background:var(--grad)"></span></span>
+        <span class="bar-val">3+ trips</span></div>
+      <div class="bar-row"><span class="bar-label">Las Vegas, NV</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">2 trips</span></div>
+      <div class="bar-row"><span class="bar-label">Columbus, OH</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">2 trips</span></div>
+      <div class="bar-row"><span class="bar-label">Scottsdale, AZ</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">2 (+annual)</span></div>
+    </div>
+    <div class="callout"><b>The San Diego thing is real:</b> 2018, 2019, three times in 2021, again in 2022, 2024,
+       and a fresh trip in May 2026 — a loved sunset spot (Luscomb's Point on Sunset Cliffs), a ramen-and-Italian
+       food map, and a habit of crossing into Tijuana while he's there.</div>
+  </section>
+
+  <section><h2>The signature trips — tap to open</h2>
+
+    <details><summary><span>🐫 Egypt &amp; Rome — the two-week epic</span><span class="muted" style="font-weight:600">Nov 2025</span></summary>
+      <div class="det-body">
+        Built around a friend's wedding at the <b>Hilton Pyramids Golf</b> in Cairo, then a free fortnight that became
+        a two-country journey. Cairo: the <b>Grand Egyptian Museum</b>, Saladin Citadel, Cairo Tower at golden hour,
+        Khan el-Khalili, koshari at Abou Tarek, and Om Ali for dessert. Then Cairo → Rome for sunsets at the Pincio,
+        the hunt for the city's best cacio e pepe (Felice a Testaccio the gold standard), and the Colosseum.
+        Honest footnote: a bout of traveler's diarrhea bridged Cairo to Rome and turned into the trip's most
+        documented sub-saga — rehydration salts, Diosmectal from a Roman farmacia, and a hard-won return to pasta.
+      </div></details>
+
+    <details><summary><span>🏯 Asia, three countries in one May</span><span class="muted" style="font-weight:600">May 2025</span></summary>
+      <div class="det-body">
+        One trip, carry-on only: <b>a week in Tokyo</b> (a guided EF tour — Kamata onsen, Togoshi Ginza, Shibuya Sky),
+        <b>three days in Seoul</b> (Gyeongbokgung, Hongdae nights, Myeongdong skincare hauls), and
+        <b>six days in Taiwan</b> south-to-north (Kaohsiung → Tainan → Alishan/Fenchihu → Sun Moon Lake → Taipei).
+        Night markets the whole way down. Picked up a cold in Tokyo and worse allergies than home — the price of
+        a new continent's pollen.
+      </div></details>
+
+    <details><summary><span>🚢 Western Caribbean cruise</span><span class="muted" style="font-weight:600">Dec 2025</span></summary>
+      <div class="det-body">
+        Royal Caribbean's <b>Grandeur of the Seas</b> with Crissy — Costa Maya, Cozumel, Belize, and Roatan.
+        Chichén Itzá as the bucket-list shore day; Paradise Beach in Cozumel ($3 in, snorkeling off the sand,
+        a red reef starfish); Belize reached by tender because the harbor's too shallow to dock. Onboard: a
+        seven-cookie bake-off and a starfish or two. Tip learned: meclizine over dimenhydrinate for daytime seas.
+      </div></details>
+
+    <details><summary><span>🌲 Pacific Northwest with friends</span><span class="muted" style="font-weight:600">Apr 2025</span></summary>
+      <div class="det-body">
+        <b>Vancouver</b> (Stanley Park seawall, Granville Island, Gastown nights, aburi sushi at Miku) into
+        <b>Seattle</b> (Pike Place, the Great Wheel, Lime scooters, Beecher's mac &amp; cheese). Cool, rainy,
+        carry-on and a waterproof jacket.
+      </div></details>
+
+    <details><summary><span>⛷️ The Colorado ski circuit</span><span class="muted" style="font-weight:600">2025–2026</span></summary>
+      <div class="det-body">
+        <b>Steamboat Springs</b> and <b>Breckenridge</b> on the Ikon Pass. Notable mostly for the one that got
+        away: a March 2026 Steamboat trip canceled by a cold turned into a masterclass in working a
+        Spot Pass Protection insurance claim (telehealth note, redacted statements, zero-days-used screenshot).
+        The mountain you skip can still teach you something.
+      </div></details>
+
+    <details><summary><span>🎆 Vegas with Crissy — dam &amp; lanterns</span><span class="muted" style="font-weight:600">Oct 2025</span></summary>
+      <div class="det-body">
+        Hoover Dam by day, the <b>Rise Lantern Festival</b> in the desert by night — Calvin Harris on the decks
+        and a sky full of released lanterns. Red Rock Canyon's 13-mile loop filled a delayed-flight afternoon.
+      </div></details>
+
+    <details><summary><span>🌴 Florida home-turf getaways</span><span class="muted" style="font-weight:600">2025</span></summary>
+      <div class="det-body">
+        The weekend rotation: jet skiing at John's Pass and a snorkel in the 72°F cave at <b>Devil's Den</b>,
+        sunsets at Pass-a-Grille in <b>St. Pete</b>, giraffe feeding at <b>Brevard Zoo</b>, and a
+        boat day in <b>Sarasota</b> with Crissy's family.
+      </div></details>
+
+  </section>
+
+  <section><h2>The US map, filled in</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Fifteen states on record — the pre-2023 ones reconstructed from
+         flight events in the calendar, the rest from the wiki's day-to-day coverage.</p>
+      <div class="stampwrap">
+        <span class="stamp">FLORIDA</span><span class="stamp alt">CALIFORNIA</span><span class="stamp">NEVADA</span>
+        <span class="stamp alt">ARIZONA</span><span class="stamp">COLORADO</span><span class="stamp alt">TEXAS</span>
+        <span class="stamp">NEW MEXICO</span><span class="stamp alt">UTAH</span><span class="stamp">ILLINOIS</span>
+        <span class="stamp alt">OHIO</span><span class="stamp">TENNESSEE</span><span class="stamp alt">LOUISIANA</span>
+        <span class="stamp">N. CAROLINA</span><span class="stamp alt">S. CAROLINA</span><span class="stamp">WASHINGTON</span>
+      </div>
+    </div>
+  </section>
+
+  <section><h2>Things the travel log quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>San Diego is the home he doesn't live in</b> — 8+ trips, a named favorite sunset spot,
+         and a ramen map deep enough to look like a local's.</div>
+      <div class="f"><b>2025 was the international tipping point.</b> Before it, the passport was mostly Taiwan;
+         in one year he added Japan, Korea, Egypt, Italy, and the Caribbean.</div>
+      <div class="f"><b>He travels carry-on, even to three countries.</b> The Asia trip, the PNW trip — all packed light,
+         all backpack-and-roller.</div>
+      <div class="f"><b>The food is the itinerary.</b> Night markets in Taipei, cacio e pepe in Rome, koshari in Cairo,
+         birria in Tijuana — the meals are planned before the sights.</div>
+      <div class="f"><b>Even the canceled trips earn their keep</b> — the skipped Steamboat weekend became a
+         documented playbook for travel-insurance claims.</div>
+    </div>
+  </section>
+
+  <footer>Built from the Second Brain travel wiki + Google Calendar export · charts hand-rolled in CSS · June 2026<br>
+    <span class="muted">Countries counted as real visits (transit excluded). Pre-2023 domestic trips reconstructed from calendar flight events.</span></footer>
+
+</div></body></html>
