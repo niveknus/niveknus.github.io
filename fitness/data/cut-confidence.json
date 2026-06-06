@@ -1,6 +1,6 @@
 {
   "schema": "cut-confidence.v1",
-  "as_of": "2026-06-05",
+  "as_of": "2026-06-06",
   "score": 59,
   "band": "steady",
   "band_label": "Steady",
@@ -22,10 +22,10 @@
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 61.3,
+      "raw": 61.2,
       "weight": 0.294,
       "contribution": 18.0,
-      "detail": "sleep 70 \u00b7 HRV 4/7 bal \u00b7 readiness 57"
+      "detail": "sleep 72 \u00b7 HRV 3/6 bal"
     },
     {
       "key": "weight_trajectory",
