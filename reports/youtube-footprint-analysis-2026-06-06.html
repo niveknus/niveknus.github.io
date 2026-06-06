@@ -1,0 +1,293 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kevin's YouTube Footprint — 20 subscriptions, history off</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#ff3b3b; --accent2:#ff6b6b;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:640px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:165px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:46px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px;color:var(--muted);font-size:14px}
+.det-body b{color:var(--ink)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.muted{color:var(--muted)}
+.chanlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chanlist span{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--ink)}
+.spark{margin-top:6px}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:120px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>A Curated YouTube, Read in 20 Subscriptions</h1>
+    <p class="sub">Watch history was deliberately off, so there's barely any "what I watched." Instead the data tells a cleaner story: a low-noise feed of exactly 20 channels and a Watch Later list quietly tended since 2021.</p>
+    <div class="meta">Google Takeout · YouTube &amp; YouTube Music export · analyzed Jun 6, 2026</div>
+    <div class="chips">
+      <div class="chip"><b>20</b> subscriptions</div>
+      <div class="chip"><b>55</b> in Watch Later</div>
+      <div class="chip"><b>8</b> interest themes</div>
+      <div class="chip"><b>2</b> rows of watch history</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Most people's YouTube data is a firehose of thousands of watched videos. Kevin's is the opposite. He kept watch history <b>off</b> until it flipped on around May 30, 2026, so the history file holds just <b>two</b> entries. What's left is the signal that actually matters: a tightly-curated set of <b>20 subscriptions</b> and a 55-video <b>Watch Later</b> backlog he's been adding to since February 2021. No algorithm-chasing, no doomscroll trail — just a deliberate shortlist.</p>
+      <div class="callout"><b>Core insight:</b> with viewing data switched off, the <i>subscription list becomes the personality test</i> — and Kevin's reads as builder-engineer, self-optimizer, climber, EV owner, and AI-automation tinkerer, in roughly that order.</div>
+    </div>
+  </section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">20</div><div class="l">channels subscribed</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">playlists (all private)</div></div>
+      <div class="stat"><div class="n">55</div><div class="l">Watch Later videos</div></div>
+      <div class="stat"><div class="n">5+ yrs</div><div class="l">Watch Later span (2021–2026)</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">comment ever left</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">videos in watch history</div></div>
+    </div>
+  </section>
+
+  <section><h2>Who Kevin subscribes to — by theme</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">All 20 subscriptions, sorted into eight interest themes. Counts are the bar; the channels themselves are listed in the expanders below.</p>
+      <div class="bar-row"><span class="bar-label">Tech &amp; engineering</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">4</span></div>
+      <div class="bar-row"><span class="bar-label">Self-improvement &amp; business</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">4</span></div>
+      <div class="bar-row"><span class="bar-label">Music, freestyle &amp; action</span>
+        <span class="bar-track"><span class="bar-fill" style="width:75%;background:var(--grad)"></span></span>
+        <span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">Fitness &amp; climbing</span>
+        <span class="bar-track"><span class="bar-fill" style="width:75%;background:var(--grad)"></span></span>
+        <span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">Science &amp; curiosity</span>
+        <span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">AI &amp; automation</span>
+        <span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">EV / cars</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">1</span></div>
+      <div class="bar-row"><span class="bar-label">Korean / lifestyle</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">1</span></div>
+    </div>
+
+    <details><summary><span>Tech &amp; engineering</span><span class="muted" style="font-weight:600;margin-right:14px">4 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Marques Brownlee (MKBHD)</span><span>Stuff Made Here</span><span>DesherDev</span><span>Michael Reeves</span></div>
+      <p style="margin-bottom:0">Gadget reviews, absurd-precision engineering builds, dev content, and chaos-robotics. The "I want to know how it's made and then over-engineer it" cluster.</p></div></details>
+
+    <details><summary><span>Self-improvement &amp; business</span><span class="muted" style="font-weight:600;margin-right:14px">4 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Andrew Huberman</span><span>Alex Hormozi</span><span>Mel Robbins</span><span>The Iced Coffee Hour</span></div>
+      <p style="margin-bottom:0">Neuroscience-flavored optimization, business/money frameworks, and habit/mindset content. The self-operating-system shelf.</p></div></details>
+
+    <details><summary><span>Music, freestyle &amp; action</span><span class="muted" style="font-weight:600;margin-right:14px">3 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Harry Mack Clips</span><span>Red Bull</span><span>Offline Network</span></div>
+      <p style="margin-bottom:0">Improv freestyle rap and high-adrenaline action sports. (Offline Network straddles into AI/automation too — see below.)</p></div></details>
+
+    <details><summary><span>Fitness &amp; climbing</span><span class="muted" style="font-weight:600;margin-right:14px">3 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Magnus Midtbø (climbing)</span><span>Xeela Fitness</span><span>Sam Eckholm</span></div>
+      <p style="margin-bottom:0">Elite climbing, hypertrophy/training, and military-fitness content. Lines up neatly with the AllTrails + Lose It apps elsewhere in the export.</p></div></details>
+
+    <details><summary><span>Science &amp; curiosity</span><span class="muted" style="font-weight:600;margin-right:14px">2 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Veritasium</span><span>Kurzgesagt – In a Nutshell</span></div>
+      <p style="margin-bottom:0">Two of YouTube's most respected explainer channels — physics, engineering, and big-picture science.</p></div></details>
+
+    <details><summary><span>AI &amp; automation</span><span class="muted" style="font-weight:600;margin-right:14px">2 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>Nick Saraev</span><span>Offline Network</span></div>
+      <p style="margin-bottom:0">Workflow automation and AI-build content — the same energy as the ChatGPT/Claude subscriptions and the entire Second Brain project.</p></div></details>
+
+    <details><summary><span>EV / cars &amp; Korean / lifestyle</span><span class="muted" style="font-weight:600;margin-right:14px">2 channels</span></summary>
+      <div class="det-body"><div class="chanlist"><span>The Ioniq Guy (EV)</span><span>Wanhee 완희 (Korean)</span></div>
+      <p style="margin-bottom:0">A channel devoted entirely to the Hyundai Ioniq — Kevin's the kind of owner who subscribes to a channel about his specific car — plus a Korean-language creator.</p></div></details>
+  </section>
+
+  <section><h2>The interest fingerprint</h2>
+    <div class="card">
+      <p style="margin-top:0">Strip away the algorithm and you get a remarkably coherent picture. The two biggest buckets — <b>tech/engineering</b> and <b>self-improvement/business</b> — frame the rest: this is someone who wants to understand how things are built <i>and</i> how to optimize the operator running them.</p>
+      <p>Underneath that, a consistent active life: <b>climbing and strength training</b> (Magnus Midtbø, Xeela, Sam Eckholm) that echoes the AllTrails and Lose It apps seen elsewhere in the Takeout. A genuine <b>science streak</b> (Veritasium, Kurzgesagt). An <b>AI-automation</b> obsession (Nick Saraev, Offline Network) that maps one-to-one onto the ChatGPT and Claude subscriptions — and onto this very report. And the tell-tale <b>EV-owner move</b>: subscribing to a channel about <i>one specific car</i>, the Hyundai Ioniq.</p>
+      <p style="margin-bottom:0">No politics, no news, no entertainment churn. Eight themes, all functional or aspirational. It's a feed built to <i>get something out of</i>, not to kill time with.</p>
+    </div>
+  </section>
+
+  <section><h2>The Watch Later backlog, over 5 years</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">The Watch Later playlist was created Feb 17, 2021 and last touched May 30, 2026 — still in active use. Of its 55 videos, 50 carry a creation timestamp (5 are undated). Here's when items were saved, by year:</p>
+      <div class="bar-row"><span class="bar-label">2023</span>
+        <span class="bar-track"><span class="bar-fill" style="width:33.3%;background:var(--grad)"></span></span>
+        <span class="bar-val">9</span></div>
+      <div class="bar-row"><span class="bar-label">2024</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">2025</span>
+        <span class="bar-track"><span class="bar-fill" style="width:37%;background:var(--grad)"></span></span>
+        <span class="bar-val">10</span></div>
+      <div class="bar-row"><span class="bar-label">2026 (to May)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:14.8%;background:var(--grad)"></span></span>
+        <span class="bar-val">4</span></div>
+      <div class="bar-row"><span class="bar-label">undated</span>
+        <span class="bar-track"><span class="bar-fill" style="width:18.5%;background:#3a4060"></span></span>
+        <span class="bar-val">5</span></div>
+
+      <h3>Monthly sparkline — when things got saved</h3>
+      <p class="muted" style="margin-top:0;font-size:13px">Each bar is one month from Jan 2023 to Apr 2026. The spike is Aug 2024 (9 saves in one month — a clear binge-saving session).</p>
+      <svg class="spark" viewBox="0 0 660 90" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <line x1="0" y1="80" x2="660" y2="80" stroke="var(--line)" stroke-width="1"/>
+        <!-- 23 months with data, scaled so max(9)=64px tall, bar width 18, gap 10 -->
+        <!-- 2023-01:1 -->
+        <rect x="2"  y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2023-09:1 -->
+        <rect x="30" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2023-10:4 -->
+        <rect x="58" y="51" width="18" height="29" fill="var(--accent2)" rx="2"/>
+        <!-- 2023-11:2 -->
+        <rect x="86" y="66" width="18" height="14" fill="var(--accent2)" rx="2"/>
+        <!-- 2023-12:1 -->
+        <rect x="114" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2024-01:3 -->
+        <rect x="142" y="59" width="18" height="21" fill="var(--accent)" rx="2"/>
+        <!-- 2024-02:4 -->
+        <rect x="170" y="51" width="18" height="29" fill="var(--accent)" rx="2"/>
+        <!-- 2024-03:2 -->
+        <rect x="198" y="66" width="18" height="14" fill="var(--accent)" rx="2"/>
+        <!-- 2024-06:2 -->
+        <rect x="226" y="66" width="18" height="14" fill="var(--accent)" rx="2"/>
+        <!-- 2024-08:9 (spike) -->
+        <rect x="254" y="16" width="18" height="64" fill="#fff" rx="2"/>
+        <!-- 2024-09:4 -->
+        <rect x="282" y="51" width="18" height="29" fill="var(--accent)" rx="2"/>
+        <!-- 2024-12:3 -->
+        <rect x="310" y="59" width="18" height="21" fill="var(--accent)" rx="2"/>
+        <!-- 2025-02:2 -->
+        <rect x="338" y="66" width="18" height="14" fill="var(--accent2)" rx="2"/>
+        <!-- 2025-03:1 -->
+        <rect x="366" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2025-04:1 -->
+        <rect x="394" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2025-05:1 -->
+        <rect x="422" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2025-08:3 -->
+        <rect x="450" y="59" width="18" height="21" fill="var(--accent2)" rx="2"/>
+        <!-- 2025-09:1 -->
+        <rect x="478" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2025-10:1 -->
+        <rect x="506" y="73" width="18" height="7"  fill="var(--accent2)" rx="2"/>
+        <!-- 2026-01:1 -->
+        <rect x="534" y="73" width="18" height="7"  fill="var(--accent)" rx="2"/>
+        <!-- 2026-02:1 -->
+        <rect x="562" y="73" width="18" height="7"  fill="var(--accent)" rx="2"/>
+        <!-- 2026-04:2 -->
+        <rect x="590" y="66" width="18" height="14" fill="var(--accent)" rx="2"/>
+        <text x="2" y="14" fill="var(--muted)" font-size="11" font-family="ui-monospace,Menlo,monospace">2023</text>
+        <text x="254" y="10" fill="#fff" font-size="11" font-family="ui-monospace,Menlo,monospace">Aug '24 · 9</text>
+        <text x="600" y="14" fill="var(--muted)" font-size="11" font-family="ui-monospace,Menlo,monospace" text-anchor="end">'26</text>
+      </svg>
+      <p class="muted" style="font-size:13px;margin-bottom:0">A Watch Later list that survives five years and a phone-upgrade cycle (the export shows near-annual Samsung Galaxy flagships) is a list someone actually intends to come back to — not a graveyard.</p>
+    </div>
+  </section>
+
+  <section><h2>Raw vs. result</h2>
+    <p class="muted" style="margin-top:0">The export is terse — channels and playlists are just IDs and timestamps. The interpretation is what turns rows into a portrait.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw subscriptions.csv row</div>
+        <div class="mono">UCtM_hE_G5KOkv5k611XE7nQ,<br>http://youtube.com/channel/UCtM_hE_G5KOkv5k611XE7nQ,<br>The Ioniq Guy</div></div>
+      <div class="box"><div class="h">Read as a signal</div>
+        <div class="mono">theme: <b style="color:#fff">EV / cars</b><br>signal: owns a Hyundai Ioniq<br>cross-ref: ABRP EV route-planner app<br>(seen in Google Pay export)</div></div>
+    </div>
+    <div class="cmp" style="margin-top:14px">
+      <div class="box"><div class="h">Raw Watch later-videos.csv row</div>
+        <div class="mono">gEF67-G9MO0,<br>2026-04-29T04:21:07+00:00</div></div>
+      <div class="box"><div class="h">Aggregated</div>
+        <div class="mono">playlist: <b style="color:#fff">Watch later</b><br>created: 2021-02-17 · still active 2026-05-30<br>50 dated saves → year &amp; month histogram<br>peak month: Aug 2024 (9 saves)</div></div>
+    </div>
+  </section>
+
+  <section><h2>The clever bits (and the honest snags)</h2>
+    <h3>The data is thin on purpose — so don't fake depth</h3>
+    <p class="muted">The temptation with a YouTube export is to talk about viewing habits. There are none here: history was off, so the watch-history.html file contains exactly two rows. Rather than stretch two videos into a "viewing analysis," the report leans entirely on the durable signals — subscriptions and playlists — and says plainly that history is empty. Honest beats impressive.</p>
+    <h3>🐛 The undated five</h3>
+    <p class="muted">Of 55 Watch Later videos, only 50 have a creation timestamp; 5 export with a blank date field (likely added before YouTube started stamping playlist items, or migrated). They're counted separately rather than silently dropped or guessed — the year chart shows them as a grey "undated" bar so the 55 still reconciles.</p>
+    <h3>One comment, nine chat lines, and that's the whole social trail</h3>
+    <p class="muted">The comments file has a single entry (2024). The live-chats file has ~9 lines, all from one creator's 2021–2022 streams ("!play", "RIOT" — typical Twitch/YouTube chat spam). Kevin watches and saves; he almost never posts. The footprint is a reader's, not a poster's.</p>
+  </section>
+
+  <section><h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f">The <b>only two videos</b> in the entire watch history — logged the day history flipped on, May 30, 2026 — are <i>"Learn 97% of Claude in Under 16 Minutes"</i> and <i>"How I Use Claude Cowork to Automate 99% Of My Life."</i> The first thing the history ever recorded was Kevin learning to automate his life with Claude. You're reading the result.</div>
+      <div class="f">There's a channel subscription for <b>one specific car</b> (The Ioniq Guy) — and a matching EV route-planner app in the Google Pay data. The export agrees with itself across services.</div>
+      <div class="f">A <b>"Fitness" playlist</b> (3 videos, 2023) and an <b>"Inspiration" playlist</b> (1 video, Mar 2026) exist alongside Watch Later — tiny, but they're the only two themed lists he bothered to make. Both are functional, both private.</div>
+      <div class="f">The Watch Later list predates <b>four phone upgrades</b> (the account cycles near-annual Samsung Galaxy flagships) and still survives — a five-year throughline in an otherwise churny digital life.</div>
+    </div>
+  </section>
+
+  <section><h2>Do this yourself</h2>
+    <div class="card">
+      <p style="margin-top:0">Reproducing this from a Google Takeout YouTube export:</p>
+      <ol style="margin:0;padding-left:20px;color:var(--muted)">
+        <li>Export <b>YouTube and YouTube Music</b> from <span class="mono">takeout.google.com</span> (CSV format for playlists/subscriptions).</li>
+        <li>Read <span class="mono">subscriptions/subscriptions.csv</span> — group the channel titles into a handful of themes by hand; count per theme for the bar chart.</li>
+        <li>For each <span class="mono">playlists/*-videos.csv</span>, take column 2 (creation timestamp), slice to <span class="mono">YYYY</span> and <span class="mono">YYYY-MM</span>, and <span class="mono">sort | uniq -c</span> for the year and month histograms.</li>
+        <li>Check <span class="mono">history/watch-history.html</span> for actual viewing — if it's near-empty, history was off; lead with subscriptions instead.</li>
+        <li>Render it all in one self-contained HTML file with hand-built CSS bars and an inline-SVG sparkline. No libraries.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>Built from a Google Takeout YouTube export · themes hand-sorted, charts hand-rolled in CSS &amp; SVG · one session, Jun 6, 2026</footer>
+
+</div></body></html>

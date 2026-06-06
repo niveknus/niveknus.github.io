@@ -1,0 +1,392 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>79 Days of Movement — Google Timeline, Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  /* ACCENT — map / movement teal-to-indigo */
+  --accent:#2dd4bf; --accent2:#818cf8;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --car:#818cf8; --fly:#2dd4bf; --bike:#fbbf24; --walk:#34d399; --run:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:150px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:74px;font-size:13px;font-weight:700;text-align:left}
+.stack{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.stack span{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0b0d14;min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#0b0d14}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>79 Days of Movement, Mapped</h1>
+    <p class="sub">4,223 miles, 130 places, 430 visits — and one flight that quietly
+      accounts for half of all of it. Here's what Google's new on-device Timeline
+      knows about how one person actually moves through a week.</p>
+    <div class="meta">Mar 13 → May 30, 2026 · 79 days · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>4,223</b> miles traveled</div>
+      <div class="chip"><b>130</b> distinct places</div>
+      <div class="chip"><b>430</b> visits</div>
+      <div class="chip"><b>418</b> trips logged</div>
+      <div class="chip"><b>360</b> drives</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>This is a near-complete movement log for the spring of 2026, reconstructed from
+        1,325 semantic segments and 49,671 raw sensor signals (Wi-Fi scans, GPS positions,
+        activity records). Across 79 days, the picture is sharp and a little funny: a deeply
+        <b>car-centric</b> life — 360 separate drives, each ending in a logged parking event —
+        orbiting a tight home/work loop barely a mile and a half apart. Then, in the middle of it,
+        a single round-trip flight to San Diego that travels farther than every drive, walk,
+        bike ride, and run of the entire season combined.</p>
+      <div class="callout"><b>Core insight:</b> 360 drives built daily life;
+        <b>one flight</b> (2,161 mi) doubled the distance. Routine is local and dense;
+        the mileage hides in the rare long jump.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the movement breaks down</h2>
+    <p class="muted" style="margin-top:-6px">Every trip Google classified, by mode — counted, and by distance.
+      Two flights move more than 360 drives.</p>
+    <div class="card">
+      <div class="bar-row">
+        <span class="bar-label">✈️ Flying (2)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--fly)"></span></span>
+        <span class="bar-val">2,161 mi</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">🚗 Car (360)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:92.8%;background:var(--car)"></span></span>
+        <span class="bar-val">2,005 mi</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">🚲 Cycling (6)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:1.94%;background:var(--bike)"></span></span>
+        <span class="bar-val">42 mi</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">🚶 Walking (48)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:0.56%;background:var(--walk)"></span></span>
+        <span class="bar-val">12 mi</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">🏃 Running (2)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:0.14%;background:var(--run)"></span></span>
+        <span class="bar-val">3 mi</span>
+      </div>
+    </div>
+    <h3>Share of total distance</h3>
+    <div class="stack">
+      <span style="width:51.2%;background:var(--fly)">FLY 51%</span>
+      <span style="width:47.5%;background:var(--car)">CAR 47%</span>
+      <span style="width:1.0%;background:var(--bike)"></span>
+      <span style="width:0.3%;background:var(--walk)"></span>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--fly)"></i>Flying · 2 trips</span>
+      <span><i style="background:var(--car)"></i>Car · 360 trips</span>
+      <span><i style="background:var(--bike)"></i>Cycling · 6</span>
+      <span><i style="background:var(--walk)"></i>Walking · 48</span>
+      <span><i style="background:var(--run)"></i>Running · 2</span>
+    </div>
+    <div class="callout">Google's own model agrees: it pins this person's travel-mode
+      affinity at <b>97% passenger vehicle</b>, 3% walking, ~2% cycling. The data isn't
+      just car-leaning — it's car-defined.</div>
+  </section>
+
+  <section>
+    <h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">79</div><div class="l">days mapped</div></div>
+      <div class="stat"><div class="n">4,223</div><div class="l">total miles</div></div>
+      <div class="stat"><div class="n">130</div><div class="l">distinct places</div></div>
+      <div class="stat"><div class="n">430</div><div class="l">place visits</div></div>
+      <div class="stat"><div class="n">360</div><div class="l">drives · 360 parkings</div></div>
+      <div class="stat"><div class="n">79</div><div class="l">driving days</div></div>
+      <div class="stat"><div class="n">25.4</div><div class="l">avg mi / driving day</div></div>
+      <div class="stat"><div class="n">49,671</div><div class="l">raw sensor signals</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The commute: a 1.5-mile orbit</h2>
+    <p class="muted" style="margin-top:-6px">Home (Orlando 32828) and work sit about a mile and a half apart.
+      Almost everything happens in between.</p>
+    <div class="card">
+      <div class="bar-row">
+        <span class="bar-label">🏠 Home visits</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">102</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">🏢 Work visits</span>
+        <span class="bar-track"><span class="bar-fill" style="width:40.2%;background:var(--grad)"></span></span>
+        <span class="bar-val">41</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">📍 Everywhere else</span>
+        <span class="bar-track"><span class="bar-fill" style="width:84.3%;background:var(--card2)"></span></span>
+        <span class="bar-val">287</span>
+      </div>
+    </div>
+    <p style="margin-top:16px">Google flagged the home→work hop as a genuine <b>frequent trip</b>: a
+      13-minute leg that fires around <b>8:15 AM</b>. And even on a walk-or-drive-able 1.5 miles,
+      the car wins more often than not — the modeled split on that commute is roughly
+      <b>62% drive / 38% walk</b> (~65/35 across the season). For a distance most people would
+      stroll, it's a quietly telling number.</p>
+    <div class="stack" style="margin-top:6px">
+      <span style="width:62.5%;background:var(--car)">DRIVE 62.5%</span>
+      <span style="width:37.5%;background:var(--walk)">WALK 37.5%</span>
+    </div>
+    <div class="legend"><span>Modeled mode split on the home↔work commute</span></div>
+  </section>
+
+  <section>
+    <h2>Driving rhythm, week by week</h2>
+    <p class="muted" style="margin-top:-6px">Total distance per ISO week. One bar towers over the rest — and
+      it isn't a road trip.</p>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">Wk 11 (Mar 13–15)</span><span class="bar-track"><span class="bar-fill" style="width:5.4%;background:var(--car)"></span></span><span class="bar-val">132 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 12 (Mar 16–22)</span><span class="bar-track"><span class="bar-fill" style="width:4.9%;background:var(--car)"></span></span><span class="bar-val">120 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 13 (Mar 23–29)</span><span class="bar-track"><span class="bar-fill" style="width:7.0%;background:var(--car)"></span></span><span class="bar-val">169 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 14 (Mar 30–Apr 5)</span><span class="bar-track"><span class="bar-fill" style="width:7.3%;background:var(--car)"></span></span><span class="bar-val">178 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 15 (Apr 6–12)</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--car)"></span></span><span class="bar-val">114 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 16 (Apr 13–19)</span><span class="bar-track"><span class="bar-fill" style="width:4.8%;background:var(--car)"></span></span><span class="bar-val">117 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 17 (Apr 20–26)</span><span class="bar-track"><span class="bar-fill" style="width:8.6%;background:var(--car)"></span></span><span class="bar-val">210 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 18 (Apr 27–May 3)</span><span class="bar-track"><span class="bar-fill" style="width:5.8%;background:var(--car)"></span></span><span class="bar-val">142 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 19 (May 4–10) ✈️</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--fly)"></span></span><span class="bar-val">2,432 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 20 (May 11–17)</span><span class="bar-track"><span class="bar-fill" style="width:10.5%;background:var(--car)"></span></span><span class="bar-val">255 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 21 (May 18–24)</span><span class="bar-track"><span class="bar-fill" style="width:8.4%;background:var(--car)"></span></span><span class="bar-val">205 mi</span></div>
+      <div class="bar-row"><span class="bar-label">Wk 22 (May 25–30)</span><span class="bar-track"><span class="bar-fill" style="width:6.3%;background:var(--car)"></span></span><span class="bar-val">152 mi</span></div>
+    </div>
+    <p style="margin-top:16px">Strip out the San Diego week and the baseline is remarkably steady:
+      roughly <b>110–210 miles a week</b>, every week. Every one of the 79 days had at least one
+      drive — a perfect attendance record for the car. The busiest single day was
+      <b>May 16</b>, which also set the high-water mark for distance.</p>
+    <div class="grid" style="margin-top:14px">
+      <div class="stat"><div class="n">91.7</div><div class="l">max mi in a day (May 16)</div></div>
+      <div class="stat"><div class="n">41</div><div class="l">segments on May 16</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">of days with a drive</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One big trip: San Diego</h2>
+    <div class="card">
+      <p>On <b>Tuesday, May 5, 2026</b>, the Timeline records a single flying segment that begins
+        at <b>6:59 AM</b> near Orlando International (28.43, −81.31) and lands <b>5h19m later</b> at
+        <b>12:18 PM</b> beside San Diego International (32.73, −117.20). Distance:
+        <b>2,162 miles</b> in one hop. The return on <b>May 7</b> only partially logged — the new
+        on-device format captured the outbound leg cleanly but caught just a fragment of the way home.</p>
+      <div class="grid" style="margin-top:8px">
+        <div class="stat"><div class="n">2,162 mi</div><div class="l">MCO → SAN, one leg</div></div>
+        <div class="stat"><div class="n">51%</div><div class="l">of all 79-day distance</div></div>
+        <div class="stat"><div class="n">5h 19m</div><div class="l">in the air, outbound</div></div>
+      </div>
+      <div class="callout">Put plainly: <b>one flight outweighed 360 drives.</b> Two flying segments
+        cover more ground than an entire spring of commuting, errands, and weekend driving combined.</div>
+    </div>
+    <svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-top:16px;display:block">
+      <line x1="70" y1="95" x2="630" y2="95" stroke="var(--line)" stroke-width="1.5"/>
+      <path d="M70 95 Q350 18 630 95" fill="none" stroke="var(--fly)" stroke-width="2.4" stroke-dasharray="6 6"/>
+      <circle cx="70" cy="95" r="7" fill="var(--accent2)"/>
+      <circle cx="630" cy="95" r="7" fill="var(--fly)"/>
+      <text x="70" y="120" fill="var(--ink)" font-size="14" font-weight="700" text-anchor="middle">Orlando</text>
+      <text x="70" y="138" fill="var(--muted)" font-size="11" text-anchor="middle">MCO · 6:59 AM</text>
+      <text x="630" y="120" fill="var(--ink)" font-size="14" font-weight="700" text-anchor="middle">San Diego</text>
+      <text x="630" y="138" fill="var(--muted)" font-size="11" text-anchor="middle">SAN · 12:18 PM</text>
+      <text x="350" y="38" fill="var(--fly)" font-size="13" font-weight="800" text-anchor="middle">✈ 2,162 mi · May 5</text>
+    </svg>
+  </section>
+
+  <section>
+    <h2>The places, ranked</h2>
+    <p class="muted" style="margin-top:-6px">130 distinct places, but life concentrates hard at the top. Home and
+      work alone account for a third of all visits.</p>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">🏠 Home</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">102×</span></div>
+      <div class="bar-row"><span class="bar-label">🏢 Work</span><span class="bar-track"><span class="bar-fill" style="width:40.2%;background:var(--grad)"></span></span><span class="bar-val">41×</span></div>
+      <div class="bar-row"><span class="bar-label">Regular spot (NW)</span><span class="bar-track"><span class="bar-fill" style="width:22.5%;background:var(--accent)"></span></span><span class="bar-val">23×</span></div>
+      <div class="bar-row"><span class="bar-label">Regular spot (near home)</span><span class="bar-track"><span class="bar-fill" style="width:18.6%;background:var(--accent)"></span></span><span class="bar-val">19×</span></div>
+      <div class="bar-row"><span class="bar-label">5th-most-visited</span><span class="bar-track"><span class="bar-fill" style="width:8.8%;background:var(--accent)"></span></span><span class="bar-val">9×</span></div>
+    </div>
+    <p class="muted" style="margin-top:14px">Visit types overall: <b>102 HOME</b>, <b>41 WORK</b>, 281 UNKNOWN,
+      6 searched addresses. The place IDs beyond home and work are anonymized in this export, so the
+      top recurring spots stay nameless — but their coordinates and visit counts paint a clear picture
+      of a small, repeated set of haunts.</p>
+  </section>
+
+  <section>
+    <h2>What a raw segment actually looks like</h2>
+    <p class="muted" style="margin-top:-6px">Each of the headline numbers is rolled up from JSON like this.
+      Left: one trip, as Google stores it. Right: what it becomes in the analysis.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw semanticSegment (an activity)</div>
+        <div class="mono">"activity": {<br>
+&nbsp;"distanceMeters": 16724.7,<br>
+&nbsp;"topCandidate": { "type":<br>
+&nbsp;&nbsp;"IN_PASSENGER_VEHICLE",<br>
+&nbsp;&nbsp;"probability": 0.984 },<br>
+&nbsp;"parking": { "startTime":<br>
+&nbsp;&nbsp;"2026-03-13T15:28:50…" }<br>
+}</div></div>
+      <div class="box"><div class="h">Parsed</div>
+        <div class="mono">mode: <b style="color:#fff">car</b><br>
+distance: <b style="color:#fff">10.4 mi</b><br>
+date: 2026-03-13<br>
+parked: yes (+1 to 360)<br>
+counts toward: car total,<br>
+driving-day, weekly mileage</div></div>
+    </div>
+    <details>
+      <summary><span>And a "visit" segment</span><span class="muted" style="font-weight:600;margin-right:14px">how places are counted</span></summary>
+      <div class="det-body">
+        <div class="cmp">
+          <div class="box"><div class="h">Raw</div><div class="mono">"visit": {<br>
+&nbsp;"topCandidate": {<br>
+&nbsp;&nbsp;"placeId": "ChIJ…pZUs",<br>
+&nbsp;&nbsp;"semanticType": "HOME",<br>
+&nbsp;&nbsp;"probability": 0.94 } }</div></div>
+          <div class="box"><div class="h">Parsed</div><div class="mono">place: <b style="color:#fff">HOME</b><br>
++1 to home's 102 visits<br>
++1 distinct place (130 total)<br>
++1 to that day's segment count</div></div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>The honest caveat: this is a snapshot, not a life</h2>
+    <p>One thing worth saying plainly: this is Google's <b>new on-device Timeline format</b>, which
+      replaced the old cloud-stored Location History in 2024. Instead of years of movement, it keeps
+      only a recent rolling window — here, exactly <b>2.5 months</b> (Mar 13 → May 30). So this isn't a
+      life history; it's a clean, dense core sample of one spring.</p>
+    <p class="muted">The upside: because it's the live on-device log, the fidelity is excellent —
+      49,671 raw signals across 79 days, every drive caught, every parking event stamped. The
+      data we <em>do</em> have is trustworthy down to the minute; there's just less of it. Coordinates
+      for non-home/work places are also anonymized in the export, so nothing here was geocoded or
+      looked up externally — every figure comes straight from the lat/lng, timestamps, and Google's
+      own HOME/WORK labels in the file.</p>
+  </section>
+
+  <section>
+    <h2>Things the map quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>360 drives, 360 parkings.</b> A perfect one-to-one — every single trip ended with
+        a logged park. The car is never just left running; it's a life lived between parking spots.</div>
+      <div class="f"><b>The commute is walkable and mostly isn't.</b> Home and work are ~1.5 mi apart, yet
+        the car still wins ~62% of the time on that hop. Convenience beats distance.</div>
+      <div class="f"><b>8:15 AM is the tell.</b> Google identified the home→work leg as a recurring trip
+        that reliably fires around minute 495 of the day — a quiet fingerprint of a routine.</div>
+      <div class="f"><b>One Tuesday rewrote the whole dataset.</b> May 5's flight (2,162 mi) is larger than
+        the other 78 days of driving, walking, cycling, and running put together.</div>
+      <div class="f"><b>Walking and running barely register.</b> 12 miles walked, 3 run — combined, less than
+        a single average day's drive. The 42 cycling miles across 6 rides actually out-distance both.</div>
+      <div class="f"><b>Steady as a metronome.</b> Outside the flight week, weekly mileage never strayed far
+        from ~110–210 mi. This is a life with a very consistent radius.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it was built</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the Timeline export</div>
+        <div class="d">One 41 MB <code>Timeline.json</code> from Google Takeout — the on-device semantic format.</div>
+        <span class="tag">takeout.google.com</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Walk the segments</div>
+        <div class="d">Loop <code>semanticSegments[]</code>, splitting each into visit / activity / timelinePath.</div>
+        <span class="tag">python3 · json</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Tally modes &amp; distances</div>
+        <div class="d">Sum <code>distanceMeters</code> per <code>topCandidate.type</code>; convert to miles; count parkings.</div>
+        <span class="tag">collections.Counter</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Bucket by day &amp; ISO week</div>
+        <div class="d">Group trips on <code>startTime</code> for driving-days, daily max, and the weekly mileage chart.</div>
+        <span class="tag">datetime.isocalendar()</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Read the profile Google ships</div>
+        <div class="d">Pull <code>userLocationProfile</code> — frequentTrips and travel-mode affinities — for the commute split.</div>
+        <span class="tag">userLocationProfile</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Hand-roll every chart</div>
+        <div class="d">All bars, the stacked share, and the flight arc are pure CSS/SVG — no libraries, opens offline.</div>
+        <span class="tag">CSS + inline SVG</span></div></div>
+    </div>
+  </section>
+
+  <footer>Built from one Google Timeline.json · parsed with Python · charts hand-rolled in CSS &amp; SVG · one session, Jun 6, 2026<br>
+  Window Mar 13 – May 30, 2026 (79 days). Non-home/work coordinates anonymized in source — no external geocoding performed.</footer>
+
+</div></body></html>

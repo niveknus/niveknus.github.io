@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10 Years on Google Fi, Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#1bb978; --accent2:#4fd99b;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:150px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px;background:var(--grad)}
+.bar-val{flex:none;width:70px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px;color:var(--muted);font-size:14px}
+.det-body .q{color:var(--ink);font-style:italic;border-left:2px solid var(--line);padding-left:12px;margin:10px 0}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="kick">A Second Brain analysis</div>
+  <h1>10 Years on Google Fi, Decoded</h1>
+  <p class="sub">One phone number since a leap day in 2016. Nine Samsung flagships, 928 calls and texts, and 484 voicemails — 2.7 hours of audio transcribed by a local AI — that turn out to be a near-perfect robocall graveyard.</p>
+  <div class="meta">Google Fi · signed up 2016-02-29 · analyzed 2026-06-06 · built in one session</div>
+  <div class="chips">
+    <div class="chip"><b>10</b> yrs, one number</div>
+    <div class="chip"><b>9</b> devices</div>
+    <div class="chip"><b>396</b> calls / 63.8 hrs</div>
+    <div class="chip"><b>532</b> texts</div>
+    <div class="chip"><b>484</b> voicemails</div>
+  </div>
+</div>
+
+<section>
+  <h2>30-second TL;DR</h2>
+  <div class="tldr">
+    <p>The Google Fi export holds three very different stories. The <b>account record</b> is a 10-year hardware diary: a leap-day signup in 2016 and a steady march of nine devices, lately one new Samsung Galaxy Ultra almost every year. The <b>usage log</b> only retains the last six months — but in that window one single contact accounts for <b>three-quarters of all phone time</b>. And the <b>voicemail archive</b> — every message saved since 2016, transcribed here with a local speech-to-text model — is overwhelmingly recruiters, insurance quotes, vacation clubs, and home contractors. The personal messages are rare enough to stand out.</p>
+    <div class="callout"><b>Core insight:</b> the calls log is a relationship X-ray (one person = 48 of 64 talk-hours), and the voicemail box is a decade-long record of life admin — job hunts, a house, and an unrelenting tide of robocalls.</div>
+  </div>
+</section>
+
+<section>
+  <h2>From export to insight</h2>
+  <div class="steps">
+    <div class="step"><div class="num"></div><div><div class="t">Pull the Google Fi takeout</div><div class="d">Subscriber info, a usage records table, and a folder of voicemail MP3s.</div><span class="tag">takeout.google.com</span></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Parse the records table</div><div class="d">928 tab-separated rows of calls, RCS texts, directions, durations, and remote numbers.</div><span class="tag">python · csv</span></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Read the device history</div><div class="d">Nine IMEIs with activation dates, decoded into model names.</div><span class="tag">Subscriber.txt</span></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Transcribe 484 voicemails locally</div><div class="d">Every MP3 run through a small speech-to-text model — no audio left the machine.</div><span class="tag">faster-whisper · tiny.en · CPU</span></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Aggregate &amp; theme</div><div class="d">Contact concentration, device cadence, voicemail volume by year, spam-vs-personal.</div><span class="tag">collections.Counter</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>By the numbers</h2>
+  <div class="grid">
+    <div class="stat"><div class="n">3,672</div><div class="l">days, one number</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">devices activated</div></div>
+    <div class="stat"><div class="n">63.8</div><div class="l">call-hours (last 6 mo)</div></div>
+    <div class="stat"><div class="n">532</div><div class="l">texts (last 6 mo)</div></div>
+    <div class="stat"><div class="n">484</div><div class="l">voicemails saved</div></div>
+    <div class="stat"><div class="n">2.7</div><div class="l">hrs of voicemail audio</div></div>
+  </div>
+  <p class="muted" style="margin-top:14px;font-size:14px">Note: Google Fi only exports the most recent <b>~6 months</b> of call/text records (2025-11-27 → 2026-05-30), so usage stats describe that window. Devices and voicemails go all the way back to 2016.</p>
+</section>
+
+<section>
+  <h2>The relationship X-ray</h2>
+  <div class="card">
+    <p style="margin-top:0" class="muted">Interactions per contact over the last six months (calls + texts). Numbers anonymized to area code.</p>
+    <div class="bar-row"><div class="bar-label">Primary (941)</div><div class="bar-track"><span class="bar-fill" style="width:100%"></span></div><div class="bar-val">671</div></div>
+    <div class="bar-row"><div class="bar-label">Contact (321)</div><div class="bar-track"><span class="bar-fill" style="width:4.9%"></span></div><div class="bar-val">33</div></div>
+    <div class="bar-row"><div class="bar-label">Contact (787·PR)</div><div class="bar-track"><span class="bar-fill" style="width:3.6%"></span></div><div class="bar-val">24</div></div>
+    <div class="bar-row"><div class="bar-label">Contact (714)</div><div class="bar-track"><span class="bar-fill" style="width:3.0%"></span></div><div class="bar-val">20</div></div>
+    <div class="bar-row"><div class="bar-label">Contact (407)</div><div class="bar-track"><span class="bar-fill" style="width:2.1%"></span></div><div class="bar-val">14</div></div>
+  </div>
+  <div class="callout">By <b>talk time</b> the gap is even starker: the primary contact (a 941 / Sarasota number) totals <b>2,899 call-minutes — 48.3 hours</b>, against 6.5 hours for everyone else <i>combined</i>. One person is 75% of this phone's voice life.</div>
+  <p class="muted" style="font-size:14px">Direction is nearly balanced (540 incoming vs 388 outgoing), and 13 of 928 interactions reach a Puerto Rico (787) number — the only non-US thread in the log.</p>
+</section>
+
+<section>
+  <h2>A decade of devices</h2>
+  <div class="card">
+    <table class="tbl">
+      <tr><th>Activated</th><th>Device</th><th>Era</th></tr>
+      <tr><td>2016-03-02</td><td>First Fi device</td><td>Leap-day signup</td></tr>
+      <tr><td>2017-04-23</td><td>Device #2</td><td></td></tr>
+      <tr><td>2017-10-31</td><td>Device #3</td><td></td></tr>
+      <tr><td>2018-10-31</td><td>Device #4</td><td></td></tr>
+      <tr><td>2021-04-01</td><td>Samsung Galaxy S21 Ultra</td><td>Galaxy Ultra era begins</td></tr>
+      <tr><td>2022-03-07</td><td>Samsung Galaxy S22 Ultra</td><td></td></tr>
+      <tr><td>2023-02-23</td><td>Samsung Galaxy S23 Ultra</td><td></td></tr>
+      <tr><td>2024-02-01</td><td>Samsung Galaxy S24 Ultra</td><td></td></tr>
+      <tr><td>2026-03-13</td><td>Samsung Galaxy S26 Ultra</td><td>Current</td></tr>
+    </table>
+  </div>
+  <p class="muted" style="font-size:14px">From 2021 on it's an almost metronomic Samsung Galaxy <b>Ultra</b> upgrade every ~12 months — the spring phone-buying habit you can also see land in the Google Pay report as four-figure hardware charges.</p>
+</section>
+
+<section>
+  <h2>The voicemail graveyard</h2>
+  <div class="card">
+    <p style="margin-top:0" class="muted">Voicemails saved per year — note the long quiet (2021–22, none kept) and the 2025 robocall surge.</p>
+    <div class="bar-row"><div class="bar-label">2016</div><div class="bar-track"><span class="bar-fill" style="width:22%"></span></div><div class="bar-val">27</div></div>
+    <div class="bar-row"><div class="bar-label">2017</div><div class="bar-track"><span class="bar-fill" style="width:66%"></span></div><div class="bar-val">81</div></div>
+    <div class="bar-row"><div class="bar-label">2018</div><div class="bar-track"><span class="bar-fill" style="width:38%"></span></div><div class="bar-val">47</div></div>
+    <div class="bar-row"><div class="bar-label">2019</div><div class="bar-track"><span class="bar-fill" style="width:61%"></span></div><div class="bar-val">75</div></div>
+    <div class="bar-row"><div class="bar-label">2020</div><div class="bar-track"><span class="bar-fill" style="width:22%"></span></div><div class="bar-val">27</div></div>
+    <div class="bar-row"><div class="bar-label">2023</div><div class="bar-track"><span class="bar-fill" style="width:2%"></span></div><div class="bar-val">2</div></div>
+    <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><span class="bar-fill" style="width:40%"></span></div><div class="bar-val">49</div></div>
+    <div class="bar-row"><div class="bar-label">2025</div><div class="bar-track"><span class="bar-fill" style="width:100%"></span></div><div class="bar-val">123</div></div>
+    <div class="bar-row"><div class="bar-label">2026 (to Jun)</div><div class="bar-track"><span class="bar-fill" style="width:43%"></span></div><div class="bar-val">53</div></div>
+  </div>
+  <p class="muted" style="font-size:14px;margin-top:14px">Transcribed locally with <span class="mono">faster-whisper</span>. The transcripts are approximate (small model, noisy robocall audio), but the <i>shape</i> is unmistakable: this is a business and spam inbox. Recruiters, insurance quotes, AC and pest-control contractors, vacation-club pitches, and movers dominate. Below are sanitized, on-theme samples.</p>
+
+  <details><summary>2016–2017 · The recruiter era</summary>
+    <div class="det-body">
+      A dense run of staffing-agency calls about engineering contract roles around Orlando — including a project-engineer position at a major aerospace employer.
+      <div class="q">"My name is Patrick from Incon Staffing… regarding a project engineer level-one position. It is a one-year contract for Lockheed Martin in Orlando, Florida."</div>
+      <div class="q">"Hey Kevin, good afternoon… we have an opportunity for a mechanical designer here in Orlando, if you could give me a call back."</div>
+    </div>
+  </details>
+  <details><summary>The home-admin tide</summary>
+    <div class="det-body">
+      Years of contractor logistics tied to the Orlando house — pest control, AC permitting, storage, and a 2026 move.
+      <div class="q">"Hi, my name is Sean Wilson, I'm with Terminix. Freddy was there on the 22nd at … Paddle Court and recommends we schedule someone to come back…"</div>
+      <div class="q">"This is Karen from quality air conditioning — we have your AC inspection today for the permit and the inspector is here but nobody's answering the door."</div>
+      <div class="q">"Hey Kevin, this is Joe with the movers, reaching out about your move coming up on the 7th — I sent over a couple of estimates…"</div>
+    </div>
+  </details>
+  <details><summary>Vacation clubs &amp; insurance — the spam baseline</summary>
+    <div class="det-body">
+      The single largest category. Near-identical scripts, year after year.
+      <div class="q">"This is Kim from Area Vacation Club, calling in regards to your package. It's important — give us a call back at 888-…"</div>
+      <div class="q">"This is Carla from insurance regarding your quote — we've saved many customers hundreds of dollars, so let's see if we can save on your home insurance premium."</div>
+    </div>
+  </details>
+</section>
+
+<section>
+  <h2>Raw vs. result</h2>
+  <div class="cmp">
+    <div class="box"><div class="h">Raw records row</div><div class="mono">+14075297073 &nbsp;USAGE_TYPE_CALL &nbsp;2026-05-30 10:45:23 Z &nbsp;2026-05-30 11:05:29 Z &nbsp;DIRECTION_INCOMING &nbsp;Duration: 21 &nbsp;US &nbsp;US &nbsp;+19417265288 …</div></div>
+    <div class="box"><div class="h">Parsed</div><div class="mono">Incoming call · primary contact (941) · 21 min · 2026-05-30 — one of the 671 interactions that make this number 75% of all phone time.</div></div>
+  </div>
+  <div class="cmp" style="margin-top:14px">
+    <div class="box"><div class="h">Raw file</div><div class="mono">Voicemail.2026.01.29 20.51.34 Z.mp3 &nbsp;(44s audio)</div></div>
+    <div class="box"><div class="h">Local transcript</div><div class="mono">"…I'm with Terminix. Freddy recommends we schedule someone to come back…" → filed: home-admin / pest control</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Fun findings</h2>
+  <div class="fun">
+    <div class="f"><b>The number was born on a leap day.</b> Sign-up timestamp: 2016-02-29. The account technically has only had ~3 "real" birthdays.</div>
+    <div class="f"><b>One contact ≈ the whole phone.</b> 671 interactions and 48.3 talk-hours from a single 941 number — more than 10× the next-closest person and ~75% of all voice minutes.</div>
+    <div class="f"><b>2025 was peak robocall.</b> 123 voicemails saved in a single year — more than 2016, 2018, and 2020 combined — almost all business/spam.</div>
+    <div class="f"><b>A Lockheed Martin job lead is sitting in the voicemail box</b> from January 2017 — a fossil of the early-career engineering job hunt.</div>
+    <div class="f"><b>Spring is upgrade season.</b> Five of the last six phones were activated in Feb–Apr.</div>
+  </div>
+</section>
+
+<footer>
+  Built from a Google Fi Takeout export · records, device history, and 484 voicemails transcribed locally with faster-whisper (tiny.en, CPU) · numbers anonymized to area code · part of the Second Brain Google-footprint series · 2026-06-06
+</footer>
+
+</div>
+</body>
+</html>

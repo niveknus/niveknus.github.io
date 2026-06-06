@@ -1,0 +1,265 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10 Years of Google Pay, Decoded — $12,044.71</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#fb923c; --accent2:#facc15;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+  --g-blue:#4285F4; --g-red:#EA4335; --g-green:#34A853;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:64px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.tbl td.r,.tbl th.r{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent2)}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis</div>
+    <h1>10 Years of Google Pay, Decoded</h1>
+    <p class="sub">$12,044.71 of one person's digital life, billed through a single Google account
+       since 2016 — phones, subscriptions, dating apps, a budgeting tool, and one very expensive mobile war game.</p>
+    <div class="meta">Mar 1, 2016 → May 26, 2026 · 414 transactions · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>$12,044.71</b> total spend</div>
+      <div class="chip"><b>414</b> transactions</div>
+      <div class="chip"><b>10.2</b> years</div>
+      <div class="chip"><b>57</b> distinct products</div>
+      <div class="chip"><b>$98/mo</b> avg recurring</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Every dollar here was billed by Google — Fi phone bills, Play Store app subscriptions,
+         YouTube Premium, Google One storage, Nest gear, even a couple of domain renewals. It's a decade of
+         receipts that, read together, narrates a life: a near-annual flagship phone habit, a stack of monthly
+         subscriptions that quietly grew past $100/mo, and a scatter of apps that flag exactly what someone
+         cared about in each chapter — getting fit, dating, tracking money, planning EV road trips.</p>
+      <div class="callout"><b>Core insight:</b> A payment history isn't a budget — it's a diary.
+         The biggest single app spend isn't a tool or a phone; it's <b>$652</b> dripped into a mobile strategy game,
+         one $4–$25 in-app purchase at a time over 7 months.</div>
+    </div>
+  </section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">$12,044</div><div class="l">total spend</div></div>
+      <div class="stat"><div class="n">414</div><div class="l">transactions</div></div>
+      <div class="stat"><div class="n">$5,517</div><div class="l">on Google Fi (phones + service)</div></div>
+      <div class="stat"><div class="n">269</div><div class="l">Play Store app charges</div></div>
+      <div class="stat"><div class="n">$98</div><div class="l">est. recurring / month now</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">flagship phones bought</div></div>
+    </div>
+  </section>
+
+  <section><h2>Spend by year — the decade in bars</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">2016</span><span class="bar-track"><span class="bar-fill" style="width:2.5%;background:var(--grad)"></span></span><span class="bar-val">$52</span></div>
+      <div class="bar-row"><span class="bar-label">2017</span><span class="bar-track"><span class="bar-fill" style="width:26.4%;background:var(--grad)"></span></span><span class="bar-val">$540</span></div>
+      <div class="bar-row"><span class="bar-label">2018 📱</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$2,043</span></div>
+      <div class="bar-row"><span class="bar-label">2019</span><span class="bar-track"><span class="bar-fill" style="width:9.3%;background:var(--grad)"></span></span><span class="bar-val">$191</span></div>
+      <div class="bar-row"><span class="bar-label">2020</span><span class="bar-track"><span class="bar-fill" style="width:11.8%;background:var(--grad)"></span></span><span class="bar-val">$241</span></div>
+      <div class="bar-row"><span class="bar-label">2021 📱</span><span class="bar-track"><span class="bar-fill" style="width:93.9%;background:var(--grad)"></span></span><span class="bar-val">$1,918</span></div>
+      <div class="bar-row"><span class="bar-label">2022</span><span class="bar-track"><span class="bar-fill" style="width:16.4%;background:var(--grad)"></span></span><span class="bar-val">$335</span></div>
+      <div class="bar-row"><span class="bar-label">2023 📱</span><span class="bar-track"><span class="bar-fill" style="width:58.2%;background:var(--grad)"></span></span><span class="bar-val">$1,189</span></div>
+      <div class="bar-row"><span class="bar-label">2024 📱</span><span class="bar-track"><span class="bar-fill" style="width:95.7%;background:var(--grad)"></span></span><span class="bar-val">$1,955</span></div>
+      <div class="bar-row"><span class="bar-label">2025</span><span class="bar-track"><span class="bar-fill" style="width:96.4%;background:var(--grad)"></span></span><span class="bar-val">$1,969</span></div>
+      <div class="bar-row"><span class="bar-label">2026 📱*</span><span class="bar-track"><span class="bar-fill" style="width:78.9%;background:var(--grad)"></span></span><span class="bar-val">$1,611</span></div>
+      <p class="muted" style="margin:14px 0 0;font-size:13px">📱 = a new flagship phone landed that year. *2026 is partial (through May 26) and already past most full years — a sign the subscription baseline has crept up.</p>
+    </div>
+  </section>
+
+  <section><h2>Where the money went — by channel</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">Google Fi (phones+svc)</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span><span class="bar-val">$5,517</span></div>
+      <div class="bar-row"><span class="bar-label">Play Store apps</span><span class="bar-track"><span class="bar-fill" style="width:59.7%;background:var(--grad)"></span></span><span class="bar-val">$3,291</span></div>
+      <div class="bar-row"><span class="bar-label">YouTube</span><span class="bar-track"><span class="bar-fill" style="width:26.6%;background:var(--grad)"></span></span><span class="bar-val">$1,468</span></div>
+      <div class="bar-row"><span class="bar-label">Google Store (Nest)</span><span class="bar-track"><span class="bar-fill" style="width:24.0%;background:var(--grad)"></span></span><span class="bar-val">$1,322</span></div>
+      <div class="bar-row"><span class="bar-label">Google One storage</span><span class="bar-track"><span class="bar-fill" style="width:6.2%;background:var(--grad)"></span></span><span class="bar-val">$344</span></div>
+      <div class="bar-row"><span class="bar-label">Domains</span><span class="bar-track"><span class="bar-fill" style="width:1.1%;background:var(--grad)"></span></span><span class="bar-val">$60</span></div>
+      <div class="bar-row"><span class="bar-label">Stadia + Play devices</span><span class="bar-track"><span class="bar-fill" style="width:0.7%;background:var(--grad)"></span></span><span class="bar-val">$42</span></div>
+      <p class="muted" style="margin:14px 0 0;font-size:13px">Nearly half the entire decade — <b>$5,517</b> — is Google Fi: a fistful of expensive phones plus the wireless line that's been live since Feb 2016.</p>
+    </div>
+  </section>
+
+  <section><h2>The subscription stack</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Recurring digital subscriptions still billing as of May 2026. Individually small; together they're a quiet ~$98/month standing order — the new "cable bill," paid one app at a time.</p>
+      <table class="tbl">
+        <tr><th>Subscription</th><th>What it's for</th><th class="r">$/mo</th></tr>
+        <tr><td>YouTube Premium</td><td>Ad-free video + Music</td><td class="r">~$25.97</td></tr>
+        <tr><td>Last War: Monthly Pass</td><td>Mobile strategy game</td><td class="r">$24.99</td></tr>
+        <tr><td>ChatGPT Plus</td><td>AI assistant</td><td class="r">$19.99</td></tr>
+        <tr><td>Google AI Pro / One 5TB</td><td>Storage + Gemini</td><td class="r">$19.99</td></tr>
+        <tr><td>My Stocks Portfolio</td><td>Market tracking</td><td class="r">$5.99</td></tr>
+        <tr><td>Nomorobo</td><td>Robocall blocking</td><td class="r">$2.99</td></tr>
+        <tr><td>Relay for reddit</td><td>Reddit client</td><td class="r">$1.99</td></tr>
+        <tr><td style="font-weight:800">Standing total</td><td></td><td class="r" style="font-weight:800;color:var(--accent2)">~$101.91</td></tr>
+      </table>
+      <div class="callout"><b>The slow creep:</b> none of these is a big decision. That's the point — at $2–$26 a pop, a subscription stack grows past $100/mo without a single moment that felt like overspending.</div>
+    </div>
+  </section>
+
+  <section><h2>The phone-upgrade habit</h2>
+    <div class="card">
+      <p class="muted" style="margin-top:0">Six flagship purchases billed through Fi over the decade — Pixel, then a switch to Samsung's Galaxy Ultra line, roughly one every 12–24 months. Together: <b>$4,506</b> in handsets.</p>
+      <table class="tbl">
+        <tr><th>Date</th><th>Device</th><th class="r">Paid</th></tr>
+        <tr><td>Oct 2017</td><td>Pixel 2 XL (64 GB, Just Black)</td><td class="r">$523.17</td></tr>
+        <tr><td>Oct 2018</td><td>Pixel 3 XL (64 GB, Just Black)</td><td class="r">$976.43</td></tr>
+        <tr><td>Mar 2021</td><td>Galaxy S21 Ultra 5G (128 GB)</td><td class="r">$980.48</td></tr>
+        <tr><td>Feb 2023</td><td>Galaxy S23 Ultra (512 GB)</td><td class="r">$657.98</td></tr>
+        <tr><td>Jan 2024</td><td>Galaxy S24 Ultra (512 GB)</td><td class="r">$692.24</td></tr>
+        <tr><td>Mar 2026</td><td>Galaxy S26 Ultra (512 GB)</td><td class="r">$692.24</td></tr>
+      </table>
+      <p class="muted" style="margin:12px 0 0;font-size:13px">Storage tier marches up over time (64 GB → 512 GB), and the Galaxy "Fi Instant Rebate" keeps later phones cheaper than the unsubsidized Pixel 3 XL. The Fi line itself has been continuous since February 2016.</p>
+    </div>
+  </section>
+
+  <section><h2>What the spending quietly reveals</h2>
+    <p class="muted">Beyond the phones and subscriptions, the app charges read like life-signal flares — each cluster a chapter of what mattered at the time. None of this is a judgment; it's just honest.</p>
+    <div class="fun">
+      <div class="f">💘 <b>Dating</b> — Hinge ($400), Bumble ($280), and Timeleft ($286, the dinner-with-strangers app). A real season of putting oneself out there.</div>
+      <div class="f">🏃 <b>Fitness</b> — Strava ($120), Lose It! calorie counter ($80), AllTrails ($72). The classic "get in shape" toolkit.</div>
+      <div class="f">💰 <b>Finance</b> — Monarch budgeting ($90) and My Stocks Portfolio ($96). Someone who likes to watch the numbers.</div>
+      <div class="f">🤖 <b>AI</b> — ChatGPT Plus, 17 monthly charges totaling $340. An everyday tool now, not a novelty.</div>
+      <div class="f">⚡ <b>EV life</b> — A Better Routeplanner ($125 across 25 charges) — the tell-tale sign of an electric-car road-tripper planning charging stops.</div>
+      <div class="f">📚 <b>Self-growth</b> — Headway ($88) book summaries, plus a YouTube subscription roster heavy on Huberman and Hormozi.</div>
+      <div class="f">🎮 <b>Gaming</b> — and then there's <b>Last War: Survival Game</b>: $652 across 67 micro-purchases in just 7 months. The single most-spent-on app in the entire history.</div>
+    </div>
+  </section>
+
+  <section><h2>Top line items — click to expand</h2>
+    <details>
+      <summary><span>The 25 biggest spends</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">by total $</span></summary>
+      <div class="det-body">
+        <table class="tbl">
+          <tr><th>Product / app</th><th></th><th class="r">Total</th><th class="r">×</th></tr>
+          <tr><td>Pixel 3 XL (64 GB, Just Black)</td><td><span class="pill">hardware</span></td><td class="r">$1,952.86</td><td class="r">2</td></tr>
+          <tr><td>YouTube Premium</td><td><span class="pill">sub</span></td><td class="r">$1,152.61</td><td class="r">69</td></tr>
+          <tr><td>Galaxy S21 Ultra 5G (128 GB)</td><td><span class="pill">hardware</span></td><td class="r">$980.48</td><td class="r">1</td></tr>
+          <tr><td>Nest Aware Plus</td><td><span class="pill">sub</span></td><td class="r">$780.00</td><td class="r">6</td></tr>
+          <tr><td>Galaxy S26 Ultra (512 GB)</td><td><span class="pill">hardware</span></td><td class="r">$692.24</td><td class="r">1</td></tr>
+          <tr><td>Galaxy S24 Ultra (512 GB)</td><td><span class="pill">hardware</span></td><td class="r">$692.24</td><td class="r">1</td></tr>
+          <tr><td>Galaxy S23 Ultra (512 GB)</td><td><span class="pill">hardware</span></td><td class="r">$657.98</td><td class="r">1</td></tr>
+          <tr><td>Last War: Survival Game</td><td><span class="pill">game</span></td><td class="r">$652.33</td><td class="r">67</td></tr>
+          <tr><td>Nest Cams + floodlight bundle</td><td><span class="pill">hardware</span></td><td class="r">$542.16</td><td class="r">1</td></tr>
+          <tr><td>Pixel 2 XL (64 GB, Just Black)</td><td><span class="pill">hardware</span></td><td class="r">$523.17</td><td class="r">1</td></tr>
+          <tr><td>Hinge Dating App</td><td><span class="pill">dating</span></td><td class="r">$399.96</td><td class="r">4</td></tr>
+          <tr><td>Google One storage</td><td><span class="pill">sub</span></td><td class="r">$344.36</td><td class="r">44</td></tr>
+          <tr><td>ChatGPT Plus</td><td><span class="pill">AI</span></td><td class="r">$339.83</td><td class="r">17</td></tr>
+          <tr><td>YouTube TV membership</td><td><span class="pill">sub</span></td><td class="r">$315.58</td><td class="r">6</td></tr>
+          <tr><td>Timeleft (social dining)</td><td><span class="pill">dating</span></td><td class="r">$286.00</td><td class="r">11</td></tr>
+          <tr><td>Bumble Dating App</td><td><span class="pill">dating</span></td><td class="r">$279.98</td><td class="r">2</td></tr>
+          <tr><td>Paramount+</td><td><span class="pill">sub</span></td><td class="r">$155.88</td><td class="r">12</td></tr>
+          <tr><td>ABRP EV route planner</td><td><span class="pill">EV</span></td><td class="r">$124.75</td><td class="r">25</td></tr>
+          <tr><td>Strava</td><td><span class="pill">fitness</span></td><td class="r">$119.90</td><td class="r">10</td></tr>
+          <tr><td>My Stocks Portfolio</td><td><span class="pill">finance</span></td><td class="r">$95.84</td><td class="r">16</td></tr>
+          <tr><td>Monarch budgeting</td><td><span class="pill">finance</span></td><td class="r">$89.94</td><td class="r">6</td></tr>
+          <tr><td>Headway (book summaries)</td><td><span class="pill">reading</span></td><td class="r">$87.88</td><td class="r">—</td></tr>
+          <tr><td>Lose It! calorie counter</td><td><span class="pill">fitness</span></td><td class="r">$79.97</td><td class="r">3</td></tr>
+          <tr><td>Nomorobo robocall block</td><td><span class="pill">sub</span></td><td class="r">$76.68</td><td class="r">32</td></tr>
+          <tr><td>AllTrails</td><td><span class="pill">fitness</span></td><td class="r">$71.98</td><td class="r">2</td></tr>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <section><h2>Raw vs. result</h2>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw CSV row</div>
+        <div class="mono">"May 19, 2026, 12:59 AM",GPA.3352-3235-6686-50240..11,ChatGPT Plus (ChatGPT),Google Play Apps,Visa •••• 0719,Complete,USD 19.99</div></div>
+      <div class="box"><div class="h">Parsed</div>
+        <div class="mono">app: <b style="color:#fff">ChatGPT</b><br>kind: subscription (AI)<br>amount: $19.99<br>channel: Play Apps<br>date: 2026-05-19</div></div>
+    </div>
+    <p class="muted" style="margin-top:12px;font-size:13px">The product name lives <i>inside</i> the description in parentheses — "ChatGPT Plus (ChatGPT)" — so the app name had to be extracted with a regex before any per-app rollup was possible.</p>
+  </section>
+
+  <section><h2>The clever bits (and the honest snags)</h2>
+    <h3>🐛 The phantom $976 phone</h3>
+    <p class="muted">The Pixel 3 XL shows up <i>twice</i> on the same day (Oct 29, 2018) at $976.43 each — which is why it tops the chart at $1,952.86. That's almost certainly one purchase plus a re-bill/duplicate, not two phones bought at once. The decade has exactly <b>2 refunds and 1 cancellation</b> on record; rather than guess which charge to drop, the totals were left exactly as Google reported them — $12,044.71 is the literal sum of every "Complete" line, duplicates and all. Honest beats tidy.</p>
+    <h3>One Visa, one decade</h3>
+    <p class="muted">Of 414 transactions, <b>399</b> ran on the same card (Visa •••• 0719). The remaining handful are one-off cards and a single Google Play balance redemption — a remarkably stable payment setup for a 10-year span.</p>
+  </section>
+
+  <section><h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f">The <b>most expensive "app"</b> isn't a productivity tool — it's a free-to-play war game that extracted <b>$652</b> in 67 tiny taps.</div>
+      <div class="f">Spending <b>tripled-plus</b> from the 2019–2020 lull (~$200/yr) to the 2024–2025 plateau (~$1,960/yr) — the subscription stack maturing, not lifestyle inflation.</div>
+      <div class="f">Three <b>dating apps</b> totaling <b>$966</b> cluster into one identifiable season — the receipts literally date a chapter of someone's life.</div>
+      <div class="f">An <b>EV route-planner</b> subscription is the cheapest item on the board ($5/mo) but the loudest life signal: this is someone who drives electric and plans charging stops.</div>
+      <div class="f">Phones got <b>cheaper</b> over time even as storage octupled — the $976 Pixel 3 XL (2018) cost more than the $692 Galaxy S26 Ultra (2026), thanks to Fi rebates.</div>
+    </div>
+  </section>
+
+  <section><h2>Do this yourself</h2>
+    <div class="steps" style="display:grid;gap:12px">
+      <div class="card"><b>1.</b> Go to <span class="mono">takeout.google.com</span> and export <b>Google Pay</b> → "Google transactions" as CSV.</div>
+      <div class="card"><b>2.</b> Each row is <span class="mono">Time, ID, Description, Product, Payment method, Status, Amount</span>. Parse the dollar value out of the <span class="mono">"USD 19.99"</span> amount field with a regex.</div>
+      <div class="card"><b>3.</b> The app/product name hides in trailing parentheses of <span class="mono">Description</span> — pull it out to roll up by app. Group <span class="mono">Product</span> for the channel view.</div>
+      <div class="card"><b>4.</b> Bucket by year for the trend, by app for the top-spend table, and flag anything billing monthly for the subscription stack. Charts are plain CSS bars — <span class="pill">no libraries</span>.</div>
+    </div>
+  </section>
+
+  <footer>Built from a Google Takeout export · parsed with Python · charts hand-rolled in CSS · one session, Jun 6, 2026 · card numbers masked as Google provided them</footer>
+
+</div></body></html>

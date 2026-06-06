@@ -1,0 +1,521 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A House That Breathes — Kevin's Google Home, Decoded</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9;
+  --radius:16px;
+  --accent:#fb923c; --accent2:#facc15;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --cool:#5b8cff; --warm:#f87171;
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;
+  background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;
+  margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);
+  border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#1a1205}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+  color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:135px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:60px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.det-body p{color:var(--muted);font-size:14.5px;line-height:1.65}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#cfcfe0;word-break:break-word;line-height:1.5}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.muted{color:var(--muted)}
+.roomgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.room{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.room .rh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.room .rn{font-weight:700;font-size:15px}
+.room .rc{color:var(--accent2);font-weight:800;font-size:13px}
+.room ul{margin:0;padding-left:0;list-style:none}
+.room li{font-size:13px;color:var(--muted);padding:2px 0;display:flex;justify-content:space-between;gap:8px}
+.room li .b{color:var(--dim);font-size:11px;white-space:nowrap}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:4px 0 14px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:104px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain analysis · Google Home</div>
+    <h1>A House That Breathes</h1>
+    <p class="sub">43 connected devices across 10 rooms, running since 2017. Two years of
+       Nest telemetry — 66,785 events — quietly recording exactly how one Orlando house
+       heats, cools, comes home, and goes away.</p>
+    <div class="meta">Structure created Aug 12, 2017 · telemetry May 30, 2024 → May 31, 2026 · built in one session</div>
+    <div class="chips">
+      <div class="chip"><b>43</b> real devices</div>
+      <div class="chip"><b>10</b> rooms</div>
+      <div class="chip"><b>11</b> brands</div>
+      <div class="chip"><b>66,785</b> telemetry events</div>
+      <div class="chip"><b>9,142h</b> of A/C</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>30-second TL;DR</h2>
+    <div class="tldr">
+      <p>Kevin's "Home" structure has quietly grown into a 43-device smart home — lights, cameras,
+         speakers, a thermostat, a vacuum, even a smart lock — spread across ten rooms and eleven
+         manufacturers. The single most data-rich piece is a 326&nbsp;MB Nest history file: two years of
+         every heating cycle, fan kick, setpoint nudge, and home/away switch. Parse it and the house
+         tells on itself — it lives at <b>68°F</b> when occupied, drifts to <b>78°F</b> when empty, and
+         is overwhelmingly a <i>cooling</i> machine.</p>
+      <div class="callout"><b>Core insight:</b> over two years the A/C ran <b>9,142 hours</b> and the
+         heat just <b>575</b> — a <b>16-to-1</b> cooling-to-heating ratio. This is the thermal signature
+         of Florida, written in raw telemetry.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From a 326&nbsp;MB blob to a story, in five stages</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Pull the Home App export</div>
+        <div class="d">Google Takeout → Home App folder: an 800&nbsp;KB structure file plus a 326&nbsp;MB history file.</div>
+        <span class="tag">takeout.google.com</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Walk the device tree</div>
+        <div class="d">Parse <span class="mono">full_structures[0].rooms_and_devices</span>; keep real hardware, drop the 29 SCENE / ROUTINE pseudo-devices.</div>
+        <span class="tag">HomeApp.json · python</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Stream the telemetry</div>
+        <div class="d">326&nbsp;MB won't politely <span class="mono">json.load</span> on a 3.9&nbsp;GB box — so a hand-rolled <span class="mono">raw_decode</span> streamer reads one event at a time.</div>
+        <span class="tag">HomeHistory.json · streaming</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Aggregate the traits</div>
+        <div class="d">Setpoint changes, structure-mode flips, daily energy summaries, and 31k HVAC/fan cycles, bucketed by month.</div>
+        <span class="tag">collections.Counter</span></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Draw it by hand</div>
+        <div class="d">Every chart below is CSS/SVG — no libraries, no JS beyond expand/collapse. One self-contained file.</div>
+        <span class="tag">CSS + inline SVG</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">43</div><div class="l">real hardware devices</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">rooms wired up</div></div>
+      <div class="stat"><div class="n">18</div><div class="l">smart lights</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">cameras + 1 doorbell</div></div>
+      <div class="stat"><div class="n">8.7</div><div class="l">years since setup</div></div>
+      <div class="stat"><div class="n">66,785</div><div class="l">Nest events logged</div></div>
+      <div class="stat"><div class="n">9,142h</div><div class="l">cooling runtime</div></div>
+      <div class="stat"><div class="n">16:1</div><div class="l">cool vs heat ratio</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The inventory — 43 devices, room by room</h2>
+    <p class="muted" style="margin-top:-6px">Pulled straight from the structure file. SCENE and ROUTINE
+       pseudo-devices excluded; these are the things you could actually unplug.</p>
+    <div class="roomgrid">
+      <div class="room"><div class="rh"><span class="rn">Living Room</span><span class="rc">9</span></div>
+        <ul>
+          <li><span>Roku Ultra</span><span class="b">Roku 4670X</span></li>
+          <li><span>Nest Cam (indoor)</span><span class="b">Nest</span></li>
+          <li><span>Fan-light switch</span><span class="b">TP-Link HS220</span></li>
+          <li><span>Two Hue lights + torch</span><span class="b">Philips Hue</span></li>
+          <li><span>Roborock S7 vacuum</span><span class="b">Roborock</span></li>
+          <li><span>Air purifier</span><span class="b">Winix C545</span></li>
+          <li><span>Home speaker</span><span class="b">Google Home</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Master Bedroom</span><span class="rc">8</span></div>
+        <ul>
+          <li><span>4× smart bulbs (lamps + nightstands)</span><span class="b">LIFX A19</span></li>
+          <li><span>Tower fan</span><span class="b">OmniBreeze</span></li>
+          <li><span>Humidifier</span><span class="b">smart-home iot</span></li>
+          <li><span>Air purifier</span><span class="b">Winix C610</span></li>
+          <li><span>Bedroom Display</span><span class="b">Nest Hub</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Master Bathroom</span><span class="rc">5</span></div>
+        <ul>
+          <li><span>4× mini bulbs</span><span class="b">LIFX mini</span></li>
+          <li><span>Bathroom speaker</span><span class="b">Google Home Mini</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Kitchen</span><span class="rc">5</span></div>
+        <ul>
+          <li><span>Learning Thermostat (3rd gen)</span><span class="b">Nest</span></li>
+          <li><span>Light switch</span><span class="b">TP-Link KS225</span></li>
+          <li><span>2× cabinet-light outlets</span><span class="b">Hue smart plug</span></li>
+          <li><span>Kitchen Display</span><span class="b">Nest Hub</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Office</span><span class="rc">5</span></div>
+        <ul>
+          <li><span>2× torch lights</span><span class="b">Philips Hue</span></li>
+          <li><span>Hue Bridge</span><span class="b">Signify BSB002</span></li>
+          <li><span>Nest Cam (indoor, wired)</span><span class="b">Google</span></li>
+          <li><span>Office Display</span><span class="b">Nest Hub</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Attic</span><span class="rc">4</span></div>
+        <ul>
+          <li><span>2× floor lights</span><span class="b">Philips Hue</span></li>
+          <li><span>2× table lights</span><span class="b">Philips Hue</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Garage</span><span class="rc">2</span></div>
+        <ul>
+          <li><span>Nest Cam (battery)</span><span class="b">Google</span></li>
+          <li><span>Floodlight cam (wired)</span><span class="b">Google</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Front Door</span><span class="rc">2</span></div>
+        <ul>
+          <li><span>Nest Doorbell</span><span class="b">Nest</span></li>
+          <li><span>Smart lock</span><span class="b">Yale</span></li>
+        </ul></div>
+      <div class="room"><div class="rh"><span class="rn">Dining Room</span><span class="rc">1</span></div>
+        <ul><li><span>Chandelier switch</span><span class="b">TP-Link KS225</span></li></ul></div>
+      <div class="room"><div class="rh"><span class="rn">Unassigned</span><span class="rc">2</span></div>
+        <ul>
+          <li><span>Computer speakers</span><span class="b">Chromecast Audio</span></li>
+          <li><span>TV cast target</span><span class="b">Chromecast Ultra</span></li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who built this house — devices by brand</h2>
+    <div class="card">
+      <div class="bar-row"><span class="bar-label">Philips Hue</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--grad)"></span></span>
+        <span class="bar-val">12</span></div>
+      <div class="bar-row"><span class="bar-label">LIFX</span>
+        <span class="bar-track"><span class="bar-fill" style="width:66.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">8</span></div>
+      <div class="bar-row"><span class="bar-label">Google / Nest</span>
+        <span class="bar-track"><span class="bar-fill" style="width:50%;background:var(--grad)"></span></span>
+        <span class="bar-val">6</span></div>
+      <div class="bar-row"><span class="bar-label">TP-Link Kasa</span>
+        <span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--grad)"></span></span>
+        <span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-label">Chromecast</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Winix</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">2</span></div>
+      <div class="bar-row"><span class="bar-label">Roku / Roborock / Yale / +</span>
+        <span class="bar-track"><span class="bar-fill" style="width:16.7%;background:var(--grad)"></span></span>
+        <span class="bar-val">4</span></div>
+    </div>
+    <p class="muted" style="font-size:13.5px">Counting the Hue Bridge and Hue smart plugs, Signify gear
+       is the backbone (12). LIFX owns the bedroom &amp; bath. Google owns the senses — cameras, doorbell,
+       displays, speakers — and the one device that runs the whole show: a 3rd-gen Nest Learning Thermostat.</p>
+  </section>
+
+  <section>
+    <h2>How the house breathes — the thermostat, decoded</h2>
+    <p class="muted" style="margin-top:-6px">One Nest thermostat, 173 setpoint changes captured. The
+       pattern is unmistakable: a cold "occupied" band and a warm "nobody's home" setback.</p>
+
+    <h3>Cooling setpoints — where Kevin actually keeps it</h3>
+    <div class="card">
+      <div class="legend">
+        <span><span class="sw" style="background:var(--cool)"></span> cool target</span>
+      </div>
+      <div class="bar-row"><span class="bar-label">68°F &nbsp;(occupied)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--cool)"></span></span>
+        <span class="bar-val">91×</span></div>
+      <div class="bar-row"><span class="bar-label">78°F &nbsp;(away)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:65.9%;background:var(--warm)"></span></span>
+        <span class="bar-val">60×</span></div>
+      <div class="bar-row"><span class="bar-label">69°F</span>
+        <span class="bar-track"><span class="bar-fill" style="width:14.3%;background:var(--cool)"></span></span>
+        <span class="bar-val">13×</span></div>
+      <div class="bar-row"><span class="bar-label">71–72°F</span>
+        <span class="bar-track"><span class="bar-fill" style="width:4.4%;background:var(--cool)"></span></span>
+        <span class="bar-val">4×</span></div>
+      <div class="bar-row"><span class="bar-label">74–77°F</span>
+        <span class="bar-track"><span class="bar-fill" style="width:4.4%;background:var(--cool)"></span></span>
+        <span class="bar-val">4×</span></div>
+      <div class="bar-row"><span class="bar-label">67°F &nbsp;(coldest)</span>
+        <span class="bar-track"><span class="bar-fill" style="width:1.1%;background:var(--cool)"></span></span>
+        <span class="bar-val">1×</span></div>
+    </div>
+    <div class="callout"><b>The two-temperature house:</b> 68°F when someone's home, 78°F when nobody is.
+       That single 10-degree swing accounts for more than 85% of every cooling change the thermostat
+       ever logged. Heating, when it bothers, is a flat <b>66°F</b> — the same value every single time,
+       61 times over.</div>
+
+    <h3>Home vs. away — the structure's pulse</h3>
+    <div class="card">
+      <p class="muted" style="margin-top:0">71 structure-mode flips were recorded. The house decides on
+         its own most of the time — presence sensing pulls it <i>Home</i>, extended inactivity pushes it
+         <i>Away</i>. Two flips even logged a <i>Vacation</i> mode.</p>
+      <table class="tbl">
+        <tr><th>Transition</th><th>Count</th><th>Why</th></tr>
+        <tr><td>Home → Away</td><td>35</td><td>Extended inactivity (auto)</td></tr>
+        <tr><td>Away → Home</td><td>34</td><td>Identified presence (auto)</td></tr>
+        <tr><td>→ Vacation / back</td><td>2</td><td>A trip away from home</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px;margin-bottom:0">Only 3 of 71 flips were driven by raw
+         activity; 68 were the home quietly auto-detecting whether a human was around — and adjusting the
+         A/C accordingly.</p>
+    </div>
+
+    <h3>HVAC runtime by month — a Florida heartbeat</h3>
+    <p class="muted" style="margin-top:-2px">Cooling hours (blue) vs heating hours (red) per month, from
+       1,151 daily energy summaries. Summer is a wall of blue; winter barely flickers red.</p>
+    <div class="card">
+      <svg viewBox="0 0 920 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+        <!-- baseline -->
+        <line x1="40" y1="250" x2="908" y2="250" stroke="var(--line)" stroke-width="1"/>
+        <!-- y gridlines at 0,300,600,900 h; max bar = 888h cool -> scale 900h to 210px -->
+        <line x1="40" y1="180" x2="908" y2="180" stroke="var(--line)" stroke-width=".5" opacity=".5"/>
+        <line x1="40" y1="110" x2="908" y2="110" stroke="var(--line)" stroke-width=".5" opacity=".5"/>
+        <line x1="40" y1="40"  x2="908" y2="40"  stroke="var(--line)" stroke-width=".5" opacity=".5"/>
+        <text x="6" y="254" fill="var(--dim)" font-size="10">0</text>
+        <text x="2" y="184" fill="var(--dim)" font-size="10">300</text>
+        <text x="2" y="114" fill="var(--dim)" font-size="10">600</text>
+        <text x="2" y="44"  fill="var(--dim)" font-size="10">900h</text>
+        <!-- 25 months. x from 44 to 900, width 856 -> step ~34.2, bar pair width ~26 -->
+        <!-- scale: hours * (210/900) = hours*0.2333; y = 250 - h*0.2333 -->
+        <!-- group g per month: cool then heat -->
+        <!-- data: 2024-05..2026-05 -->
+        <g>
+          <!-- macro: each month two thin bars -->
+          <!-- 2024-05 c34 h0 -->
+          <rect x="44"  y="242.1" width="11" height="7.9"   fill="var(--cool)"/><rect x="55" y="250" width="11" height="0"   fill="var(--warm)"/>
+          <!-- 06 c462 -->
+          <rect x="78"  y="142.2" width="11" height="107.8" fill="var(--cool)"/><rect x="89" y="250" width="11" height="0"   fill="var(--warm)"/>
+          <!-- 07 c559 -->
+          <rect x="112" y="119.6" width="11" height="130.4" fill="var(--cool)"/><rect x="123" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 08 c488 -->
+          <rect x="146" y="136.1" width="11" height="113.9" fill="var(--cool)"/><rect x="157" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 09 c488 -->
+          <rect x="180" y="136.1" width="11" height="113.9" fill="var(--cool)"/><rect x="191" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 10 c362 -->
+          <rect x="214" y="165.5" width="11" height="84.5"  fill="var(--cool)"/><rect x="225" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 11 c219 h11 -->
+          <rect x="248" y="198.9" width="11" height="51.1"  fill="var(--cool)"/><rect x="259" y="247.4" width="11" height="2.6" fill="var(--warm)"/>
+          <!-- 12 c77 h61 -->
+          <rect x="282" y="232.0" width="11" height="18.0"  fill="var(--cool)"/><rect x="293" y="235.8" width="11" height="14.2" fill="var(--warm)"/>
+          <!-- 2025-01 c19 h242 -->
+          <rect x="316" y="245.6" width="11" height="4.4"   fill="var(--cool)"/><rect x="327" y="193.5" width="11" height="56.5" fill="var(--warm)"/>
+          <!-- 02 c109 -->
+          <rect x="350" y="224.6" width="11" height="25.4"  fill="var(--cool)"/><rect x="361" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 03 c145 -->
+          <rect x="384" y="216.2" width="11" height="33.8"  fill="var(--cool)"/><rect x="395" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 04 c382 -->
+          <rect x="418" y="160.9" width="11" height="89.1"  fill="var(--cool)"/><rect x="429" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 05 c480 -->
+          <rect x="452" y="138.0" width="11" height="112.0" fill="var(--cool)"/><rect x="463" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 06 c767 -->
+          <rect x="486" y="71.1"  width="11" height="178.9" fill="var(--cool)"/><rect x="497" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 07 c765 -->
+          <rect x="520" y="71.5"  width="11" height="178.5" fill="var(--cool)"/><rect x="531" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 08 c888 (peak) -->
+          <rect x="554" y="42.8"  width="11" height="207.2" fill="var(--cool)"/><rect x="565" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 09 c681 -->
+          <rect x="588" y="91.1"  width="11" height="158.9" fill="var(--cool)"/><rect x="599" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 10 c427 -->
+          <rect x="622" y="150.4" width="11" height="99.6"  fill="var(--cool)"/><rect x="633" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 11 c197 h6 -->
+          <rect x="656" y="204.0" width="11" height="46.0"  fill="var(--cool)"/><rect x="667" y="248.6" width="11" height="1.4" fill="var(--warm)"/>
+          <!-- 12 c90 h16 -->
+          <rect x="690" y="229.0" width="11" height="21.0"  fill="var(--cool)"/><rect x="701" y="246.3" width="11" height="3.7" fill="var(--warm)"/>
+          <!-- 2026-01 c84 h90 -->
+          <rect x="724" y="230.4" width="11" height="19.6"  fill="var(--cool)"/><rect x="735" y="229.0" width="11" height="21.0" fill="var(--warm)"/>
+          <!-- 02 c79 h144 -->
+          <rect x="758" y="231.6" width="11" height="18.4"  fill="var(--cool)"/><rect x="769" y="216.4" width="11" height="33.6" fill="var(--warm)"/>
+          <!-- 03 c328 h4 -->
+          <rect x="792" y="173.5" width="11" height="76.5"  fill="var(--cool)"/><rect x="803" y="249.1" width="11" height="0.9" fill="var(--warm)"/>
+          <!-- 04 c429 -->
+          <rect x="826" y="149.9" width="11" height="100.1" fill="var(--cool)"/><rect x="837" y="250" width="11" height="0"  fill="var(--warm)"/>
+          <!-- 05 c584 -->
+          <rect x="860" y="113.7" width="11" height="136.3" fill="var(--cool)"/><rect x="871" y="250" width="11" height="0"  fill="var(--warm)"/>
+        </g>
+        <!-- x labels: years -->
+        <text x="44"  y="268" fill="var(--dim)" font-size="10">2024</text>
+        <text x="316" y="268" fill="var(--dim)" font-size="10">2025</text>
+        <text x="724" y="268" fill="var(--dim)" font-size="10">2026</text>
+        <text x="554" y="34"  fill="var(--cool)" font-size="10" text-anchor="middle">Aug peak 888h</text>
+      </svg>
+      <div class="legend" style="margin-top:8px">
+        <span><span class="sw" style="background:var(--cool)"></span> cooling hours</span>
+        <span><span class="sw" style="background:var(--warm)"></span> heating hours</span>
+      </div>
+    </div>
+    <div class="callout"><b>Two summers, one winter, zero doubt:</b> cooling rises every June and crests
+       in late summer (Aug 2025 alone: <b>888 hours</b> of A/C — nearly 29 hours a day across a 31-day
+       month, because Florida runs two compressors). Heating is a rounding error that only wakes up for a
+       few January/February cold snaps. Hottest single A/C day on record: <b>July 4, 2024 — 22.6 hours</b>.</div>
+  </section>
+
+  <section>
+    <h2>The three automations running the place</h2>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>Automation</th><th>Trigger</th><th>What it does</th></tr>
+        <tr><td><b>Home</b></td><td>Area presence detected</td><td>Wakes the house up when someone arrives</td></tr>
+        <tr><td><b>Away</b></td><td>Area presence cleared</td><td>Sets the house back when everyone leaves</td></tr>
+        <tr><td><b>Master bedroom light color</b></td><td>Cron: 10:00 PM nightly</td><td>Shifts the bedroom lights to orange for wind-down</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px;margin-bottom:0">Spare and deliberate — the heavy lifting is
+         delegated to Nest's own presence sensing (those 71 home/away flips above), so Kevin only hand-wrote
+         the bits the platform doesn't do for free.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The house has been watching</h2>
+    <p class="muted" style="margin-top:-6px">The cameras don't just record — Google's AI writes a daily
+       prose "Home Brief" narrating the driveway. 59 of them are in the export. They're oddly novelistic.
+       (Lightly sanitized — no plates, no identities.)</p>
+
+    <details><summary><span>Thursday's Home Brief</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">morning bustle</span></summary>
+      <div class="det-body"><p>"In the morning, a person in a white shirt walked up the driveway and later was
+        seen walking a blue trash can down it. Another person was observed walking across the driveway while
+        holding a water bottle. Later, a black Tesla pulled into the driveway before backing out and driving
+        away. Someone was seen placing two black suitcases into a silver car before walking away…"</p></div></details>
+
+    <details><summary><span>Saturday's Home Brief</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">a package + a busy driveway</span></summary>
+      <div class="det-body"><p>"In the morning, a package was delivered to the porch, and a black Hyundai
+        Ioniq&nbsp;6 briefly entered the driveway. Later, a black SUV arrived and a person exited. Throughout the
+        afternoon, several people walked by the Garage, and various cars drove past. Someone was seen
+        interacting with a black car, taking pictures and getting in and out…"</p></div></details>
+
+    <details><summary><span>Sunday's Home Brief</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">yard work day</span></summary>
+      <div class="det-body"><p>"Early in the morning, a vehicle drove by the Garage. Later, a person performed
+        various yard work activities, including removing fronds from a palm tree and blowing leaves. A black
+        Hyundai Ioniq&nbsp;6 arrived and departed, with someone entering and exiting the house. Around midday,
+        two packages were delivered to the porch by a person in a blue shirt and black shorts…"</p></div></details>
+
+    <details><summary><span>Friday's Home Brief</span><span class="muted" style="font-size:13px;font-weight:600;margin-right:14px">an Amazon drop-off</span></summary>
+      <div class="det-body"><p>"The morning began with a few vehicles pulling into the driveway, followed by
+        someone walking their dog. In the afternoon, a delivery person arrived to drop off an Amazon package at
+        the porch. Later, someone brought a trash can to the curb, and another person was seen walking their dog
+        nearby. The day concluded with a person walking by on the sidewalk…"</p></div></details>
+
+    <div class="callout" style="margin-top:14px"><b>The recurring cast:</b> across 59 briefs the same
+      characters appear again and again — a black Hyundai Ioniq&nbsp;6 coming and going (the household EV),
+      neighborhood Teslas, an endless parade of dog-walkers, and a steady drip of porch deliveries. The
+      camera turned a suburban driveway into a serialized novel.</div>
+  </section>
+
+  <section>
+    <h2>Raw vs. result</h2>
+    <p class="muted" style="margin-top:-6px">A single setpoint event is 40 lines of nested Nest protobuf
+       metadata. The signal is four fields buried at the bottom.</p>
+    <div class="cmp">
+      <div class="box"><div class="h">Raw event (trimmed)</div>
+        <div class="mono">"trait_instance_label":<br>&nbsp;"target_temperature_settings",<br>"device":{"vendor_code":9050…},<br>"event_data":{<br>&nbsp;"cooling_target":{"value":<b style="color:#fff">21.868378</b>},<br>&nbsp;"setpoint_type":"SET_POINT_TYPE_COOL",<br>&nbsp;"change_reason":<br>&nbsp;&nbsp;"TARGET_CHANGE_REASON_SCHEDULE"}</div></div>
+      <div class="box"><div class="h">Parsed</div>
+        <div class="mono">cool target: <b style="color:#fff">71.4°F</b><br>mode: cooling<br>set by: schedule (not manual)<br><br>…multiplied across 173 events →<br><b style="color:#fff">68°F home / 78°F away</b></div></div>
+    </div>
+    <p class="muted" style="font-size:13px">169 of 173 setpoint changes were <span class="mono">SCHEDULE</span>-driven
+       and only 4 ad-hoc — the thermostat mostly runs itself. Of the changes a human did touch, 98 came
+       from the Android app and 74 from the dial on the wall.</p>
+  </section>
+
+  <section>
+    <h2>The clever bits (and the honest snags)</h2>
+    <h3>🐛 326&nbsp;MB on a 3.9&nbsp;GB box — don't <span class="mono">json.load()</span></h3>
+    <p class="muted">A naive load of the history file risks ballooning to several GB of Python objects and
+       OOM-ing the VM. The fix: a hand-rolled streaming reader that scans for the <span class="mono">"events":</span>
+       array and feeds <span class="mono">JSONDecoder().raw_decode()</span> one object at a time off a sliding
+       buffer — constant memory regardless of file size.</p>
+    <h3>🐛 The phantom 179,366 "events"</h3>
+    <p class="muted">The baseline note counted 179,366 — but that's <span class="mono">"timestamp"</span>
+       string occurrences, and each event carries several nested ones (state-change times, service stamps).
+       The real envelope count is <b>66,785</b>. Of those, ~15.7k live in a separate
+       <span class="mono">device_history[]</span> branch and are mostly Samsung SmartThings API-access logs,
+       not telemetry — so the 51,083 in the main structure history are the events that actually describe the house.</p>
+    <h3>🐛 "LEAF" hours aren't runtime</h3>
+    <p class="muted">The daily energy summaries expose three duration samples: <span class="mono">LEAF</span>,
+       <span class="mono">HEATING</span>, and <span class="mono">COOLING</span>. LEAF is Nest's efficiency-badge
+       metric, not actual compressor time — using it would have over-counted. Summing only the explicit
+       <span class="mono">COOLING</span>/<span class="mono">HEATING</span> samples gives the honest 9,142h&nbsp;/&nbsp;575h split.</p>
+  </section>
+
+  <section>
+    <h2>Things the data quietly knew</h2>
+    <div class="fun">
+      <div class="f">The house has <b>one heating temperature</b>: 66°F, set the exact same way all 61 times it ran. There is no winter nuance here — there's barely a winter.</div>
+      <div class="f"><b>July 4, 2024</b> the A/C ran <b>22.6 of 24 hours</b> — the single hardest-working day on record. Independence Day in Orlando is a cooling event.</div>
+      <div class="f">Lights are <b>42% of every device</b> (18 of 43). This is, at heart, a lighting rig with a thermostat attached.</div>
+      <div class="f">A <b>black Hyundai Ioniq&nbsp;6</b> is the most-named vehicle across the AI Home Briefs — the household EV, recognized by name by its own driveway camera.</div>
+      <div class="f">Only <b>3 of 71</b> home/away switches were manual. The house decides for itself whether anyone's home <b>96% of the time</b>.</div>
+      <div class="f">Across two years, cooling beat heating <b>16 to 1</b> — the cleanest one-number proof of "this house is in Florida" you could ask for.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Do this yourself</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Export the Home App</div>
+        <div class="d">takeout.google.com → select "Home App" → download. You get HomeApp.json (structure) and HomeHistory.json (telemetry).</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Inventory from the structure file</div>
+        <div class="d">Walk <span class="mono">Home App Data[0].full_structures[0].rooms_and_devices</span>; skip any device whose type ends in SCENE or ROUTINE.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Stream the big file</div>
+        <div class="d">Don't load it whole. Locate <span class="mono">structure_history[0].events</span> and decode objects one at a time with <span class="mono">raw_decode</span>.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Filter by trait label</div>
+        <div class="d">Bucket on <span class="mono">trait_instance_label</span>: target_temperature_settings, structure_mode, energy_summary, hvac_control, fan_control.</div></div></div>
+      <div class="step"><div class="num"></div><div>
+        <div class="t">Convert &amp; chart</div>
+        <div class="d">Setpoints are Celsius — ×9/5+32 for °F. Daily energy summaries hold COOLING/HEATING seconds. Roll up by month, draw by hand in CSS/SVG.</div></div></div>
+    </div>
+  </section>
+
+  <footer>Built with Python (streaming <span class="mono">json.raw_decode</span>) · charts hand-rolled in CSS &amp; SVG · one self-contained file · June 6, 2026</footer>
+
+</div></body></html>

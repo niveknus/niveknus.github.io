@@ -1,0 +1,207 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kevin's Food-Delivery Spending — A Money-Manager's Read</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9; --radius:16px;
+  --accent:#fb923c; --accent2:#facc15;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.top{padding:48px 0 18px;border-bottom:1px solid var(--line)}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:12px 0 8px;font-weight:800}
+.sub{color:var(--muted);font-size:17px;max-width:680px}
+.meta{margin-top:10px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:16px}
+section{margin-top:40px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:18px;margin:22px 0 8px}
+p{margin:10px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:24px}
+.callout{margin-top:16px;background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center}
+.stat .n{font-size:26px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:140px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px;background:var(--grad)}
+.bar-val{flex:none;width:66px;font-size:13px;font-weight:700;text-align:left}
+.bar-row.hl .bar-fill{background:linear-gradient(135deg,#f87171,#fb923c)}
+.bar-row.win .bar-fill{background:linear-gradient(135deg,#34d399,#facc15)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.tbl td.r,.tbl th.r{text-align:right;white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.two .h{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.keep .h{color:var(--good)} .cut .h{color:var(--bad)}
+.two ul{margin:0;padding-left:18px} .two li{margin:7px 0;font-size:14px;color:var(--ink)}
+.two li span{color:var(--muted)}
+.steps{display:grid;gap:12px;counter-reset:s;margin-top:8px}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:32px;height:32px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#161a2b}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700} .step .d{color:var(--muted);font-size:14px}
+.muted{color:var(--muted)} .good{color:var(--good)} .bad{color:var(--bad)} .warn{color:var(--warn)}
+.note{background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px dashed var(--line);border-radius:12px;padding:16px 18px;color:var(--muted);font-size:14px}
+footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.two{grid-template-columns:1fr}.bar-label{width:104px}}
+</style></head>
+<body><div class="wrap">
+
+<div class="top">
+  <div class="kick">Food-Delivery Analysis · if I were your money manager</div>
+  <h1>The most cuttable money you spend</h1>
+  <p class="sub">A straight read of 9 years of DoorDash + Uber Eats. Unlike your Amazon spend (mostly durable goods), this is ~100% consumption — plus a convenience premium stacked on food you could pick up or cook. That makes it the highest-ROI cut you can make toward saving more.</p>
+  <div class="meta">DoorDash + Uber Eats, 2017 → May 2026 · 1,495 orders · companion to amazon-spending-analysis-2026-06-06 · 2026-06-06</div>
+  <div class="chips">
+    <div class="chip"><b>$28.6K</b> food subtotals</div>
+    <div class="chip"><b>~$40K+</b> est. all-in w/ fees &amp; tips</div>
+    <div class="chip"><b>1,495</b> orders</div>
+    <div class="chip"><b>$5.5K→$1.5K</b> 2024→2025 cut</div>
+  </div>
+</div>
+
+<section>
+  <h2>The bottom line first</h2>
+  <div class="tldr">
+    <p>If I'm managing your money, <b>this is the first place I'd point.</b> Your Amazon spending is mostly capex — things you keep. Food delivery is the opposite: every dollar is gone the same day, and you're paying a <b>second tax on top of the food</b> — delivery fees, service fees, tips, and inflated in-app menu prices — purely to avoid a 10-minute drive. The food itself isn't the problem (it's the stuff you love). The <b>delivery wrapper</b> is.</p>
+    <div class="callout"><b>The key reframe:</b> the export shows <b>$28,633 in food subtotals</b> — but that number <i>excludes</i> every fee and tip. Add the real cost of delivery and you've spent closer to <b>$40K+</b>, meaning roughly <b>$11–17K of pure convenience premium</b> over the years. That premium is the cleanest "found money" in your whole financial picture — and you've already proven you can claw it back.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The hidden number: what delivery actually costs</h2>
+  <p>This is the single most important thing to internalize. The data only records the food subtotal. But every delivery order also carries a stack of charges the export doesn't show:</p>
+  <table class="tbl">
+    <tr><th>On a typical ~$25 food order, you also pay…</th><th class="r">Rough add-on</th></tr>
+    <tr><td>Delivery fee</td><td class="r">$2–6</td></tr>
+    <tr><td>Service fee (~10–15% of subtotal)</td><td class="r">$3–4</td></tr>
+    <tr><td>Tip (~15–20%)</td><td class="r">$4–5</td></tr>
+    <tr><td>In-app menu markup (items priced higher than in-store, ~15%)</td><td class="r">~$3 baked in</td></tr>
+    <tr><td><b>Total premium on top of the food</b></td><td class="r"><b>~40–60%</b></td></tr>
+  </table>
+  <div class="callout"><b>So the real lifetime number isn't $28.6K — it's ~$40–46K (estimated).</b> On your <i>small</i> orders the math is even worse: a $12 order with $9 of fees+tip is a ~75% surcharge. That's why the high-frequency era below was so expensive per dollar of actual food. <span class="muted">(Fee figures are industry-typical estimates — the exact charges aren't in Amazon/Uber's export. Treat the range as directional, not exact.)</span></p></div>
+</section>
+
+<section>
+  <h2>Two very different eras</h2>
+  <p>Your delivery history splits cleanly in two, and they fail in opposite ways. <b>2020–2021 was a frequency problem</b> — a flood of tiny orders (2021 alone: <b>468 orders, ~9 a week</b>, average just $11.74 of food). <b>2023–2024 became a ticket-size problem</b> — fewer orders but each one bigger ($29–31 average). Both leak money; the fix is different for each.</p>
+  <div class="card">
+    <div class="muted" style="font-size:12px;margin-bottom:8px">Orders per year (frequency) — peak 2021</div>
+    <div class="bar-row hl"><span class="bar-label">2021</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">468</span></div>
+    <div class="bar-row"><span class="bar-label">2020</span><span class="bar-track"><span class="bar-fill" style="width:52%"></span></span><span class="bar-val">242</span></div>
+    <div class="bar-row"><span class="bar-label">2024</span><span class="bar-track"><span class="bar-fill" style="width:40%"></span></span><span class="bar-val">187</span></div>
+    <div class="bar-row"><span class="bar-label">2022</span><span class="bar-track"><span class="bar-fill" style="width:31%"></span></span><span class="bar-val">147</span></div>
+    <div class="bar-row"><span class="bar-label">2023</span><span class="bar-track"><span class="bar-fill" style="width:31%"></span></span><span class="bar-val">146</span></div>
+    <div class="bar-row"><span class="bar-label">2019</span><span class="bar-track"><span class="bar-fill" style="width:23%"></span></span><span class="bar-val">109</span></div>
+    <div class="bar-row win"><span class="bar-label">2026 (Jan–May)</span><span class="bar-track"><span class="bar-fill" style="width:12%"></span></span><span class="bar-val">57</span></div>
+    <div class="bar-row win"><span class="bar-label">2025</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">47</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Spend per year</h2>
+  <div class="card">
+    <div class="bar-row"><span class="bar-label">2017</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">$553</span></div>
+    <div class="bar-row"><span class="bar-label">2018</span><span class="bar-track"><span class="bar-fill" style="width:29%"></span></span><span class="bar-val">$1,587</span></div>
+    <div class="bar-row"><span class="bar-label">2019</span><span class="bar-track"><span class="bar-fill" style="width:44%"></span></span><span class="bar-val">$2,427</span></div>
+    <div class="bar-row"><span class="bar-label">2020</span><span class="bar-track"><span class="bar-fill" style="width:60%"></span></span><span class="bar-val">$3,310</span></div>
+    <div class="bar-row hl"><span class="bar-label">2021</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">$5,493</span></div>
+    <div class="bar-row"><span class="bar-label">2022</span><span class="bar-track"><span class="bar-fill" style="width:59%"></span></span><span class="bar-val">$3,238</span></div>
+    <div class="bar-row"><span class="bar-label">2023</span><span class="bar-track"><span class="bar-fill" style="width:65%"></span></span><span class="bar-val">$3,573</span></div>
+    <div class="bar-row hl"><span class="bar-label">2024</span><span class="bar-track"><span class="bar-fill" style="width:99%"></span></span><span class="bar-val">$5,475</span></div>
+    <div class="bar-row win"><span class="bar-label">2025</span><span class="bar-track"><span class="bar-fill" style="width:27%"></span></span><span class="bar-val">$1,457</span></div>
+    <div class="bar-row"><span class="bar-label">2026 *</span><span class="bar-track"><span class="bar-fill" style="width:28%"></span></span><span class="bar-val">$1,519</span></div>
+  </div>
+  <p class="muted" style="font-size:13px">Food subtotals only. * 2026 is Jan–May (already past all of 2025, annualizing to ~$3.6K) — the one yellow flag: after a disciplined 2025, delivery is <b>creeping back up</b>.</p>
+</section>
+
+<section>
+  <h2>The win you already booked</h2>
+  <div class="grid">
+    <div class="stat"><div class="n">−$4,018</div><div class="l">2024 → 2025 spend drop (food subtotal)</div></div>
+    <div class="stat"><div class="n">187 → 47</div><div class="l">orders, 2024 → 2025 (−75%)</div></div>
+    <div class="stat"><div class="n">~$6K+</div><div class="l">est. all-in saved that year incl. fees/tips</div></div>
+  </div>
+  <p style="margin-top:14px">This is the most encouraging fact in your entire financial picture: <b>you already did the hard thing.</b> From 2024 to 2025 you cut delivery by roughly 75% — and counting the fees and tips that ride along, that's well over <b>$6,000</b> of real money redirected in a single year, with no evidence you suffered for it. The job now isn't to discover a new habit; it's to <b>not let 2026 drift back</b> (it's already trending up).</p>
+</section>
+
+<section>
+  <h2>Where it goes — and why the food isn't the problem</h2>
+  <p>Your delivery money flows to a short, loyal rotation of Orlando spots. Look at this list: it's not frivolous mystery spending — it's <b>Chick-fil-A, BBQ, tacos, Cuban, ramen, Greek, build-your-own bowls.</b> Affordable, repeatable, and — critically — <b>almost all available for pickup, and most of it cookable.</b> That's what makes it cuttable without deprivation: you're not giving up the food, just the delivery.</p>
+  <div class="card">
+    <div class="bar-row"><span class="bar-label">Chick-fil-A</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">$1,641</span></div>
+    <div class="bar-row"><span class="bar-label">4 Rivers BBQ</span><span class="bar-track"><span class="bar-fill" style="width:71%"></span></span><span class="bar-val">$1,170</span></div>
+    <div class="bar-row"><span class="bar-label">Little Greek</span><span class="bar-track"><span class="bar-fill" style="width:49%"></span></span><span class="bar-val">$803</span></div>
+    <div class="bar-row"><span class="bar-label">Tacos Chely *</span><span class="bar-track"><span class="bar-fill" style="width:42%"></span></span><span class="bar-val">$688</span></div>
+    <div class="bar-row"><span class="bar-label">Black Rooster</span><span class="bar-track"><span class="bar-fill" style="width:36%"></span></span><span class="bar-val">$592</span></div>
+    <div class="bar-row"><span class="bar-label">Zaza Cuban</span><span class="bar-track"><span class="bar-fill" style="width:31%"></span></span><span class="bar-val">$506</span></div>
+    <div class="bar-row"><span class="bar-label">Metro Diner</span><span class="bar-track"><span class="bar-fill" style="width:28%"></span></span><span class="bar-val">$465</span></div>
+    <div class="bar-row"><span class="bar-label">Dragon Bowl Ramen</span><span class="bar-track"><span class="bar-fill" style="width:28%"></span></span><span class="bar-val">$465</span></div>
+    <div class="bar-row"><span class="bar-label">Fresh Kitchen</span><span class="bar-track"><span class="bar-fill" style="width:26%"></span></span><span class="bar-val">$422</span></div>
+  </div>
+  <p class="muted" style="font-size:13px">* Tacos Chely is 3 large party orders, not a regular habit. Chick-fil-A is your true anchor: 188 orders, almost always Chick-n-Strips + Waffle Fries (see your <a href="food-delivery-report.html">flavor profile</a>).</p>
+</section>
+
+<section>
+  <h2>Waste vs. value — the convenience-tax ledger</h2>
+  <div class="two">
+    <div class="box keep">
+      <div class="h">✓ Fair value</div>
+      <ul>
+        <li><b>The food itself</b> <span>— fast-casual, ~$13–30/order; this is reasonable eating, not extravagance</span></li>
+        <li><b>Genuine convenience moments</b> <span>— sick, slammed, no car; delivery earns its fee when the alternative is real</span></li>
+        <li><b>The 2025 discipline</b> <span>— you already right-sized frequency; that's the model</span></li>
+      </ul>
+    </div>
+    <div class="box cut">
+      <div class="h">⚠ Pure premium / leak</div>
+      <ul>
+        <li><b>Delivery + service fees</b> <span>— ~$5–10/order to skip a 10-min drive on food you'd happily pick up</span></li>
+        <li><b>Tips on top of fees</b> <span>— fair to the driver, but it's cost you control by picking up</span></li>
+        <li><b>In-app menu markup</b> <span>— you pay more per item than walking in, invisibly</span></li>
+        <li><b>Small-order delivery</b> <span>— the worst ratio; fees can be ~75% of a $12 order</span></li>
+        <li><b>Default-to-delivery on go-to spots</b> <span>— CFA, Chipotle, 4 Rivers pickup is trivial</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The plan — keep the food, cut the wrapper</h2>
+  <div class="steps">
+    <div class="step"><div class="num"></div><div><div class="t">Make pickup the default, delivery the exception</div><div class="d">Same food, but you drop the delivery fee, the service fee, and most of the tip — often 40%+ off the all-in price. For your anchors (Chick-fil-A, 4 Rivers, Chipotle, Little Greek) pickup is a 10-minute round trip. Reserve delivery for genuine can't-leave moments.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Batch-cook your own greatest hits</div><div class="d">Your <a href="food-delivery-report.html">flavor profile</a> is a short, repeatable list — chicken, Mexican, bowls. Cook the 3–4 staples you reorder most on a Sunday; you'll out-eat delivery at a fraction of the cost and barely change what you're eating.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Kill small-order delivery entirely</div><div class="d">Set a hard floor: if the food is under ~$20, never pay to deliver it — pick it up or skip it. Small orders are where the fee-to-food ratio is most punishing.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Set a monthly delivery cap and watch the 2026 creep</div><div class="d">2025 ran ~$120/month in food subtotal — a great target. 2026 is trending higher; a simple monthly cap (and a glance at the running total) keeps the win you already earned.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Auto-sweep the difference to savings</div><div class="d">Hold delivery at 2025 levels and the ~$4K/yr you're <i>not</i> spending vs. 2024 should land in savings automatically, not drift back into checking. This is real progress on your save-more goal (G2).</div></div></div>
+  </div>
+  <div class="callout"><b>The number that matters:</b> holding delivery at 2025's ~$1.5K instead of 2024's ~$5.5K is <b>~$4,000/yr of food subtotal — and well over $6,000 all-in once fees and tips are counted.</b> Stack that on the ~$2,500/yr from the Amazon trimming, and you're most of the way to a serious savings year without touching rent, car, or income.</p></div>
+</section>
+
+<section>
+  <h2>One honest caveat</h2>
+  <div class="note">
+    Two limits to keep in mind. <b>(1)</b> The fee/tip/markup figures are industry-typical estimates — the exports record only food subtotals, so the "~$40K all-in" and "~40–60% premium" are directional, not your exact charges (your real receipts would confirm them). <b>(2)</b> This still only covers <b>delivery</b> — it says nothing about restaurants and bars you pay for in person, which for most people is larger. The full picture needs a <b>bank/credit-card statement analysis</b> (your dining-out total, plus subscriptions and the rest) — the same next step flagged in your Amazon analysis.
+  </div>
+</section>
+
+<footer>Built from your DoorDash + Uber Eats exports (1,495 orders) · subtotals re-derived from raw data, fees/tips estimated · 2026-06-06</footer>
+
+</div></body></html>
