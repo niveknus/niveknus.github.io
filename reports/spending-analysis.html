@@ -1,0 +1,231 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kevin's Spending Analysis — A Money-Manager's Read</title>
+<style>
+:root{
+  --bg:#0b0d14; --bg2:#12142a; --card:#161a2b; --card2:#1e2540; --line:#2a3150;
+  --ink:#eef1fa; --muted:#9aa4c4; --dim:#7c85a9; --radius:16px;
+  --accent:#fb923c; --accent2:#facc15;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --good:#34d399; --warn:#fbbf24; --bad:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.top{padding:48px 0 18px;border-bottom:1px solid var(--line)}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:12px 0 8px;font-weight:800}
+.sub{color:var(--muted);font-size:17px;max-width:680px}
+.meta{margin-top:10px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:16px}
+section{margin-top:40px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:18px;margin:22px 0 8px}
+p{margin:10px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:24px}
+.callout{margin-top:16px;background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);border-left:4px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center}
+.stat .n{font-size:26px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:130px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px;background:var(--grad)}
+.bar-val{flex:none;width:62px;font-size:13px;font-weight:700;text-align:left}
+.bar-row.hl .bar-fill{background:linear-gradient(135deg,#f87171,#fb923c)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.tbl td.r,.tbl th.r{text-align:right;white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.two .h{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.keep .h{color:var(--good)} .cut .h{color:var(--bad)}
+.two ul{margin:0;padding-left:18px} .two li{margin:7px 0;font-size:14px;color:var(--ink)}
+.two li span{color:var(--muted)}
+.steps{display:grid;gap:12px;counter-reset:s;margin-top:8px}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:32px;height:32px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#161a2b}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700} .step .d{color:var(--muted);font-size:14px}
+.muted{color:var(--muted)} .good{color:var(--good)} .bad{color:var(--bad)} .warn{color:var(--warn)}
+.note{background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px dashed var(--line);border-radius:12px;padding:16px 18px;color:var(--muted);font-size:14px}
+footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.two{grid-template-columns:1fr}.bar-label{width:92px}}
+</style></head>
+<body><div class="wrap">
+
+<div class="top">
+  <div class="kick">Spending Analysis · if I were your money manager</div>
+  <h1>Where your money goes — and how to keep more of it</h1>
+  <p class="sub">A straight read of 16 years of Amazon purchases (plus your food-delivery data), built to answer one question: are you spending too much, and where would cutting actually help?</p>
+  <div class="meta">Amazon: 2,990 purchases, Dec 2009 → May 2026 · cross-referenced with DoorDash + Uber Eats · 2026-06-06</div>
+  <div class="chips">
+    <div class="chip"><b>$95.3K</b> Amazon, all-time</div>
+    <div class="chip"><b>$24.5K</b> in 2016–17 alone</div>
+    <div class="chip"><b>~$2K/yr</b> in sub-$25 impulse buys</div>
+    <div class="chip"><b>~$10K/yr</b> Amazon + delivery (recent)</div>
+  </div>
+</div>
+
+<section>
+  <h2>The bottom line first</h2>
+  <div class="tldr">
+    <p>Here's the honest read: <b>you're not reckless.</b> Your spending isn't a story of blowing money on junk — it's two very different things stacked on top of each other. Most of your big numbers are <b>lumpy "capital" purchases</b> — a mattress, a TV, a PC build, tools, a Garmin — bought once and used for years. Those mostly earn their keep. The part worth attacking is quieter: a <b>steady trickle of small, forgettable purchases</b> and a few <b>recurring convenience habits</b> that add up to real money without ever feeling like a decision.</p>
+    <div class="callout"><b>The one reframe:</b> stop thinking "Am I spending too much?" and start sorting every purchase into <b>capex</b> (durable, infrequent, you'd buy it again) vs. <b>drift</b> (small, impulsive, you won't remember it in a week). Your capex is mostly fine. Your <b>drift is ~$2,000/yr on Amazon alone</b> — and that's the money that can become savings without you feeling deprived.</p>
+  </div>
+</section>
+
+<section>
+  <h2>So what happened in 2016 and 2017?</h2>
+  <p>This is the question you asked, and the data answers it cleanly. Those two years weren't a spending problem that recurred — they were a <b>one-time life build-out</b>. You went from ~$3K/yr to <b>$13.2K (2016)</b> and <b>$11.3K (2017)</b> because you were furnishing an adult life and going deep on hobbies, right as real income arrived. Almost none of it was consumable waste — it was durable goods you bought once.</p>
+  <div class="two">
+    <div class="box">
+      <div class="h" style="color:var(--accent2)">2016 — the "gear &amp; gadgets" year · $13.2K</div>
+      <ul>
+        <li><b>PC build</b> <span>— i7-6700K, Z170 board, SSD, 6TB NAS, UPS, monitor (~$1,250)</span></li>
+        <li><b>Firearms optics</b> <span>— EOTech sight $627, G33 magnifier $547, Meprolight $517, Nikon scope (~$1,840)</span></li>
+        <li><b>Phones/tablets</b> <span>— Nexus 6P $585, Nexus 5X $279, Nexus 7 (~$1,140)</span></li>
+        <li><b>Other</b> <span>— radar detector $351, ATH-M50x, accessories</span></li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="h" style="color:var(--accent2)">2017 — the "move-in &amp; furnish" year · $11.3K</div>
+      <ul>
+        <li><b>Household setup</b> <span>— Casper mattress $809, 55" 4K TV $639, dining table, Keurig, receiver</span></li>
+        <li><b>A house with a yard</b> <span>— GreenWorks mower $375 + trimmer $215, Rachio sprinkler, Milwaukee drill</span></li>
+        <li><b>Tech</b> <span>— GTX 1070 $471, Sony WH-1000XM2 $298, UPS $192, printer</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><b>Verdict on 2016–17:</b> this was front-loaded, mostly ROI-positive capex — a bed you still sleep on, tools you still use, a hobby you got into. The right lesson isn't "those years were bad." It's that your spending is <b>lumpy</b>: you make big, infrequent purchases. That's manageable <i>if</i> they're intentional and budgeted — which is the plan below.</p></div>
+</section>
+
+<section>
+  <h2>Amazon spend, year by year</h2>
+  <div class="card">
+    <div class="bar-row"><span class="bar-label">2013</span><span class="bar-track"><span class="bar-fill" style="width:27%"></span></span><span class="bar-val">$3,513</span></div>
+    <div class="bar-row"><span class="bar-label">2014</span><span class="bar-track"><span class="bar-fill" style="width:9%"></span></span><span class="bar-val">$1,174</span></div>
+    <div class="bar-row"><span class="bar-label">2015</span><span class="bar-track"><span class="bar-fill" style="width:24%"></span></span><span class="bar-val">$3,166</span></div>
+    <div class="bar-row hl"><span class="bar-label">2016</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">$13,162</span></div>
+    <div class="bar-row hl"><span class="bar-label">2017</span><span class="bar-track"><span class="bar-fill" style="width:86%"></span></span><span class="bar-val">$11,332</span></div>
+    <div class="bar-row"><span class="bar-label">2018</span><span class="bar-track"><span class="bar-fill" style="width:57%"></span></span><span class="bar-val">$7,549</span></div>
+    <div class="bar-row"><span class="bar-label">2019</span><span class="bar-track"><span class="bar-fill" style="width:58%"></span></span><span class="bar-val">$7,697</span></div>
+    <div class="bar-row"><span class="bar-label">2020</span><span class="bar-track"><span class="bar-fill" style="width:45%"></span></span><span class="bar-val">$5,866</span></div>
+    <div class="bar-row"><span class="bar-label">2021</span><span class="bar-track"><span class="bar-fill" style="width:33%"></span></span><span class="bar-val">$4,318</span></div>
+    <div class="bar-row"><span class="bar-label">2022</span><span class="bar-track"><span class="bar-fill" style="width:55%"></span></span><span class="bar-val">$7,178</span></div>
+    <div class="bar-row"><span class="bar-label">2023</span><span class="bar-track"><span class="bar-fill" style="width:51%"></span></span><span class="bar-val">$6,729</span></div>
+    <div class="bar-row"><span class="bar-label">2024</span><span class="bar-track"><span class="bar-fill" style="width:38%"></span></span><span class="bar-val">$5,034</span></div>
+    <div class="bar-row"><span class="bar-label">2025</span><span class="bar-track"><span class="bar-fill" style="width:62%"></span></span><span class="bar-val">$8,199</span></div>
+    <div class="bar-row"><span class="bar-label">2026 *</span><span class="bar-track"><span class="bar-fill" style="width:28%"></span></span><span class="bar-val">$3,657</span></div>
+  </div>
+  <p class="muted" style="font-size:13px">* 2026 is Jan–May only (annualizes to ~$8.8K — i.e., you're trending back up after a calmer 2024). After the 2016–17 build-out, you settled into a <b>$5–8K/yr</b> Amazon habit. That steady-state band is the real target, not the one-time spike.</p>
+</section>
+
+<section>
+  <h2>Where the money actually goes</h2>
+  <p>Sorted by category. "Other/Misc" is a catch-all of small household items — and it being your single biggest bucket is itself the tell (see the next section). The named categories show your real spend personality: <b>tech, home, and hobbies</b>.</p>
+  <div class="card">
+    <div class="bar-row"><span class="bar-label">Other/Misc *</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">$33,950</span></div>
+    <div class="bar-row"><span class="bar-label">Electronics</span><span class="bar-track"><span class="bar-fill" style="width:84%"></span></span><span class="bar-val">$28,571</span></div>
+    <div class="bar-row"><span class="bar-label">Home/Kitchen</span><span class="bar-track"><span class="bar-fill" style="width:37%"></span></span><span class="bar-val">$12,550</span></div>
+    <div class="bar-row"><span class="bar-label">Fitness/Outdoor</span><span class="bar-track"><span class="bar-fill" style="width:11%"></span></span><span class="bar-val">$3,871</span></div>
+    <div class="bar-row"><span class="bar-label">Grocery/Consum.</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">$3,313</span></div>
+    <div class="bar-row"><span class="bar-label">Firearms/Optics</span><span class="bar-track"><span class="bar-fill" style="width:9%"></span></span><span class="bar-val">$3,054</span></div>
+    <div class="bar-row"><span class="bar-label">Health/Supps</span><span class="bar-track"><span class="bar-fill" style="width:7%"></span></span><span class="bar-val">$2,267</span></div>
+    <div class="bar-row"><span class="bar-label">Tools/Home Imp.</span><span class="bar-track"><span class="bar-fill" style="width:6%"></span></span><span class="bar-val">$2,119</span></div>
+    <div class="bar-row"><span class="bar-label">Grooming</span><span class="bar-track"><span class="bar-fill" style="width:5%"></span></span><span class="bar-val">$1,541</span></div>
+    <div class="bar-row"><span class="bar-label">Auto/Car</span><span class="bar-track"><span class="bar-fill" style="width:4%"></span></span><span class="bar-val">$1,379</span></div>
+  </div>
+  <p class="muted" style="font-size:13px">* Category labels are inferred from product names; "Other/Misc" (1,368 items) is mostly small household goods, accessories, and one-offs too varied to bucket — which is exactly where drift hides.</p>
+  <p>In the <b>last ~2.5 years (2024–26)</b> you've spent <b>$16,890</b> on Amazon. Electronics ($4.9K) and Home/Kitchen ($2.9K) still lead — so the pattern hasn't changed, just cooled. You're still a tech-and-home buyer; the question is how much of the rest is intentional.</p>
+</section>
+
+<section>
+  <h2>The real leak: the trickle, not the splurge</h2>
+  <p>This is where I'd focus you. Every single year, <b>55–72% of your orders are under $25</b> — and they quietly add up to a quarter or more of your annual spend. These are the purchases you won't remember making. They feel like nothing in the moment; they're <b>~$2,000 a year</b> in aggregate.</p>
+  <div class="grid">
+    <div class="stat"><div class="n">$2,433</div><div class="l">sub-$25 buys in 2023 (36% of the year's spend)</div></div>
+    <div class="stat"><div class="n">$2,161</div><div class="l">sub-$25 buys in 2025 (158 items)</div></div>
+    <div class="stat"><div class="n">~60%</div><div class="l">of all orders are under $25, every year</div></div>
+  </div>
+  <p style="margin-top:16px">And a few <b>recurring habits</b> ride along inside that trickle. Some are genuinely smart; some are convenience you're paying a premium for:</p>
+  <table class="tbl">
+    <tr><th>Recurring buy</th><th class="r">Times</th><th class="r">Spent</th><th>Read</th></tr>
+    <tr><td>Jocko GO energy drinks (2 variants)</td><td class="r">18×</td><td class="r">~$600</td><td class="warn">Consumable habit — bulk or cut</td></tr>
+    <tr><td>Whole Foods prepared meals (scallopini, empanadas, tikka)</td><td class="r">30+×</td><td class="r">~$350</td><td class="warn">Convenience markup — cook instead</td></tr>
+    <tr><td>Neutonic nootropic powder</td><td class="r">5×</td><td class="r">$157</td><td class="warn">Optional consumable</td></tr>
+    <tr><td>Baseus USB-C cables</td><td class="r">5×</td><td class="r">$70</td><td class="bad">Rebuying the same thing = drift</td></tr>
+    <tr><td>Mann oil + air filters (DIY car)</td><td class="r">10×</td><td class="r">$114</td><td class="good">Smart — saves shop labor</td></tr>
+    <tr><td>Grill mats, grout cleaner, sandals (rebuys)</td><td class="r">16×</td><td class="r">~$470</td><td class="warn">Mixed — some impulse rebuys</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Waste vs. ROI — the ledger</h2>
+  <p>Not all spending is equal. Here's how I'd split your patterns into "money well spent" and "money worth questioning." The goal isn't to kill the left column — it's to be honest about the right one.</p>
+  <div class="two">
+    <div class="box keep">
+      <div class="h">✓ Earning their keep</div>
+      <ul>
+        <li><b>DIY car maintenance</b> <span>— oil/air filters; each change you skip the shop's labor markup</span></li>
+        <li><b>Durable tools</b> <span>— Milwaukee drill, mower, trimmer; bought once, used for years</span></li>
+        <li><b>Daily-use anchors</b> <span>— mattress, monitor/desk, Garmin, headphones</span></li>
+        <li><b>PC components</b> <span>— upgrades that extend hardware life vs. buying whole new machines</span></li>
+      </ul>
+    </div>
+    <div class="box cut">
+      <div class="h">⚠ Worth questioning</div>
+      <ul>
+        <li><b>Gadget churn</b> <span>— 3 phones/tablets in one year, repeat GPU upgrades; steep diminishing returns</span></li>
+        <li><b>Prepared food via Amazon</b> <span>— you're paying a convenience premium on groceries</span></li>
+        <li><b>Energy drinks / nootropics</b> <span>— ~$750+ of recurring consumables bought at retail trickle prices</span></li>
+        <li><b>The sub-$25 trickle</b> <span>— ~$2K/yr of low-memorability impulse buys</span></li>
+        <li><b>Duplicate rebuys</b> <span>— cables, sandals, cleaners bought again because the first got lost/forgotten</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The bigger picture: Amazon + food delivery together</h2>
+  <p>Amazon is only one tap. The other one I can see is <b>food delivery</b> — and combined, these two <b>controllable, discretionary</b> channels are where your "save more" goal will actually be won or lost:</p>
+  <table class="tbl">
+    <tr><th>Year</th><th class="r">Amazon</th><th class="r">Food delivery</th><th class="r">Combined</th></tr>
+    <tr><td>2024</td><td class="r">$5,034</td><td class="r">$5,475</td><td class="r"><b>$10,509</b></td></tr>
+    <tr><td>2025</td><td class="r">$8,199</td><td class="r">$1,457</td><td class="r"><b>$9,656</b></td></tr>
+    <tr><td>2026 (Jan–May)</td><td class="r">$3,657</td><td class="r">$1,519</td><td class="r"><b>$5,176</b></td></tr>
+  </table>
+  <div class="callout"><b>The encouraging part:</b> you already proved you can do this. Food delivery dropped from <b>$5,475 in 2024 to $1,457 in 2025</b> — a ~$4K swing, the single biggest discretionary cut in your data. The job now is to (a) hold that delivery discipline and (b) apply the same intent to the Amazon trickle, which crept <i>up</i> in 2025.</p></div>
+</section>
+
+<section>
+  <h2>The plan — how to spend less without feeling poorer</h2>
+  <div class="steps">
+    <div class="step"><div class="num"></div><div><div class="t">Add friction to the trickle</div><div class="d">Turn off 1-Click. Use a 48-hour cart rule for anything non-essential under $50 — if you still want it in two days, buy it. Batch into one weekly order instead of daily taps. This alone targets the ~$2K/yr drift.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Move consumables off the trickle</div><div class="d">Energy drinks, supplements, filters, household staples → buy in bulk (Costco / Subscribe &amp; Save at the real discount), not as repeated full-price small orders. Cancel any Subscribe &amp; Save you don't actively use.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Pre-budget your one big toy a year</div><div class="d">You reliably buy ~1 large gear item annually (it's practically a tradition). Don't fight it — <b>budget it</b>. Pick a number (say $700), name what it's for, and let everything else be a no. Intentional capex isn't drift.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Hold the delivery win</div><div class="d">You cut delivery ~$4K from 2024→2025. Keep it there. Your <a href="food-delivery-report.html">flavor profile</a> shows your go-to orders — batch-cook the chicken/Mexican staples you already love and reserve delivery for genuine convenience, not default.</div></div></div>
+    <div class="step"><div class="num"></div><div><div class="t">Automate the difference into savings</div><div class="d">Don't "try to save what's left." The moment you cut a category, sweep that exact amount into your Wealthfront/savings on payday so it never sits in checking. Out of sight, out of spend.</div></div></div>
+  </div>
+  <div class="callout"><b>Realistic 2026 target (G2 — save more):</b> trim the sub-$25 drift (~$2,000) + bulk-buy the recurring consumables (~$500) + hold delivery at 2025 levels (vs. 2024 that's ~$4,000 already banked). Even ignoring the delivery win, <b>~$2,500/yr is redirectable to savings</b> from the Amazon side alone — without touching anything you'd actually miss.</p></div>
+</section>
+
+<section>
+  <h2>One honest caveat</h2>
+  <div class="note">
+    This analysis sees <b>Amazon + food delivery only</b> — real revealed-preference signal, but a slice. The biggest "save more" levers for most people live in data I can't see here: <b>rent/mortgage, car payment &amp; insurance, restaurants &amp; bars (non-delivery), subscriptions, and travel.</b> If you want the true money-manager picture, the highest-value next step is a <b>bank + credit-card statement analysis</b> — that's where the recurring subscriptions you've forgotten and the dining-out total actually live. Say the word and I'll set that up the same way (you'd just export CSVs from your bank/card; I synthesize patterns, never store raw line items).
+  </div>
+</section>
+
+<footer>Built from your Amazon Order History (2,990 purchases) + DoorDash/Uber Eats exports · figures re-derived from raw data · 2026-06-06</footer>
+
+</div></body></html>
