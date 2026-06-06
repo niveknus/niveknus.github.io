@@ -130,7 +130,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">LLM-maintained personal knowledge base. ~60 wiki pages (10 hubs), ~549 sources, semantic search manifest, GitHub MCP access from all platforms.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-06-05</span></div>
+    <div class="meta-item">Last session <span>2026-06-06</span></div>
     <div class="meta-item">Session 12 · 2026-05-26</div>
     
   </div>
@@ -149,6 +149,32 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-06-06</span>
+          <span class="sprint-title">Google Takeout Ingest</span>
+          <span class="sprint-tag">session 22</span>
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Ingested a 5-source Google Takeout export via the synthesis-on-archive model. Four report-builders ran as parallel sub-agents (Pay, Home, Timeline, YouTube) off a shared verified-numbers brief; the...</li>
+            
+            <li>Transcribed all 484 Fi voicemails (2016–2026, ~2.7 hrs) locally with `faster-whisper` (tiny.en, CPU) — reusable pattern, no audio left the machine. Transcript saved at `reports/google-fi-voicemail-...</li>
+            
+            <li>6 wiki entries (Kevin-approved, no new pages): `budgeting-and-finances` (20→21), `home-maintenance` (21→22), `domestic-us-trips` (23→24), `media-diet` (2→3), `career-and-performance` (19→20), `pets...</li>
+            
+            <li>5 shareable HTML reports in `reports/` (Pay, Home, Timeline, YouTube, Fi), all dated 2026-06-06, in the `report-style` house style.</li>
+            
+            <li>Privacy: sensitive voicemails (a 2017 brother-condolence call; pet-loss messages) deliberately kept out of every shareable report; `family` page left untouched per Kevin. Source folder archived to ...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-06-05</span>
           <span class="sprint-title">Personal Data Exports Ingest</span>
@@ -188,30 +214,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
             <li>Executed the entire Fix-Now tier (10 SRs) in the same session: SR-1 Stage A crawler block (site-wide `robots.txt` + `noindex` on all dashboards), SR-4 (snapshot_end hard-fail), SR-5 (weekly `plans/...</li>
             
             <li>Verified the 3 trust boundaries: `second-brain-shared` confirmed private; Routine env vars confirmed visible to Kevin only → residual secret risk is low. Fix-Soon/Consider SRs (test suite, digest c...</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-31</span>
-          <span class="sprint-title">Netflix Viewing History Ingest</span>
-          <span class="sprint-tag">session 17</span>
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Analyzed Kevin's full Netflix export (844 plays, May 2020–Mar 2026): parsed into 45 series (591 episode-plays) + ~250 films via a colon/keyword title parser. Surfaced the heist/spy/crime taste prof...</li>
-            
-            <li>Built two `report-style` HTML reports at vault root: `netflix-viewing-report.html` (shareable) and `netflix-viewing-report-PRIVATE.html` (adds a relationship-lens sweep — kept local-only, deliberat...</li>
-            
-            <li>Ingested the shareable analysis as a dated taste-profile entry on podcasts-and-media (13→14 sources); bumped miscellaneous hub + index counts; logged to `wiki/log/2026-05.md`; archived source `raw-...</li>
-            
-            <li>Note: workspace shell returned garbled/duplicated output mid-session; every figure was re-derived from a structured JSON file and cross-checked (by-year/weekday/month each sum to 844). An early dra...</li>
             
           </ul>
         </div>
