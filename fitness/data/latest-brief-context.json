@@ -1,15 +1,15 @@
 {
-  "date_label": "Saturday, Jun 6",
+  "date_label": "Sunday, Jun 7",
   "recovery_status": "watch",
   "today": {
-    "time": "8:00 AM",
-    "session": "Lake Baldwin Walk/Jog",
-    "subtitle": "60-min walk or jog around Baldwin Park",
+    "time": "—",
+    "session": "Rest",
+    "subtitle": "Full rest day",
     "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "Sleep data not yet synced. RHR 68 (7d avg 66) is acceptable; ACWR 0.3 shows low training load this week. No adjustment triggered.",
-    "expected_activity_types": ["walking"],
-    "expected_duration_minutes": 60
+    "adjustment_label": "Rest day — no adjustments",
+    "why": "Sunday default rest day. Sleep not yet synced; last-known HRV (Jun 6, 39 ms) is 8% above the 36 ms baseline.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE avg (2,391 cal/d) pulled down by today's partial read (729 cal as of 8:30 AM). 6-day complete avg ~2,668 cal/d → truer ceiling ~5,176 cal/wk (~1.5 lb/wk).",
+  "cut_note": "*7d TDEE avg (2,308 cal/d) pulled down by today's partial read. 6-day complete avg ~2,635 cal/d → truer ceiling ~1.4 lb/wk.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
