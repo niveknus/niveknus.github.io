@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-07T01:34:25.382243+00:00",
+  "generated_at": "2026-06-07T12:33:35.321516+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 9,
-    "workout_days": 7,
+    "total_entries": 10,
+    "workout_days": 8,
     "done_days": 5,
-    "adherence_rate_pct": 71,
+    "adherence_rate_pct": 62,
     "rolling_14": {
-      "workout_days": 7,
+      "workout_days": 8,
       "done_days": 5,
-      "adherence_rate_pct": 71
+      "adherence_rate_pct": 62
     },
     "reset_date": "2026-05-23"
   },
@@ -101,6 +101,16 @@
       "emoji": "✅",
       "prescribed": "Active recovery walk · expected types `[walking, indoor_walking]` · ~25 min",
       "actual": "Orange County Walking · type `walking` · 29 min · 176 cal · avg HR 116 · started 19:47 ET",
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-06",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin Walk/Jog · expected types `[walking]` · ~60 min",
+      "actual": null,
       "note": "",
       "data_gap": false
     }

@@ -50,6 +50,12 @@
       "weight_lbs": 200.0,
       "body_fat_pct": 26.8,
       "muscle_mass_lbs": 139.2
+    },
+    {
+      "date": "2026-06-06",
+      "weight_lbs": 199.9,
+      "body_fat_pct": 26.6,
+      "muscle_mass_lbs": 139.5
     }
   ]
 }
