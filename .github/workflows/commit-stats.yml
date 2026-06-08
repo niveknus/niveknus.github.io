@@ -10,6 +10,11 @@ on:
 permissions:
   contents: write
 
+# Serialize runs so two concurrent runs don't race each other on push.
+concurrency:
+  group: commit-stats
+  cancel-in-progress: false
+
 jobs:
   build-stats:
     runs-on: ubuntu-latest
@@ -31,4 +36,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add commit-data.json
-          git diff --staged --quiet || (git commit -m "chore: update commit stats [skip ci]" && git push)
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update commit stats [skip ci]"
+          # Retry against a moving main: rebase our single commit onto the
+          # latest remote and push, in case another push landed meanwhile.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — rebasing on origin/main and retrying."
+            git pull --rebase origin main
+          done
+          echo "::error::Failed to push commit stats after 5 attempts."
+          exit 1
