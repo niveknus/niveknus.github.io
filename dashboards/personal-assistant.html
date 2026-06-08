@@ -130,7 +130,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Build Claude into a persistent personal and executive assistant that actively manages Kevin's tasks, calendar, and reminders. The goal is a Claude-powered system that proactively keeps Kevin organized rather than requiring him to manually track everything.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-05-28</span></div>
+    <div class="meta-item">Last session <span>2026-06-07</span></div>
     <div class="meta-item">Sprint 3 · 2026-05-25</div>
     
   </div>
@@ -149,6 +149,30 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-06-07</span>
+          <span class="sprint-title">Concierge Evening Sweep + Central Secrets</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Concierge evening quick-task sweep built & live. Part 2 of the concierge feature (part 1 = mid-conversation capture, tested earlier today). A Mac mini `launchd` job at 8 PM ET (`scripts/concierge/`...</li>
+            
+            <li>Decisions locked: empty case = silent; window = due-today and overdue. Quick signal = `@quick` label primary + optional LLM-estimate fallback (gated on `ANTHROPIC_API_KEY`).</li>
+            
+            <li>Central secrets convention established — `~/second-brain-scripts/secrets.env` is now the single token store for all mini jobs (chmod 600, outside the vault). Concierge is the first consumer; templa...</li>
+            
+            <li>Two-way messaging backlog item broadened into a proper *Two-Way Messaging Loop (Telegram ⇄ Claude)* keystone — reply to any outbound (adherence run, morning brief replan, concierge nudge, booking) ...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date">2026-05-28</span>
           <span class="sprint-title">Crissy Coordination Layer, experimental</span>
@@ -194,38 +218,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       </details>
     </div>
     
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-24</span>
-          <span class="sprint-title">Morning Brief v2: Email Intelligence</span>
-          
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Designed enhanced morning briefing routine (v2) integrating email scanning into the existing 7:30 AM cloud routine</li>
-            
-            <li>Added package/delivery tracking: two Gmail searches (`category:purchases` + shipping subject lines), auto-classifies as Out for Delivery / In Transit / Delivered / Ordered</li>
-            
-            <li>Added action-needed email scan: surfaces unread important emails needing a decision or reply</li>
-            
-            <li>Fixed Todoist undated-inbox task pull — routine now pulls both date-filtered tasks AND all undated Inbox tasks separately, then merges</li>
-            
-            <li>Added 7-day upcoming deadline flagging for approaching due dates</li>
-            
-            <li>Added project cross-referencing: deliveries matched against Second Brain wiki via `search-manifest.json` and project tracker</li>
-            
-            <li>Routine is read-only by design — scans and reports only, never modifies Todoist or Gmail</li>
-            
-            <li>New prompt saved at `Projects/Personal Assistant/morning-brief-routine-v2.md` — Kevin pastes into claude.ai Routine</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
   </div>
 </div>
 
@@ -257,8 +249,8 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="next-item">
       <span class="next-priority p3">P3</span>
       <div>
-        <div class="next-title">Interactive Telegram scheduling</div>
-        <div class="next-desc">(enhancement idea #5) — two-way Telegram → Claude scheduling. Depends on Mac Mini (Home Server) as always-on host + Claude Code Channels support.</div>
+        <div class="next-title">Two-Way Messaging Loop (Telegram ⇄ Claude)</div>
+        <div class="next-desc">parked in backlog (broadened 2026-06-07 from the old "interactive scheduling" idea). Reply to any outbound from the phone and have Claude act + rep...</div>
       </div>
     </div>
     
