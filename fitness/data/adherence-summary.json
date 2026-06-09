@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-09T01:33:56.144866+00:00",
+  "generated_at": "2026-06-09T12:34:33.635955+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 11,
+    "total_entries": 12,
     "workout_days": 8,
     "done_days": 5,
     "adherence_rate_pct": 62,
@@ -120,6 +120,16 @@
       "state": "rest-adhered",
       "emoji": "🧘",
       "prescribed": "Rest · expected types `` · ~0 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-08",
+      "weekday": "Monday",
+      "state": "rest-adhered",
+      "emoji": "🧘",
+      "prescribed": "Rest — session cancelled (work conflict) · expected types `` · ~0 min",
       "actual": null,
       "note": "",
       "data_gap": false
