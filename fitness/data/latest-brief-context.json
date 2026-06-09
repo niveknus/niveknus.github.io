@@ -2,14 +2,14 @@
   "date_label": "Monday, Jun 8",
   "recovery_status": "good",
   "today": {
-    "time": "6:15 PM",
-    "session": "Neighborhood Walk/Jog",
-    "subtitle": "2–3 mi Waterford Lakes loop",
-    "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "HRV 14% above baseline, RHR 4 bpm below avg, body battery 82. Training readiness 65 (moderate) flags weekly HRV variability, not today's number.",
-    "expected_activity_types": ["running", "walking"],
-    "expected_duration_minutes": 45
+    "time": "—",
+    "session": "Rest — session cancelled (work conflict)",
+    "subtitle": "Walk/jog cancelled by Kevin (work overload); converted to rest. Recovery signals were green — this is a schedule conflict, not a readiness call.",
+    "adjustment_status": "manual-cancel",
+    "adjustment_label": "Cancelled by Kevin — work overload; converted to rest day",
+    "why": "Kevin requested cancellation due to work load on 2026-06-08. Per adjustment-rules.md rebalancing: a dropped walk needs no make-up (recovery beats volume); cardio is still covered by Sat Baldwin + Fri pickleball, and the two lift days (Tue/Thu) are protected.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,7 +17,7 @@
   "week_plan": {
     "monday_date": "2026-06-08",
     "days": [
-      {"label": "Walk/Jog", "type": "walk"},
+      {"label": "Rest (cancelled)", "type": "rest"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
