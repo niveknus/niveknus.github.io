@@ -1,15 +1,15 @@
 {
-  "date_label": "Tuesday, Jun 9",
+  "date_label": "Wednesday, Jun 10",
   "recovery_status": "watch",
   "today": {
-    "time": "—",
-    "session": "Rest — Split A cancelled (work conflict)",
-    "subtitle": "Lift cancelled by Kevin (work overload — 4 property tours, on feet most of the day). Not a recovery call. NEAT was high (~6,500 steps, 674 active kcal) but that's incidental movement, not strength stimulus.",
-    "adjustment_status": "manual-cancel",
-    "adjustment_label": "Cancelled by Kevin — work overload; converted to rest day",
-    "why": "Kevin requested cancellation on 2026-06-09 due to a heavy work day. No make-up scheduled per adjustment-rules.md (recovery beats volume; strength is protected by guarding Thu Split B as the week's lift). HRV UNBALANCED all week + recovery_status 'watch' reinforce holding rather than cramming a make-up lift.",
-    "expected_activity_types": [],
-    "expected_duration_minutes": 0
+    "time": "6:15 PM",
+    "session": "New Dimensions class — reduced effort",
+    "subtitle": "Full-body barefoot class. HRV 14% below baseline — listen to body, back off max-effort segments.",
+    "adjustment_status": "intensity_reduced",
+    "adjustment_label": "HRV 14% below baseline — attend class at reduced effort",
+    "why": "HRV 31 ms is 14% below the 7d baseline (36 ms); Garmin status UNBALANCED all week. Class is still appropriate (body battery 39, readiness 69 moderate), but don't push max exertion.",
+    "expected_activity_types": ["fitness_equipment", "cardio", "strength_training"],
+    "expected_duration_minutes": 60
   },
   "cut": {
     "start_weight_lbs": 200
@@ -18,7 +18,7 @@
     "monday_date": "2026-06-08",
     "days": [
       {"label": "Rest", "type": "rest"},
-      {"label": "Rest (cancelled)", "type": "rest"},
+      {"label": "Rest", "type": "rest"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,577 cal → ~1.3 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read (800 cal). 6-day complete avg ~2,635 cal → ~1.4 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
