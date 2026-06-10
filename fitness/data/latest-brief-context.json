@@ -2,14 +2,14 @@
   "date_label": "Tuesday, Jun 9",
   "recovery_status": "watch",
   "today": {
-    "time": "6:00 PM",
-    "session": "Split A — Arms + Shoulders",
-    "subtitle": "Planet Fitness",
-    "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "No adjustment thresholds fired — sleep 7h+, HRV 3% below 7d avg, RHR within 1 bpm of baseline. HRV has been UNBALANCED all week; keep to 3–4 sets × 8–12 reps.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "time": "—",
+    "session": "Rest — Split A cancelled (work conflict)",
+    "subtitle": "Lift cancelled by Kevin (work overload — 4 property tours, on feet most of the day). Not a recovery call. NEAT was high (~6,500 steps, 674 active kcal) but that's incidental movement, not strength stimulus.",
+    "adjustment_status": "manual-cancel",
+    "adjustment_label": "Cancelled by Kevin — work overload; converted to rest day",
+    "why": "Kevin requested cancellation on 2026-06-09 due to a heavy work day. No make-up scheduled per adjustment-rules.md (recovery beats volume; strength is protected by guarding Thu Split B as the week's lift). HRV UNBALANCED all week + recovery_status 'watch' reinforce holding rather than cramming a make-up lift.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -18,7 +18,7 @@
     "monday_date": "2026-06-08",
     "days": [
       {"label": "Rest", "type": "rest"},
-      {"label": "Split A", "type": "lift"},
+      {"label": "Rest (cancelled)", "type": "rest"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
