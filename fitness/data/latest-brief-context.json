@@ -2,14 +2,14 @@
   "date_label": "Wednesday, Jun 10",
   "recovery_status": "watch",
   "today": {
-    "time": "6:15 PM",
-    "session": "New Dimensions class — reduced effort",
-    "subtitle": "Full-body barefoot class. HRV 14% below baseline — listen to body, back off max-effort segments.",
-    "adjustment_status": "intensity_reduced",
-    "adjustment_label": "HRV 14% below baseline — attend class at reduced effort",
-    "why": "HRV 31 ms is 14% below the 7d baseline (36 ms); Garmin status UNBALANCED all week. Class is still appropriate (body battery 39, readiness 69 moderate), but don't push max exertion.",
-    "expected_activity_types": ["fitness_equipment", "cardio", "strength_training"],
-    "expected_duration_minutes": 60
+    "time": "6:45 PM",
+    "session": "Home bodyweight + core",
+    "subtitle": "ND class swapped out — Kevin working late, can't make the 6:00 fixed-start class. ~20–30 min pushups/abs/core at home. Easy effort.",
+    "adjustment_status": "swapped",
+    "adjustment_label": "ND class → home bodyweight + core (schedule conflict + low recovery)",
+    "why": "Kevin can't make ND's fixed 6:00 PM start (working until ~6:30); ND now requires day-before commitment (see fitness-profile.md). Low recovery (HRV 14% below baseline, body battery 39, UNBALANCED all week) makes an easy home session the right call anyway. Thursday's Split B remains the week's protected lift.",
+    "expected_activity_types": ["strength_training", "bodyweight"],
+    "expected_duration_minutes": 25
   },
   "cut": {
     "start_weight_lbs": 200
@@ -19,7 +19,7 @@
     "days": [
       {"label": "Rest", "type": "rest"},
       {"label": "Rest", "type": "rest"},
-      {"label": "ND class", "type": "class"},
+      {"label": "Home core", "type": "bodyweight"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
       {"label": "Baldwin", "type": "walk"},

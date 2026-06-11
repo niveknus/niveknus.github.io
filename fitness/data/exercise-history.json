@@ -1081,6 +1081,15 @@
         "est_1rm_lb": 140.0,
         "volume_lb": 1200.0,
         "sets": 1
+      },
+      {
+        "date": "2026-06-10",
+        "activity_id": "23206161433",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 2
       }
     ],
     "ROPE_HANDLE_CABLE_ROW": [
@@ -1605,6 +1614,15 @@
         "est_1rm_lb": 177.5,
         "volume_lb": 9427.9,
         "sets": 10
+      },
+      {
+        "date": "2026-06-10",
+        "activity_id": "23206161433",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
       }
     ],
     "WIDE_GRIP_LAT_PULLDOWN": [
