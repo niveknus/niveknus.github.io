@@ -1,15 +1,15 @@
 {
-  "date_label": "Wednesday, Jun 10",
+  "date_label": "Thursday, Jun 11",
   "recovery_status": "watch",
   "today": {
-    "time": "6:45 PM",
-    "session": "Home bodyweight + core",
-    "subtitle": "ND class swapped out — Kevin working late, can't make the 6:00 fixed-start class. ~20–30 min pushups/abs/core at home. Easy effort.",
-    "adjustment_status": "swapped",
-    "adjustment_label": "ND class → home bodyweight + core (schedule conflict + low recovery)",
-    "why": "Kevin can't make ND's fixed 6:00 PM start (working until ~6:30); ND now requires day-before commitment (see fitness-profile.md). Low recovery (HRV 14% below baseline, body battery 39, UNBALANCED all week) makes an easy home session the right call anyway. Thursday's Split B remains the week's protected lift.",
-    "expected_activity_types": ["strength_training", "bodyweight"],
-    "expected_duration_minutes": 25
+    "time": "6:00 PM",
+    "session": "Split B — Chest + Back (reduced intensity)",
+    "subtitle": "3 sets × 8–12 reps. Drop last set across the board; stay in the 10–12 rep range.",
+    "adjustment_status": "intensity_reduced",
+    "adjustment_label": "Split B 3×8–12 (−1 set, reduced intensity)",
+    "why": "Last available HRV (Jun 10: 31 ms) is −15% vs 7d baseline (37 ms) — borderline rule 4. Sync your watch before heading out; if today reads below 30 ms, swap to 25-min walk.",
+    "expected_activity_types": ["strength_training", "fitness_equipment"],
+    "expected_duration_minutes": 50
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read (800 cal). 6-day complete avg ~2,635 cal → ~1.4 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,638 cal → ~1.4 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
