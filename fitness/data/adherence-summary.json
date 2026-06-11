@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-11T01:34:34.647769+00:00",
+  "generated_at": "2026-06-11T12:37:33.533640+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 12,
-    "workout_days": 8,
-    "done_days": 5,
-    "adherence_rate_pct": 62,
+    "total_entries": 13,
+    "workout_days": 9,
+    "done_days": 6,
+    "adherence_rate_pct": 67,
     "rolling_14": {
-      "workout_days": 8,
-      "done_days": 5,
-      "adherence_rate_pct": 62
+      "workout_days": 9,
+      "done_days": 6,
+      "adherence_rate_pct": 67
     },
     "reset_date": "2026-05-23"
   },
@@ -131,6 +131,16 @@
       "emoji": "🧘",
       "prescribed": "Rest — session cancelled (work conflict) · expected types `` · ~0 min",
       "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-10",
+      "weekday": "Wednesday",
+      "state": "done-as-prescribed",
+      "emoji": "✅",
+      "prescribed": "Home bodyweight + core · expected types `[strength_training, bodyweight]` · ~25 min",
+      "actual": "Strength · type `strength_training` · 23.4 min · 105 cal · avg HR 96 · started 19:44 ET",
       "note": "",
       "data_gap": false
     }

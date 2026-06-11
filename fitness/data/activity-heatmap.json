@@ -1,8 +1,8 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-06-11T01:34:34.702051+00:00",
+  "generated_at": "2026-06-11T12:37:33.583843+00:00",
   "window_start": "2025-06-01",
-  "window_end": "2026-06-10",
+  "window_end": "2026-06-11",
   "weeks": 53,
   "stats": {
     "active_days_365": 147,
@@ -3010,6 +3010,14 @@
       "calories": 105,
       "dominant_type": "strength_training",
       "level": 1
+    },
+    {
+      "date": "2026-06-11",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     }
   ]
 }
