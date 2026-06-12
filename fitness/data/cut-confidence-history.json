@@ -4,13 +4,13 @@
   "entries": [
     {
       "date": "2026-06-11",
-      "score": 50,
-      "band": "steady",
+      "score": 47,
+      "band": "concern",
       "trend": "flat",
       "components": {
         "adherence": 67.0,
-        "recovery": 36.3,
-        "weight_trajectory": 40.0,
+        "recovery": 47.2,
+        "weight_trajectory": 20.0,
         "deficit": null
       },
       "weights": {
