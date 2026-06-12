@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-12T01:33:38.433642+00:00",
+  "generated_at": "2026-06-12T12:36:33.571548+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 13,
-    "workout_days": 9,
+    "total_entries": 14,
+    "workout_days": 10,
     "done_days": 6,
-    "adherence_rate_pct": 67,
+    "adherence_rate_pct": 60,
     "rolling_14": {
-      "workout_days": 9,
+      "workout_days": 10,
       "done_days": 6,
-      "adherence_rate_pct": 67
+      "adherence_rate_pct": 60
     },
     "reset_date": "2026-05-23"
   },
@@ -141,6 +141,16 @@
       "emoji": "✅",
       "prescribed": "Home bodyweight + core · expected types `[strength_training, bodyweight]` · ~25 min",
       "actual": "Strength · type `strength_training` · 23.4 min · 105 cal · avg HR 96 · started 19:44 ET",
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-11",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Split B — Chest + Back (reduced intensity) · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
       "note": "",
       "data_gap": false
     }

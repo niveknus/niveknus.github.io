@@ -1,15 +1,15 @@
 {
   "schema": "cut-confidence.v1",
-  "updated": "2026-06-11",
+  "updated": "2026-06-12",
   "entries": [
     {
-      "date": "2026-06-11",
-      "score": 47,
+      "date": "2026-06-12",
+      "score": 45,
       "band": "concern",
       "trend": "flat",
       "components": {
-        "adherence": 67.0,
-        "recovery": 47.2,
+        "adherence": 60.0,
+        "recovery": 49.9,
         "weight_trajectory": 20.0,
         "deficit": null
       },
