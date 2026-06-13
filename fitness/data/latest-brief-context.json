@@ -1,15 +1,15 @@
 {
-  "date_label": "Friday, Jun 12",
-  "recovery_status": "watch",
+  "date_label": "Saturday, Jun 13",
+  "recovery_status": "good",
   "today": {
     "time": "8:00 AM",
-    "session": "Pickleball",
-    "subtitle": "2-hour recreational play · 8:00–10:30 AM",
+    "session": "Lake Baldwin Walk/Jog",
+    "subtitle": "Easy aerobic — conversational pace",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "⚠️ Court runs to ~10:30 AM — interview panel at 10:00 AM is a conflict; exit by 9:45 or confirm you can dial in from courts. HRV UNBALANCED all week (35 ms, ↓4% baseline), readiness 74 moderate — fine to play.",
-    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
-    "expected_duration_minutes": 120
+    "why": "All signals green. Sleep 7h 29m, HRV 7% above baseline, BB 67. Training status shows aerobic shortage — the Baldwin walk/jog targets it directly.",
+    "expected_activity_types": ["walking", "running"],
+    "expected_duration_minutes": 60
   },
   "cut": {
     "start_weight_lbs": 200
@@ -19,14 +19,14 @@
     "days": [
       {"label": "Rest", "type": "rest"},
       {"label": "Rest", "type": "rest"},
-      {"label": "Home core", "type": "bodyweight"},
+      {"label": "Home core", "type": "recovery"},
       {"label": "Split B", "type": "lift"},
-      {"label": "Pkl", "type": "pickleball"},
+      {"label": "Home core", "type": "recovery"},
       {"label": "Baldwin", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read (785 cal at 8:30 AM). 6-day complete avg ~2,675 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,652 cal → ~1.45 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
