@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-06-13T01:33:52.916479+00:00",
-  "window_start": "2025-06-01",
-  "window_end": "2026-06-12",
+  "generated_at": "2026-06-13T12:35:23.398159+00:00",
+  "window_start": "2025-06-08",
+  "window_end": "2026-06-13",
   "weeks": 53,
   "stats": {
-    "active_days_365": 147,
-    "total_hours_365": 204.1,
+    "active_days_365": 146,
+    "total_hours_365": 201.5,
     "current_streak_days": 0,
-    "active_days_window": 152
+    "active_days_window": 149
   },
   "days": [
-    {
-      "date": "2025-06-01",
-      "count": 1,
-      "minutes": 49.0,
-      "calories": 501,
-      "dominant_type": "running",
-      "level": 2
-    },
-    {
-      "date": "2025-06-02",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-03",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-04",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-05",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-06",
-      "count": 1,
-      "minutes": 25.4,
-      "calories": 267,
-      "dominant_type": "running",
-      "level": 1
-    },
-    {
-      "date": "2025-06-07",
-      "count": 3,
-      "minutes": 102.0,
-      "calories": 1092,
-      "dominant_type": "running",
-      "level": 4
-    },
     {
       "date": "2025-06-08",
       "count": 1,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-06-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-06-13",
       "count": 0,
       "minutes": 0,
       "calories": 0,
