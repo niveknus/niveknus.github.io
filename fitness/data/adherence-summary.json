@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-14T01:34:17.237317+00:00",
+  "generated_at": "2026-06-14T12:35:50.265429+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 15,
-    "workout_days": 11,
+    "total_entries": 16,
+    "workout_days": 12,
     "done_days": 6,
-    "adherence_rate_pct": 55,
+    "adherence_rate_pct": 50,
     "rolling_14": {
-      "workout_days": 10,
+      "workout_days": 11,
       "done_days": 6,
-      "adherence_rate_pct": 60
+      "adherence_rate_pct": 55
     },
     "reset_date": "2026-05-23"
   },
@@ -160,6 +160,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-13",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin Walk/Jog · expected types `[walking, running]` · ~60 min",
       "actual": null,
       "note": "",
       "data_gap": false
