@@ -1,7 +1,7 @@
 {
   "digest_version": 4,
   "source_export_version": 2,
-  "source_fetched_at_local": "2026-06-14T12:35:49",
+  "source_fetched_at_local": "2026-06-14T21:05:29",
   "calendar": {
     "snapshot_end": "2026-06-14",
     "window_start": "2026-06-08",
@@ -37,33 +37,33 @@
       "date": "2026-06-14",
       "resting_heart_rate": 60,
       "resting_hr_7d_avg": 65,
-      "max_heart_rate": 95,
-      "max_avg_heart_rate": 91,
+      "max_heart_rate": 169,
+      "max_avg_heart_rate": 167,
       "min_heart_rate": 56,
-      "avg_respiration": 16.0
+      "avg_respiration": 17.0
     },
     "body_battery": {
       "date": "2026-06-14",
       "at_wake_time": 75,
       "charged": 64,
-      "drained": 3,
+      "drained": 35,
       "during_sleep": 62,
       "highest_value": 77,
       "lowest_value": 13,
-      "most_recent_value": 74
+      "most_recent_value": 42
     },
     "training_readiness": {
       "date": "2026-06-14",
-      "score": 80,
-      "level": "HIGH",
-      "feedback_long": "HIGH_HRV_UNBALANCED",
-      "feedback_short": "LISTEN_TO_YOUR_BODY",
+      "score": 2,
+      "level": "POOR",
+      "feedback_long": "POOR_HRV_UNBALANCED",
+      "feedback_short": "TIME_TO_SLOW_DOWN",
       "sleep_score_factor_percent": 76,
-      "recovery_time_hours": 1,
+      "recovery_time_hours": 3004,
       "hrv_factor_percent": 68,
       "stress_history_factor_percent": 62,
-      "acwr_factor_percent": 100,
-      "acute_load": 3
+      "acwr_factor_percent": 40,
+      "acute_load": 199
     },
     "training_status": {
       "date": "2026-06-14",
@@ -73,37 +73,37 @@
     },
     "energy": {
       "date": "2026-06-14",
-      "total_calories_burned": 703.0,
-      "bmr_calories": 699.0,
-      "active_calories": 4.0,
-      "wellness_calories": 703.0
+      "total_calories_burned": 1798.0,
+      "bmr_calories": 1016.0,
+      "active_calories": 782.0,
+      "wellness_calories": 1798.0
     },
     "stress": {
       "date": "2026-06-14",
-      "average_level": 16,
-      "max_level": 73,
+      "average_level": 17,
+      "max_level": 96,
       "qualifier": "UNKNOWN",
-      "rest_pct": 87.89,
-      "low_pct": 10.31,
-      "medium_pct": 0.67,
-      "high_pct": 0.0
+      "rest_pct": 60.8,
+      "low_pct": 10.03,
+      "medium_pct": 1.54,
+      "high_pct": 0.31
     },
     "intensity_minutes": {
       "date": "2026-06-14",
-      "moderate_minutes": 0,
-      "vigorous_minutes": 0,
+      "moderate_minutes": 27,
+      "vigorous_minutes": 44,
       "weekly_goal": 150
     },
     "activity": {
       "date": "2026-06-14",
-      "total_steps": 58,
+      "total_steps": 6400,
       "step_goal": 5000,
-      "highly_active_minutes": 2.0,
-      "active_minutes": 0.0,
-      "sedentary_minutes": 24.0,
-      "floors_climbed": 0.0,
+      "highly_active_minutes": 16.0,
+      "active_minutes": 103.0,
+      "sedentary_minutes": 108.0,
+      "floors_climbed": 2.19226,
       "floors_goal": 10,
-      "total_distance_meters": 47
+      "total_distance_meters": 3522
     }
   },
   "rolling_7d": {
@@ -217,15 +217,15 @@
         "hrv_last_night_avg": 42,
         "hrv_status": "UNBALANCED",
         "resting_heart_rate": 60,
-        "total_calories_burned": 703.0,
-        "bmr_calories": 699.0,
-        "active_calories": 4.0,
-        "steps": 58,
-        "stress_avg": 16,
+        "total_calories_burned": 1798.0,
+        "bmr_calories": 1016.0,
+        "active_calories": 782.0,
+        "steps": 6400,
+        "stress_avg": 17,
         "stress_qualifier": "UNKNOWN",
-        "moderate_intensity_minutes": 0,
-        "vigorous_intensity_minutes": 0,
-        "floors_climbed": 0.0
+        "moderate_intensity_minutes": 27,
+        "vigorous_intensity_minutes": 44,
+        "floors_climbed": 2.19226
       }
     ],
     "baselines": {
@@ -233,18 +233,18 @@
       "sleep_score_7d_avg": 77.29,
       "hrv_7d_avg": 37.29,
       "rhr_7d_avg": 64.86,
-      "steps_7d_avg": 4319.86,
-      "total_calories_7d_avg": 2390.57,
-      "active_calories_7d_avg": 354.14,
-      "stress_7d_avg": 39
+      "steps_7d_avg": 5225.86,
+      "total_calories_7d_avg": 2547.0,
+      "active_calories_7d_avg": 465.29,
+      "stress_7d_avg": 39.14
     }
   },
   "training_load": {
     "this_iso_week": {
       "window_start": "2026-06-08",
       "window_end": "2026-06-14",
-      "activity_count": 1,
-      "sum_activity_training_load": 3.8,
+      "activity_count": 3,
+      "sum_activity_training_load": 157.6,
       "ok": true
     },
     "previous_iso_week": {
@@ -256,19 +256,19 @@
     },
     "acwr": {
       "date": "2026-06-14",
-      "acwr_ratio": 0.0,
-      "acwr_percent": 0,
-      "acwr_status": "LOW",
-      "acute_load": 3,
+      "acwr_ratio": 1.9,
+      "acwr_percent": 93,
+      "acwr_status": "HIGH",
+      "acute_load": 199,
       "chronic_load": 100,
       "chronic_load_min": 80.0,
       "chronic_load_max": 150.0
     },
     "training_status": {
       "date": "2026-06-14",
-      "training_status_numeric": 5,
-      "training_status_label": "RECOVERY",
-      "training_status_phrase": "RECOVERY_1"
+      "training_status_numeric": 4,
+      "training_status_label": "MAINTAINING",
+      "training_status_phrase": "MAINTAINING_7"
     }
   },
   "weekly_summaries": {
@@ -423,6 +423,48 @@
     "weeks_to_goal_at_2lb_per_week": 17.2
   },
   "workouts": [
+    {
+      "activity_id": 23246994915,
+      "activity_name": "Sauna",
+      "activity_type": "indoor_cardio",
+      "start_time_local": "2026-06-14 09:46:44",
+      "duration_minutes": 14.2,
+      "calories": 114.0,
+      "average_hr": 122.0,
+      "max_hr": 140.0,
+      "distance_meters": 0.0,
+      "training_load": 11.1,
+      "aerobic_training_effect": 1.7999999523162842,
+      "anaerobic_training_effect": 0.0,
+      "steps": 232,
+      "body_battery_cost": -3,
+      "hr_zone_1_seconds": 30.0,
+      "hr_zone_2_seconds": 0.0,
+      "hr_zone_3_seconds": 0.0,
+      "hr_zone_4_seconds": 0.0,
+      "hr_zone_5_seconds": 0.0
+    },
+    {
+      "activity_id": 23246689001,
+      "activity_name": "Pickleball",
+      "activity_type": "pickleball",
+      "start_time_local": "2026-06-14 08:19:22",
+      "duration_minutes": 76.4,
+      "calories": 635.0,
+      "average_hr": 139.0,
+      "max_hr": 182.0,
+      "distance_meters": 541.6500244140625,
+      "training_load": 142.6,
+      "aerobic_training_effect": 4.199999809265137,
+      "anaerobic_training_effect": 3.299999952316284,
+      "steps": 3590,
+      "body_battery_cost": -20,
+      "hr_zone_1_seconds": 798.0,
+      "hr_zone_2_seconds": 1205.0,
+      "hr_zone_3_seconds": 519.0,
+      "hr_zone_4_seconds": 59.0,
+      "hr_zone_5_seconds": 0.0
+    },
     {
       "activity_id": 23206161433,
       "activity_name": "Strength",
