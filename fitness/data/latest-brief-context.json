@@ -1,15 +1,15 @@
 {
-  "date_label": "Saturday, Jun 13",
+  "date_label": "Sunday, Jun 14",
   "recovery_status": "good",
   "today": {
-    "time": "8:00 AM",
-    "session": "Lake Baldwin Walk/Jog",
-    "subtitle": "Easy aerobic — conversational pace",
+    "time": null,
+    "session": "Rest Day",
+    "subtitle": "No prescribed session",
     "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "All signals green. Sleep 7h 29m, HRV 7% above baseline, BB 67. Training status shows aerobic shortage — the Baldwin walk/jog targets it directly.",
-    "expected_activity_types": ["walking", "running"],
-    "expected_duration_minutes": 60
+    "adjustment_label": "Rest day — no adjustments",
+    "why": "Sunday rest confirmed. Signals green (readiness 80, BB 75, HRV +13% above baseline) — optional walk or home bodyweight on Kevin's call.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,652 cal → ~1.45 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by morning's partial read. 6-day complete avg ~2,672 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
