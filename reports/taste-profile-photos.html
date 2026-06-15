@@ -1,0 +1,191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kevin's Food Photos, Decoded — a one-day pipeline</title>
+<style>
+:root{--bg:#0b0d14;--bg2:#12142a;--card:#161a2b;--card2:#1e2540;--line:#2a3150;
+--ink:#eef1fa;--muted:#9aa4c4;--dim:#7c85a9;--radius:16px;
+--accent:#f97316;--accent2:#fbbf24;
+--grad:linear-gradient(135deg,var(--accent),var(--accent2));
+--good:#34d399;--warn:#fbbf24;--bad:#f87171;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px 90px}
+a{color:var(--accent2)}
+.hero{padding:64px 0 30px;text-align:center}
+.kick{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent2);font-weight:700}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:14px 0 10px;font-weight:800;background:linear-gradient(120deg,#fff 30%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:18px;max-width:640px;margin:0 auto}
+.meta{margin-top:14px;color:var(--dim);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600}
+.chip b{color:var(--accent2);font-size:17px}
+section{margin-top:46px}
+h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800;margin:0 0 16px;display:flex;align-items:center;gap:10px}
+h2:before{content:"";width:24px;height:3px;background:var(--grad);border-radius:3px}
+h3{font-size:17px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tldr{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px}
+.callout{margin-top:18px;background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 40%,transparent);border-left:4px solid var(--accent2);border-radius:10px;padding:16px 18px}
+.callout b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center}
+.stat .n{font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step .num{counter-increment:s;flex:none;width:34px;height:34px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800}
+.step .num:before{content:counter(s)}
+.step .t{font-weight:700}
+.step .d{color:var(--muted);font-size:14px}
+.tag{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:.05em;background:color-mix(in srgb,var(--accent) 15%,transparent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent2);border-radius:6px;padding:2px 8px;font-family:ui-monospace,Menlo,monospace}
+.bar-row{display:flex;align-items:center;gap:12px;margin:7px 0}
+.bar-label{flex:none;width:175px;font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;background:var(--bg);border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:6px}
+.bar-val{flex:none;width:46px;font-size:13px;font-weight:700;text-align:left}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent2);font-size:20px;font-weight:800}
+details[open] summary:after{content:"\2212"}
+.det-body{padding:0 18px 18px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp .box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cmp .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#cfcfe0;word-break:break-word}
+.fun{display:grid;gap:10px}
+.fun .f{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:10px;padding:14px 16px}
+.fun .f b{color:#fff}
+.muted{color:var(--muted)}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;text-align:center}
+@media(max-width:560px){.cmp{grid-template-columns:1fr}.bar-label{width:120px}}
+</style></head>
+<body><div class="wrap">
+
+  <div class="hero">
+    <div class="kick">A Second Brain build · photos only</div>
+    <h1>14 Years of Food Photos, Decoded</h1>
+    <p class="sub">Every food picture in a 24,642-photo library, found on-device, identified dish-by-dish, and pinned to where in the world it was eaten — built in one session.</p>
+    <div class="meta">2012 → 2026 · Google Photos only (no delivery data)</div>
+    <div class="chips">
+      <div class="chip"><b>2,264</b> food photos</div>
+      <div class="chip"><b>273</b> home</div>
+      <div class="chip"><b>624</b> local dine-out</div>
+      <div class="chip"><b>916</b> travel dine-out</div>
+      <div class="chip"><b>American</b> #1 cuisine</div>
+    </div>
+  </div>
+
+  <section><h2>30-second TL;DR</h2>
+    <div class="tldr"><p>Starting from a raw Google Takeout dump, the pipeline drops videos, keeps photos + their GPS, filters to food <b>on your Mac</b> (Apple Vision — nothing uploaded), sends only confirmed food to a vision model for dish names, then reads each photo's GPS to place it. No delivery data here — this is purely what your <b>camera</b> knows.</p>
+      <div class="callout"><b>Core insight:</b> your camera is a travel-food diary. Of 1,540 dine-out photos, <b>916 were taken while traveling</b> — San Diego, Taiwan, Rome, Cairo, Tokyo, Seoul, Bogotá, the Caribbean — vs 624 around Orlando. You photograph food most when you're somewhere new.</div></div></section>
+
+  <section><h2>How a raw photo dump becomes a taste profile</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div><div class="t">Extract &amp; cull the Takeout</div><div class="d">Unpack each 50 GB zip; drop every video; keep images + the <code>.json</code> GPS sidecars; dedupe identical shots across albums. 24,642 unique photos.</div><span class="tag">cull-and-stage.py</span></div></div>
+      <div class="step"><div class="num"></div><div><div class="t">Find the food — privately, on-device</div><div class="d">Apple's built-in Vision classifier runs on each photo locally and flags the food. Screenshots, people, receipts never leave the Mac. → 2,264 food candidates.</div><span class="tag">Apple Vision · VNClassifyImageRequest</span></div></div>
+      <div class="step"><div class="num"></div><div><div class="t">Identify the dish</div><div class="d">Only confirmed food is sent to a paid (no-training) vision model, which returns dish, cuisine, and key ingredients as structured data.</div><span class="tag">Gemini</span></div></div>
+      <div class="step"><div class="num"></div><div><div class="t">Locate it</div><div class="d">Each photo's GPS (from EXIF) is read; the nearest restaurant is looked up, and distance to your homes decides home-vs-out.</div><span class="tag">Google Places · geofence</span></div></div>
+    </div></section>
+
+  <section><h2>By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><div class="n">2,264</div><div class="l">food photos identified</div></div>
+      <div class="stat"><div class="n">273</div><div class="l">home-cooked</div></div>
+      <div class="stat"><div class="n">624</div><div class="l">Orlando dine-out</div></div>
+      <div class="stat"><div class="n">916</div><div class="l">travel dine-out</div></div>
+      <div class="stat"><div class="n">451</div><div class="l">no GPS (cuisine only)</div></div>
+    </div></section>
+
+  <section><h2>Your cuisines, ranked</h2>
+    <p class="muted">From the image itself — the most reliable layer.</p>
+    <div class="card"><div class="bar-row"><span class="bar-label">American</span><span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span><span class="bar-val">432</span></div>
+<div class="bar-row"><span class="bar-label">Japanese</span><span class="bar-track"><span class="bar-fill" style="width:77.8%;background:var(--grad)"></span></span><span class="bar-val">336</span></div>
+<div class="bar-row"><span class="bar-label">Mexican</span><span class="bar-track"><span class="bar-fill" style="width:42.6%;background:var(--grad)"></span></span><span class="bar-val">184</span></div>
+<div class="bar-row"><span class="bar-label">Italian</span><span class="bar-track"><span class="bar-fill" style="width:36.8%;background:var(--grad)"></span></span><span class="bar-val">159</span></div>
+<div class="bar-row"><span class="bar-label">Chinese</span><span class="bar-track"><span class="bar-fill" style="width:30.1%;background:var(--grad)"></span></span><span class="bar-val">130</span></div>
+<div class="bar-row"><span class="bar-label">Korean</span><span class="bar-track"><span class="bar-fill" style="width:17.4%;background:var(--grad)"></span></span><span class="bar-val">75</span></div>
+<div class="bar-row"><span class="bar-label">Italian-American</span><span class="bar-track"><span class="bar-fill" style="width:16.9%;background:var(--grad)"></span></span><span class="bar-val">73</span></div>
+<div class="bar-row"><span class="bar-label">Western</span><span class="bar-track"><span class="bar-fill" style="width:13.2%;background:var(--grad)"></span></span><span class="bar-val">57</span></div>
+<div class="bar-row"><span class="bar-label">East Asian</span><span class="bar-track"><span class="bar-fill" style="width:12.3%;background:var(--grad)"></span></span><span class="bar-val">53</span></div>
+<div class="bar-row"><span class="bar-label">Mediterranean</span><span class="bar-track"><span class="bar-fill" style="width:10.4%;background:var(--grad)"></span></span><span class="bar-val">45</span></div>
+<div class="bar-row"><span class="bar-label">Middle Eastern</span><span class="bar-track"><span class="bar-fill" style="width:9.7%;background:var(--grad)"></span></span><span class="bar-val">42</span></div>
+<div class="bar-row"><span class="bar-label">Asian</span><span class="bar-track"><span class="bar-fill" style="width:7.6%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+<div class="bar-row"><span class="bar-label">Latin American</span><span class="bar-track"><span class="bar-fill" style="width:7.6%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+<div class="bar-row"><span class="bar-label">French</span><span class="bar-track"><span class="bar-fill" style="width:6.5%;background:var(--grad)"></span></span><span class="bar-val">28</span></div></div></section>
+
+  <section><h2>Your most-photographed dishes</h2>
+    <div class="card"><div class="bar-row"><span class="bar-label">Tacos</span><span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span><span class="bar-val">62</span></div>
+<div class="bar-row"><span class="bar-label">Ramen</span><span class="bar-track"><span class="bar-fill" style="width:50.0%;background:var(--grad)"></span></span><span class="bar-val">31</span></div>
+<div class="bar-row"><span class="bar-label">Korean BBQ</span><span class="bar-track"><span class="bar-fill" style="width:45.2%;background:var(--grad)"></span></span><span class="bar-val">28</span></div>
+<div class="bar-row"><span class="bar-label">Birria Tacos</span><span class="bar-track"><span class="bar-fill" style="width:40.3%;background:var(--grad)"></span></span><span class="bar-val">25</span></div>
+<div class="bar-row"><span class="bar-label">Xiao Long Bao</span><span class="bar-track"><span class="bar-fill" style="width:38.7%;background:var(--grad)"></span></span><span class="bar-val">24</span></div>
+<div class="bar-row"><span class="bar-label">Pizza</span><span class="bar-track"><span class="bar-fill" style="width:32.3%;background:var(--grad)"></span></span><span class="bar-val">20</span></div>
+<div class="bar-row"><span class="bar-label">Hot Pot and Korean BBQ</span><span class="bar-track"><span class="bar-fill" style="width:25.8%;background:var(--grad)"></span></span><span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Yakiniku</span><span class="bar-track"><span class="bar-fill" style="width:22.6%;background:var(--grad)"></span></span><span class="bar-val">14</span></div>
+<div class="bar-row"><span class="bar-label">Hot Pot</span><span class="bar-track"><span class="bar-fill" style="width:22.6%;background:var(--grad)"></span></span><span class="bar-val">14</span></div>
+<div class="bar-row"><span class="bar-label">Potstickers</span><span class="bar-track"><span class="bar-fill" style="width:21.0%;background:var(--grad)"></span></span><span class="bar-val">13</span></div>
+<div class="bar-row"><span class="bar-label">Fried Calamari</span><span class="bar-track"><span class="bar-fill" style="width:21.0%;background:var(--grad)"></span></span><span class="bar-val">13</span></div>
+<div class="bar-row"><span class="bar-label">Tiramisu</span><span class="bar-track"><span class="bar-fill" style="width:19.4%;background:var(--grad)"></span></span><span class="bar-val">12</span></div>
+<div class="bar-row"><span class="bar-label">Korean BBQ and Hot Pot</span><span class="bar-track"><span class="bar-fill" style="width:19.4%;background:var(--grad)"></span></span><span class="bar-val">12</span></div>
+<div class="bar-row"><span class="bar-label">Xiao Long Bao (Soup Dumplings)</span><span class="bar-track"><span class="bar-fill" style="width:17.7%;background:var(--grad)"></span></span><span class="bar-val">11</span></div>
+<div class="bar-row"><span class="bar-label">Truffle Pasta</span><span class="bar-track"><span class="bar-fill" style="width:16.1%;background:var(--grad)"></span></span><span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">Wedding Cake</span><span class="bar-track"><span class="bar-fill" style="width:16.1%;background:var(--grad)"></span></span><span class="bar-val">10</span></div></div></section>
+
+  <section><h2>Where in the world you eat — the travel map</h2>
+    <p class="muted">Travel dine-out photos by city/region (GPS nails the city reliably, even when it misses the exact restaurant).</p>
+    <div class="card"><div class="bar-row"><span class="bar-label">San Diego / Tijuana</span><span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span><span class="bar-val">319</span></div>
+<div class="bar-row"><span class="bar-label">Taiwan</span><span class="bar-track"><span class="bar-fill" style="width:27.0%;background:var(--grad)"></span></span><span class="bar-val">86</span></div>
+<div class="bar-row"><span class="bar-label">Colombia (Bogotá/Medellín)</span><span class="bar-track"><span class="bar-fill" style="width:16.0%;background:var(--grad)"></span></span><span class="bar-val">51</span></div>
+<div class="bar-row"><span class="bar-label">Los Angeles</span><span class="bar-track"><span class="bar-fill" style="width:15.7%;background:var(--grad)"></span></span><span class="bar-val">50</span></div>
+<div class="bar-row"><span class="bar-label">Central Florida (day trips)</span><span class="bar-track"><span class="bar-fill" style="width:15.0%;background:var(--grad)"></span></span><span class="bar-val">48</span></div>
+<div class="bar-row"><span class="bar-label">Phoenix</span><span class="bar-track"><span class="bar-fill" style="width:14.1%;background:var(--grad)"></span></span><span class="bar-val">45</span></div>
+<div class="bar-row"><span class="bar-label">Chicago</span><span class="bar-track"><span class="bar-fill" style="width:11.9%;background:var(--grad)"></span></span><span class="bar-val">38</span></div>
+<div class="bar-row"><span class="bar-label">Miami / S. Florida</span><span class="bar-track"><span class="bar-fill" style="width:10.3%;background:var(--grad)"></span></span><span class="bar-val">33</span></div>
+<div class="bar-row"><span class="bar-label">Tokyo / Japan</span><span class="bar-track"><span class="bar-fill" style="width:8.8%;background:var(--grad)"></span></span><span class="bar-val">28</span></div>
+<div class="bar-row"><span class="bar-label">Vancouver / Seattle</span><span class="bar-track"><span class="bar-fill" style="width:7.2%;background:var(--grad)"></span></span><span class="bar-val">23</span></div>
+<div class="bar-row"><span class="bar-label">Rome</span><span class="bar-track"><span class="bar-fill" style="width:6.9%;background:var(--grad)"></span></span><span class="bar-val">22</span></div>
+<div class="bar-row"><span class="bar-label">other (26,-84)</span><span class="bar-track"><span class="bar-fill" style="width:5.0%;background:var(--grad)"></span></span><span class="bar-val">16</span></div>
+<div class="bar-row"><span class="bar-label">Denver / Colorado</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+<div class="bar-row"><span class="bar-label">other (11,-74)</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+<div class="bar-row"><span class="bar-label">other (36,-115)</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--grad)"></span></span><span class="bar-val">15</span></div>
+<div class="bar-row"><span class="bar-label">Cairo / Egypt</span><span class="bar-track"><span class="bar-fill" style="width:4.7%;background:var(--grad)"></span></span><span class="bar-val">15</span></div></div></section>
+
+  <section><h2>Your Orlando rotation (best-effort)</h2>
+    <p class="muted">Local dine-out spots by photo count. More trustworthy than the travel matches — but still a nearest-restaurant guess, so dense plazas can mislabel.</p>
+    <div class="card"><div class="bar-row"><span class="bar-label">JUJU</span><span class="bar-track"><span class="bar-fill" style="width:100.0%;background:var(--grad)"></span></span><span class="bar-val">30</span></div>
+<div class="bar-row"><span class="bar-label">DOMU</span><span class="bar-track"><span class="bar-fill" style="width:73.3%;background:var(--grad)"></span></span><span class="bar-val">22</span></div>
+<div class="bar-row"><span class="bar-label">The Wine Room on Park Avenue</span><span class="bar-track"><span class="bar-fill" style="width:66.7%;background:var(--grad)"></span></span><span class="bar-val">20</span></div>
+<div class="bar-row"><span class="bar-label">Volcano Hot Pot &amp; BBQ I-Drive</span><span class="bar-track"><span class="bar-fill" style="width:63.3%;background:var(--grad)"></span></span><span class="bar-val">19</span></div>
+<div class="bar-row"><span class="bar-label">Mamak Asian Street Food</span><span class="bar-track"><span class="bar-fill" style="width:63.3%;background:var(--grad)"></span></span><span class="bar-val">19</span></div>
+<div class="bar-row"><span class="bar-label">Sushi Saint</span><span class="bar-track"><span class="bar-fill" style="width:46.7%;background:var(--grad)"></span></span><span class="bar-val">14</span></div>
+<div class="bar-row"><span class="bar-label">Zaza Cuban Comfort Food</span><span class="bar-track"><span class="bar-fill" style="width:46.7%;background:var(--grad)"></span></span><span class="bar-val">14</span></div>
+<div class="bar-row"><span class="bar-label">Kabooki Sushi - East Colonial</span><span class="bar-track"><span class="bar-fill" style="width:40.0%;background:var(--grad)"></span></span><span class="bar-val">12</span></div>
+<div class="bar-row"><span class="bar-label">Turci Panino</span><span class="bar-track"><span class="bar-fill" style="width:40.0%;background:var(--grad)"></span></span><span class="bar-val">12</span></div>
+<div class="bar-row"><span class="bar-label">Wine Bar George - A Restaurant &amp; Bar</span><span class="bar-track"><span class="bar-fill" style="width:36.7%;background:var(--grad)"></span></span><span class="bar-val">11</span></div>
+<div class="bar-row"><span class="bar-label">First Watch</span><span class="bar-track"><span class="bar-fill" style="width:36.7%;background:var(--grad)"></span></span><span class="bar-val">11</span></div>
+<div class="bar-row"><span class="bar-label">Gyu-Kaku Japanese BBQ</span><span class="bar-track"><span class="bar-fill" style="width:33.3%;background:var(--grad)"></span></span><span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">Volcano Hot Pot &amp; BBQ Kissimmee</span><span class="bar-track"><span class="bar-fill" style="width:33.3%;background:var(--grad)"></span></span><span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">Red Robin Gourmet Burgers and Brews</span><span class="bar-track"><span class="bar-fill" style="width:33.3%;background:var(--grad)"></span></span><span class="bar-val">10</span></div>
+<div class="bar-row"><span class="bar-label">totoya sushi lounge</span><span class="bar-track"><span class="bar-fill" style="width:30.0%;background:var(--grad)"></span></span><span class="bar-val">9</span></div>
+<div class="bar-row"><span class="bar-label">Edoboy</span><span class="bar-track"><span class="bar-fill" style="width:30.0%;background:var(--grad)"></span></span><span class="bar-val">9</span></div>
+<div class="bar-row"><span class="bar-label">Zaru</span><span class="bar-track"><span class="bar-fill" style="width:30.0%;background:var(--grad)"></span></span><span class="bar-val">9</span></div>
+<div class="bar-row"><span class="bar-label">Volcano Hot Pot &amp; BBQ</span><span class="bar-track"><span class="bar-fill" style="width:30.0%;background:var(--grad)"></span></span><span class="bar-val">9</span></div></div></section>
+
+  <section><h2>The honest accuracy notes</h2>
+    <p class="muted">Three layers, three confidence levels. <b>Dish &amp; cuisine</b> come straight from the photo — high confidence. <b>Home-vs-out</b> and <b>city/region</b> come from GPS — high confidence. The <b>exact restaurant</b> is the weak link: we pick the restaurant physically nearest the photo's GPS, which works for isolated spots with clean GPS but fails when you're traveling (the lookup grabbed San Diego's Javier's, Taiwan's Gang Yuan, Bogotá's Hache de Hamburguesa — places near where the photo landed, not necessarily where you ate) or in dense plazas where many restaurants sit within meters and indoor GPS drifts. Fix in progress: cross-reference your Google Maps Timeline (the places you actually visited) instead of nearest-neighbor.</p></section>
+
+  <section><h2>The build's war stories</h2>
+    <p class="muted">Takeout scatters a photo and its GPS sidecar across <i>different</i> zips — processing one at a time silently lost ~9,000 sidecars until the pipeline pooled them all. Apple Vision quietly exhausted its file-descriptor limit at ~2,400 images and started failing silently (caught, fixed). Gemini's flagship hit a ~1,000/day quota mid-run, and a preview model emitted malformed JSON — both caught because every classification was verified, never assumed.</p></section>
+
+  <section><h2>Things the photos quietly knew</h2>
+    <div class="fun">
+      <div class="f"><b>Tacos</b> are your single most-photographed dish.</div>
+      <div class="f">You photograph food most <b>on the road</b> — 916 travel shots vs 624 local.</div>
+      <div class="f"><b>Taiwan</b> shows up heavily — heritage on the plate, and Taiwan food across both home and travel.</div>
+      <div class="f">273 meals were shot at home; cuisine still reads even on the 451 photos with no GPS.</div>
+    </div></section>
+
+  <footer>Built from Google Photos only · on-device Apple Vision + Gemini + Google Places · charts hand-rolled in CSS · 2026-06-14</footer>
+
+</div></body></html>
