@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-15T01:34:17.892348+00:00",
+  "generated_at": "2026-06-15T12:36:19.770070+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 16,
+    "total_entries": 17,
     "workout_days": 12,
     "done_days": 6,
     "adherence_rate_pct": 50,
     "rolling_14": {
-      "workout_days": 11,
-      "done_days": 6,
-      "adherence_rate_pct": 55
+      "workout_days": 10,
+      "done_days": 5,
+      "adherence_rate_pct": 50
     },
     "reset_date": "2026-05-23"
   },
@@ -171,6 +171,16 @@
       "emoji": "🔴",
       "prescribed": "Lake Baldwin Walk/Jog · expected types `[walking, running]` · ~60 min",
       "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-14",
+      "weekday": "Sunday",
+      "state": "rest-with-activity",
+      "emoji": "⚠️",
+      "prescribed": "Rest Day · expected types `` · ~0 min",
+      "actual": "Pickleball · type `pickleball` · 76 min · 635 cal · avg HR 139 · started 08:19 ET",
       "note": "",
       "data_gap": false
     }
