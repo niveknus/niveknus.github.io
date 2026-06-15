@@ -1,36 +1,36 @@
 {
-  "date_label": "Sunday, Jun 14",
-  "recovery_status": "good",
+  "date_label": "Monday, Jun 15",
+  "recovery_status": "low",
   "today": {
-    "time": null,
-    "session": "Rest Day",
-    "subtitle": "No prescribed session",
-    "adjustment_status": "none",
-    "adjustment_label": "Rest day — no adjustments",
-    "why": "Sunday rest confirmed. Signals green (readiness 80, BB 75, HRV +13% above baseline) — optional walk or home bodyweight on Kevin's call.",
-    "expected_activity_types": [],
-    "expected_duration_minutes": 0
+    "time": "6:15 PM",
+    "session": "Active Recovery Walk",
+    "subtitle": "Easy neighborhood walk, 25 min",
+    "adjustment_status": "active_recovery",
+    "adjustment_label": "Auto-swapped: ACWR 1.9 (HIGH) — active recovery walk only",
+    "why": "ACWR 1.9 after yesterday's pickleball (load 143) puts acute:chronic ratio in the red zone. Training readiness 25/100 (Low), body battery max 15. Absorb, don't add.",
+    "expected_activity_types": ["walking", "indoor_walking"],
+    "expected_duration_minutes": 25
   },
   "cut": {
     "start_weight_lbs": 200
   },
   "week_plan": {
-    "monday_date": "2026-06-08",
+    "monday_date": "2026-06-15",
     "days": [
-      {"label": "Rest", "type": "rest"},
-      {"label": "Rest", "type": "rest"},
-      {"label": "Home core", "type": "recovery"},
+      {"label": "Walk", "type": "walk"},
+      {"label": "Split A", "type": "lift"},
+      {"label": "ND/Walk", "type": "class"},
       {"label": "Split B", "type": "lift"},
-      {"label": "Home core", "type": "recovery"},
+      {"label": "Pkl", "type": "pickleball"},
       {"label": "Baldwin", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by morning's partial read. 6-day complete avg ~2,672 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,773 cal → ~1.7 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "2,100",
+    "calories": "1,800",
     "water": "3 L"
   }
 }
