@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crissy's Curriculum System — How It Works</title>
+<style>
+  :root{
+    --ink:#1f2430; --soft:#5b6472; --line:#e6e9ef; --bg:#fbfcfe;
+    --nb:#7c5cff;       /* NotebookLM purple */
+    --drive:#1aa463;    /* Drive green */
+    --gpt:#10a37f;      /* ChatGPT teal */
+    --amber:#f59e0b;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:32px 20px 80px}
+  header{text-align:center; margin-bottom:14px}
+  .kicker{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--nb); font-weight:700}
+  h1{font-size:30px; margin:8px 0 6px; line-height:1.2}
+  .sub{color:var(--soft); font-size:17px; max-width:620px; margin:0 auto}
+  h2{font-size:21px; margin:42px 0 6px; display:flex; align-items:center; gap:10px}
+  h2 .n{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%;
+        background:var(--ink); color:#fff; font-size:14px; font-weight:700; flex:none}
+  .lede{color:var(--soft); margin:0 0 18px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px;
+        box-shadow:0 1px 2px rgba(20,30,60,.04)}
+  .analogy{background:#fff8ec; border:1px solid #f3e2bf; border-radius:14px; padding:14px 18px; margin:14px 0}
+  .analogy b{color:#9a6a00}
+  /* three layer cards */
+  .layers{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:6px}
+  .layer{border-radius:16px; padding:18px; color:#fff; min-height:172px; display:flex; flex-direction:column}
+  .layer h3{margin:6px 0 4px; font-size:17px}
+  .layer .role{font-size:12.5px; opacity:.92; font-weight:600; letter-spacing:.04em; text-transform:uppercase}
+  .layer p{font-size:13.5px; margin:6px 0 0; opacity:.96}
+  .l-nb{background:linear-gradient(160deg,#8a6bff,#6b4cf0)}
+  .l-drive{background:linear-gradient(160deg,#22b873,#149256)}
+  .l-gpt{background:linear-gradient(160deg,#15b58c,#0c8a6a)}
+  .pill{display:inline-block; font-size:11px; font-weight:700; background:rgba(255,255,255,.22);
+        padding:3px 9px; border-radius:999px; align-self:flex-start}
+  .free{margin-top:auto; font-size:12px; font-weight:700; background:rgba(0,0,0,.15);
+        padding:4px 9px; border-radius:8px; align-self:flex-start}
+  .steps{counter-reset:s; margin:6px 0 0; padding:0; list-style:none}
+  .steps li{position:relative; padding:12px 0 12px 44px; border-bottom:1px dashed var(--line)}
+  .steps li:last-child{border-bottom:0}
+  .steps li::before{counter-increment:s; content:counter(s); position:absolute; left:0; top:11px;
+        width:28px; height:28px; border-radius:8px; background:var(--drive); color:#fff;
+        font-weight:700; display:grid; place-items:center; font-size:14px}
+  .steps b{display:block}
+  .small{font-size:13.5px; color:var(--soft)}
+  code{background:#f1f3f8; padding:2px 6px; border-radius:6px; font-size:13px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .note{font-size:14px; background:#eef4ff; border:1px solid #d6e3ff; border-radius:12px; padding:12px 16px; margin-top:12px}
+  .figcap{text-align:center; font-size:12.5px; color:var(--soft); margin-top:8px}
+  .loop{display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin-top:4px}
+  .loop .chip{background:#fff; border:1px solid var(--line); border-radius:10px; padding:8px 12px; font-size:13px; font-weight:600}
+  .loop .arrow{color:var(--soft); font-size:18px}
+  .why{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .why div{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px}
+  .why h4{margin:0 0 4px; font-size:15px}
+  .why p{margin:0; font-size:13.5px; color:var(--soft)}
+  footer{margin-top:46px; text-align:center; color:var(--soft); font-size:13px}
+  @media(max-width:640px){
+    .layers{grid-template-columns:1fr} .why{grid-template-columns:1fr} h1{font-size:25px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Crissy's PhD · Study System</div>
+    <h1>One curriculum, three simple parts</h1>
+    <p class="sub">How to study each class <i>and</i> ask questions across your whole two-year program — without paying for anything new.</p>
+  </header>
+
+  <div class="analogy">
+    <b>The big idea in one sentence:</b> You keep a little "cheat-sheet" of every class in a folder you own, and ChatGPT reads all those cheat-sheets so it can answer questions about your <i>entire</i> curriculum — not just one class at a time.
+  </div>
+
+  <!-- SECTION 1: THE THREE PARTS -->
+  <h2><span class="n">1</span> The three parts</h2>
+  <p class="lede">Each part has one job. They work together but don't depend on each other.</p>
+
+  <div class="layers">
+    <div class="layer l-nb">
+      <span class="pill">Per class</span>
+      <h3>NotebookLM</h3>
+      <div class="role">Deep dive</div>
+      <p>One notebook per class (you're already doing this). Best for "what exactly did <i>this</i> class cover?"</p>
+      <span class="free">FREE</span>
+    </div>
+    <div class="layer l-drive">
+      <span class="pill">You own it</span>
+      <h3>Drive folder</h3>
+      <div class="role">The cheat-sheets</div>
+      <p>A folder of short summary files — one per class. This is the part you truly own and keep forever.</p>
+      <span class="free">FREE</span>
+    </div>
+    <div class="layer l-gpt">
+      <span class="pill">Across everything</span>
+      <h3>ChatGPT Project</h3>
+      <div class="role">Ask anything</div>
+      <p>Reads all the cheat-sheets so you can ask questions that span many classes at once.</p>
+      <span class="free">ALREADY PAID</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Why a separate "cheat-sheet" folder instead of just using NotebookLM?</b><br>
+    NotebookLM keeps every class in its own sealed box — great for focus, but it can't look across all your classes at once, and the free version won't let you pull your stuff back out. So we keep our own copy of the important bits in a folder <i>you</i> control. That copy is what ChatGPT reads.
+  </div>
+
+  <!-- SECTION 2: HOW IT FLOWS -->
+  <h2><span class="n">2</span> How everything connects</h2>
+  <p class="lede">Your class materials already live in Google Drive. A small helper turns them into cheat-sheets, and ChatGPT reads those.</p>
+
+  <div class="card">
+    <svg viewBox="0 0 820 250" width="100%" role="img" aria-label="Flow from Drive class folders through the helper script to digests, then bundled into a ChatGPT Project Crissy asks questions to">
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#9aa3b2"/>
+        </marker>
+      </defs>
+
+      <!-- 1 Drive folders -->
+      <rect x="10" y="60" width="150" height="130" rx="14" fill="#eafaf1" stroke="#bfe8d2"/>
+      <text x="85" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#149256">Google Drive</text>
+      <text x="85" y="100" text-anchor="middle" font-size="10.5" fill="#5b6472">your class folders</text>
+      <rect x="30" y="112" width="110" height="20" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="85" y="126" text-anchor="middle" font-size="10" fill="#1f2430">XYZ123 · slides, notes</text>
+      <rect x="30" y="138" width="110" height="20" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="85" y="152" text-anchor="middle" font-size="10" fill="#1f2430">XYZ124 · transcript</text>
+      <rect x="30" y="164" width="110" height="16" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="85" y="176" text-anchor="middle" font-size="10" fill="#8a93a3">+ more …</text>
+
+      <line x1="166" y1="125" x2="210" y2="125" stroke="#9aa3b2" stroke-width="2" marker-end="url(#ar)"/>
+
+      <!-- 2 helper -->
+      <rect x="214" y="78" width="150" height="94" rx="14" fill="#f3efff" stroke="#d8caff"/>
+      <text x="289" y="108" text-anchor="middle" font-size="22">⚙️</text>
+      <text x="289" y="134" text-anchor="middle" font-size="13" font-weight="700" fill="#6b4cf0">The helper</text>
+      <text x="289" y="150" text-anchor="middle" font-size="10.5" fill="#5b6472">a small script</text>
+
+      <line x1="370" y1="125" x2="414" y2="125" stroke="#9aa3b2" stroke-width="2" marker-end="url(#ar)"/>
+
+      <!-- 3 digests -->
+      <rect x="418" y="60" width="150" height="130" rx="14" fill="#eafaf1" stroke="#bfe8d2"/>
+      <text x="493" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#149256">Cheat-sheets</text>
+      <text x="493" y="100" text-anchor="middle" font-size="10.5" fill="#5b6472">1 per class, bundled by term</text>
+      <rect x="438" y="112" width="110" height="18" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="493" y="125" text-anchor="middle" font-size="10" fill="#1f2430">Semester 1.md</text>
+      <rect x="438" y="135" width="110" height="18" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="493" y="148" text-anchor="middle" font-size="10" fill="#1f2430">Semester 2.md</text>
+      <rect x="438" y="158" width="110" height="18" rx="5" fill="#fff" stroke="#cfe9da"/>
+      <text x="493" y="171" text-anchor="middle" font-size="10" fill="#8a93a3">+ more …</text>
+
+      <line x1="574" y1="125" x2="618" y2="125" stroke="#9aa3b2" stroke-width="2" marker-end="url(#ar)"/>
+
+      <!-- 4 chatgpt -->
+      <rect x="622" y="78" width="186" height="94" rx="14" fill="#e9f7f2" stroke="#bce6d8"/>
+      <text x="715" y="106" text-anchor="middle" font-size="20">💬</text>
+      <text x="715" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#0c8a6a">ChatGPT Project</text>
+      <text x="715" y="147" text-anchor="middle" font-size="10.5" fill="#5b6472">Crissy asks questions</text>
+
+      <!-- labels under -->
+      <text x="85"  y="214" text-anchor="middle" font-size="10.5" fill="#8a93a3">what you already have</text>
+      <text x="289" y="214" text-anchor="middle" font-size="10.5" fill="#8a93a3">runs when needed</text>
+      <text x="493" y="214" text-anchor="middle" font-size="10.5" fill="#8a93a3">the folder you own</text>
+      <text x="715" y="214" text-anchor="middle" font-size="10.5" fill="#8a93a3">your study buddy</text>
+    </svg>
+    <div class="figcap">Materials you already keep in Drive → the helper makes cheat-sheets → ChatGPT reads them.</div>
+  </div>
+
+  <!-- SECTION 3: WHAT THE CODE DOES -->
+  <h2><span class="n">3</span> What the "helper" actually does</h2>
+  <p class="lede">It's a small script. Plain-English version of its job, start to finish:</p>
+
+  <div class="card">
+    <ul class="steps">
+      <li><b>Looks inside each class folder in Drive</b><span class="small">Reads the things that are already there: your typed notes, the class AI summary, the chat transcript (and later, the slide text).</span></li>
+      <li><b>Writes one tidy "cheat-sheet" per class</b><span class="small">A short file like <code>XYZ123 — Digest.md</code> with sections: Homework, Summary, My Notes, Highlights. Stamped with the course code and which track it's in (Required / Elective / Certification).</span></li>
+      <li><b>Saves them to a folder you own</b><span class="small">A new <b>"Curriculum Digests"</b> folder in <i>your</i> Drive. It never changes the school's original files — it only reads them.</span></li>
+      <li><b>Bundles them by semester</b><span class="small">ChatGPT Projects only allow 25 files, and you'll have ~50 classes — so it groups each term's cheat-sheets into one file. ~4–8 files total. Easy.</span></li>
+    </ul>
+  </div>
+
+  <div class="note"><b>How it gets run:</b> Kevin runs it (one command) — at the start, then again whenever you've added new classes. It's not something you have to babysit. Later it can be set to refresh on its own.</div>
+
+  <!-- SECTION 4: NEW CLASSES -->
+  <h2><span class="n">4</span> What happens when you add a new class</h2>
+  <p class="lede">This is the part that keeps it alive for two years. The cycle is the same every time:</p>
+
+  <div class="card">
+    <div class="loop">
+      <span class="chip" style="border-color:#bfe8d2">📚 New Saturday class</span>
+      <span class="arrow">→</span>
+      <span class="chip" style="border-color:#d8caff">🗂️ New NotebookLM notebook<br><span class="small">(for deep study)</span></span>
+      <span class="arrow">→</span>
+      <span class="chip" style="border-color:#bfe8d2">⚙️ Re-run the helper</span>
+      <span class="arrow">→</span>
+      <span class="chip" style="border-color:#bce6d8">💬 ChatGPT now knows it too</span>
+    </div>
+    <p class="small" style="margin-top:16px; text-align:center">
+      Your per-class notebooks and your "ask everything" ChatGPT stay in sync — because both are fed from the same Drive materials.
+    </p>
+  </div>
+
+  <!-- SECTION 5: USING CHATGPT -->
+  <h2><span class="n">5</span> How you'll use it day to day</h2>
+  <div class="card">
+    <p style="margin-top:0"><b>For one class</b> → open that class's <b>NotebookLM</b> notebook. (“What was my homework for XYZ123?”)</p>
+    <p><b>Across the whole curriculum</b> → ask your <b>ChatGPT Project</b>:</p>
+    <p class="small" style="background:#f7f8fb; border:1px solid var(--line); border-radius:10px; padding:12px 14px">
+      “Which classes covered attachment theory?”<br>
+      “Make me a study guide that connects my trauma classes.”<br>
+      “What homework is still open across all my Required classes?”<br>
+      “Explain how the certification material builds on what I learned in semester 1.”
+    </p>
+    <p class="small">If ChatGPT needs more detail than the cheat-sheet has, it'll point you to the right class — and you open that NotebookLM notebook for the deep version.</p>
+  </div>
+
+  <!-- SECTION 6: WHY THIS IS SAFE -->
+  <h2><span class="n">6</span> Why you're never trapped</h2>
+  <div class="why">
+    <div>
+      <h4>💵 No new subscription</h4>
+      <p>NotebookLM is free, your Drive is free, and ChatGPT is the one you already pay for. Nothing new to sign up for.</p>
+    </div>
+    <div>
+      <h4>📁 You own the files</h4>
+      <p>The cheat-sheets are plain text in your own Drive. They're yours during the PhD and long after.</p>
+    </div>
+    <div>
+      <h4>🔄 Swap tools anytime</h4>
+      <p>Today ChatGPT reads them. Tomorrow it could be Claude, Gemini, or anything else — same files, no rebuild.</p>
+    </div>
+    <div>
+      <h4>🧩 Nothing locked inside an app</h4>
+      <p>Your knowledge doesn't live trapped inside NotebookLM or ChatGPT. It lives in your folder. The apps just read it.</p>
+    </div>
+  </div>
+
+  <footer>
+    NotebookLM = study one class · Drive folder = the part you own · ChatGPT = ask across everything.
+  </footer>
+
+</div>
+</body>
+</html>
