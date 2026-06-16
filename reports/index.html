@@ -7,149 +7,214 @@
 <title>Reports &mdash; Kevin Sun</title>
 <style>
   :root { --bg:#0b1020; --bg2:#121a33; --card:#172143; --card2:#1d2a52;
-           --text:#e8ecf8; --muted:#9aa6c8; --accent:#5b8cff; --accent2:#8b5cf6; }
+           --text:#e8ecf8; --muted:#9aa6c8; --accent:#5b8cff; --accent2:#8b5cf6;
+           --line:rgba(255,255,255,.08); }
   * { box-sizing:border-box; }
   body { margin:0; min-height:100vh; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
           color:var(--text); background:
             radial-gradient(1200px 600px at 80% -10%, rgba(139,92,246,.25), transparent 60%),
             radial-gradient(1000px 500px at -10% 10%, rgba(91,140,255,.25), transparent 55%),
             linear-gradient(180deg,var(--bg),var(--bg2)); }
-  .wrap { max-width:880px; margin:0 auto; padding:48px 22px 64px; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 22px 64px; }
   header h1 { font-size:30px; margin:0 0 6px; letter-spacing:.3px;
                background:linear-gradient(90deg,var(--accent),var(--accent2));
                -webkit-background-clip:text; background-clip:text; color:transparent; }
   header p { color:var(--muted); margin:0 0 28px; font-size:15px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
-  .card { display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--text);
-           background:linear-gradient(160deg,var(--card),var(--card2)); border:1px solid rgba(255,255,255,.07);
-           border-radius:14px; padding:18px 18px 16px; transition:transform .12s ease, border-color .12s ease; }
-  .card:hover { transform:translateY(-2px); border-color:rgba(91,140,255,.55); }
-  .card .title { font-size:16px; font-weight:650; line-height:1.25; }
-  .card .desc { margin:0; color:var(--muted); font-size:13px; line-height:1.4; }
-  .card .go { margin-top:auto; color:var(--accent); font-size:13px; font-weight:600; }
-  .empty { color:var(--muted); }
-  footer { margin-top:34px; color:var(--muted); font-size:12.5px; }
+  .tablewrap { background:linear-gradient(160deg,var(--card),var(--card2));
+                border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  table { width:100%; border-collapse:collapse; font-size:14.5px; }
+  thead th { text-align:left; padding:13px 16px; color:var(--muted); font-weight:600;
+              font-size:12.5px; text-transform:uppercase; letter-spacing:.5px;
+              border-bottom:1px solid var(--line); cursor:pointer; user-select:none;
+              white-space:nowrap; }
+  thead th:hover { color:var(--text); }
+  thead th .arrow { opacity:.5; font-size:10px; margin-left:4px; }
+  tbody td { padding:13px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover { background:rgba(91,140,255,.07); }
+  .c-title a { color:var(--text); text-decoration:none; font-weight:600; }
+  .c-title a:hover { color:var(--accent); }
+  .desc { color:var(--muted); font-size:12.5px; line-height:1.4; margin-top:3px; }
+  .c-date { color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .c-access { white-space:nowrap; }
+  .badge { display:inline-block; padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:600; }
+  .badge.locked { background:rgba(139,92,246,.18); color:#c4b5fd; border:1px solid rgba(139,92,246,.35); }
+  .badge.open { background:rgba(91,140,255,.14); color:#9ec0ff; border:1px solid rgba(91,140,255,.3); }
+  .empty { color:var(--muted); text-align:center; padding:30px 16px; }
+  footer { margin-top:24px; color:var(--muted); font-size:12.5px; line-height:1.6; }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>Reports</h1>
-      <p>22 reports &middot; updated 2026-06-15</p>
+      <p>22 reports &middot; 20 password-protected &middot; updated 2026-06-16</p>
     </header>
-    <main class="grid">
-      <a class="card" href="./food-delivery-report.html">
-        <span class="title">1,495 Delivery Orders — Kevin&#x27;s Food-Delivery + Rideshare Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./google-pay-spending-analysis-2026-06-06.html">
-        <span class="title">10 Years of Google Pay, Decoded — $12,044.71</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./google-fi-telecom-analysis-2026-06-06.html">
-        <span class="title">10 Years on Google Fi, Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./prime-video-report.html">
-        <span class="title">10.5 Years of Prime Video, Decoded — Kevin&#x27;s 4K Rental Theater</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./amazon-spending-report.html">
-        <span class="title">16 Years of Amazon, Decoded — a revealed-spending profile</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./spotify-listening-report.html">
-        <span class="title">3,467 Hours of Spotify, Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./kindle-reading-report.html">
-        <span class="title">75 Books, Two Eras — Kevin&#x27;s Kindle, Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./google-timeline-location-analysis-2026-06-06.html">
-        <span class="title">79 Days of Movement — Google Timeline, Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./google-home-smarthome-analysis-2026-06-06.html">
-        <span class="title">A House That Breathes — Kevin&#x27;s Google Home, Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./crissy-phd-curriculum-system.html">
-        <span class="title">Crissy&#x27;s Curriculum System — How It Works</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./google-garmin-second-brain-report.html">
-        <span class="title">Google + Garmin → Second Brain: turning my own data exhaust into self-knowledge</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./taste-profile-photos.html">
-        <span class="title">Kevin&#x27;s Food Photos, Decoded — a one-day pipeline</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./food-delivery-analysis-2026-06-06.html">
-        <span class="title">Kevin&#x27;s Food-Delivery Spending — A Money-Manager&#x27;s Read</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./amazon-spending-analysis-2026-06-06.html">
-        <span class="title">Kevin&#x27;s Spending Analysis — A Money-Manager&#x27;s Read</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./youtube-footprint-analysis-2026-06-06.html">
-        <span class="title">Kevin&#x27;s YouTube Footprint — 20 subscriptions, history off</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./second-brain-showcase.html">
-        <span class="title">My Second Brain — a living, self-maintaining knowledge graph</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./netflix-viewing-report.html">
-        <span class="title">Netflix Viewing History — Decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./spend-dashboard.html">
-        <span class="title">Receipt Spend</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./fitness-history.html">
-        <span class="title">Six Years in Motion — Kevin&#x27;s Garmin History</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./taste-profile-report.html">
-        <span class="title">What Kevin Eats — a taste profile</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./taste-profile-complete.html">
-        <span class="title">What Kevin Eats — Complete — a taste profile</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-      <a class="card" href="./travel-passport-report.html">
-        <span class="title">Where Kevin&#x27;s Been — a passport, decoded</span>
-        
-        <span class="go">Open &rarr;</span>
-      </a>
-    </main>
-    <footer>Private &mdash; not indexed by search engines. Links are unlisted.</footer>
+    <div class="tablewrap">
+      <table id="reports">
+        <thead>
+          <tr>
+            <th data-sort="title">Report<span class="arrow"></span></th>
+            <th data-sort="date" data-active="1" data-dir="desc">Generated<span class="arrow">&#9660;</span></th>
+            <th data-sort="locked">Access<span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr data-date="2026-06-15" data-title="kevin&#x27;s spending analysis — a money-manager&#x27;s read" data-locked="1">
+          <td class="c-title"><a href="./amazon-spending-analysis-2026-06-06.html">Kevin&#x27;s Spending Analysis — A Money-Manager&#x27;s Read</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="16 years of amazon, decoded — a revealed-spending profile" data-locked="1">
+          <td class="c-title"><a href="./amazon-spending-report.html">16 Years of Amazon, Decoded — a revealed-spending profile</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="crissy&#x27;s curriculum system — how it works" data-locked="1">
+          <td class="c-title"><a href="./crissy-phd-curriculum-system.html">Crissy&#x27;s Curriculum System — How It Works</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="six years in motion — kevin&#x27;s garmin history" data-locked="1">
+          <td class="c-title"><a href="./fitness-history.html">Six Years in Motion — Kevin&#x27;s Garmin History</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="kevin&#x27;s food-delivery spending — a money-manager&#x27;s read" data-locked="1">
+          <td class="c-title"><a href="./food-delivery-analysis-2026-06-06.html">Kevin&#x27;s Food-Delivery Spending — A Money-Manager&#x27;s Read</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="1,495 delivery orders — kevin&#x27;s food-delivery + rideshare decoded" data-locked="1">
+          <td class="c-title"><a href="./food-delivery-report.html">1,495 Delivery Orders — Kevin&#x27;s Food-Delivery + Rideshare Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="10 years on google fi, decoded" data-locked="1">
+          <td class="c-title"><a href="./google-fi-telecom-analysis-2026-06-06.html">10 Years on Google Fi, Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="google + garmin → second brain: turning my own data exhaust into self-knowledge" data-locked="0">
+          <td class="c-title"><a href="./google-garmin-second-brain-report.html">Google + Garmin → Second Brain: turning my own data exhaust into self-knowledge</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge open" title="Publicly viewable">Open</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="a house that breathes — kevin&#x27;s google home, decoded" data-locked="1">
+          <td class="c-title"><a href="./google-home-smarthome-analysis-2026-06-06.html">A House That Breathes — Kevin&#x27;s Google Home, Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="10 years of google pay, decoded — $12,044.71" data-locked="1">
+          <td class="c-title"><a href="./google-pay-spending-analysis-2026-06-06.html">10 Years of Google Pay, Decoded — $12,044.71</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="79 days of movement — google timeline, decoded" data-locked="1">
+          <td class="c-title"><a href="./google-timeline-location-analysis-2026-06-06.html">79 Days of Movement — Google Timeline, Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="75 books, two eras — kevin&#x27;s kindle, decoded" data-locked="1">
+          <td class="c-title"><a href="./kindle-reading-report.html">75 Books, Two Eras — Kevin&#x27;s Kindle, Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="netflix viewing history — decoded" data-locked="1">
+          <td class="c-title"><a href="./netflix-viewing-report.html">Netflix Viewing History — Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="10.5 years of prime video, decoded — kevin&#x27;s 4k rental theater" data-locked="1">
+          <td class="c-title"><a href="./prime-video-report.html">10.5 Years of Prime Video, Decoded — Kevin&#x27;s 4K Rental Theater</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="my second brain — a living, self-maintaining knowledge graph" data-locked="0">
+          <td class="c-title"><a href="./second-brain-showcase.html">My Second Brain — a living, self-maintaining knowledge graph</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge open" title="Publicly viewable">Open</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="receipt spend" data-locked="1">
+          <td class="c-title"><a href="./spend-dashboard.html">Receipt Spend</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="3,467 hours of spotify, decoded" data-locked="1">
+          <td class="c-title"><a href="./spotify-listening-report.html">3,467 Hours of Spotify, Decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="what kevin eats — complete — a taste profile" data-locked="1">
+          <td class="c-title"><a href="./taste-profile-complete.html">What Kevin Eats — Complete — a taste profile</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="kevin&#x27;s food photos, decoded — a one-day pipeline" data-locked="1">
+          <td class="c-title"><a href="./taste-profile-photos.html">Kevin&#x27;s Food Photos, Decoded — a one-day pipeline</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="what kevin eats — a taste profile" data-locked="1">
+          <td class="c-title"><a href="./taste-profile-report.html">What Kevin Eats — a taste profile</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="where kevin&#x27;s been — a passport, decoded" data-locked="1">
+          <td class="c-title"><a href="./travel-passport-report.html">Where Kevin&#x27;s Been — a passport, decoded</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        <tr data-date="2026-06-15" data-title="kevin&#x27;s youtube footprint — 20 subscriptions, history off" data-locked="1">
+          <td class="c-title"><a href="./youtube-footprint-analysis-2026-06-06.html">Kevin&#x27;s YouTube Footprint — 20 subscriptions, history off</a></td>
+          <td class="c-date">2026-06-15</td>
+          <td class="c-access"><span class="badge locked" title="Password-protected">&#128274; Locked</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>Private &mdash; not indexed by search engines. Locked reports are
+      password-protected; open ones are viewable by anyone with the link.</footer>
   </div>
+<script>
+(function () {
+  var table = document.getElementById('reports');
+  if (!table) return;
+  var tbody = table.tBodies[0];
+  var headers = table.tHead.rows[0].cells;
+  function val(tr, key) {
+    if (key === 'title') return tr.getAttribute('data-title') || '';
+    if (key === 'date') return tr.getAttribute('data-date') || '';
+    if (key === 'locked') return tr.getAttribute('data-locked') || '';
+    return '';
+  }
+  function sortBy(key, dir) {
+    var rows = Array.prototype.slice.call(tbody.rows);
+    rows.sort(function (a, b) {
+      var x = val(a, key), y = val(b, key);
+      if (x < y) return dir === 'asc' ? -1 : 1;
+      if (x > y) return dir === 'asc' ? 1 : -1;
+      return 0;
+    });
+    rows.forEach(function (r) { tbody.appendChild(r); });
+  }
+  for (var i = 0; i < headers.length; i++) {
+    (function (th) {
+      th.addEventListener('click', function () {
+        var key = th.getAttribute('data-sort');
+        var dir = th.getAttribute('data-dir') === 'asc' ? 'desc' : 'asc';
+        for (var j = 0; j < headers.length; j++) {
+          headers[j].removeAttribute('data-active');
+          headers[j].querySelector('.arrow').innerHTML = '';
+        }
+        th.setAttribute('data-active', '1');
+        th.setAttribute('data-dir', dir);
+        th.querySelector('.arrow').innerHTML = dir === 'asc' ? '&#9650;' : '&#9660;';
+        sortBy(key, dir);
+      });
+    })(headers[i]);
+  }
+})();
+</script>
 </body>
 </html>
