@@ -1,7 +1,7 @@
 {
   "schema": "cut-confidence.v1",
   "as_of": "2026-06-15",
-  "score": 36,
+  "score": 37,
   "band": "concern",
   "band_label": "Concern",
   "trend": "flat",
@@ -22,10 +22,10 @@
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 33.8,
+      "raw": 34.3,
       "weight": 0.294,
-      "contribution": 9.9,
-      "detail": "sleep 76 \u00b7 HRV 0/6 bal \u00b7 readiness 25"
+      "contribution": 10.1,
+      "detail": "sleep 77 \u00b7 HRV 0/7 bal \u00b7 readiness 26"
     },
     {
       "key": "weight_trajectory",
@@ -46,6 +46,6 @@
       "detail": "needs calorie data (Sprint 4)"
     }
   ],
-  "headline": "Cut Confidence 36 \u2014 Concern \u2192",
+  "headline": "Cut Confidence 37 \u2014 Concern \u2192",
   "deficit_component_pending": true
 }
