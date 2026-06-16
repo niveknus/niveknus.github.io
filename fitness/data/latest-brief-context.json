@@ -1,15 +1,15 @@
 {
-  "date_label": "Monday, Jun 15",
-  "recovery_status": "low",
+  "date_label": "Tuesday, Jun 16",
+  "recovery_status": "watch",
   "today": {
-    "time": "6:15 PM",
-    "session": "Active Recovery Walk",
-    "subtitle": "Easy neighborhood walk, 25 min",
-    "adjustment_status": "active_recovery",
-    "adjustment_label": "Auto-swapped: ACWR 1.9 (HIGH) — active recovery walk only",
-    "why": "ACWR 1.9 after yesterday's pickleball (load 143) puts acute:chronic ratio in the red zone. Training readiness 25/100 (Low), body battery max 15. Absorb, don't add.",
-    "expected_activity_types": ["walking", "indoor_walking"],
-    "expected_duration_minutes": 25
+    "time": "6:00 PM",
+    "session": "Planet Fitness — Split A (Arms + Shoulders)",
+    "subtitle": "3–4 sets × 8–12 reps",
+    "adjustment_status": "none",
+    "adjustment_label": "Full session, no adjustments",
+    "why": "HRV bounced to 46 ms (+20% above 7d baseline, BALANCED status). Body battery 62 at wake. ACWR at 1.5 threshold — proceed with Split A at prescribed 3–4 sets, no added volume.",
+    "expected_activity_types": ["strength_training", "fitness_equipment"],
+    "expected_duration_minutes": 50
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,16 +17,16 @@
   "week_plan": {
     "monday_date": "2026-06-15",
     "days": [
-      {"label": "Walk", "type": "walk"},
+      {"label": "Walk/Jog", "type": "walk"},
       {"label": "Split A", "type": "lift"},
-      {"label": "ND/Walk", "type": "class"},
+      {"label": "ND/Walk", "type": "cardio"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
       {"label": "Baldwin", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,773 cal → ~1.7 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,705 cal → ~1.6 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
