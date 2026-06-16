@@ -1,6 +1,6 @@
 {
   "schema": "exercise-history.v1",
-  "updated": "2026-06-15",
+  "updated": "2026-06-16",
   "exercises": {
     "ALTERNATING_DUMBBELL_BICEPS_CURL": [
       {
@@ -1425,6 +1425,15 @@
         "sets": 6
       },
       {
+        "date": "2025-08-03",
+        "activity_id": "19940783192",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 1000.0,
+        "sets": 3
+      },
+      {
         "date": "2025-08-07",
         "activity_id": "19986530070",
         "top_weight_lb": 55.0,
@@ -1443,6 +1452,15 @@
         "sets": 3
       },
       {
+        "date": "2025-08-18",
+        "activity_id": "20103124722",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 749.0,
+        "sets": 2
+      },
+      {
         "date": "2025-08-21",
         "activity_id": "20135963812",
         "top_weight_lb": 50.0,
@@ -1450,6 +1468,15 @@
         "est_1rm_lb": 71.7,
         "volume_lb": 1650.0,
         "sets": 3
+      },
+      {
+        "date": "2025-10-11",
+        "activity_id": "20658106882",
+        "top_weight_lb": 50.0,
+        "top_reps": 11,
+        "est_1rm_lb": 68.3,
+        "volume_lb": 3770.8,
+        "sets": 9
       },
       {
         "date": "2025-11-26",
@@ -1461,6 +1488,15 @@
         "sets": 3
       },
       {
+        "date": "2026-01-06",
+        "activity_id": "21466701591",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 2791.4,
+        "sets": 7
+      },
+      {
         "date": "2026-01-27",
         "activity_id": "21685715874",
         "top_weight_lb": 55.0,
@@ -1468,6 +1504,15 @@
         "est_1rm_lb": 77.0,
         "volume_lb": 1810.0,
         "sets": 3
+      },
+      {
+        "date": "2026-05-15",
+        "activity_id": "22894651814",
+        "top_weight_lb": 59.9,
+        "top_reps": 11,
+        "est_1rm_lb": 81.9,
+        "volume_lb": 4695.5,
+        "sets": 11
       },
       {
         "date": "2026-06-02",
@@ -1508,6 +1553,26 @@
         "sets": 1
       },
       {
+        "date": "2026-03-05",
+        "activity_id": "22076515468",
+        "top_weight_lb": 0.0,
+        "top_reps": 6,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      },
+      {
+        "date": "2026-06-10",
+        "activity_id": "23206161433",
+        "top_weight_lb": 0.0,
+        "top_reps": 20,
+        "est_1rm_lb": 0.0,
+        "volume_lb": 0.0,
+        "sets": 1
+      }
+    ],
+    "WIDE_GRIP_LAT_PULLDOWN": [
+      {
         "date": "2025-06-09",
         "activity_id": "19384374234",
         "top_weight_lb": 110.0,
@@ -1517,31 +1582,13 @@
         "sets": 7
       },
       {
-        "date": "2025-08-03",
-        "activity_id": "19940783192",
-        "top_weight_lb": 50.0,
+        "date": "2025-06-20",
+        "activity_id": "19494870464",
+        "top_weight_lb": 85.0,
         "top_reps": 12,
-        "est_1rm_lb": 70.0,
-        "volume_lb": 1000.0,
+        "est_1rm_lb": 119.0,
+        "volume_lb": 2720.0,
         "sets": 3
-      },
-      {
-        "date": "2025-08-18",
-        "activity_id": "20103124722",
-        "top_weight_lb": 50.0,
-        "top_reps": 10,
-        "est_1rm_lb": 66.7,
-        "volume_lb": 749.0,
-        "sets": 2
-      },
-      {
-        "date": "2025-10-11",
-        "activity_id": "20658106882",
-        "top_weight_lb": 50.0,
-        "top_reps": 11,
-        "est_1rm_lb": 68.3,
-        "volume_lb": 3770.8,
-        "sets": 9
       },
       {
         "date": "2025-10-12",
@@ -1562,15 +1609,6 @@
         "sets": 1
       },
       {
-        "date": "2026-01-06",
-        "activity_id": "21466701591",
-        "top_weight_lb": 50.0,
-        "top_reps": 12,
-        "est_1rm_lb": 70.0,
-        "volume_lb": 2791.4,
-        "sets": 7
-      },
-      {
         "date": "2026-01-15",
         "activity_id": "21560731869",
         "top_weight_lb": 100.0,
@@ -1589,24 +1627,6 @@
         "sets": 3
       },
       {
-        "date": "2026-03-05",
-        "activity_id": "22076515468",
-        "top_weight_lb": 0.0,
-        "top_reps": 6,
-        "est_1rm_lb": 0.0,
-        "volume_lb": 0.0,
-        "sets": 1
-      },
-      {
-        "date": "2026-05-15",
-        "activity_id": "22894651814",
-        "top_weight_lb": 59.9,
-        "top_reps": 11,
-        "est_1rm_lb": 81.9,
-        "volume_lb": 4695.5,
-        "sets": 11
-      },
-      {
         "date": "2026-05-18",
         "activity_id": "22929904691",
         "top_weight_lb": 129.9,
@@ -1614,26 +1634,6 @@
         "est_1rm_lb": 177.5,
         "volume_lb": 9427.9,
         "sets": 10
-      },
-      {
-        "date": "2026-06-10",
-        "activity_id": "23206161433",
-        "top_weight_lb": 0.0,
-        "top_reps": 20,
-        "est_1rm_lb": 0.0,
-        "volume_lb": 0.0,
-        "sets": 1
-      }
-    ],
-    "WIDE_GRIP_LAT_PULLDOWN": [
-      {
-        "date": "2025-06-20",
-        "activity_id": "19494870464",
-        "top_weight_lb": 85.0,
-        "top_reps": 12,
-        "est_1rm_lb": 119.0,
-        "volume_lb": 2720.0,
-        "sets": 3
       }
     ]
   }
