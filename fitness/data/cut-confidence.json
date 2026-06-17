@@ -22,10 +22,10 @@
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 46.0,
+      "raw": 47.4,
       "weight": 0.294,
-      "contribution": 13.5,
-      "detail": "sleep 78 \u00b7 HRV 1/7 bal \u00b7 readiness 46"
+      "contribution": 13.9,
+      "detail": "sleep 78 \u00b7 HRV 1/7 bal \u00b7 readiness 50"
     },
     {
       "key": "weight_trajectory",
