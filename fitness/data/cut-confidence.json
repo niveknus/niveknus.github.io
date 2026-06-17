@@ -1,6 +1,6 @@
 {
   "schema": "cut-confidence.v1",
-  "as_of": "2026-06-16",
+  "as_of": "2026-06-17",
   "score": 36,
   "band": "concern",
   "band_label": "Concern",
@@ -13,19 +13,19 @@
       "key": "adherence",
       "label": "Adherence",
       "available": true,
-      "raw": 40.0,
+      "raw": 30.0,
       "weight": 0.412,
-      "contribution": 16.5,
-      "detail": "40% (4/10 workout days, 14d)"
+      "contribution": 12.4,
+      "detail": "30% (3/10 workout days, 14d)"
     },
     {
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 47.4,
+      "raw": 59.1,
       "weight": 0.294,
-      "contribution": 13.9,
-      "detail": "sleep 78 \u00b7 HRV 1/7 bal \u00b7 readiness 50"
+      "contribution": 17.4,
+      "detail": "sleep 80 \u00b7 HRV 2/7 bal \u00b7 readiness 69"
     },
     {
       "key": "weight_trajectory",
