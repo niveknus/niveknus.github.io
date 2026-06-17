@@ -1,15 +1,15 @@
 {
-  "date_label": "Tuesday, Jun 16",
-  "recovery_status": "watch",
+  "date_label": "Wednesday, Jun 17",
+  "recovery_status": "good",
   "today": {
-    "time": "6:00 PM",
-    "session": "Planet Fitness — Split A (Arms + Shoulders)",
-    "subtitle": "3–4 sets × 8–12 reps",
+    "time": "6:15 PM",
+    "session": "Neighborhood Walk/Jog",
+    "subtitle": "Waterford Lakes 2–3 mi loop",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "HRV bounced to 46 ms (+20% above 7d baseline, BALANCED status). Body battery 62 at wake. ACWR at 1.5 threshold — proceed with Split A at prescribed 3–4 sets, no added volume.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "why": "Sleep 9h 37m, score 85, HRV 50 ms (+21% above baseline), body battery 96 at wake — all signals green.",
+    "expected_activity_types": ["walking", "running", "indoor_walking"],
+    "expected_duration_minutes": 45
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,705 cal → ~1.6 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,694 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
