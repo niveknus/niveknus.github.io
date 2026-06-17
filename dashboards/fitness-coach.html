@@ -130,7 +130,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Build Claude into Kevin's adaptive personal fitness coach for the 200 → 165 lb cut. The coach reads Garmin Connect daily (Withings as available), reasons over Kevin's goal/profile/whitelist, makes auto-adjustments within Kevin's preferred workout types, and asks first when proposing anything novel. Delivers a single daily morning brief via Telegram at 8:30 AM, riding the cloud-routine + Telegram infrastructure built for the Personal Assistant.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-06-16</span></div>
+    <div class="meta-item">Last session <span>2026-06-16 (review pass — calorie app decided = FatSecret (pending phone setup); Sprint 7 unblocked + queued as next build; v5.3 re-paste being subsumed by the SR-20 routine shim)</span></div>
     <div class="meta-item">Sprint 13 · 2026-05-25</div>
     
   </div>
@@ -295,13 +295,29 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="next-item">
       <span class="next-priority p1">P1</span>
       <div>
-        <div class="next-title">Push + verify session 20 (Cut Confidence) + the session-18 work</div>
-        <div class="next-desc">after the Mac git push, the next garmin-daily run regenerates cut-confidence.json (+ history) and the **v4 digest** in CI and publishes them. Confi...</div>
+        <div class="next-title">Build Sprint 7 (mid-day check-in & plan recompute) — next FC build (unblocked 2026-06-16)</div>
+        <div class="next-desc">Two-way messaging shipped 2026-06-12 (Telegram Channels session on the mini); workout replies already route to the FC plan + adherence log. Build t...</div>
       </div>
     </div>
     
     <div class="next-item">
       <span class="next-priority p2">P2</span>
+      <div>
+        <div class="next-title">Calorie tracking — set up FatSecret (decided 2026-06-16), then build the integration</div>
+        <div class="next-desc">Kevin installs FatSecret on his phone + starts logging; then build the FatSecret API → daily-intake pipeline, which auto-activates the deficit comp...</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
+      <div>
+        <div class="next-title">Deploy the FC Daily shim once</div>
+        <div class="next-desc">(docs/routine-shims.md) — this makes the **v5.3** routine prompt (the 🎯 Cut Confidence + 💪 Trends lines) go live and ends the recurring "re-paste p...</div>
+      </div>
+    </div>
+    
+    <div class="next-item">
+      <span class="next-priority p3">P3</span>
       <div>
         <div class="next-title">Retag the 15 UNKNOWN strength activities</div>
         <div class="next-desc">in Garmin Connect (URLs in exercise-mappings.json) → they auto-rebucket on the next pull, improving the overload charts + brief trends.</div>
@@ -321,14 +337,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
       <div>
         <div class="next-title">Sprint 1.9 candidates</div>
         <div class="next-desc">(evaluate if they keep biting): 429 backoff marker in garmin_daily.py; replace GitHub Actions cron with tighter-SLA scheduler.</div>
-      </div>
-    </div>
-    
-    <div class="next-item">
-      <span class="next-priority p3">P3</span>
-      <div>
-        <div class="next-title">Format tuning</div>
-        <div class="next-desc">iterate on brief-format.md with single-file edits.</div>
       </div>
     </div>
     
