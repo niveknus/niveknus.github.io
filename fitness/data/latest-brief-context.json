@@ -1,15 +1,15 @@
 {
-  "date_label": "Wednesday, Jun 17",
+  "date_label": "Thursday, Jun 18",
   "recovery_status": "good",
   "today": {
-    "time": "6:15 PM",
-    "session": "Neighborhood Walk/Jog",
-    "subtitle": "Waterford Lakes 2–3 mi loop",
+    "time": "6:00 PM",
+    "session": "Split B — Chest + Back",
+    "subtitle": "Planet Fitness",
     "adjustment_status": "none",
     "adjustment_label": "Full session, no adjustments",
-    "why": "Sleep 9h 37m, score 85, HRV 50 ms (+21% above baseline), body battery 96 at wake — all signals green.",
-    "expected_activity_types": ["walking", "running", "indoor_walking"],
-    "expected_duration_minutes": 45
+    "why": "HRV at baseline (41 ms), RHR 3 bpm below 7-day avg — recovery solid. Top priority: restore the strength stimulus after 0 sessions Mon–Wed.",
+    "expected_activity_types": ["strength_training", "fitness_equipment"],
+    "expected_duration_minutes": 50
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,694 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,669 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
