@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-18T01:33:58.027285+00:00",
+  "generated_at": "2026-06-18T12:35:24.804805+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 19,
-    "workout_days": 14,
+    "total_entries": 20,
+    "workout_days": 15,
     "done_days": 6,
-    "adherence_rate_pct": 43,
+    "adherence_rate_pct": 40,
     "rolling_14": {
       "workout_days": 10,
       "done_days": 3,
@@ -200,6 +200,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Planet Fitness — Split A (Arms + Shoulders) · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-17",
+      "weekday": "Wednesday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running, indoor_walking]` · ~45 min",
       "actual": null,
       "note": "",
       "data_gap": false
