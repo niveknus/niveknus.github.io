@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-19T01:34:07.017698+00:00",
+  "generated_at": "2026-06-19T12:35:14.154465+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 20,
-    "workout_days": 15,
+    "total_entries": 21,
+    "workout_days": 16,
     "done_days": 6,
-    "adherence_rate_pct": 40,
+    "adherence_rate_pct": 38,
     "rolling_14": {
-      "workout_days": 10,
+      "workout_days": 11,
       "done_days": 3,
-      "adherence_rate_pct": 30
+      "adherence_rate_pct": 27
     },
     "reset_date": "2026-05-23"
   },
@@ -210,6 +210,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running, indoor_walking]` · ~45 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-18",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Split B — Chest + Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
       "actual": null,
       "note": "",
       "data_gap": false
