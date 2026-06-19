@@ -1,15 +1,15 @@
 {
-  "date_label": "Thursday, Jun 18",
-  "recovery_status": "good",
+  "date_label": "Friday, Jun 19",
+  "recovery_status": "low",
   "today": {
-    "time": "6:00 PM",
-    "session": "Split B — Chest + Back",
-    "subtitle": "Planet Fitness",
+    "time": "8:00 AM",
+    "session": "Pickleball (Giant Ping Pong group)",
+    "subtitle": "Social intensity — keep HR moderate",
     "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "HRV at baseline (41 ms), RHR 3 bpm below 7-day avg — recovery solid. Top priority: restore the strength stimulus after 0 sessions Mon–Wed.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "adjustment_label": "Pickleball kept — low sleep flagged",
+    "why": "4.9 hr sleep (4–5 hr band) normally means recovery-only, but Friday pickleball is kept per protocol. Play social, no max-effort.",
+    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
+    "expected_duration_minutes": 120
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,669 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled by today's partial read. 6-day complete avg ~2,672 cal → ~1.5 lb/wk is the truer ceiling with full today's burn.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "1,800",
+    "calories": "2,100",
     "water": "3 L"
   }
 }
