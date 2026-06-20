@@ -1,15 +1,15 @@
 {
-  "date_label": "Friday, Jun 19",
-  "recovery_status": "low",
+  "date_label": "Saturday, Jun 20",
+  "recovery_status": "watch",
   "today": {
     "time": "8:00 AM",
-    "session": "Pickleball (Giant Ping Pong group)",
-    "subtitle": "Social intensity — keep HR moderate",
+    "session": "Lake Baldwin Walk/Jog",
+    "subtitle": "Superseded by Universal Day with Crissy",
     "adjustment_status": "none",
-    "adjustment_label": "Pickleball kept — low sleep flagged",
-    "why": "4.9 hr sleep (4–5 hr band) normally means recovery-only, but Friday pickleball is kept per protocol. Play social, no max-effort.",
-    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
-    "expected_duration_minutes": 120
+    "adjustment_label": "Session superseded — theme park walking counts",
+    "why": "Sleep pending sync. Yesterday's sleep was rough (4h 55m, score 60), RHR slightly elevated. Universal trip all day — skip formal session; aim for 12k+ steps at the parks.",
+    "expected_activity_types": ["walking", "indoor_walking", "running"],
+    "expected_duration_minutes": 60
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled by today's partial read. 6-day complete avg ~2,672 cal → ~1.5 lb/wk is the truer ceiling with full today's burn.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,659 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
