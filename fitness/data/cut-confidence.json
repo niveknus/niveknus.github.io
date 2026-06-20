@@ -1,7 +1,7 @@
 {
   "schema": "cut-confidence.v1",
-  "as_of": "2026-06-19",
-  "score": 35,
+  "as_of": "2026-06-20",
+  "score": 34,
   "band": "concern",
   "band_label": "Concern",
   "trend": "flat",
@@ -13,19 +13,19 @@
       "key": "adherence",
       "label": "Adherence",
       "available": true,
-      "raw": 27.0,
+      "raw": 18.0,
       "weight": 0.412,
-      "contribution": 11.1,
-      "detail": "27% (3/11 workout days, 14d)"
+      "contribution": 7.4,
+      "detail": "18% (2/11 workout days, 14d)"
     },
     {
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 62.6,
+      "raw": 72.1,
       "weight": 0.294,
-      "contribution": 18.4,
-      "detail": "sleep 78 \u00b7 HRV 4/7 bal \u00b7 readiness 53"
+      "contribution": 21.2,
+      "detail": "sleep 78 \u00b7 HRV 4/6 bal"
     },
     {
       "key": "weight_trajectory",
@@ -46,6 +46,6 @@
       "detail": "needs calorie data (Sprint 4)"
     }
   ],
-  "headline": "Cut Confidence 35 \u2014 Concern \u2192",
+  "headline": "Cut Confidence 34 \u2014 Concern \u2192",
   "deficit_component_pending": true
 }
