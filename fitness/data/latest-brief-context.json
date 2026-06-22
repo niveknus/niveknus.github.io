@@ -2,14 +2,14 @@
   "date_label": "Saturday, Jun 20",
   "recovery_status": "watch",
   "today": {
-    "time": "8:00 AM",
-    "session": "Lake Baldwin Walk/Jog",
-    "subtitle": "Superseded by Universal Day with Crissy",
-    "adjustment_status": "none",
-    "adjustment_label": "Session superseded — theme park walking counts",
-    "why": "Sleep pending sync. Yesterday's sleep was rough (4h 55m, score 60), RHR slightly elevated. Universal trip all day — skip formal session; aim for 12k+ steps at the parks.",
-    "expected_activity_types": ["walking", "indoor_walking", "running"],
-    "expected_duration_minutes": 60
+    "time": "Weekend AM",
+    "session": "Lake Baldwin Walk",
+    "subtitle": "Shortened — sleep 5.3h (5–6h band)",
+    "adjustment_status": "intensity_reduced",
+    "adjustment_label": "Shortened 60→35 min (5–6h sleep band)",
+    "why": "Sleep 5.32h falls in the 5–6h band → 40% duration cut. Body battery 76 and HRV only 5% below baseline — easy walk is appropriate. Skip jogging today.",
+    "expected_activity_types": ["walking", "indoor_walking"],
+    "expected_duration_minutes": 35
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,659 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by partial Sat read. 6-day complete avg ~2,659 cal → ~1.5 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
