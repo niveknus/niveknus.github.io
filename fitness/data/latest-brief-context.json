@@ -1,21 +1,21 @@
 {
-  "date_label": "Saturday, Jun 20",
-  "recovery_status": "watch",
+  "date_label": "Monday, Jun 22",
+  "recovery_status": "good",
   "today": {
-    "time": "Weekend AM",
-    "session": "Lake Baldwin Walk",
-    "subtitle": "Shortened — sleep 5.3h (5–6h band)",
-    "adjustment_status": "intensity_reduced",
-    "adjustment_label": "Shortened 60→35 min (5–6h sleep band)",
-    "why": "Sleep 5.32h falls in the 5–6h band → 40% duration cut. Body battery 76 and HRV only 5% below baseline — easy walk is appropriate. Skip jogging today.",
-    "expected_activity_types": ["walking", "indoor_walking"],
-    "expected_duration_minutes": 35
+    "time": "6:15 PM",
+    "session": "Neighborhood Walk/Jog",
+    "subtitle": "Waterford Lakes loop (2–3 mi)",
+    "adjustment_status": "none",
+    "adjustment_label": "Full session, no adjustments",
+    "why": "HRV 9% above 7d baseline, readiness 89, Battery 100 — all green. Session shifted to 6:15 PM (Work event ends 6:00 PM, 15-min buffer applied).",
+    "expected_activity_types": ["walking", "running", "indoor_walking"],
+    "expected_duration_minutes": 45
   },
   "cut": {
     "start_weight_lbs": 200
   },
   "week_plan": {
-    "monday_date": "2026-06-15",
+    "monday_date": "2026-06-22",
     "days": [
       {"label": "Walk/Jog", "type": "walk"},
       {"label": "Split A", "type": "lift"},
@@ -26,11 +26,11 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE pulled down by partial Sat read. 6-day complete avg ~2,659 cal → ~1.5 lb/wk is the truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,550 cal → ~1.24 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
-    "calories": "2,100",
+    "calories": "1,800",
     "water": "3 L"
   }
 }
