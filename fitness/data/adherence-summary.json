@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-23T01:34:02.706525+00:00",
+  "generated_at": "2026-06-23T12:35:24.018003+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 23,
-    "workout_days": 18,
+    "total_entries": 24,
+    "workout_days": 19,
     "done_days": 6,
-    "adherence_rate_pct": 33,
+    "adherence_rate_pct": 32,
     "rolling_14": {
       "workout_days": 11,
       "done_days": 1,
@@ -240,6 +240,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Lake Baldwin Walk/Jog · expected types `[walking, indoor_walking, running]` · ~60 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-22",
+      "weekday": "Monday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running, indoor_walking]` · ~45 min",
       "actual": null,
       "note": "",
       "data_gap": false
