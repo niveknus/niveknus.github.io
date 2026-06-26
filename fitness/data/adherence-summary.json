@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-23T12:35:24.018003+00:00",
+  "generated_at": "2026-06-26T21:57:00.741229+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 24,
-    "workout_days": 19,
+    "total_entries": 26,
+    "workout_days": 21,
     "done_days": 6,
-    "adherence_rate_pct": 32,
+    "adherence_rate_pct": 29,
     "rolling_14": {
-      "workout_days": 11,
+      "workout_days": 13,
       "done_days": 1,
-      "adherence_rate_pct": 9
+      "adherence_rate_pct": 8
     },
     "reset_date": "2026-05-23"
   },
@@ -252,6 +252,26 @@
       "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running, indoor_walking]` · ~45 min",
       "actual": null,
       "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-23",
+      "weekday": "Tuesday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk/Jog · expected types `[walking, indoor_walking, running]` · ~45 min",
+      "actual": "No formal Garmin workout activity; 9,603 steps accumulated throughout the day (kevin-confirmed). Formal neighborhood walk at 6:15 PM did not occur — walking was ambient/distributed, not a discrete tracked session.",
+      "note": "morning digest used — evening workout may be missing",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-25",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Split B — Chest + Upper Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate",
       "data_gap": false
     }
   ]

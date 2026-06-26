@@ -74,6 +74,24 @@
       "weight_lbs": 199.2,
       "body_fat_pct": 26.5,
       "muscle_mass_lbs": 139.0
+    },
+    {
+      "date": "2026-06-24",
+      "weight_lbs": 198.7,
+      "body_fat_pct": 27.0,
+      "muscle_mass_lbs": 137.8
+    },
+    {
+      "date": "2026-06-25",
+      "weight_lbs": 197.1,
+      "body_fat_pct": 26.8,
+      "muscle_mass_lbs": 137.1
+    },
+    {
+      "date": "2026-06-26",
+      "weight_lbs": 196.1,
+      "body_fat_pct": 26.7,
+      "muscle_mass_lbs": 136.5
     }
   ]
 }
