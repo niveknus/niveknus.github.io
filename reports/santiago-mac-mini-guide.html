@@ -4,460 +4,345 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Always-On Claude Mac Mini — Setup Guide</title>
+<title>Always-On Claude Mac Mini — Quick Reference</title>
 <style>
   :root{
-    --bg:#0b0f1a; --bg2:#121829; --card:#161d33; --card2:#1b2440;
-    --ink:#e8edf7; --mut:#9aa6c2; --dim:#6b7799;
-    --line:#27314f;
+    --bg:#0b0f1a; --card:#161d33; --card2:#1b2440;
+    --ink:#e8edf7; --mut:#9aa6c2; --dim:#6b7799; --line:#27314f;
     --a1:#7c5cff; --a2:#23c6e0; --a3:#37d99a; --warn:#ffb454; --bad:#ff6b81;
     --code:#0d1322;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0; background:radial-gradient(1200px 700px at 80% -10%, #1c2440 0, transparent 60%),
-      linear-gradient(180deg,#0b0f1a 0%, #0c1120 100%);
-    background-color:var(--bg);
+    margin:0; background:radial-gradient(1200px 700px at 80% -10%, #1c2440 0, transparent 60%), var(--bg);
     color:var(--ink);
-    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:920px; margin:0 auto; padding:0 20px 90px}
+  .wrap{max-width:880px; margin:0 auto; padding:0 18px 80px}
 
   /* HERO */
   .hero{
-    margin:34px 0 26px; padding:40px 34px;
+    margin:30px 0 8px; padding:34px 30px;
     background:
-      radial-gradient(700px 300px at 0% 0%, rgba(124,92,255,.22), transparent 60%),
-      radial-gradient(700px 300px at 100% 100%, rgba(35,198,224,.18), transparent 60%),
+      radial-gradient(600px 280px at 0% 0%, rgba(124,92,255,.22), transparent 60%),
+      radial-gradient(600px 280px at 100% 100%, rgba(35,198,224,.18), transparent 60%),
       linear-gradient(180deg,#19213a,#141a2e);
-    border:1px solid var(--line); border-radius:22px;
-    box-shadow:0 24px 60px -30px rgba(0,0,0,.8);
+    border:1px solid var(--line); border-radius:20px;
+    box-shadow:0 24px 60px -34px rgba(0,0,0,.8);
   }
-  .hero .kicker{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--a2); font-weight:700}
-  .hero h1{margin:.3em 0 .25em; font-size:38px; line-height:1.1; letter-spacing:-.02em}
-  .hero p{margin:0; color:var(--mut); font-size:17px; max-width:62ch}
-  .hero .by{margin-top:18px; font-size:14px; color:var(--dim)}
+  .hero .kicker{font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--a2); font-weight:700}
+  .hero h1{margin:.25em 0 .2em; font-size:34px; line-height:1.08; letter-spacing:-.02em}
+  .hero p{margin:0; color:var(--mut); font-size:16px; max-width:60ch}
 
-  /* the big mental model */
-  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0 8px}
-  .pillar{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
-  .pillar .n{font-size:26px}
-  .pillar h3{margin:.4em 0 .2em; font-size:16px}
-  .pillar p{margin:0; color:var(--mut); font-size:13.5px}
+  .nav{display:flex; flex-wrap:wrap; gap:7px; margin:16px 0 6px}
+  .nav a{font-size:13px; background:var(--card); border:1px solid var(--line); padding:6px 11px; border-radius:999px; text-decoration:none; color:var(--mut)}
+  .nav a:hover{color:#fff; border-color:var(--a2)}
 
-  h2{font-size:25px; letter-spacing:-.01em; margin:46px 0 6px; display:flex; align-items:center; gap:12px}
-  h2 .em{font-size:26px}
-  h2 .step{
-    font:700 13px/1 ui-monospace,monospace; color:#0b0f1a; background:linear-gradient(135deg,var(--a1),var(--a2));
-    padding:7px 10px; border-radius:9px;
-  }
-  .lead{color:var(--mut); margin:.2em 0 18px; max-width:70ch}
+  h2{font-size:21px; letter-spacing:-.01em; margin:38px 0 4px; display:flex; align-items:center; gap:10px}
+  h2 .em{font-size:23px}
+  .lead{color:var(--mut); margin:.1em 0 14px; font-size:14.5px; max-width:68ch}
 
-  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 24px; margin:16px 0}
-  .card h3{margin:.1em 0 .5em; font-size:18px}
-  .card h4{margin:1.1em 0 .3em; font-size:15px; color:var(--a2)}
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0}
+  .pillar{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:16px}
+  .pillar .n{font-size:24px}
+  .pillar h3{margin:.35em 0 .15em; font-size:15px}
+  .pillar p{margin:0; color:var(--mut); font-size:13px}
 
-  p{margin:.6em 0}
-  ul,ol{margin:.5em 0; padding-left:22px}
-  li{margin:.34em 0}
+  .flow{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0}
+  .chip{background:var(--card2); border:1px solid var(--line); border-radius:13px; padding:13px 14px}
+  .chip .b{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,var(--a1),var(--a2)); color:#0b0f1a; font-weight:800; font-size:12px; margin-bottom:6px}
+  .chip b{display:block; font-size:14px; margin-bottom:1px}
+  .chip span{color:var(--mut); font-size:12.5px}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:18px 20px; margin:14px 0}
+  .card h3{margin:0 0 .35em; font-size:16px}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+
+  p{margin:.5em 0}
+  ul{margin:.4em 0; padding-left:20px}
+  li{margin:.25em 0; font-size:14.5px}
   b,strong{color:#fff}
   a{color:var(--a2)}
 
-  code{background:var(--code); border:1px solid var(--line); border-radius:6px; padding:1.5px 6px; font:13.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:#cfe7ff}
-  pre{background:var(--code); border:1px solid var(--line); border-radius:12px; padding:16px 18px; overflow:auto; margin:14px 0}
-  pre code{background:none; border:none; padding:0; color:#cfe7ff; font-size:13px; line-height:1.6}
+  code{background:var(--code); border:1px solid var(--line); border-radius:6px; padding:1.5px 6px; font:13px/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:#cfe7ff}
+  pre{background:var(--code); border:1px solid var(--line); border-radius:11px; padding:14px 16px; overflow:auto; margin:11px 0}
+  pre code{background:none; border:none; padding:0; color:#cfe7ff; font-size:12.5px; line-height:1.55}
   .cmt{color:#5f6c8c}
-  .tok{color:#ffb454}
 
-  /* callouts */
-  .note{border-left:4px solid var(--a2); background:rgba(35,198,224,.07); padding:14px 18px; border-radius:0 12px 12px 0; margin:16px 0}
-  .warn{border-left:4px solid var(--warn); background:rgba(255,180,84,.08); padding:14px 18px; border-radius:0 12px 12px 0; margin:16px 0}
-  .bad{border-left:4px solid var(--bad); background:rgba(255,107,129,.08); padding:14px 18px; border-radius:0 12px 12px 0; margin:16px 0}
-  .good{border-left:4px solid var(--a3); background:rgba(55,217,154,.08); padding:14px 18px; border-radius:0 12px 12px 0; margin:16px 0}
-  .callout-t{font-weight:700; display:block; margin-bottom:3px}
+  .note,.warn,.bad,.good{padding:12px 16px; border-radius:0 11px 11px 0; margin:13px 0; font-size:14px}
+  .note{border-left:4px solid var(--a2); background:rgba(35,198,224,.07)}
+  .warn{border-left:4px solid var(--warn); background:rgba(255,180,84,.08)}
+  .bad{border-left:4px solid var(--bad); background:rgba(255,107,129,.08)}
+  .good{border-left:4px solid var(--a3); background:rgba(55,217,154,.08)}
+  .callout-t{font-weight:700; display:block; margin-bottom:2px}
 
-  /* tables */
-  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14px}
-  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
-  th{color:var(--a2); font-size:12px; letter-spacing:.05em; text-transform:uppercase}
+  table{width:100%; border-collapse:collapse; margin:11px 0; font-size:13.5px}
+  th,td{text-align:left; padding:9px 11px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{color:var(--a2); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase}
   tr:last-child td{border-bottom:none}
-  td code{font-size:12.5px}
+  td code{font-size:12px}
 
-  /* decision split (SSH vs VNC) */
-  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0}
-  .split .opt{background:var(--card2); border:1px solid var(--line); border-radius:14px; padding:18px}
-  .split .opt h3{margin:0 0 .1em; font-size:18px; display:flex; gap:8px; align-items:center}
-  .split .opt .tag{font-size:12px; color:var(--dim)}
-  .split .opt ul{padding-left:18px}
-  .when{font-size:13px; color:var(--a3); font-weight:600; margin-top:8px; display:block}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:13px 0}
+  .opt{background:var(--card2); border:1px solid var(--line); border-radius:13px; padding:15px}
+  .opt h3{margin:0 0 .1em; font-size:16px; display:flex; gap:7px; align-items:center}
+  .opt .tag{font-size:11.5px; color:var(--dim); font-weight:400}
+  .when{font-size:12.5px; color:var(--a3); font-weight:600; margin-top:7px; display:block}
 
-  /* flow diagram */
-  .flow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0; justify-content:center}
-  .node{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:12px 16px; text-align:center; min-width:96px; font-size:13px}
-  .node .ic{font-size:22px; display:block; margin-bottom:4px}
-  .node b{display:block; font-size:13.5px}
-  .arrow{color:var(--a1); font-size:22px; font-weight:700}
+  details{margin:11px 0; border:1px solid var(--line); border-radius:11px; background:var(--card2); overflow:hidden}
+  summary{cursor:pointer; padding:11px 15px; font-size:13.5px; font-weight:600; color:var(--mut); list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ "; color:var(--a1); font-weight:800}
+  details[open] summary::before{content:"▾ "}
+  details[open] summary{color:#fff; border-bottom:1px solid var(--line)}
+  details .body{padding:4px 15px 14px}
 
-  .pillnum{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--a1),var(--a2)); color:#0b0f1a; font-weight:800; font-size:13px; margin-right:8px}
+  .kbd{display:inline-block; background:#222b47; border:1px solid #3a466e; border-bottom-width:2px; border-radius:5px; padding:1px 6px; font:12px/1.5 ui-monospace,monospace; color:#dce6ff}
+  .footer{margin-top:44px; padding-top:18px; border-top:1px solid var(--line); color:var(--dim); font-size:12.5px}
 
-  .toc{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0}
-  .toc a{font-size:13px; background:var(--card); border:1px solid var(--line); padding:7px 12px; border-radius:999px; text-decoration:none; color:var(--mut)}
-  .toc a:hover{color:#fff; border-color:var(--a2)}
-
-  .kbd{display:inline-block; background:#222b47; border:1px solid #3a466e; border-bottom-width:2px; border-color:#3a466e; border-radius:6px; padding:1px 7px; font:12.5px/1.5 ui-monospace,monospace; color:#dce6ff}
-  .footer{margin-top:50px; padding-top:20px; border-top:1px solid var(--line); color:var(--dim); font-size:13px}
-  hr{border:none; border-top:1px solid var(--line); margin:30px 0}
   @media (max-width:680px){
-    .pillars,.split{grid-template-columns:1fr}
-    .hero h1{font-size:30px}
-    .hero{padding:30px 22px}
+    .pillars,.flow,.split,.grid2{grid-template-columns:1fr}
+    .hero h1{font-size:27px}
+    .hero{padding:26px 20px}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="kicker">🖥️ Home Server Playbook</div>
-    <h1>Your Always-On Claude Mac&nbsp;Mini</h1>
-    <p>How to turn a Mac mini into a 24/7 brain you can <b>text from your phone</b>, <b>code on from anywhere</b>, and that runs little jobs for you while you sleep. This is Kevin's real setup, genericized for you.</p>
-    <div class="by">Built from a working M4 mini · swap <code>santiago</code> + <code>/Users/santiago</code> for your own as you go</div>
-    <div class="toc">
-      <a href="#model">The mental model</a>
-      <a href="#os">macOS settings</a>
+    <div class="kicker">🖥️ Mac Mini Server · Quick Reference</div>
+    <h1>Your Always-On Claude Mini</h1>
+    <p>Text it from your phone. Code on it from anywhere. Let it run jobs while you sleep. The whole thing on one page — glance, don't study.</p>
+    <div class="nav">
+      <a href="#pillars">Big picture</a>
+      <a href="#tldr">Setup in 6</a>
       <a href="#access">SSH vs VNC</a>
-      <a href="#detect">Device detection</a>
       <a href="#rc">Remote Control</a>
-      <a href="#tmux">tmux</a>
       <a href="#channels">Telegram</a>
-      <a href="#gotchas">Gotchas</a>
-      <a href="#jobs">The jobs</a>
+      <a href="#tmux">tmux</a>
+      <a href="#gotchas">⚠️ Gotchas</a>
+      <a href="#jobs">Jobs menu</a>
       <a href="#cheat">Cheat sheet</a>
     </div>
   </div>
 
-  <!-- MENTAL MODEL -->
-  <h2 id="model"><span class="em">🧠</span> The mental model</h2>
-  <p class="lead">Before any commands, hold this picture. The whole thing is <b>three pillars</b>. Everything else is plumbing hanging off them.</p>
+  <p class="lead">📁 Examples use Kevin's folder names — <code>~/second-brain</code> (the working repo) and <code>~/second-brain-scripts</code> (helper scripts). Swap in your own. <code>501</code> in commands = your user id (<code>id -u</code>).</p>
+
+  <!-- BIG PICTURE -->
+  <h2 id="pillars"><span class="em">🧠</span> The whole idea, in 3 pieces</h2>
   <div class="pillars">
-    <div class="pillar">
-      <span class="n">🔌</span>
-      <h3><span class="pillnum">1</span>Never stops</h3>
-      <p>macOS tuned so the mini boots itself after a power blip, auto-logs-in, and never sleeps. The foundation.</p>
-    </div>
-    <div class="pillar">
-      <span class="n">♻️</span>
-      <h3><span class="pillnum">2</span>launchd keeps it alive</h3>
-      <p>macOS's built-in babysitter. It starts your long-running pieces at login and restarts them if they crash.</p>
-    </div>
-    <div class="pillar">
-      <span class="n">🚪</span>
-      <h3><span class="pillnum">3</span>Two front doors</h3>
-      <p>Claude Code <b>Remote Control</b> (code from your phone) and <b>Channels</b> (text a bot). Both are just Claude sessions on the mini.</p>
-    </div>
+    <div class="pillar"><span class="n">🔌</span><h3>1 · Never stops</h3><p>macOS tuned to reboot itself after a power blip, auto-log-in, never sleep.</p></div>
+    <div class="pillar"><span class="n">♻️</span><h3>2 · launchd babysits</h3><p>Starts your services at login, restarts them if they crash.</p></div>
+    <div class="pillar"><span class="n">🚪</span><h3>3 · Two front doors</h3><p>Remote Control (code from phone) + Channels (text a bot).</p></div>
   </div>
-  <div class="note"><span class="callout-t">💡 One sentence to remember</span>The mini runs Claude sessions; your phone and laptop are just <b>windows</b> into them. Nothing important lives on the phone.</div>
+  <div class="note">💡 <b>One sentence:</b> the mini runs Claude sessions; your phone and laptop are just <b>windows</b> into them.</div>
 
-  <!-- OS SETTINGS -->
-  <h2 id="os"><span class="em">⚙️</span> Step 1 · macOS server settings <span class="step">DO FIRST</span></h2>
-  <p class="lead">These turn a desktop into an unattended box. All in <b>System Settings</b>.</p>
-  <div class="card">
+  <!-- TLDR -->
+  <h2 id="tldr"><span class="em">⚡</span> Setup in 6 moves</h2>
+  <div class="flow">
+    <div class="chip"><span class="b">1</span><b>Server settings</b><span>FileVault off, auto-login, no-sleep, power-on</span></div>
+    <div class="chip"><span class="b">2</span><b>Install</b><span>Homebrew · Tailscale · git · Claude Code</span></div>
+    <div class="chip"><span class="b">3</span><b>Sign into claude.ai</b><span>not an API key — flat-rate plan</span></div>
+    <div class="chip"><span class="b">4</span><b>Remote Control</b><span>launchd agent → code from phone</span></div>
+    <div class="chip"><span class="b">5</span><b>Channels</b><span>Telegram bot → text your mini</span></div>
+    <div class="chip"><span class="b">6</span><b>Go headless</b><span>unplug monitor, reach it over Tailscale</span></div>
+  </div>
+
+  <!-- STEP 1 + 2 condensed -->
+  <h2><span class="em">⚙️</span> macOS settings <span style="font-size:13px;color:var(--dim);font-weight:400">(System Settings · do first)</span></h2>
+  <div class="card" style="padding:6px 20px">
     <table>
-      <tr><th>Setting</th><th>Where</th><th>Why it matters</th></tr>
-      <tr><td>🔓 <b>FileVault OFF</b></td><td>Privacy &amp; Security</td><td><b>The big one.</b> With it on, a power blip leaves the mini stuck at a password prompt — everything silently dies until you walk over and type it.</td></tr>
-      <tr><td>👤 <b>Auto-login ON</b></td><td>Users &amp; Groups → Login Options</td><td>launchd's GUI agents need a logged-in session. Also unlocks the keychain (see <a href="#gotchas">gotchas</a>).</td></tr>
-      <tr><td>⚡ <b>Restart after power failure</b></td><td>Energy</td><td>Comes back on its own after an outage.</td></tr>
-      <tr><td>😴 <b>Never sleep (display off)</b></td><td>Energy</td><td>A sleeping server answers nothing.</td></tr>
-      <tr><td>🖥️ <b>Screen Sharing ON</b></td><td>General → Sharing</td><td>Headless GUI access (VNC).</td></tr>
-      <tr><td>⌨️ <b>Remote Login ON</b></td><td>General → Sharing</td><td>SSH access.</td></tr>
+      <tr><th>Flip this</th><th>Why</th></tr>
+      <tr><td>🔓 FileVault <b>OFF</b></td><td><b>The big one</b> — on = stuck at a password prompt after any power blip</td></tr>
+      <tr><td>👤 Auto-login <b>ON</b></td><td>launchd needs a logged-in session (also unlocks the keychain — see ⚠️)</td></tr>
+      <tr><td>⚡ Restart after power failure</td><td>Comes back on its own</td></tr>
+      <tr><td>😴 Never sleep (display off)</td><td>A sleeping server answers nothing</td></tr>
+      <tr><td>🖥️ Screen Sharing + ⌨️ Remote Login</td><td>Headless access (VNC + SSH)</td></tr>
     </table>
-    <h4>🔧 One cheap accessory</h4>
-    <p>An <b>HDMI dummy plug (~$5)</b>. Plug it in and the mini thinks a monitor is attached, so Screen Sharing renders at a real resolution instead of a cramped 1024×768. Then unplug the real monitor for good.</p>
   </div>
+  <div class="good">🔧 <b>Grab an HDMI dummy plug (~$5).</b> The mini thinks a monitor's attached, so headless Screen Sharing isn't a cramped 1024×768.</div>
 
-  <!-- CORE SOFTWARE -->
-  <h2><span class="em">📦</span> Step 2 · Core software</h2>
-  <div class="card">
-<pre><code><span class="cmt"># Homebrew (package manager)</span>
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-brew install --cask tailscale   <span class="cmt"># private network — reach the mini from anywhere</span>
+  <details>
+    <summary>📦 Install commands + the one auth rule that matters</summary>
+    <div class="body">
+<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install --cask tailscale
 brew install git
-npm install -g @anthropic-ai/claude-code   <span class="cmt"># the CLI (need ≥ 2.1.80 for Channels)</span></code></pre>
-    <div class="good"><span class="callout-t">✅ The single most important auth choice</span>
-    Sign Claude into your <b>claude.ai account</b>, not an API key. This is what makes everything run on your flat-rate <b>Max/Pro subscription</b> instead of metered billing.
-<pre><code>claude            <span class="cmt"># → /login → choose claude.ai → finish in browser</span>
-echo $ANTHROPIC_API_KEY   <span class="cmt"># MUST be blank. If it prints a key, unset it.</span></code></pre>
+npm install -g @anthropic-ai/claude-code   <span class="cmt"># ≥ 2.1.80 for Channels</span></code></pre>
+      <div class="good"><span class="callout-t">✅ Sign into claude.ai, NOT an API key</span>This is what runs everything on your flat-rate <b>Max/Pro</b> plan instead of metered billing.
+<pre><code>claude            <span class="cmt"># → /login → claude.ai</span>
+echo $ANTHROPIC_API_KEY   <span class="cmt"># must be blank</span></code></pre></div>
     </div>
-  </div>
+  </details>
 
   <!-- SSH vs VNC -->
-  <h2 id="access"><span class="em">🔐</span> Reaching the mini: SSH vs VNC</h2>
-  <p class="lead">Once it's headless, you get in two ways. Both ride over <b>Tailscale</b> (install it on the mini <i>and</i> your laptop/phone, sign into the same account — now they're on a private network and you use the mini's Tailscale IP from anywhere, no router config).</p>
+  <h2 id="access"><span class="em">🔐</span> Getting in: SSH vs VNC</h2>
+  <p class="lead">Both ride over <b>Tailscale</b> (same private network on mini + phone + laptop → use the mini's Tailscale IP from anywhere, no router setup).</p>
   <div class="split">
     <div class="opt">
-      <h3>⌨️ SSH <span class="tag">a text terminal</span></h3>
-      <p>A command line on the mini. Fast, lightweight, works on the worst connection.</p>
-      <pre><code>ssh santiago@&lt;mini-tailscale-ip&gt;</code></pre>
-      <ul>
-        <li>Running commands, editing files, checking logs</li>
-        <li>Starting/stopping launchd jobs</li>
-        <li>Attaching to <code>tmux</code> sessions</li>
-      </ul>
-      <span class="when">→ Use for 95% of admin. It's your daily door.</span>
+      <h3>⌨️ SSH <span class="tag">terminal</span></h3>
+      <pre style="margin:8px 0"><code>ssh kevin@&lt;mini-ip&gt;</code></pre>
+      <span class="when">→ Your daily door. 95% of everything.</span>
     </div>
     <div class="opt">
-      <h3>🖱️ VNC <span class="tag">the actual desktop</span></h3>
-      <p>macOS <b>Screen Sharing</b> (built in) — see and click the mini's real desktop. Heavier, needs a decent connection.</p>
-      <pre><code><span class="cmt"># Mac: Finder → Go → Connect to Server</span>
-vnc://&lt;mini-tailscale-ip&gt;
-<span class="cmt"># Phone: RealVNC Viewer app</span></code></pre>
-      <ul>
-        <li>Clicking through GUI app setup (first-run dialogs)</li>
-        <li>Pairing apps via QR code (e.g. OpenMessage)</li>
-        <li>Anything that pops a window SSH can't reach</li>
-      </ul>
-      <span class="when">→ Use only when you need to <i>click</i> something.</span>
+      <h3>🖱️ VNC <span class="tag">the desktop</span></h3>
+      <pre style="margin:8px 0"><code>vnc://&lt;mini-ip&gt;</code></pre>
+      <span class="when">→ Only when you need to <i>click</i> something.</span>
     </div>
   </div>
-  <div class="note"><span class="callout-t">🧭 Rule of thumb</span><b>SSH by default, VNC when a mouse is required.</b> You'll live in SSH and only reach for Screen Sharing a few times a month.</div>
-
-  <!-- DEVICE DETECTION -->
-  <h2 id="detect"><span class="em">🛰️</span> Pro move: make every session know where it is</h2>
-  <p class="lead">Here's a trick Kevin uses that's worth stealing. Claude Code can run a <b>hook</b> at the start of every session — a script whose output gets injected into Claude's context. He uses it so Claude instantly knows <i>which machine</i> it's on and <i>how</i> you connected, then adjusts its behavior (e.g. the mini doesn't auto-push to git, so it reminds itself to push manually).</p>
-
-  <div class="flow">
-    <div class="node"><span class="ic">🟢</span><b>Session starts</b><span style="color:var(--dim)">on the mini</span></div>
-    <span class="arrow">→</span>
-    <div class="node"><span class="ic">📜</span><b>Hook runs</b><span style="color:var(--dim)">detect script</span></div>
-    <span class="arrow">→</span>
-    <div class="node"><span class="ic">🧠</span><b>Claude learns</b><span style="color:var(--dim)">device + transport</span></div>
-  </div>
-
-  <div class="card">
-    <h4>What Claude sees on turn one</h4>
-    <pre><code><span class="cmt">SESSION CONTEXT — Device: Mac mini M4 (always-on server)</span>
-<span class="cmt">· Transport: phone via Claude Code Remote Control</span>
-<span class="cmt">· Vault: NO auto-push — end writes with vault-push.sh</span></code></pre>
-    <h4>How it works</h4>
-    <p>A <code>SessionStart</code> hook in <code>.claude/settings.json</code> runs a small bash script. The script:</p>
-    <ol>
-      <li><b>Reads the hostname</b> → maps it to a friendly name ("Mac mini" vs "MacBook Air"). The same script works on both machines because it detects the host live.</li>
-      <li><b>Walks the parent-process chain</b> looking for <code>remote-control</code>. If it finds it, you came in from the phone; if not, you're on a direct terminal/SSH session.</li>
-      <li><b>Picks the right git behavior</b> for that host and tells Claude.</li>
-    </ol>
-    <h4>Wire it up</h4>
-    <pre><code><span class="cmt">// .claude/settings.json</span>
-"hooks": {
-  "SessionStart": [{ "hooks": [{
-    "type": "command",
-    "command": "bash \"$CLAUDE_PROJECT_DIR/scripts/detect-context.sh\"",
-    "timeout": 10
-  }]}]
-}</code></pre>
-    <p>And the script prints JSON that Claude treats as context:</p>
-    <pre><code>host="$(hostname -s)"
-case "$host" in
-  *Mac-mini*)  device="Mac mini (server)" ;;
-  *Air*)       device="MacBook Air (laptop)" ;;
-esac
-<span class="cmt"># walk parents for 'remote-control' to detect phone vs SSH...</span>
-ctx="SESSION CONTEXT — Device: $device · Transport: $transport"
-printf '{"hookSpecificOutput":{"hookEventName":"SessionStart",'
-printf '"additionalContext":"%s"}}\n' "$ctx"</code></pre>
-    <div class="note"><span class="callout-t">Why bother?</span>Once Claude knows it's on the always-on box reached from your phone, it stops making laptop assumptions — it remembers to push changes, knows which tokens are local, and talks to you like the mobile session it is. Small hook, big quality-of-life.</div>
-  </div>
-
-  <!-- LAUNCHD primer -->
-  <h2><span class="em">♻️</span> launchd in 60 seconds</h2>
-  <p class="lead">The babysitter. Drop a <code>.plist</code> file in <code>~/Library/LaunchAgents/</code> and macOS runs it your way.</p>
-  <div class="card">
-    <table>
-      <tr><th>You want…</th><th>plist key</th></tr>
-      <tr><td>Start at login</td><td><code>RunAtLoad</code></td></tr>
-      <tr><td>Restart if it dies</td><td><code>KeepAlive</code></td></tr>
-      <tr><td>Don't crash-loop</td><td><code>ThrottleInterval</code> (e.g. 30s)</td></tr>
-      <tr><td>Run every N seconds</td><td><code>StartInterval</code></td></tr>
-      <tr><td>Run at a clock time</td><td><code>StartCalendarInterval</code></td></tr>
-    </table>
-    <h4>The four commands you'll actually use</h4>
-    <p>(<code>501</code> is your user id — check with <code>id -u</code>. The label is the plist's <code>Label</code> string.)</p>
-    <pre><code>launchctl bootstrap gui/501 ~/Library/LaunchAgents/&lt;label&gt;.plist  <span class="cmt"># start</span>
-launchctl bootout    gui/501/&lt;label&gt;                            <span class="cmt"># stop</span>
-launchctl kickstart -k gui/501/&lt;label&gt;                          <span class="cmt"># restart</span>
-launchctl list | grep &lt;label&gt;                                   <span class="cmt"># status (PID + exit code)</span></code></pre>
-  </div>
+  <div class="note">🧭 <b>Rule:</b> SSH by default, VNC when a mouse is required (GUI first-run dialogs, QR-code pairing). You'll rarely need VNC.</div>
 
   <!-- REMOTE CONTROL -->
-  <h2 id="rc"><span class="em">📱</span> Front door #1 · Remote Control (code from your phone)</h2>
-  <p class="lead">This is the "build from my couch like I do from my laptop" door. A session runs <b>on the mini</b>; your phone is the screen.</p>
-
-  <div class="flow">
-    <div class="node"><span class="ic">📱</span><b>Phone app</b><span style="color:var(--dim)">Code tab</span></div>
-    <span class="arrow">→</span>
-    <div class="node"><span class="ic">☁️</span><b>Anthropic</b><span style="color:var(--dim)">HTTPS bridge</span></div>
-    <span class="arrow">→</span>
-    <div class="node"><span class="ic">🖥️</span><b>Mac mini</b><span style="color:var(--dim)">real session</span></div>
-  </div>
-
+  <h2 id="rc"><span class="em">📱</span> Door #1 · Remote Control — code from your phone</h2>
   <div class="card">
-    <h3>How it works</h3>
-    <ul>
-      <li><code>claude remote-control</code> registers an <b>environment</b> (Kevin names his "Mac mini") with Anthropic over <b>outbound HTTPS only</b> — no open ports, no Tailscale needed for this part.</li>
-      <li>In the phone's <b>Code</b> tab you tap that environment to spawn a fresh session, or tap a numbered one ("Mac mini · 1 of 32") to resume a chat. Up to 32 at once, all running on the mini.</li>
-      <li>Spawn mode <code>same-dir</code> means every session opens in the same working folder.</li>
-    </ul>
-
-    <h3>Set it up (auto-start, self-healing)</h3>
-    <h4>1 · Wrapper script <code>~/mini-scripts/claude-rc.sh</code></h4>
-    <pre><code>#!/bin/bash
+    <h3>The gist</h3>
+    <p style="font-size:14.5px">A Claude Code session runs <b>on the mini</b>; your phone is the screen. Outbound HTTPS only — no open ports.</p>
+    <table>
+      <tr><td>▶️ <b>Use it</b></td><td>Claude app → <b>Code</b> tab → tap <b>"Mac mini"</b> → you're in a live session</td></tr>
+      <tr><td>🔧 <b>Runs via</b></td><td>launchd agent → <code>claude remote-control --name "Mac mini" --spawn=same-dir</code> in <code>~/second-brain</code></td></tr>
+      <tr><td>✅ <b>Needs</b></td><td>signed into claude.ai · folder trusted: <code>cd ~/second-brain &amp;&amp; claude</code> once, accept, <code>/exit</code></td></tr>
+    </table>
+  </div>
+  <details>
+    <summary>🛠️ Full wrapper + launchd agent (copy-paste)</summary>
+    <div class="body">
+      <p><b><code>~/second-brain-scripts/claude-rc.sh</code></b></p>
+<pre><code>#!/bin/bash
 set -uo pipefail
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-cd "$HOME/projects" || exit 1   <span class="cmt"># the folder sessions open in</span>
+cd "$HOME/second-brain" || exit 1
 exec claude remote-control --name "Mac mini" --spawn=same-dir</code></pre>
-    <h4>2 · launchd agent <code>com.santiago.claude-remote-control.plist</code></h4>
-    <p>RunAtLoad + KeepAlive + ThrottleInterval 30, pointing at that script, with <code>PATH</code> and <code>HOME</code> set and log paths under <code>~/Library/Logs/</code>. Load it:</p>
-    <pre><code>launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.santiago.claude-remote-control.plist
-launchctl list | grep claude-remote-control   <span class="cmt"># want a PID and a 0</span></code></pre>
-    <h4>3 · Use it</h4>
-    <p>Open Claude app → <b>Code</b> → tap <b>"Mac mini"</b>. You're now in a full Claude Code session running on the mini, from your phone. Build away.</p>
-
-    <div class="warn"><span class="callout-t">⚠️ Two prerequisites or it won't start</span>
-      <ul style="margin:.3em 0">
-        <li>Signed into <b>claude.ai</b> (not API): <code>echo $ANTHROPIC_API_KEY</code> is blank.</li>
-        <li>The working folder is <b>trusted</b>: <code>cd ~/projects &amp;&amp; claude</code> once, accept the trust dialog, <code>/exit</code>.</li>
-      </ul>
-      If the err log says <i>"requires a claude.ai subscription,"</i> it's the first one.
+      <p><b><code>~/Library/LaunchAgents/com.you.claude-remote-control.plist</code></b> — keys: <code>RunAtLoad</code> ✔, <code>KeepAlive</code> ✔, <code>ThrottleInterval</code> 30, <code>EnvironmentVariables</code> (PATH + HOME), log paths under <code>~/Library/Logs/</code>. Then:</p>
+<pre><code>launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.you.claude-remote-control.plist
+launchctl list | grep claude-remote-control   <span class="cmt"># want a PID + 0</span></code></pre>
     </div>
-  </div>
-
-  <!-- TMUX -->
-  <h2 id="tmux"><span class="em">🪟</span> tmux: the trick that makes "always-on" possible</h2>
-  <p class="lead"><b>tmux</b> = terminal multiplexer. The point for us: it keeps a program <b>running after you disconnect</b>. Start something inside tmux, close your laptop, and it's still running on the mini. That's why the Telegram session survives you walking away.</p>
-  <div class="card">
-    <table>
-      <tr><th>Do this</th><th>Command</th></tr>
-      <tr><td>Start a named, detached session</td><td><code>tmux new-session -d -s channels "…"</code></td></tr>
-      <tr><td>List running sessions</td><td><code>tmux ls</code></td></tr>
-      <tr><td>Attach (watch it live)</td><td><code>tmux attach -t channels</code></td></tr>
-      <tr><td><b>Detach</b> (leave it running)</td><td><span class="kbd">Ctrl-b</span> then <span class="kbd">d</span></td></tr>
-      <tr><td>Scroll back through output</td><td><span class="kbd">Ctrl-b</span> then <span class="kbd">[</span> (then <span class="kbd">q</span> to quit scroll)</td></tr>
-      <tr><td>Kill a session</td><td><code>tmux kill-session -t channels</code></td></tr>
-    </table>
-    <div class="bad"><span class="callout-t">🚫 The one mistake everyone makes</span>To leave a session running you <b>detach</b> (<span class="kbd">Ctrl-b</span> <span class="kbd">d</span>). If you type <code>exit</code> or hit <span class="kbd">Ctrl-c</span>, you <b>kill</b> the program inside. Detach ≠ exit.</div>
-    <h4>Handy aliases (drop in <code>~/.zshrc</code>)</h4>
-    <pre><code>alias channels="tmux attach -t channels"
-alias channels-log="tmux capture-pane -t channels -p -S -2000 | less +G"</code></pre>
-    <p>Now <code>channels</code> drops you into the live assistant session and <span class="kbd">Ctrl-b</span> <span class="kbd">d</span> backs out.</p>
-  </div>
+  </details>
 
   <!-- CHANNELS -->
-  <h2 id="channels"><span class="em">💬</span> Front door #2 · Channels (text your mini)</h2>
-  <p class="lead">A Telegram bot becomes a persistent Claude session on the mini. You text it; it reads your files, hits your connectors, and texts back — your always-on assistant.</p>
+  <h2 id="channels"><span class="em">💬</span> Door #2 · Channels — text your mini</h2>
   <div class="card">
-    <h4>1 · Make a bot</h4>
-    <p>Message <b>@BotFather</b> on Telegram → <code>/newbot</code> → save the <b>bot token</b>. Then grab your own <b>chat_id</b> (message <b>@userinfobot</b>).</p>
-    <h4>2 · Token where the plugin reads it</h4>
-    <p>Put the token in <code>~/.claude/channels/telegram/.env</code>.</p>
-    <h4>3 · Wrapper script <code>~/mini-scripts/claude-channels.sh</code></h4>
-    <pre><code>#!/bin/bash
+    <h3>The gist</h3>
+    <p style="font-size:14.5px">A Telegram bot = a persistent Claude session on the mini. Text it, it reads your stuff and texts back. Your calendar / Gmail / Todoist connectors are <b>already wired in</b> (it runs as your subscription).</p>
+    <table>
+      <tr><td>🤖 <b>Make a bot</b></td><td><b>@BotFather</b> → <code>/newbot</code> → save token → put it in <code>~/.claude/channels/telegram/.env</code></td></tr>
+      <tr><td>🔒 <b>Lock it down</b></td><td>allowlist <b>only your own chat_id</b> so strangers can't talk to it</td></tr>
+      <tr><td>▶️ <b>Use it</b></td><td>just text the bot · <code>channels</code> alias to watch it live</td></tr>
+      <tr><td>✅ <b>Verify</b></td><td>attach → header says <b>Claude Max/Pro</b>, not "API Usage Billing"</td></tr>
+    </table>
+  </div>
+  <details>
+    <summary>🛠️ Full wrapper script (the launchd→tmux→Claude chain)</summary>
+    <div class="body">
+      <p><b><code>~/second-brain-scripts/claude-channels.sh</code></b> — launchd keeps the script alive → script keeps a tmux session alive → tmux keeps Claude alive.</p>
+<pre><code>#!/bin/bash
 set -uo pipefail
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 SESSION="channels"
-cd "$HOME/projects" || exit 1
+cd "$HOME/second-brain" || exit 1
 if ! tmux has-session -t "$SESSION" 2>/dev/null; then
-  tmux new-session -d -s "$SESSION" -c "$HOME/projects" \
+  tmux new-session -d -s "$SESSION" -c "$HOME/second-brain" \
     "env -u ANTHROPIC_API_KEY claude --model sonnet \
        --channels plugin:telegram@claude-plugins-official"
 fi
 while tmux has-session -t "$SESSION" 2>/dev/null; do sleep 30; done</code></pre>
-    <p>So launchd keeps the <i>script</i> alive, the script keeps the <i>tmux session</i> alive, and tmux keeps <i>Claude</i> alive. Model pinned to <code>sonnet</code> to stretch subscription limits.</p>
-    <h4>4 · launchd agent + lock it down</h4>
-    <p>Same plist shape as Remote Control, pointing at this script. On first message, approve <b>only your own chat_id</b> (allowlist DM policy) so strangers can't talk to your bot. Then verify it's on your subscription:</p>
-    <pre><code>tmux attach -t channels   <span class="cmt"># header must say "Claude Max/Pro", NOT "API Usage Billing"</span></code></pre>
-    <div class="good"><span class="callout-t">🎁 Connectors come free</span>Because it runs as your subscription in the GUI session, your claude.ai connectors (Calendar, Gmail, Todoist, GitHub, Drive…) are <b>already wired in</b> — no per-machine setup. Text "what's on my calendar?" and it just answers.</div>
+      <p>Model pinned to <code>sonnet</code> to stretch plan limits. launchd plist is the same shape as Remote Control's.</p>
+    </div>
+  </details>
+
+  <!-- TMUX -->
+  <h2 id="tmux"><span class="em">🪟</span> tmux — the "stays running after you leave" trick</h2>
+  <div class="card" style="padding:6px 20px">
+    <table>
+      <tr><th>Do this</th><th>Command</th></tr>
+      <tr><td>Watch a session live</td><td><code>tmux attach -t channels</code> (or the <code>channels</code> alias)</td></tr>
+      <tr><td><b>Leave it running</b></td><td><span class="kbd">Ctrl-b</span> then <span class="kbd">d</span> (detach)</td></tr>
+      <tr><td>List sessions</td><td><code>tmux ls</code></td></tr>
+      <tr><td>Kill one</td><td><code>tmux kill-session -t channels</code></td></tr>
+    </table>
   </div>
+  <div class="bad">🚫 <b>The one mistake everyone makes:</b> to leave it running you <b>detach</b> (<span class="kbd">Ctrl-b</span> <span class="kbd">d</span>). Typing <code>exit</code> or <span class="kbd">Ctrl-c</span> <b>kills</b> it. Detach ≠ exit.</div>
 
   <!-- GOTCHAS -->
-  <h2 id="gotchas"><span class="em">🩹</span> The two gotchas that <i>will</i> bite you</h2>
+  <h2 id="gotchas"><span class="em">⚠️</span> The two gotchas that <i>will</i> bite</h2>
   <div class="bad">
     <span class="callout-t">🔑 #1 — Start sessions via launchd, never by hand over SSH</span>
-    A <code>claude</code> session launched from an <b>SSH shell can't unlock the login keychain</b> → can't read your claude.ai token → it <b>silently bills your API account</b>. The exact same command under <b>launchd</b> (GUI session) shows "Claude Max." Always restart with <code>launchctl kickstart</code>, not a manual run. This is also <i>why</i> auto-login matters.
+    An SSH-launched <code>claude</code> can't unlock the keychain → can't read your claude.ai token → <b>silently bills your API account</b>. Same command under launchd shows "Claude Max." Restart with <code>launchctl kickstart -k gui/501/&lt;label&gt;</code>, never a manual run.
   </div>
   <div class="bad">
-    <span class="callout-t">🤖 #2 — One Telegram bot = one poller</span>
-    Telegram allows only <b>one</b> message-poller per bot token. If you run <i>any</i> <code>claude</code> command over SSH that loads the telegram plugin (even <code>claude mcp list</code>), it spins up a second poller, steals the lock, and your live bot goes silent. To inspect from SSH: read logs or <code>tmux attach</code> — don't launch a fresh <code>claude</code>. <b>Recovery:</b> attach → <code>/mcp</code> → select <code>telegram ✗ failed</code> → <b>Reconnect</b>.
+    <span class="callout-t">🤖 #2 — One bot = one poller</span>
+    Running <i>any</i> <code>claude</code> over SSH that loads the telegram plugin (even <code>claude mcp list</code>) starts a 2nd poller and kills your live bot. To peek from SSH: read logs or <code>tmux attach</code> — don't launch a fresh <code>claude</code>. <b>Fix:</b> attach → <code>/mcp</code> → <code>telegram ✗ failed</code> → <b>Reconnect</b>.
   </div>
-  <div class="note"><span class="callout-t">🐕 Optional watchdog</span>Once you've used Channels a while, add a tiny launchd job (every 5 min) that checks the session still has a live poller and restarts it if not. Self-healing. Not needed day one.</div>
+
+  <!-- DEVICE DETECTION (compressed) -->
+  <h2><span class="em">🛰️</span> Nice trick: every session knows where it is</h2>
+  <p class="lead">A <code>SessionStart</code> hook prints which machine + how you connected (<b>phone-via-Remote-Control vs SSH</b>) straight into Claude's context — so it adapts (e.g. knows the mini doesn't auto-push git, and reminds itself to push).</p>
+  <details>
+    <summary>🛠️ How the hook works + the script</summary>
+    <div class="body">
+      <p>Wire a <code>SessionStart</code> command hook in <code>.claude/settings.json</code> to a script that (1) reads <code>hostname</code> → friendly name, (2) walks the parent-process chain for <code>remote-control</code> to tell phone from SSH, (3) prints JSON Claude treats as context:</p>
+<pre><code>host="$(hostname -s)"
+case "$host" in *Mac-mini*) device="Mac mini" ;; *Air*) device="MacBook Air" ;; esac
+<span class="cmt"># walk parents for 'remote-control' → transport = phone vs SSH</span>
+printf '{"hookSpecificOutput":{"hookEventName":"SessionStart",'
+printf '"additionalContext":"Device: %s · %s"}}\n' "$device" "$transport"</code></pre>
+    </div>
+  </details>
 
   <!-- JOBS -->
-  <h2 id="jobs"><span class="em">🗂️</span> What Kevin actually runs off his mini</h2>
-  <p class="lead">A menu, not a mandate. Two categories live on the mini; a third lives in the cloud. Take what's useful.</p>
-
-  <div class="card">
-    <h3>🟢 Always-on services <span style="color:var(--dim);font-size:13px;font-weight:400">(launchd, alive 24/7)</span></h3>
-    <table>
-      <tr><th>Service</th><th>What it does</th></tr>
-      <tr><td>💬 Channels</td><td>The Telegram chat session — the assistant he texts</td></tr>
-      <tr><td>📱 Remote Control</td><td>Drive a full coding session on the mini from the phone</td></tr>
-      <tr><td>✉️ OpenMessage</td><td>Bridges his texts (Google Messages/iMessage) into Claude — "any texts I owe replies to?"</td></tr>
-      <tr><td>🔄 Vault pull</td><td>Pulls his notes repo from GitHub every 5 min so the mini stays current</td></tr>
-      <tr><td>🐕 Healthcheck</td><td>Watchdog that self-heals the Telegram session if its poller dies</td></tr>
-    </table>
+  <h2 id="jobs"><span class="em">🗂️</span> The jobs menu <span style="font-size:13px;color:var(--dim);font-weight:400">(take what's useful)</span></h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>🟢 Always-on services</h3>
+      <ul>
+        <li>💬 <b>Channels</b> — the Telegram assistant</li>
+        <li>📱 <b>Remote Control</b> — code from phone</li>
+        <li>✉️ <b>OpenMessage</b> — "any texts I owe replies to?"</li>
+        <li>🔄 <b>Vault pull</b> — sync notes every 5 min</li>
+        <li>🐕 <b>Healthcheck</b> — self-heals the bot</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🕐 Scheduled jobs</h3>
+      <ul>
+        <li>🧹 <b>Gmail clean</b> — archives noise, texts a digest</li>
+        <li>🚫 <b>Unsubscribe</b> — kills promo senders weekly</li>
+        <li>🧾 <b>Receipts</b> — renewal/deadline reminders</li>
+        <li>📋 <b>Task nudge</b> — one ping for what's due</li>
+      </ul>
+    </div>
   </div>
-  <div class="card">
-    <h3>🕐 Scheduled jobs <span style="color:var(--dim);font-size:13px;font-weight:400">(launchd, on a clock)</span></h3>
-    <table>
-      <tr><th>Job</th><th>When</th><th>What</th></tr>
-      <tr><td>🧹 Gmail auto-clean</td><td>Daily 7am</td><td>Claude reads new email (2 accounts), archives noise, texts a digest of the keepers</td></tr>
-      <tr><td>🚫 Gmail unsubscribe</td><td>Sun 7am</td><td>Fires one-click unsubscribes on promo senders</td></tr>
-      <tr><td>🧾 Receipts feed</td><td>Mon 6am</td><td>Pulls receipts from email → renewal/deadline reminders</td></tr>
-      <tr><td>📋 Concierge sweep</td><td>Daily 8pm</td><td>One nudge for due/overdue tasks (silent if nothing's due)</td></tr>
-    </table>
-  </div>
-  <div class="card">
-    <h3>☁️ The cloud half <span style="color:var(--dim);font-size:13px;font-weight:400">(NOT on the mini)</span></h3>
-    <p>Kevin also runs scheduled <b>claude.ai Routines</b> (morning brief, fitness brief, weekly review) and <b>GitHub Actions</b> (dashboard/report deploys). These run on Anthropic's / GitHub's cloud, so they fire <b>even when the mini is off</b>.</p>
-    <p style="margin-bottom:0"><b>The dividing line:</b> anything needing <i>local</i> tokens (his two Gmail accounts, OpenMessage) lives on the mini; anything pure-cloud (read a calendar, write a file via the GitHub connector) is a cloud Routine so it doesn't depend on the mini being up. <b>Start on the mini, graduate the always-available stuff to the cloud later.</b></p>
-  </div>
+  <div class="note">☁️ <b>The cloud half:</b> briefs + deploys run as claude.ai Routines / GitHub Actions, so they fire <b>even when the mini's off</b>. Rule of thumb — <b>local tokens → mini, pure-cloud → cloud.</b></div>
 
   <!-- CHEAT SHEET -->
-  <h2 id="cheat"><span class="em">🎴</span> Daily-driver cheat sheet</h2>
+  <h2 id="cheat"><span class="em">🎴</span> Cheat sheet</h2>
   <div class="card">
 <pre><code><span class="cmt"># get in</span>
-ssh santiago@&lt;mini-tailscale-ip&gt;        <span class="cmt"># terminal (default)</span>
-vnc://&lt;mini-tailscale-ip&gt;               <span class="cmt"># desktop (when you must click)</span>
+ssh kevin@&lt;mini-ip&gt;                    <span class="cmt"># terminal (default)</span>
+vnc://&lt;mini-ip&gt;                        <span class="cmt"># desktop (when you must click)</span>
 
-<span class="cmt"># status of everything</span>
-launchctl list | grep com.santiago
+<span class="cmt"># status / restart the RIGHT way</span>
+launchctl list | grep com.you
+launchctl kickstart -k gui/501/com.you.claude-channels
 
-<span class="cmt"># restart a service the RIGHT way (keeps subscription billing)</span>
-launchctl kickstart -k gui/501/com.santiago.claude-channels
-
-<span class="cmt"># watch the live Telegram session, then leave it running</span>
+<span class="cmt"># watch the bot, then leave it running</span>
 tmux attach -t channels                <span class="cmt"># Ctrl-b then d to detach</span>
 
 <span class="cmt"># logs</span>
-tail -f ~/Library/Logs/claude-rc.out.log
 tail -f ~/Library/Logs/claude-channels.err.log</code></pre>
   </div>
 
-  <div class="hero" style="margin-top:30px; padding:28px 30px">
-    <div class="kicker" style="color:var(--a3)">🏁 The whole thing in 3 rules</div>
-    <h1 style="font-size:24px; margin:.4em 0 .5em">Get these right, the rest is plumbing</h1>
-    <ul style="margin:0; color:var(--ink); font-size:16px">
+  <div class="hero" style="margin-top:26px; padding:24px 28px">
+    <div class="kicker" style="color:var(--a3)">🏁 Remember just 3 things</div>
+    <ul style="margin:.5em 0 0; font-size:15.5px">
       <li>🔑 Sign Claude into <b>claude.ai</b>, not an API key</li>
       <li>♻️ Start sessions via <b>launchd</b>, not by hand over SSH</li>
-      <li>🤖 <b>One bot = one poller</b> — don't run a second <code>claude</code> against your bot</li>
+      <li>🤖 <b>One bot = one poller</b></li>
     </ul>
   </div>
 
-  <div class="footer">
-    Made for Santiago, from Kevin's working M4 mini setup · genericized hand-off · questions → ask Kevin.
-  </div>
+  <div class="footer">Quick reference · from Kevin's working M4 mini · questions → ask Kevin.</div>
 
 </div>
 </body>
