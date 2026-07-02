@@ -1,13 +1,13 @@
 {
   "date_label": "Friday, Jun 26",
-  "recovery_status": "good",
+  "recovery_status": "watch",
   "today": {
     "time": "8:00 AM",
     "session": "Pickleball",
-    "subtitle": "Downey Park · 8:00–10:00 AM",
+    "subtitle": "Downey Park · recreational",
     "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "Recovery at 100/PRIME as of Jun 23 data. NS-Reset: pickleball is social + low-cortisol — ideal for this window.",
+    "adjustment_label": "Pickleball as planned — HRV watch",
+    "why": "HRV 14% below baseline (35 vs 41 ms); readiness 57 moderate. Session logged 8:08 AM (49 min). NS Reset active: easy rest of day.",
     "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
     "expected_duration_minutes": 120
   },
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE skewed by Jun 23 partial read (BMR only). 6-day avg ~2,524 cal → ~1.2 lb/wk truer ceiling.",
+  "cut_note": "*7d TDEE pulled down by partial Jun 26 read. 3.1 lb drop likely includes water/glycogen. NS Reset goal: ~0.5 lb/wk.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",

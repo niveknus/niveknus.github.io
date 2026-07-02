@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-26T21:57:00.741229+00:00",
+  "generated_at": "2026-07-02T17:38:47.426469+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 26,
-    "workout_days": 21,
-    "done_days": 6,
-    "adherence_rate_pct": 29,
+    "total_entries": 28,
+    "workout_days": 23,
+    "done_days": 7,
+    "adherence_rate_pct": 30,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -270,6 +270,26 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Split B — Chest + Upper Back · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-26",
+      "weekday": "Friday",
+      "state": "partial",
+      "emoji": "🟡",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": "Pickleball · type `pickleball` · 49 min · 375 cal · avg HR 128 · started 08:09 ET",
+      "note": "morning digest used — evening workout may be missing",
+      "data_gap": false
+    },
+    {
+      "date": "2026-06-27",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin Walk · expected types `[walking]` · ~60 min",
       "actual": null,
       "note": "data gap — state may be inaccurate",
       "data_gap": false

@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-06-26T21:57:00.798350+00:00",
-  "window_start": "2025-06-15",
-  "window_end": "2026-06-26",
+  "generated_at": "2026-07-02T17:38:47.483541+00:00",
+  "window_start": "2025-06-22",
+  "window_end": "2026-07-02",
   "weeks": 53,
   "stats": {
-    "active_days_365": 138,
-    "total_hours_365": 188.6,
-    "current_streak_days": 1,
-    "active_days_window": 145
+    "active_days_365": 136,
+    "total_hours_365": 186.6,
+    "current_streak_days": 0,
+    "active_days_window": 141
   },
   "days": [
-    {
-      "date": "2025-06-15",
-      "count": 2,
-      "minutes": 215.4,
-      "calories": 1309,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-06-16",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-17",
-      "count": 1,
-      "minutes": 65.7,
-      "calories": 408,
-      "dominant_type": "strength_training",
-      "level": 3
-    },
-    {
-      "date": "2025-06-18",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-19",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-06-20",
-      "count": 2,
-      "minutes": 141.0,
-      "calories": 1015,
-      "dominant_type": "strength_training",
-      "level": 4
-    },
-    {
-      "date": "2025-06-21",
-      "count": 1,
-      "minutes": 52.0,
-      "calories": 199,
-      "dominant_type": "indoor_cardio",
-      "level": 2
-    },
     {
       "date": "2025-06-22",
       "count": 2,
@@ -3026,6 +2970,54 @@
       "calories": 375,
       "dominant_type": "pickleball",
       "level": 2
+    },
+    {
+      "date": "2026-06-27",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-06-28",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-06-29",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-06-30",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-07-01",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-07-02",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     }
   ]
 }
