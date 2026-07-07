@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-02T17:38:47.426469+00:00",
+  "generated_at": "2026-07-07T01:56:20.248275+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 28,
-    "workout_days": 23,
+    "total_entries": 31,
+    "workout_days": 25,
     "done_days": 7,
-    "adherence_rate_pct": 30,
+    "adherence_rate_pct": 28,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -290,6 +290,36 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Lake Baldwin Walk · expected types `[walking]` · ~60 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-03",
+      "weekday": "Friday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
+      "actual": null,
+      "note": "data gap — state may be inaccurate",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": "Sunday",
+      "state": "rest-adhered",
+      "emoji": "🧘",
+      "prescribed": "Rest day · expected types `` · ~0 min",
+      "actual": null,
+      "note": "evening dispatch failed",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": "Monday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk/Jog · expected types `[walking, running]` · ~45 min",
       "actual": null,
       "note": "data gap — state may be inaccurate",
       "data_gap": false
