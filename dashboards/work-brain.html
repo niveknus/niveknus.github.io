@@ -130,7 +130,7 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
   </div>
   <p class="header-desc">Work-focused knowledge base deployed on work machine. OpenCode v1.15.11 + Sonnet 4.5. Email export pipeline built (1,068 emails in 14-day test). 6-month bootstrap ingest in progress.</p>
   <div class="header-meta">
-    <div class="meta-item">Last session <span>2026-06-16</span></div>
+    <div class="meta-item">Last session <span>2026-07-08</span></div>
     <div class="meta-item">Activated · 2026-05-27</div>
     
   </div>
@@ -149,6 +149,34 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <details class="sprint-entry" open>
+        <summary>
+          <span class="sprint-date">2026-07-08</span>
+          <span class="sprint-title">IE Project Tracker designed, scaffolded & pushed to work GitLab</span>
+          
+        </summary>
+        <div class="sprint-body">
+          <ul>
+            
+            <li>Designed a team-shared IE project tracker for tomorrow's meeting with the IE manager + 2 IE leads (Kevin driving): all IE projects (in-work / backlog / completed) as one markdown file per project i...</li>
+            
+            <li>Key architecture: frontmatter as single source of truth (status/owner/priority/updated — no status folders, avoids drift); flat `projects/` folder with permanent `IE-NNN--slug.md` ID-prefixed filen...</li>
+            
+            <li>Boundary rule: repo = status + documentation + small assets (5 MB cap; CAD/living-Excel banned); network drive `IE-Projects\IE-NNN_*` working folders = actual work artifacts, paired to repo files b...</li>
+            
+            <li>Starter package built + tested on the personal side: `AGENTS.md` (vendor-neutral operating rules — OpenCode native, Windsurf via pointer rule), `_template.md`, `lint.py` (plain-English validation: ...</li>
+            
+            <li>Executed on the work machine: carried package over, fixed a stray nested-git folder, `git init` + first commit, scripts smoke-tested, pushed to work GitLab (personal namespace for now — will transf...</li>
+            
+            <li>Two-tier team editing model: manager + leads edit via GitLab web UI (feels like a wiki — pencil icon, no git knowledge); power users use Windsurf's Source Control GUI; terminal needed by no one aft...</li>
+            
+          </ul>
+        </div>
+      </details>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <details class="sprint-entry">
         <summary>
           <span class="sprint-date"></span>
           <span class="sprint-title">2026-06 (on the work machine — high-level, genericized) — Work Brain in daily use</span>
@@ -194,82 +222,6 @@ details.sprint-entry[open] summary::before { transform: rotate(90deg); }
             <li>Captured deep context: ME's four result metrics, the "hole of sand" operating model, routing tool stack, IE tech-team operating model + sub-functions + proposal process, org structure, and the Tari...</li>
             
             <li>Two decisions logged (report architecture; capture-in-personal-wiki, portable-by-convention).</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-27</span>
-          <span class="sprint-title">Activation + Email Pipeline</span>
-          
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Upgraded OpenCode to v1.15.11</li>
-            
-            <li>Deployed AGENTS.md and .clinerules to Work Brain root (transferred from Second Brain vault template)</li>
-            
-            <li>Built `scripts/email_export.py` with iterative testing (1 day → 14 days → custom folders → sender exclusion → resume)</li>
-            
-            <li>14-day test: 1,068 substantive emails exported after filtering</li>
-            
-            <li>Sonnet 4.5 approved for work use, set as recommended default</li>
-            
-            <li>EEXIST bug resolved via explicit `os.makedirs(exist_ok=True)` prompting</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-26</span>
-          <span class="sprint-title">Confluence Tooling + IOI Proof of Concept</span>
-          
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Confluence MCP server working: page tree export from parent page, bulk export as JSON/HTML</li>
-            
-            <li>Chat completion script: source doc + prompt → GPT-5.1 gateway → rewritten HTML with images</li>
-            
-            <li>Outlook .msg-to-JSON converter: Python GUI for manual email conversion</li>
-            
-            <li>IOI processor: 4 weeks of IOIs → week-over-week delta HTML report with per-project timelines</li>
-            
-            <li>Validated batch email processing as Work Brain activation strategy</li>
-            
-          </ul>
-        </div>
-      </details>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <details class="sprint-entry">
-        <summary>
-          <span class="sprint-date">2026-05-22</span>
-          <span class="sprint-title">Three-Layer Architecture</span>
-          
-        </summary>
-        <div class="sprint-body">
-          <ul>
-            
-            <li>Restructured vault template from 2-layer to 3-layer model (wiki + projects + operations)</li>
-            
-            <li>Added lightweight project format, Confluence framing, context-window guidance</li>
-            
-            <li>Brain dump and real-time capture workflows documented</li>
             
           </ul>
         </div>
