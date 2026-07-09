@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-09T01:30:56.935222+00:00",
+  "generated_at": "2026-07-09T12:20:57.458976+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 32,
-    "workout_days": 26,
+    "total_entries": 33,
+    "workout_days": 27,
     "done_days": 7,
-    "adherence_rate_pct": 27,
+    "adherence_rate_pct": 26,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -330,6 +330,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Split A — Arms + Shoulders · expected types `[strength_training, fitness_equipment]` · ~50 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": "Wednesday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Neighborhood Walk · expected types `[walking, indoor_walking]` · ~30 min",
       "actual": null,
       "note": "",
       "data_gap": false
