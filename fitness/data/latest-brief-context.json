@@ -1,15 +1,15 @@
 {
-  "date_label": "Tuesday, Jul 07",
-  "recovery_status": "good",
+  "date_label": "Wednesday, Jul 8",
+  "recovery_status": "watch",
   "today": {
-    "time": "6:00 PM",
-    "session": "Split A — Arms + Shoulders",
-    "subtitle": "Planet Fitness lift",
-    "adjustment_status": "none",
-    "adjustment_label": "Full session, no adjustments",
-    "why": "All recovery signals green. HRV 46 ms (8% below 7d baseline, under threshold). Sleep 8h 57m, readiness 83 (HIGH). Nervous-system reset active — moderate effort, no failure sets.",
-    "expected_activity_types": ["strength_training", "fitness_equipment"],
-    "expected_duration_minutes": 50
+    "time": "6:15 PM",
+    "session": "Neighborhood Walk",
+    "subtitle": "Walk only — no jog",
+    "adjustment_status": "intensity_reduced",
+    "adjustment_label": "Walk only — no jogging (sleep score 57 POOR)",
+    "why": "Sleep score 57 (POOR) overrides the 7h duration — cuts intensity to Z2 walk. HRV unbalanced, readiness 59 (moderate). Nervous-system-reset modifier active: jog can wait.",
+    "expected_activity_types": ["walking", "indoor_walking"],
+    "expected_duration_minutes": 30
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE (2,162 cal/day) pulled down by today's partial read. 6d complete avg ~2,399 cal → ~0.94 lb/wk ceiling is the truer figure.",
+  "cut_note": "*7d TDEE (2,190 cal/day) pulled down by today's partial read. 6d complete avg ~2,431 cal/day → 1.0 lb/wk ceiling is the truer figure.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
