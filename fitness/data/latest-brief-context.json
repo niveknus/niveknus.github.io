@@ -1,15 +1,15 @@
 {
-  "date_label": "Wednesday, Jul 8",
+  "date_label": "Thursday, Jul 9",
   "recovery_status": "watch",
   "today": {
-    "time": "6:15 PM",
-    "session": "Neighborhood Walk",
-    "subtitle": "Walk only — no jog",
-    "adjustment_status": "intensity_reduced",
-    "adjustment_label": "Walk only — no jogging (sleep score 57 POOR)",
-    "why": "Sleep score 57 (POOR) overrides the 7h duration — cuts intensity to Z2 walk. HRV unbalanced, readiness 59 (moderate). Nervous-system-reset modifier active: jog can wait.",
+    "time": "6:30 PM",
+    "session": "Active Recovery Walk",
+    "subtitle": "HRV-triggered swap from Split B",
+    "adjustment_status": "active_recovery",
+    "adjustment_label": "Active recovery only — swapped from Split B lift",
+    "why": "HRV 39 ms is 19.7% below the 7-day baseline (49 ms) despite good sleep (score 87) and HIGH readiness (77) — the HRV Rule #4 overrides the otherwise-green signals. Nervous-system-reset modifier reinforces easy/parasympathetic work.",
     "expected_activity_types": ["walking", "indoor_walking"],
-    "expected_duration_minutes": 30
+    "expected_duration_minutes": 25
   },
   "cut": {
     "start_weight_lbs": 200
@@ -26,7 +26,7 @@
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE (2,190 cal/day) pulled down by today's partial read. 6d complete avg ~2,431 cal/day → 1.0 lb/wk ceiling is the truer figure.",
+  "cut_note": "*7d TDEE (2,223 cal/day) pulled down by today's partial read. 6d complete avg ~2,464 cal/day → 1.1 lb/wk ceiling is the truer figure.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
