@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-10T01:30:58.036836+00:00",
+  "generated_at": "2026-07-10T12:31:28.436403+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 33,
-    "workout_days": 27,
+    "total_entries": 34,
+    "workout_days": 28,
     "done_days": 7,
-    "adherence_rate_pct": 26,
+    "adherence_rate_pct": 25,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -340,6 +340,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Neighborhood Walk · expected types `[walking, indoor_walking]` · ~30 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": "Thursday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Active Recovery Walk · expected types `[walking, indoor_walking]` · ~25 min",
       "actual": null,
       "note": "",
       "data_gap": false
