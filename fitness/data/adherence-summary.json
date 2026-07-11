@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-11T01:30:59.044936+00:00",
+  "generated_at": "2026-07-11T12:15:48.863868+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 34,
-    "workout_days": 28,
+    "total_entries": 35,
+    "workout_days": 29,
     "done_days": 7,
-    "adherence_rate_pct": 25,
+    "adherence_rate_pct": 24,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -350,6 +350,16 @@
       "state": "skipped",
       "emoji": "🔴",
       "prescribed": "Active Recovery Walk · expected types `[walking, indoor_walking]` · ~25 min",
+      "actual": null,
+      "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": "Friday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
       "actual": null,
       "note": "",
       "data_gap": false
