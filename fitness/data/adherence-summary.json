@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-11T12:15:48.863868+00:00",
+  "generated_at": "2026-07-12T12:15:41.579345+00:00",
   "reset_date": "2026-05-23",
   "stats": {
-    "total_entries": 35,
-    "workout_days": 29,
+    "total_entries": 36,
+    "workout_days": 30,
     "done_days": 7,
-    "adherence_rate_pct": 24,
+    "adherence_rate_pct": 23,
     "rolling_14": {
       "workout_days": 13,
       "done_days": 1,
@@ -362,6 +362,16 @@
       "prescribed": "Pickleball · expected types `[pickleball, racket_sports, tennis]` · ~120 min",
       "actual": null,
       "note": "",
+      "data_gap": false
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": "Saturday",
+      "state": "skipped",
+      "emoji": "🔴",
+      "prescribed": "Lake Baldwin Walk · expected types `[walking]` · ~60 min",
+      "actual": null,
+      "note": "evening dispatch failed",
       "data_gap": false
     }
   ]

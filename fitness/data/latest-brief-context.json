@@ -1,15 +1,15 @@
 {
-  "date_label": "Friday, Jul 10",
-  "recovery_status": "low",
+  "date_label": "Saturday, Jul 11",
+  "recovery_status": "watch",
   "today": {
     "time": "8:00 AM",
-    "session": "Pickleball",
-    "subtitle": "2 hr recreational — social, not competitive today",
-    "adjustment_status": "none",
-    "adjustment_label": "Full session — recovery flagged",
-    "why": "Sleep 4h 19m (score 56) flags recovery-only, but Friday pickleball is protected per your preference. Keep it recreational, not hard. Exit early if you feel rough.",
-    "expected_activity_types": ["pickleball", "racket_sports", "tennis"],
-    "expected_duration_minutes": 120
+    "session": "Lake Baldwin Walk",
+    "subtitle": "Active recovery — easy walk, Baldwin Park",
+    "adjustment_status": "active_recovery",
+    "adjustment_label": "Active recovery — walk only, skip the jog",
+    "why": "Body battery peaked at 15 today (below 30 threshold). Prior nights scored 56 and 57. RHR 61 vs 57 avg. Nervous-system reset still active.",
+    "expected_activity_types": ["walking"],
+    "expected_duration_minutes": 60
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,16 +17,16 @@
   "week_plan": {
     "monday_date": "2026-07-06",
     "days": [
-      {"label": "Walk/Jog", "type": "walk"},
+      {"label": "Walk", "type": "walk"},
       {"label": "Split A", "type": "lift"},
-      {"label": "Walk/Jog", "type": "walk"},
+      {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
-      {"label": "Baldwin", "type": "walk"},
+      {"label": "Walk", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE (2,209 cal/day) skewed low by today's partial read. 6-day complete avg ~2,442 cal/day → ~3,591 cal/wk (~1.0 lb/wk) is the truer ceiling.",
+  "cut_note": "*7d TDEE avg (2,168 cal) pulled low by today's partial read. 6-day complete avg ~2,482 cal → ~1.1 lb/wk ceiling is more representative.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
