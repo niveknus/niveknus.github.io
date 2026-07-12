@@ -1,15 +1,15 @@
 {
-  "date_label": "Saturday, Jul 11",
+  "date_label": "Sunday, Jul 12",
   "recovery_status": "watch",
   "today": {
-    "time": "8:00 AM",
-    "session": "Lake Baldwin Walk",
-    "subtitle": "Active recovery — easy walk, Baldwin Park",
-    "adjustment_status": "active_recovery",
-    "adjustment_label": "Active recovery — walk only, skip the jog",
-    "why": "Body battery peaked at 15 today (below 30 threshold). Prior nights scored 56 and 57. RHR 61 vs 57 avg. Nervous-system reset still active.",
-    "expected_activity_types": ["walking"],
-    "expected_duration_minutes": 60
+    "time": null,
+    "session": "Rest day",
+    "subtitle": "Sunday default",
+    "adjustment_status": "rest",
+    "adjustment_label": "Rest day — Sunday default",
+    "why": "Sunday default rest. No workouts logged this week; NS Reset modifier active — rest is the right call.",
+    "expected_activity_types": [],
+    "expected_duration_minutes": 0
   },
   "cut": {
     "start_weight_lbs": 200
@@ -17,16 +17,16 @@
   "week_plan": {
     "monday_date": "2026-07-06",
     "days": [
-      {"label": "Walk", "type": "walk"},
+      {"label": "Walk/Jog", "type": "walk"},
       {"label": "Split A", "type": "lift"},
       {"label": "ND class", "type": "class"},
       {"label": "Split B", "type": "lift"},
       {"label": "Pkl", "type": "pickleball"},
-      {"label": "Walk", "type": "walk"},
+      {"label": "Baldwin", "type": "walk"},
       {"label": "Rest", "type": "rest"}
     ]
   },
-  "cut_note": "*7d TDEE avg (2,168 cal) pulled low by today's partial read. 6-day complete avg ~2,482 cal → ~1.1 lb/wk ceiling is more representative.",
+  "cut_note": "*7d TDEE pulled down by today's partial read. 6-day complete avg ~2,513 cal → ~1.17 lb/wk is the truer ceiling.",
   "targets": {
     "steps": "10k",
     "protein": "180 g",
