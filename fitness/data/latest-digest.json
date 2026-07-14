@@ -1,130 +1,113 @@
 {
   "digest_version": 4,
   "source_export_version": 2,
-  "source_fetched_at_local": "2026-07-13T12:15:53",
+  "source_fetched_at_local": "2026-07-14T12:15:47",
   "calendar": {
-    "snapshot_end": "2026-07-13",
-    "window_start": "2026-07-07",
-    "window_end": "2026-07-13",
+    "snapshot_end": "2026-07-14",
+    "window_start": "2026-07-08",
+    "window_end": "2026-07-14",
     "iso_week_current_monday": "2026-07-13",
     "iso_week_previous_monday": "2026-07-06"
   },
   "last_night": {
     "sleep": {
-      "date": "2026-07-13",
-      "sleep_time_seconds": null,
-      "sleep_time_hours": 0.0,
-      "deep_sleep_minutes": 0.0,
-      "light_sleep_minutes": 0.0,
-      "rem_sleep_minutes": 0.0,
-      "awake_minutes": 0.0,
-      "sleep_score": null,
-      "sleep_score_qualifier": null,
+      "date": "2026-07-14",
+      "sleep_time_seconds": 30780,
+      "sleep_time_hours": 8.55,
+      "deep_sleep_minutes": 82.0,
+      "light_sleep_minutes": 339.0,
+      "rem_sleep_minutes": 92.0,
+      "awake_minutes": 36.0,
+      "sleep_score": 76,
+      "sleep_score_qualifier": "FAIR",
       "avg_overnight_hrv": null,
-      "avg_sleep_stress": null
+      "avg_sleep_stress": 23.0
     },
     "hrv": {
-      "date": "2026-07-13",
-      "last_night_avg": null,
-      "last_night_5_min_high": null,
-      "weekly_avg": null,
-      "status": null,
-      "feedback_phrase": null,
-      "baseline_balanced_low": null,
-      "baseline_balanced_upper": null
+      "date": "2026-07-14",
+      "last_night_avg": 41,
+      "last_night_5_min_high": 61,
+      "weekly_avg": 45,
+      "status": "BALANCED",
+      "feedback_phrase": "HRV_BALANCED_5",
+      "baseline_balanced_low": 38,
+      "baseline_balanced_upper": 52
     },
     "cardio": {
-      "date": "2026-07-13",
-      "resting_heart_rate": 62,
-      "resting_hr_7d_avg": 58,
-      "max_heart_rate": 79,
-      "max_avg_heart_rate": 78,
-      "min_heart_rate": 58,
-      "avg_respiration": 17.0
+      "date": "2026-07-14",
+      "resting_heart_rate": 59,
+      "resting_hr_7d_avg": 59,
+      "max_heart_rate": 92,
+      "max_avg_heart_rate": 91,
+      "min_heart_rate": 56,
+      "avg_respiration": 16.0
     },
     "body_battery": {
-      "date": "2026-07-13",
-      "at_wake_time": null,
-      "charged": 21,
+      "date": "2026-07-14",
+      "at_wake_time": 59,
+      "charged": 44,
       "drained": 0,
-      "during_sleep": null,
-      "highest_value": 33,
-      "lowest_value": 12,
-      "most_recent_value": 33
+      "during_sleep": 48,
+      "highest_value": 59,
+      "lowest_value": 15,
+      "most_recent_value": 59
     },
     "training_readiness": {
-      "date": "2026-07-13",
-      "score": null,
-      "level": null,
-      "feedback_long": null,
-      "feedback_short": null,
-      "sleep_score_factor_percent": null,
-      "recovery_time_hours": null,
-      "hrv_factor_percent": null,
-      "stress_history_factor_percent": null,
-      "acwr_factor_percent": null,
-      "acute_load": null
+      "date": "2026-07-14",
+      "score": 87,
+      "level": "HIGH",
+      "feedback_long": "HIGH_RT_HIGHEST_SS_AVAILABLE_ACWR_POS",
+      "feedback_short": "EXCELLENT_RECOVERY",
+      "sleep_score_factor_percent": 64,
+      "recovery_time_hours": 1,
+      "hrv_factor_percent": 98,
+      "stress_history_factor_percent": 43,
+      "acwr_factor_percent": 100,
+      "acute_load": 0
     },
     "training_status": {
-      "date": "2026-07-13",
+      "date": "2026-07-14",
       "vo2_max": null,
       "training_status": null,
-      "load_balance_feedback": null
+      "load_balance_feedback": "AEROBIC_LOW_SHORTAGE"
     },
     "energy": {
-      "date": "2026-07-13",
-      "total_calories_burned": 273.0,
-      "bmr_calories": 273.0,
-      "active_calories": 0.0,
-      "wellness_calories": 273.0
+      "date": "2026-07-14",
+      "total_calories_burned": 762.0,
+      "bmr_calories": 754.0,
+      "active_calories": 8.0,
+      "wellness_calories": 762.0
     },
     "stress": {
-      "date": "2026-07-13",
-      "average_level": 22,
-      "max_level": 69,
+      "date": "2026-07-14",
+      "average_level": 23,
+      "max_level": 86,
       "qualifier": "UNKNOWN",
-      "rest_pct": 84.09,
-      "low_pct": 13.64,
-      "medium_pct": 2.27,
-      "high_pct": 0.0
+      "rest_pct": 76.34,
+      "low_pct": 18.93,
+      "medium_pct": 3.09,
+      "high_pct": 0.62
     },
     "intensity_minutes": {
-      "date": "2026-07-13",
+      "date": "2026-07-14",
       "moderate_minutes": 0,
       "vigorous_minutes": 0,
       "weekly_goal": 150
     },
     "activity": {
-      "date": "2026-07-13",
-      "total_steps": null,
+      "date": "2026-07-14",
+      "total_steps": 171,
       "step_goal": 5000,
-      "highly_active_minutes": 0.0,
-      "active_minutes": 0.0,
-      "sedentary_minutes": 176.0,
+      "highly_active_minutes": 5.0,
+      "active_minutes": 2.0,
+      "sedentary_minutes": 15.0,
       "floors_climbed": 0.0,
       "floors_goal": 10,
-      "total_distance_meters": 0
+      "total_distance_meters": 139
     }
   },
   "rolling_7d": {
     "daily_signals": [
-      {
-        "date": "2026-07-07",
-        "sleep_hours": 8.95,
-        "sleep_score": 83,
-        "hrv_last_night_avg": 46,
-        "hrv_status": "UNBALANCED",
-        "resting_heart_rate": 55,
-        "total_calories_burned": 2564.0,
-        "bmr_calories": 2241.0,
-        "active_calories": 323.0,
-        "steps": 6329,
-        "stress_avg": 44,
-        "stress_qualifier": "STRESSFUL",
-        "moderate_intensity_minutes": 0,
-        "vigorous_intensity_minutes": 0,
-        "floors_climbed": 0.0
-      },
       {
         "date": "2026-07-08",
         "sleep_hours": 7.44,
@@ -212,16 +195,33 @@
       },
       {
         "date": "2026-07-13",
-        "sleep_hours": 0.0,
-        "sleep_score": null,
-        "hrv_last_night_avg": null,
-        "hrv_status": null,
-        "resting_heart_rate": 62,
-        "total_calories_burned": 273.0,
-        "bmr_calories": 273.0,
-        "active_calories": 0.0,
-        "steps": null,
-        "stress_avg": 22,
+        "sleep_hours": 7.9,
+        "sleep_score": 85,
+        "hrv_last_night_avg": 43,
+        "hrv_status": "BALANCED",
+        "resting_heart_rate": 61,
+        "total_calories_burned": 2547.0,
+        "bmr_calories": 2241.0,
+        "active_calories": 306.0,
+        "steps": 5995,
+        "stress_avg": 42,
+        "stress_qualifier": "STRESSFUL",
+        "moderate_intensity_minutes": 0,
+        "vigorous_intensity_minutes": 2,
+        "floors_climbed": 0.0
+      },
+      {
+        "date": "2026-07-14",
+        "sleep_hours": 8.55,
+        "sleep_score": 76,
+        "hrv_last_night_avg": 41,
+        "hrv_status": "BALANCED",
+        "resting_heart_rate": 59,
+        "total_calories_burned": 762.0,
+        "bmr_calories": 754.0,
+        "active_calories": 8.0,
+        "steps": 171,
+        "stress_avg": 23,
         "stress_qualifier": "UNKNOWN",
         "moderate_intensity_minutes": 0,
         "vigorous_intensity_minutes": 0,
@@ -229,20 +229,20 @@
       }
     ],
     "baselines": {
-      "sleep_hours_7d_avg": 7.61,
-      "sleep_score_7d_avg": 73.83,
-      "hrv_7d_avg": 45.83,
-      "rhr_7d_avg": 58.43,
-      "steps_7d_avg": 5080.67,
-      "total_calories_7d_avg": 2195.14,
-      "active_calories_7d_avg": 274.5,
-      "stress_7d_avg": 39.29
+      "sleep_hours_7d_avg": 7.59,
+      "sleep_score_7d_avg": 74.43,
+      "hrv_7d_avg": 44.71,
+      "rhr_7d_avg": 58.86,
+      "steps_7d_avg": 4331.57,
+      "total_calories_7d_avg": 2262.57,
+      "active_calories_7d_avg": 234.0,
+      "stress_7d_avg": 39.14
     }
   },
   "training_load": {
     "this_iso_week": {
       "window_start": "2026-07-13",
-      "window_end": "2026-07-13",
+      "window_end": "2026-07-14",
       "activity_count": 0,
       "sum_activity_training_load": 0.0,
       "ok": true
@@ -255,7 +255,7 @@
       "ok": true
     },
     "acwr": {
-      "date": "2026-07-12",
+      "date": "2026-07-14",
       "acwr_ratio": 0.0,
       "acwr_percent": 0,
       "acwr_status": "LOW",
@@ -265,7 +265,7 @@
       "chronic_load_max": 150.0
     },
     "training_status": {
-      "date": "2026-07-12",
+      "date": "2026-07-14",
       "training_status_numeric": 1,
       "training_status_label": "UNKNOWN",
       "training_status_phrase": "DETRAINING"
@@ -304,20 +304,34 @@
   "body_composition": {
     "status": "ok",
     "most_recent": {
-      "date": "2026-07-04",
-      "timestamp_gmt": 1783182885000,
-      "weight_lbs": 196.1,
+      "date": "2026-07-13",
+      "timestamp_gmt": 1783946478000,
+      "weight_lbs": 195.5,
       "bmi": 29.0,
-      "body_fat_pct": 27.1,
-      "body_water_pct": 50.0,
-      "muscle_mass_lbs": 135.9,
-      "bone_mass_lbs": 7.1,
+      "body_fat_pct": 27.4,
+      "body_water_pct": 49.8,
+      "muscle_mass_lbs": 134.9,
+      "bone_mass_lbs": 7.0,
       "visceral_fat": 4,
       "metabolic_age": 1104492410000.0,
       "physique_rating": null,
       "source": "INDEX_SCALE"
     },
     "trend_30d": [
+      {
+        "date": "2026-07-13",
+        "timestamp_gmt": 1783946478000,
+        "weight_lbs": 195.5,
+        "bmi": 29.0,
+        "body_fat_pct": 27.4,
+        "body_water_pct": 49.8,
+        "muscle_mass_lbs": 134.9,
+        "bone_mass_lbs": 7.0,
+        "visceral_fat": 4,
+        "metabolic_age": 1104492410000.0,
+        "physique_rating": null,
+        "source": "INDEX_SCALE"
+      },
       {
         "date": "2026-07-04",
         "timestamp_gmt": 1783182885000,
@@ -445,27 +459,27 @@
         "source": "INDEX_SCALE"
       }
     ],
-    "weight_7d_avg_lbs": 196.2,
-    "weight_7d_ago_lbs": 195.5,
-    "weight_weekly_delta_lbs": 0.6,
+    "weight_7d_avg_lbs": 196.0,
+    "weight_7d_ago_lbs": 196.1,
+    "weight_weekly_delta_lbs": -0.6,
     "weekly_delta_reason": null,
-    "actual_rate_lb_per_wk": -0.6,
-    "implied_actual_weekly_deficit_cal": -2100.0,
+    "actual_rate_lb_per_wk": 0.6,
+    "implied_actual_weekly_deficit_cal": 2100.0,
     "goal_weight_lbs": 165.0,
-    "delta_to_goal_lbs": 31.1,
-    "weeks_to_goal_at_2lb_per_week": 15.6
+    "delta_to_goal_lbs": 30.5,
+    "weeks_to_goal_at_2lb_per_week": 15.2
   },
   "workouts": [],
   "strength_detail": [],
   "exercise_trends": {
-    "as_of": "2026-07-13",
+    "as_of": "2026-07-14",
     "window_days": 28,
     "lifts_tracked": 24,
     "recent_prs": [],
     "movers": []
   },
   "running_trends": {
-    "as_of": "2026-07-13",
+    "as_of": "2026-07-14",
     "window_days": 28,
     "runs_4w": 0,
     "avg_pace_4w_min_km": null,
