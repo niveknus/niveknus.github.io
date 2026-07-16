@@ -1,12 +1,12 @@
 {
   "schema": "cut-confidence.v1",
-  "as_of": "2026-07-15",
+  "as_of": "2026-07-16",
   "score": 38,
   "band": "concern",
   "band_label": "Concern",
   "trend": "flat",
-  "trend_delta": 2.2,
-  "prev_score": 36,
+  "trend_delta": -0.1,
+  "prev_score": 38,
   "alert": "concern",
   "components": [
     {
@@ -22,10 +22,10 @@
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 88.7,
+      "raw": 87.8,
       "weight": 0.294,
-      "contribution": 26.1,
-      "detail": "sleep 77 \u00b7 HRV 6/6 bal"
+      "contribution": 25.8,
+      "detail": "sleep 75 \u00b7 HRV 7/7 bal \u00b7 readiness 88"
     },
     {
       "key": "weight_trajectory",
