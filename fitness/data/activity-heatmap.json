@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-07-17T12:15:54.655396+00:00",
-  "window_start": "2025-07-06",
-  "window_end": "2026-07-17",
+  "generated_at": "2026-07-18T12:15:47.744296+00:00",
+  "window_start": "2025-07-13",
+  "window_end": "2026-07-18",
   "weeks": 53,
   "stats": {
     "active_days_365": 124,
     "total_hours_365": 170.9,
-    "current_streak_days": 0,
-    "active_days_window": 132
+    "current_streak_days": 1,
+    "active_days_window": 128
   },
   "days": [
-    {
-      "date": "2025-07-06",
-      "count": 1,
-      "minutes": 62.9,
-      "calories": 685,
-      "dominant_type": "running",
-      "level": 3
-    },
-    {
-      "date": "2025-07-07",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-07-08",
-      "count": 1,
-      "minutes": 36.8,
-      "calories": 388,
-      "dominant_type": "running",
-      "level": 2
-    },
-    {
-      "date": "2025-07-09",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-07-10",
-      "count": 1,
-      "minutes": 102.8,
-      "calories": 745,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-07-11",
-      "count": 2,
-      "minutes": 157.5,
-      "calories": 897,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-07-12",
-      "count": 1,
-      "minutes": 61.3,
-      "calories": 294,
-      "dominant_type": "strength_training",
-      "level": 3
-    },
     {
       "date": "2025-07-13",
       "count": 1,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-07-17",
+      "count": 1,
+      "minutes": 97.8,
+      "calories": 643,
+      "dominant_type": "pickleball",
+      "level": 4
+    },
+    {
+      "date": "2026-07-18",
       "count": 0,
       "minutes": 0,
       "calories": 0,
