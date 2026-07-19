@@ -1,13 +1,13 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-07-18T12:15:47.744296+00:00",
+  "generated_at": "2026-07-19T12:15:44.849391+00:00",
   "window_start": "2025-07-13",
-  "window_end": "2026-07-18",
+  "window_end": "2026-07-19",
   "weeks": 53,
   "stats": {
-    "active_days_365": 124,
-    "total_hours_365": 170.9,
-    "current_streak_days": 1,
+    "active_days_365": 123,
+    "total_hours_365": 169.4,
+    "current_streak_days": 0,
     "active_days_window": 128
   },
   "days": [
@@ -2973,6 +2973,14 @@
     },
     {
       "date": "2026-07-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-07-19",
       "count": 0,
       "minutes": 0,
       "calories": 0,
