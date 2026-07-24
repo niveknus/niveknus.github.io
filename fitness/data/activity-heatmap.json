@@ -1,14 +1,14 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-07-23T12:15:38.339193+00:00",
+  "generated_at": "2026-07-24T12:15:56.787888+00:00",
   "window_start": "2025-07-13",
-  "window_end": "2026-07-23",
+  "window_end": "2026-07-24",
   "weeks": 53,
   "stats": {
-    "active_days_365": 121,
-    "total_hours_365": 168.8,
+    "active_days_365": 119,
+    "total_hours_365": 166.8,
     "current_streak_days": 0,
-    "active_days_window": 128
+    "active_days_window": 127
   },
   "days": [
     {
@@ -2965,11 +2965,11 @@
     },
     {
       "date": "2026-07-17",
-      "count": 1,
-      "minutes": 97.8,
-      "calories": 643,
-      "dominant_type": "pickleball",
-      "level": 4
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     },
     {
       "date": "2026-07-18",
@@ -3013,6 +3013,14 @@
     },
     {
       "date": "2026-07-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-07-24",
       "count": 0,
       "minutes": 0,
       "calories": 0,
