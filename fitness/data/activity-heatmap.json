@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-07-31T12:15:44.353729+00:00",
-  "window_start": "2025-07-20",
-  "window_end": "2026-07-31",
+  "generated_at": "2026-08-01T12:15:43.793389+00:00",
+  "window_start": "2025-07-27",
+  "window_end": "2026-08-01",
   "weeks": 53,
   "stats": {
-    "active_days_365": 116,
-    "total_hours_365": 161.6,
-    "current_streak_days": 0,
-    "active_days_window": 122
+    "active_days_365": 117,
+    "total_hours_365": 162.3,
+    "current_streak_days": 1,
+    "active_days_window": 118
   },
   "days": [
-    {
-      "date": "2025-07-20",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-07-21",
-      "count": 1,
-      "minutes": 14.5,
-      "calories": 102,
-      "dominant_type": "indoor_cardio",
-      "level": 1
-    },
-    {
-      "date": "2025-07-22",
-      "count": 1,
-      "minutes": 21.6,
-      "calories": 259,
-      "dominant_type": "running",
-      "level": 1
-    },
-    {
-      "date": "2025-07-23",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-07-24",
-      "count": 1,
-      "minutes": 18.6,
-      "calories": 222,
-      "dominant_type": "running",
-      "level": 1
-    },
-    {
-      "date": "2025-07-25",
-      "count": 2,
-      "minutes": 105.4,
-      "calories": 820,
-      "dominant_type": "indoor_cardio",
-      "level": 4
-    },
-    {
-      "date": "2025-07-26",
-      "count": 2,
-      "minutes": 106.9,
-      "calories": 463,
-      "dominant_type": "other",
-      "level": 4
-    },
     {
       "date": "2025-07-27",
       "count": 0,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-07-31",
+      "count": 1,
+      "minutes": 44.3,
+      "calories": 188,
+      "dominant_type": "walking",
+      "level": 2
+    },
+    {
+      "date": "2026-08-01",
       "count": 0,
       "minutes": 0,
       "calories": 0,
