@@ -1,6 +1,6 @@
 {
   "schema": "cut-confidence.v1",
-  "updated": "2026-08-02",
+  "updated": "2026-08-03",
   "entries": [
     {
       "date": "2026-07-08",
@@ -460,6 +460,24 @@
       "components": {
         "adherence": 8.0,
         "recovery": 77.6,
+        "weight_trajectory": 35.0,
+        "deficit": null
+      },
+      "weights": {
+        "adherence": 0.412,
+        "recovery": 0.294,
+        "weight_trajectory": 0.294,
+        "deficit": 0.0
+      }
+    },
+    {
+      "date": "2026-08-03",
+      "score": 35,
+      "band": "concern",
+      "trend": "flat",
+      "components": {
+        "adherence": 8.0,
+        "recovery": 72.4,
         "weight_trajectory": 35.0,
         "deficit": null
       },
