@@ -1,14 +1,14 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-08-09T12:15:35.654588+00:00",
+  "generated_at": "2026-08-10T12:15:41.497541+00:00",
   "window_start": "2025-08-03",
-  "window_end": "2026-08-09",
+  "window_end": "2026-08-10",
   "weeks": 53,
   "stats": {
     "active_days_365": 113,
-    "total_hours_365": 159.1,
-    "current_streak_days": 1,
-    "active_days_window": 117
+    "total_hours_365": 159.5,
+    "current_streak_days": 2,
+    "active_days_window": 118
   },
   "days": [
     {
@@ -2981,6 +2981,14 @@
     },
     {
       "date": "2026-08-09",
+      "count": 1,
+      "minutes": 52.7,
+      "calories": 200,
+      "dominant_type": "strength_training",
+      "level": 2
+    },
+    {
+      "date": "2026-08-10",
       "count": 0,
       "minutes": 0,
       "calories": 0,

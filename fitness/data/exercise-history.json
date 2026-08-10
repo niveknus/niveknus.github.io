@@ -1,6 +1,6 @@
 {
   "schema": "exercise-history.v1",
-  "updated": "2026-08-09",
+  "updated": "2026-08-10",
   "exercises": {
     "ALTERNATING_DUMBBELL_BICEPS_CURL": [
       {
@@ -186,6 +186,15 @@
         "est_1rm_lb": 153.5,
         "volume_lb": 3345.9,
         "sets": 3
+      },
+      {
+        "date": "2026-08-09",
+        "activity_id": "23913690326",
+        "top_weight_lb": 40.0,
+        "top_reps": 10,
+        "est_1rm_lb": 53.3,
+        "volume_lb": 400.0,
+        "sets": 1
       }
     ],
     "CABLE_BICEPS_CURL": [
@@ -455,6 +464,15 @@
         "est_1rm_lb": 93.3,
         "volume_lb": 3377.2,
         "sets": 6
+      },
+      {
+        "date": "2026-08-09",
+        "activity_id": "23913690326",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 1051.2,
+        "sets": 2
       }
     ],
     "DECLINE_DUMBBELL_BENCH_PRESS": [
@@ -1569,6 +1587,15 @@
         "est_1rm_lb": 0.0,
         "volume_lb": 0.0,
         "sets": 1
+      },
+      {
+        "date": "2026-08-09",
+        "activity_id": "23913690326",
+        "top_weight_lb": 50.0,
+        "top_reps": 12,
+        "est_1rm_lb": 70.0,
+        "volume_lb": 3674.0,
+        "sets": 7
       }
     ],
     "WIDE_GRIP_LAT_PULLDOWN": [
