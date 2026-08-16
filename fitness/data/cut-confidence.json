@@ -1,12 +1,12 @@
 {
   "schema": "cut-confidence.v1",
-  "as_of": "2026-08-15",
+  "as_of": "2026-08-16",
   "score": 42,
   "band": "concern",
   "band_label": "Concern",
   "trend": "flat",
-  "trend_delta": 1.2,
-  "prev_score": 41,
+  "trend_delta": 0.1,
+  "prev_score": 42,
   "alert": "concern",
   "components": [
     {
@@ -22,7 +22,7 @@
       "key": "recovery",
       "label": "Recovery",
       "available": true,
-      "raw": 90.1,
+      "raw": 89.9,
       "weight": 0.417,
       "contribution": 37.5,
       "detail": "sleep 80 \u00b7 HRV 6/6 bal"
