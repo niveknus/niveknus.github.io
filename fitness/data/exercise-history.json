@@ -1,6 +1,6 @@
 {
   "schema": "exercise-history.v1",
-  "updated": "2026-08-16",
+  "updated": "2026-08-17",
   "exercises": {
     "ALTERNATING_DUMBBELL_BICEPS_CURL": [
       {
@@ -1596,6 +1596,15 @@
         "est_1rm_lb": 70.0,
         "volume_lb": 3674.0,
         "sets": 7
+      },
+      {
+        "date": "2026-08-16",
+        "activity_id": "24001160532",
+        "top_weight_lb": 50.0,
+        "top_reps": 10,
+        "est_1rm_lb": 66.7,
+        "volume_lb": 5061.6,
+        "sets": 11
       }
     ],
     "WIDE_GRIP_LAT_PULLDOWN": [
