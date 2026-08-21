@@ -796,12 +796,12 @@
     },
     {
       "date": "2026-08-21",
-      "score": 42,
+      "score": 38,
       "band": "concern",
       "trend": "flat",
       "components": {
         "adherence": 8.0,
-        "recovery": 89.2,
+        "recovery": 79.2,
         "weight_trajectory": null,
         "deficit": null
       },
