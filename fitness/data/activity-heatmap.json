@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-08-21T14:18:09.244377+00:00",
-  "window_start": "2025-08-10",
-  "window_end": "2026-08-21",
+  "generated_at": "2026-08-22T12:15:39.833472+00:00",
+  "window_start": "2025-08-17",
+  "window_end": "2026-08-22",
   "weeks": 53,
   "stats": {
-    "active_days_365": 104,
-    "total_hours_365": 151.2,
+    "active_days_365": 103,
+    "total_hours_365": 148.4,
     "current_streak_days": 1,
-    "active_days_window": 115
+    "active_days_window": 108
   },
   "days": [
-    {
-      "date": "2025-08-10",
-      "count": 1,
-      "minutes": 28.9,
-      "calories": 143,
-      "dominant_type": "indoor_cardio",
-      "level": 1
-    },
-    {
-      "date": "2025-08-11",
-      "count": 1,
-      "minutes": 19.6,
-      "calories": 236,
-      "dominant_type": "running",
-      "level": 1
-    },
-    {
-      "date": "2025-08-12",
-      "count": 1,
-      "minutes": 60.9,
-      "calories": 333,
-      "dominant_type": "strength_training",
-      "level": 3
-    },
-    {
-      "date": "2025-08-13",
-      "count": 1,
-      "minutes": 15.0,
-      "calories": 185,
-      "dominant_type": "running",
-      "level": 1
-    },
-    {
-      "date": "2025-08-14",
-      "count": 1,
-      "minutes": 61.0,
-      "calories": 299,
-      "dominant_type": "strength_training",
-      "level": 3
-    },
-    {
-      "date": "2025-08-15",
-      "count": 1,
-      "minutes": 54.3,
-      "calories": 185,
-      "dominant_type": "indoor_cardio",
-      "level": 2
-    },
-    {
-      "date": "2025-08-16",
-      "count": 3,
-      "minutes": 132.2,
-      "calories": 959,
-      "dominant_type": "indoor_cardio",
-      "level": 4
-    },
     {
       "date": "2025-08-17",
       "count": 1,
@@ -3026,6 +2970,14 @@
       "calories": 156,
       "dominant_type": "cycling",
       "level": 1
+    },
+    {
+      "date": "2026-08-22",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     }
   ]
 }
