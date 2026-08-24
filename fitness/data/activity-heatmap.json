@@ -1,14 +1,14 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-08-23T12:15:40.739902+00:00",
+  "generated_at": "2026-08-24T12:15:38.023568+00:00",
   "window_start": "2025-08-17",
-  "window_end": "2026-08-23",
+  "window_end": "2026-08-24",
   "weeks": 53,
   "stats": {
-    "active_days_365": 101,
-    "total_hours_365": 145.8,
+    "active_days_365": 99,
+    "total_hours_365": 145.0,
     "current_streak_days": 0,
-    "active_days_window": 107
+    "active_days_window": 106
   },
   "days": [
     {
@@ -2933,11 +2933,11 @@
     },
     {
       "date": "2026-08-17",
-      "count": 1,
-      "minutes": 22.5,
-      "calories": 129,
-      "dominant_type": "cycling",
-      "level": 1
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     },
     {
       "date": "2026-08-18",
@@ -2981,6 +2981,14 @@
     },
     {
       "date": "2026-08-23",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-08-24",
       "count": 0,
       "minutes": 0,
       "calories": 0,
