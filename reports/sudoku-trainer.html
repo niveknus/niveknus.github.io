@@ -35,6 +35,9 @@ body{
   padding-bottom:env(safe-area-inset-bottom);
 }
 .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
+.wrap.anim{animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.tile.locked{opacity:.55}
 a{color:var(--accent)}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 
@@ -107,10 +110,11 @@ h3.sec:before{content:"";width:20px;height:3px;background:var(--grad);border-rad
 
 /* ------------------------------------------------------------------ board */
 .boardwrap{margin:14px 0}
-.board{display:grid;grid-template-columns:repeat(9,1fr);aspect-ratio:1;width:100%;
+.board{display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
+  aspect-ratio:1;width:100%;
   background:var(--grid);border:2px solid var(--grid2);border-radius:10px;overflow:hidden;
   gap:1px;touch-action:manipulation;user-select:none;box-shadow:var(--shadow)}
-.cell{background:var(--cellbg);display:grid;place-items:center;position:relative;
+.cell{background:var(--cellbg);display:grid;place-items:center;position:relative;min-height:0;min-width:0;
   font-size:clamp(15px,5.4vw,25px);font-weight:600;line-height:1;transition:background .1s}
 .cell.bt{box-shadow:inset 0 2px 0 0 var(--grid2)}
 .cell.bl{box-shadow:inset 2px 0 0 0 var(--grid2)}
@@ -249,6 +253,17 @@ button.chip:active{transform:scale(.95)}
   animation:strikeIn 6s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}
 @keyframes strikeIn{0%,42%{opacity:0;transform:scaleX(0)}
   52%{opacity:1;transform:scaleX(1)}85%{opacity:1}95%,100%{opacity:0}}
+
+/* extra demo keyframes: staggered note-fade, alternating xy-wing lamps */
+.demo .fadeN{animation:fadeN 7s ease-in-out infinite}
+@keyframes fadeN{0%{opacity:1}6%{opacity:.12}82%{opacity:.12}92%,100%{opacity:1}}
+.demo .keepN{fill:#6d4df0;font-weight:800;animation:keepN 7s ease-in-out infinite}
+@keyframes keepN{0%,100%{opacity:1}50%{opacity:.55}}
+.demo .altA{animation:altA 6s ease-in-out infinite}
+.demo .altB{animation:altB 6s ease-in-out infinite}
+@keyframes altA{0%,42%{opacity:1}50%,92%{opacity:.1}100%{opacity:1}}
+@keyframes altB{0%,42%{opacity:.1}50%,92%{opacity:1}100%{opacity:.1}}
+.demo .ringA{fill:none;stroke:#6d4df0;stroke-width:2.5}
 
 /* ------------------------------------------------------------------- misc */
 .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
@@ -922,6 +937,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
           '<strong>Let the app do it.</strong> Auto-notes and auto-clean exist. Turn them on.'
         ]
       },
+      { svg: 'erase' },
       { callout: '🧮 <b>Auto-notes is NOT cheating.</b> Nobody thinks calculators make you bad at math. The skill is spotting patterns, not clerical filing. Let the phone file.' },
       { h: 'How to read a noted board' },
       {
@@ -985,6 +1001,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
         { h: 'The idea' },
         { p: '🔎 Stand in one empty cell. Run 1 through 9. Eight of them are blocked by the row, column or box. Whatever survives... goes in. Done.' },
         { callout: '🎟️ <b>The metaphor:</b> nine people tried to book the same seat, eight got rejected. The seat belongs to whoever is left. No drama.' },
+      { svg: 'single' },
         { p: 'It is called <em>naked</em> because there is nothing to figure out. With notes filled in, the cell is literally sitting there with one number in it, waving at you.' },
         { h: 'Why bother naming it' },
         { p: '🔁 This is your swipe method <strong>running backwards</strong>. The swipe asks "where does this digit go?" This asks "what does this cell take?" Same board, two search directions, totally different finds. Holding both in your head is the single biggest speed upgrade there is.' }
@@ -1054,6 +1071,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
         { h: 'This is the one you were missing' },
         { p: '🧩 You learned pairs recently? You almost certainly learned the <em>naked</em> kind. Meet its sneaky sibling. Same fact, viewed from the other end, and honestly the stronger of the two.' },
         { p: '🏠 In some box: the 3 can only go in two cells. The 8 can only go in <em>those exact same two cells</em>. So those two cells ARE the 3 and the 8, in some order. Every other note written in them? Fiction. Delete it all.' },
+      { svg: 'hiddenpair' },
         {
           vs: [
             { lbl: '👯 Naked pair', txt: 'You spot the CELLS first: both read {4,7}. You erase 4 and 7 from the <em>neighbors</em>.' },
@@ -1087,6 +1105,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
         { p: '🔄 The swipe uses <em>placed</em> digits to block cells. This uses <em>unplaced</em> digits to block cells. When it clicks, the number of moves you can see roughly doubles. Not exaggerating.' },
         { p: '📦 Look at one box. Its 5 has to go SOMEWHERE. Say the only two cells that can take it both sit on row 6. You don\'t know which one wins...' },
         { p: '💣 ...but you know this box\'s 5 lands <strong>somewhere on row 6</strong>. So no other cell anywhere on row 6 can be a 5. Erase them, right across the other two boxes.' },
+      { svg: 'point' },
         { callout: '🚪 <b>The metaphor:</b> you\'re watching a building with two exits, and the person inside HAS to come out. Which door? No idea. But both doors open onto <em>the same street</em>, so nobody else is parking there.' },
         { h: 'Why this one is special' },
         { p: '🌉 Pairs only ever clean up inside their own unit. This is the first technique that reaches <strong>across the board</strong>, out of a box and down a whole line into boxes you weren\'t even looking at. That reach is what breaks hard puzzles open.' },
@@ -1111,6 +1130,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
         { h: 'Same logic, mirrored' },
         { p: '🪞 Pointing goes box → line. This goes line → box. That\'s literally the entire difference, so check both in one sweep.' },
         { p: '🛣️ Row 3 needs its 5. The only spots left on row 3 all happen to sit inside the middle-left box. So that box\'s 5 is on row 3, guaranteed... which means the box\'s other six cells can never be 5. Erase.' },
+      { svg: 'claim' },
         {
           vs: [
             { lbl: '➡️ Pointing', txt: 'The BOX is certain, so it claims part of the line. You erase along the <strong>line</strong>, outside the box.' },
@@ -1131,6 +1151,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
       body: [
         { h: 'The idea' },
         { p: '👥 The naked pair, plus one. Three cells in a unit, and between all three of them only three different digits appear. Those cells will consume those digits, so nobody else in the unit gets them.' },
+      { svg: 'triple' },
         { callout: '⚠️ <b>The trap that hides every triple:</b> the cells do NOT each need all three digits! {2,5}, {5,9}, {2,9} is a perfect naked triple. So is {2,5,9}, {2,5}, {5,9}. Three cells, three digits <em>total</em>. That\'s it.' },
         { h: 'The metaphor' },
         { p: '🪑 Three friends, three chairs. One only sits in A or B. One only in B or C. One only in A or C. You will never untangle the seating from that... and you don\'t need to. All three chairs are taken. Party\'s full.' },
@@ -1218,6 +1239,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
         { h: 'The logic, in two sentences' },
         { p: '➡️ If the pivot is X, wing one can\'t be X, so wing one becomes Z. If the pivot is Y, wing two can\'t be Y, so wing two becomes Z.' },
         { callout: '💡 <b>Either way, SOMEBODY is a Z.</b> You never find out who. Doesn\'t matter! Any cell that can see BOTH wings is staring at a guaranteed Z... so it can\'t be one. Erase.' },
+      { svg: 'xywing' },
         { h: 'The metaphor' },
         { p: '🚨 A light switch wired to two lamps: flip it one way, lamp one glows. Other way, lamp two. You haven\'t touched the switch, so you don\'t know which lamp is on. But <strong>one of them is</strong>. Any spot in the room that both lamps shine on? Definitely lit.' },
         { h: 'The hunt' },
@@ -1241,6 +1263,7 @@ input[type=text]{width:100%;padding:12px 14px;border-radius:11px;background:var(
       body: [
         { h: 'The idea' },
         { p: '🐟 The X-Wing, plus one. Three rows where your digit has two or three spots each, and every spot falls inside the same three columns. Those rows will feed the digit to all three columns... so erase it from everywhere else in them.' },
+      { svg: 'sword' },
         { callout: '⚠️ <b>The classic mistake:</b> the rows do NOT each need all three columns! Row A uses columns 2 and 5. Row B: 5 and 8. Row C: 2 and 8. Three rows, three columns total = valid swordfish. Demanding 3 spots per row makes you miss most of them.' },
         { h: 'Should you even learn this?' },
         { p: '😅 Honest answer: learn to <em>recognize</em> it, don\'t learn to <em>hunt</em> it. Swordfish are rare enough that two minutes of scanning is usually worse than two minutes of re-checking your notes for a typo.' },
@@ -1387,6 +1410,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     return P.tech[id];
   }
   const MASTER_AT = 8;
+  const learnedTechs = () => TECHS.filter(t => P.lessons[t.id] || techStat(t.id).seen > 0);
   const isMastered = id => techStat(id).firstTry >= MASTER_AT;
 
   function todayStr() {
@@ -1624,6 +1648,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
             i.textContent = dg;
             if (elimBy[c] && elimBy[c].includes(dg)) i.className = 'dead';
             else if (hi.has(dg) && (patSet.has(c) || selSet.has(c))) i.className = 'hi';
+            else if (v.hiNote && dg === v.hiNote) i.className = 'hi';
           }
           n.appendChild(i);
         }
@@ -1636,6 +1661,8 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
   }
 
   // ------------------------------------------------------------------ chrome
+
+  const buzz = pattern => { try { navigator.vibrate && navigator.vibrate(pattern); } catch (e) { /* no-op */ } };
 
   let toastTimer = null;
   function toast(msg) {
@@ -1661,13 +1688,19 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     return bar;
   }
 
+  let lastScreenKey = null;
   function screen(title, backTo) {
     const root = $('#app');
+    // A board tap re-renders the SAME screen: keep the scroll position and skip
+    // the entry animation, so interaction feels in-place instead of a reload.
+    const fresh = lastScreenKey !== current;
+    const y = window.scrollY;
+    lastScreenKey = current;
     root.innerHTML = '';
     if (title) root.appendChild(chrome(title, backTo));
-    const w = el('div', 'wrap');
+    const w = el('div', 'wrap' + (fresh ? ' anim' : ''));
     root.appendChild(w);
-    window.scrollTo(0, 0);
+    requestAnimationFrame(() => window.scrollTo(0, fresh ? 0 : y));
     return w;
   }
 
@@ -1737,6 +1770,178 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
         ${die(0, 2, 0)}${die(3, 6, .12)}${die(4, 2, .24)}${die(7, 6, .36)}${die(8, 2, .48)}
       </svg>`;
       cap = 'Four corners, two columns claimed. Every other 6 in those columns: gone. ❌';
+    }
+
+    if (kind === 'single') {
+      // One cell, nine tiny options; eight fade away, the survivor moves in.
+      const pos = [[24, 34], [60, 34], [96, 34], [24, 70], [60, 70], [96, 70], [24, 106], [60, 106], [96, 106]];
+      let notes = '';
+      for (let d = 1; d <= 9; d++) {
+        const [x, y] = pos[d - 1];
+        if (d === 5) continue;
+        const delay = ((d < 5 ? d - 1 : d - 2) * 0.42).toFixed(2);
+        notes += `<text class="fadeN" style="animation-delay:${delay}s" x="${x}" y="${y}" font-size="19" fill="#8c86a6" text-anchor="middle">${d}</text>`;
+      }
+      svg = `<svg viewBox="-4 -4 128 128">
+        <rect class="cellbg" x="0" y="0" width="120" height="120"/>
+        <rect class="gridbold" x="0" y="0" width="120" height="120" rx="10"/>
+        ${notes}
+        <text class="keepN" x="60" y="70" font-size="19" text-anchor="middle">5</text>
+        <circle class="popring" cx="60" cy="63" r="30"/>
+        <text class="popdigit" x="60" y="76" font-size="42" fill="#6d4df0" text-anchor="middle">5</text>
+      </svg>`;
+      cap = 'Eight options get blocked, one by one. Whoever survives... moves in. 🎁';
+    }
+
+    if (kind === 'erase') {
+      // Notes discipline: place a 4, and the neighbor's 4-note dies instantly.
+      svg = `<svg viewBox="-4 -4 268 96">
+        <rect class="cellbg" x="0" y="0" width="260" height="88"/>
+        <path class="gridline" d="M130 0v88"/>
+        <rect class="gridbold" x="0" y="0" width="260" height="88" rx="8"/>
+        <text class="popdigit" x="65" y="60" font-size="40" fill="#6d4df0" text-anchor="middle">4</text>
+        <text x="165" y="34" font-size="17" fill="#8c86a6" text-anchor="middle">2</text>
+        <text x="195" y="34" font-size="17" fill="#8c86a6" text-anchor="middle">4</text>
+        <text x="225" y="34" font-size="17" fill="#8c86a6" text-anchor="middle">7</text>
+        <text x="195" y="70" font-size="17" fill="#8c86a6" text-anchor="middle">9</text>
+        <line class="strike" x1="186" y1="28" x2="204" y2="34" style="animation-delay:.5s"/>
+      </svg>`;
+      cap = 'Place a number → its note dies next door. Instantly. Every time. Stale notes tell lies. ✍️';
+    }
+
+    if (kind === 'hiddenpair') {
+      // Two crowded cells; only 3 and 8 stay lit while the crowd fades.
+      const n = (x, y, t, keep, delay) => keep
+        ? `<text class="keepN" x="${x}" y="${y}" font-size="16" text-anchor="middle">${t}</text>`
+        : `<text class="fadeN" style="animation-delay:${delay}s" x="${x}" y="${y}" font-size="16" fill="#8c86a6" text-anchor="middle">${t}</text>`;
+      svg = `<svg viewBox="-4 -4 208 100">
+        <rect class="cellbg" x="0" y="0" width="200" height="92"/>
+        <rect class="twin" x="2" y="2" width="96" height="88" rx="6"/>
+        <rect class="twin" x="102" y="2" width="96" height="88" rx="6"/>
+        <path class="gridline" d="M100 0v92"/>
+        <rect class="gridbold" x="0" y="0" width="200" height="92" rx="8"/>
+        ${n(22, 32, '1', false, '0')}${n(50, 32, '3', true)}${n(78, 32, '5', false, '.4')}
+        ${n(36, 68, '8', true)}${n(64, 68, '9', false, '.8')}
+        ${n(124, 32, '2', false, '1.2')}${n(152, 32, '3', true)}
+        ${n(138, 68, '6', false, '1.6')}${n(166, 68, '8', true)}
+      </svg>`;
+      cap = 'Looks like chaos... until you count. 3 and 8 fit NOWHERE else, so everything else in these two cells is fake. 🕵️';
+    }
+
+    if (kind === 'point') {
+      // A box whose 5s sit on one row; the beam claims the rest of the line.
+      const cs = 36;
+      let cells = '';
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 8; c++)
+        cells += `<rect class="cellbg" x="${c * cs}" y="${r * cs}" width="${cs}" height="${cs}"/>`;
+      svg = `<svg viewBox="-4 -4 ${8 * cs + 8} ${3 * cs + 8}">
+        ${cells}
+        <path class="gridline" d="M36 0v108M72 0v108M144 0v108M180 0v108M216 0v108M252 0v108M0 36h288M0 72h288"/>
+        <rect class="gridbold" x="0" y="0" width="${3 * cs}" height="${3 * cs}" rx="4"/>
+        <rect class="gridbold" x="0" y="0" width="${8 * cs}" height="${3 * cs}" rx="6"/>
+        <text class="keepN" x="18" y="61" font-size="17" text-anchor="middle">5</text>
+        <text class="keepN" x="90" y="61" font-size="17" text-anchor="middle">5</text>
+        <rect class="beam beamH d2" x="2" y="40" width="${8 * cs - 4}" height="28" rx="6"/>
+        <text class="dieX" style="animation-delay:.9s" x="${4 * cs + 18}" y="60" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+        <text class="dieX" style="animation-delay:1.05s" x="${5 * cs + 18}" y="60" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+        <text class="dieX" style="animation-delay:1.2s" x="${7 * cs + 18}" y="60" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+      </svg>`;
+      cap = "The box's 5 lives on this row, guaranteed. So the REST of the row loses its 5s, even two boxes over. ➡️";
+    }
+
+    if (kind === 'claim') {
+      // A row whose 5s all sit inside one box; the box's other cells lose 5.
+      const cs = 36;
+      let cells = '';
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 8; c++)
+        cells += `<rect class="cellbg" x="${c * cs}" y="${r * cs}" width="${cs}" height="${cs}"/>`;
+      svg = `<svg viewBox="-4 -4 ${8 * cs + 8} ${3 * cs + 8}">
+        ${cells}
+        <path class="gridline" d="M36 0v108M72 0v108M144 0v108M180 0v108M216 0v108M252 0v108M0 36h288M0 72h288"/>
+        <rect class="gridbold" x="0" y="0" width="${3 * cs}" height="${3 * cs}" rx="4"/>
+        <rect class="gridbold" x="0" y="0" width="${8 * cs}" height="${3 * cs}" rx="6"/>
+        <rect class="beam beamH d1" x="2" y="40" width="${8 * cs - 4}" height="28" rx="6"/>
+        <text class="keepN" x="18" y="61" font-size="17" text-anchor="middle">5</text>
+        <text class="keepN" x="54" y="61" font-size="17" text-anchor="middle">5</text>
+        <text class="dieX" style="animation-delay:.9s" x="54" y="24" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+        <text class="dieX" style="animation-delay:1.05s" x="90" y="24" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+        <text class="dieX" style="animation-delay:1.2s" x="18" y="97" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+        <text class="dieX" style="animation-delay:1.35s" x="90" y="97" font-size="15" fill="#e02444" text-anchor="middle">✕</text>
+      </svg>`;
+      cap = "This ROW must take its 5 inside this box. So the box's other cells can never be 5. ⬅️";
+    }
+
+    if (kind === 'triple') {
+      // Three chairs, three friends; the fourth cell keeps only its 7.
+      const n = (x, y, t, keep, delay) => keep
+        ? `<text class="keepN" x="${x}" y="${y}" font-size="15" text-anchor="middle">${t}</text>`
+        : `<text x="${x}" y="${y}" font-size="15" fill="#8c86a6" text-anchor="middle">${t}</text>`;
+      svg = `<svg viewBox="-4 -4 268 84">
+        <rect class="cellbg" x="0" y="0" width="260" height="76"/>
+        <rect class="twin" x="2" y="2" width="61" height="72" rx="6"/>
+        <rect class="twin" x="67" y="2" width="61" height="72" rx="6"/>
+        <rect class="twin" x="132" y="2" width="61" height="72" rx="6"/>
+        <path class="gridline" d="M65 0v76M130 0v76M195 0v76"/>
+        <rect class="gridbold" x="0" y="0" width="260" height="76" rx="8"/>
+        ${n(20, 44, '2', true)}${n(45, 44, '5', true)}
+        ${n(85, 44, '5', true)}${n(110, 44, '9', true)}
+        ${n(150, 44, '2', true)}${n(175, 44, '9', true)}
+        ${n(213, 30, '2', false)}${n(241, 30, '5', false)}
+        ${n(213, 62, '7', false)}${n(241, 62, '9', false)}
+        <line class="strike" x1="205" y1="24" x2="221" y2="30"/>
+        <line class="strike" x1="233" y1="24" x2="249" y2="30" style="animation-delay:.15s"/>
+        <line class="strike" x1="233" y1="56" x2="249" y2="62" style="animation-delay:.3s"/>
+      </svg>`;
+      cap = "Three cells, three numbers total (2, 5, 9). Chairs taken! The neighbor keeps only its 7. 🪑";
+    }
+
+    if (kind === 'xywing') {
+      // The pivot flips forever; each flip forces a different wing to 3.
+      svg = `<svg viewBox="-4 -4 176 176">
+        <rect class="cellbg" x="0" y="0" width="168" height="168"/>
+        <path class="gridline" d="M84 0v168M0 84h168"/>
+        <rect class="gridbold" x="0" y="0" width="168" height="168" rx="8"/>
+        <text x="8" y="18" font-size="10" fill="#8c86a6">PIVOT</text>
+        <g class="altA"><circle class="ringA" cx="28" cy="48" r="15"/></g>
+        <g class="altB"><circle class="ringA" cx="60" cy="48" r="15"/></g>
+        <text x="28" y="55" font-size="19" fill="#6d4df0" text-anchor="middle" font-weight="800">5</text>
+        <text x="60" y="55" font-size="19" fill="#6d4df0" text-anchor="middle" font-weight="800">9</text>
+        <text x="112" y="55" font-size="19" fill="#8c86a6" text-anchor="middle">5</text>
+        <g class="altA"><circle class="ringA" cx="144" cy="48" r="15"/>
+          <text x="144" y="55" font-size="19" fill="#6d4df0" text-anchor="middle" font-weight="800">3</text></g>
+        <g class="altB" style="animation-delay:0s"><text x="144" y="55" font-size="19" fill="#8c86a6" text-anchor="middle">3</text></g>
+        <text x="28" y="139" font-size="19" fill="#8c86a6" text-anchor="middle">9</text>
+        <g class="altB"><circle class="ringA" cx="60" cy="132" r="15"/>
+          <text x="60" y="139" font-size="19" fill="#6d4df0" text-anchor="middle" font-weight="800">3</text></g>
+        <g class="altA"><text x="60" y="139" font-size="19" fill="#8c86a6" text-anchor="middle">3</text></g>
+        <text x="112" y="139" font-size="19" fill="#8c86a6" text-anchor="middle">3</text>
+        <text class="dieX" style="animation-delay:.2s" x="130" y="139" font-size="17" fill="#e02444" text-anchor="middle">✕</text>
+      </svg>`;
+      cap = 'The pivot flips 5↔9 forever. Watch the rings: either way, SOME wing becomes 3. The corner cell sees both wings, so it can never be 3. 💡';
+    }
+
+    if (kind === 'sword') {
+      // Three rows, three columns, all tangled; the columns are claimed anyway.
+      const cs = 26, W = 9 * cs;
+      let lines = '';
+      for (let i = 1; i < 9; i++) {
+        const w2 = (i % 3 === 0) ? 'gridbold' : 'gridline';
+        lines += `<path class="${w2}" d="M${i * cs} 0v${W}M0 ${i * cs}h${W}"/>`;
+      }
+      const spot = (r, c) => `<rect class="corner" x="${c * cs + 2}" y="${r * cs + 2}" width="${cs - 4}" height="${cs - 4}" rx="4"/>
+        <text x="${c * cs + cs / 2}" y="${r * cs + cs / 2 + 6}" font-size="14" fill="#6d4df0" text-anchor="middle">4</text>`;
+      const die = (r, c, d) => `<text class="dieX" style="animation-delay:${d}s" x="${c * cs + cs / 2}" y="${r * cs + cs / 2 + 5}" font-size="13" fill="#e02444" text-anchor="middle">✕</text>`;
+      svg = `<svg viewBox="-4 -4 ${W + 8} ${W + 8}">
+        <rect class="cellbg" x="0" y="0" width="${W}" height="${W}"/>
+        ${lines}
+        <rect class="gridbold" x="0" y="0" width="${W}" height="${W}" rx="6"/>
+        <rect class="colbar" x="${1 * cs}" y="0" width="${cs}" height="${W}"/>
+        <rect class="colbar" x="${4 * cs}" y="0" width="${cs}" height="${W}"/>
+        <rect class="colbar" x="${7 * cs}" y="0" width="${cs}" height="${W}"/>
+        ${spot(1, 1)}${spot(1, 4)}${spot(4, 4)}${spot(4, 7)}${spot(7, 1)}${spot(7, 7)}
+        ${die(0, 4, 0)}${die(2, 7, .12)}${die(3, 1, .24)}${die(6, 4, .36)}${die(8, 7, .48)}
+      </svg>`;
+      cap = 'Three rows, three columns, tangled on purpose. The columns are claimed anyway. Same trick as X-Wing, bigger fish. 🐟';
     }
 
     if (kind === 'pair') {
@@ -1818,12 +2023,17 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     w.appendChild(stats);
 
     const tiles = el('div', 'tiles');
+    if (P.play && P.play.grid) {
+      const done = P.play.grid.replace(/[^1-9]/g, '').length;
+      const mins = Math.floor((P.play.elapsed || 0) / 60000);
+      tiles.appendChild(tile('▶️', 'Continue puzzle',
+        `${P.play.d === 'seed' ? 'Daily' : P.play.d} · ${done}/81 filled · ${mins}m in`, 'play:resume', true));
+    }
     tiles.appendChild(tile('🧭', 'When to use what', 'The order of operations. Read this one first.', 'lesson:ladder', true));
     tiles.appendChild(tile('✏️', 'Notes, properly', 'The bottleneck. Read this second.', 'lesson:notes'));
-    tiles.appendChild(tile('🎯', 'Spot Check', 'Mixed drills. Name the technique.', 'spotcheck'));
+    tiles.appendChild(tile('🎮', 'Free Play', 'Full puzzle, real hints.', 'playpick'));
     tiles.appendChild(tile('📅', 'Daily Challenge', 'Same puzzle on both phones.', 'daily'));
-    tiles.appendChild(tile('🎮', 'Free Play', 'Full puzzle, smart hints.', 'playpick'));
-    tiles.appendChild(tile('🤝', 'Pass & Play', 'Two of you, one phone.', 'versus'));
+    tiles.appendChild(tile('🤝', 'Pass & Play', 'Two of you, one phone.', 'versus', true));
     w.appendChild(tiles);
 
     const sec = el('section');
@@ -1840,6 +2050,19 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       sec.appendChild(techRow(t));
     }
     w.appendChild(sec);
+
+    // Spot Check lives BELOW the ladder on purpose: it is the graduation game,
+    // played after the techniques above it have been learned.
+    const boss = el('section');
+    boss.appendChild(el('h3', 'sec', 'The final boss'));
+    const locked = learnedTechs().length < 3;
+    const bossTile = tile('🎓', 'Spot Check',
+      locked ? 'Learn any 3 techniques above to unlock. No labels, just a board.'
+        : 'No labels, just a board. Name the cheapest technique that cracks it, then find it.',
+      'spotcheck', true);
+    if (locked) bossTile.classList.add('locked');
+    boss.appendChild(bossTile);
+    w.appendChild(boss);
 
     const foot = el('div', 'foot');
     foot.innerHTML = `${DATA.drills[TECHS[0].id].length} drills per technique, harvested from ${DATA.seedsRun.toLocaleString()} generated puzzles.<br>
@@ -1969,8 +2192,23 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
 
   // Mixed practice: the question is which technique applies, not just where.
   routes.spotcheck = function () {
-    const pool = TECHS.filter(t => P.lessons[t.id] || isMastered(t.id) || techStat(t.id).seen > 0);
-    const from = (pool.length >= 3 ? pool : TECHS).map(t => t.id);
+    const pool = learnedTechs();
+    if (pool.length < 3) {
+      const w = screen('Spot Check', 'home');
+      const c = el('div', 'card');
+      c.style.textAlign = 'center';
+      c.innerHTML = `<div style="font-size:38px">🎓</div>
+        <div style="font-weight:800;font-size:19px;margin-top:6px">The final boss unlocks later</div>
+        <div class="muted" style="margin-top:8px;font-size:15px">Spot Check hands you a board with <b>no labels</b> and asks which technique cracks it. That only works once you know a few! Learn any 3 techniques on the ladder and this opens up.</div>`;
+      w.appendChild(c);
+      const next = TECHS.find(t => !P.lessons[t.id]);
+      const b = el('button', 'btn primary', next ? `Start with ${next.name} &rarr;` : 'To the ladder');
+      b.style.marginTop = '12px';
+      b.addEventListener('click', () => go(next ? 'lesson:' + next.id : 'home'));
+      w.appendChild(b);
+      return;
+    }
+    const from = pool.map(t => t.id);
     const list = [];
     for (let i = 0; i < 6; i++) {
       const id = from[(Math.random() * from.length) | 0];
@@ -2029,7 +2267,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     }
     bw.appendChild(renderBoard({
       grid: st.grid, cands: st.cands, given: d.g, showNotes,
-      sel: selCells, sameDigit: sameSet,
+      sel: selCells, sameDigit: sameSet, hiNote: s.hiSame || 0,
       pattern: revealed ? new Set(revealed.cells) : null,
       units: revealed ? revealed.units : (s.hintUnits || null),
       elim: revealed ? revealed.elim : null,
@@ -2039,6 +2277,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
         if (s.done) return;
         // Tapping a placed number lights up all its copies, exactly like the
         // phone apps. It makes swiping the drill board feel natural.
+        buzz(6);
         if (st.grid[c]) {
           s.hiSame = (s.hiSame === st.grid[c]) ? null : st.grid[c];
           renderDrill();
@@ -2081,7 +2320,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       nx.addEventListener('click', nextDrill);
       row.appendChild(nx);
     } else {
-      const hb = el('button', 'btn ghost', s.hint >= 3 ? 'No hints left' : `Hint (${s.hint}/3)`);
+      const hb = el('button', 'btn ghost', s.hint >= 3 ? 'No hints left' : `💡 Hint (${s.hint}/3)`);
       if (s.hint >= 3) hb.disabled = true;
       hb.addEventListener('click', () => {
         s.hint++;
@@ -2107,38 +2346,71 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     const s = session;
     const prompt = el('div', 'prompt');
     prompt.innerHTML = `<div class="q">🎯 Which technique cracks this?</div>
-      <div class="s">Nothing simpler works on this board. Read the position, then pick the cheapest technique that applies.</div>`;
+      <div class="s">Nothing simpler works on this board. Read the position, then pick the cheapest technique that applies. Tap a placed number to light up its copies.</div>`;
     w.appendChild(prompt);
+
+    let sameSet = null;
+    if (s.hiSame) {
+      sameSet = new Set();
+      for (let i = 0; i < 81; i++) if (st.grid[i] === s.hiSame) sameSet.add(i);
+    }
     const bw = el('div', 'boardwrap');
-    bw.appendChild(renderBoard({ grid: st.grid, cands: st.cands, given: d.g, showNotes: true }));
+    bw.appendChild(renderBoard({
+      grid: st.grid, cands: st.cands, given: d.g, showNotes: true,
+      sameDigit: sameSet, hiNote: s.hiSame || 0,
+      onTap: c => {
+        if (st.grid[c]) { s.hiSame = (s.hiSame === st.grid[c]) ? null : st.grid[c]; buzz(6); renderDrill(); }
+      }
+    }));
     w.appendChild(bw);
 
+    // The verdict sits ABOVE the options so a wrong guess is explained right
+    // where the player is looking, not below the fold.
+    if (s.feedback) {
+      const f = el('div', 'fb ' + s.feedback.cls);
+      f.innerHTML = `<div class="h">${s.feedback.head}</div>${s.feedback.body}`;
+      f.style.marginBottom = '12px';
+      w.appendChild(f);
+    }
+
+    // Only offer techniques they have actually met (padded to at least four),
+    // so the question is a quiz on known material, not a guessing game.
+    const opts = learnedTechs().slice();
+    if (!opts.some(t => t.id === d.t)) opts.push(TECHS.find(t => t.id === d.t));
     for (const t of TECHS) {
+      if (opts.length >= 4) break;
+      if (!opts.includes(t)) opts.push(t);
+    }
+    opts.sort((a, b) => a.tier - b.tier);
+
+    for (const t of opts) {
       const b = el('button', 'trow');
       b.innerHTML = `<div class="body"><div class="nm">${LESSONS[t.id].icon} ${esc(t.name)}</div>
         <div class="sb">${esc(LESSONS[t.id].alias)}</div></div><div class="chev">&#8250;</div>`;
       b.addEventListener('click', () => {
         if (t.id === d.t) {
           s.identified = true;
-          s.feedback = { cls: 'ok', head: 'Correct! 🎯', body: `Now find it on the board.` };
+          buzz([12, 40, 18]);
+          s.feedback = { cls: 'ok', head: 'Correct! 🎯', body: `It is a ${esc(t.name)}. Now find it on the board.` };
+          renderDrill();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           s.tries++;
+          buzz(35);
           const guessTier = t.tier, realTier = LESSONS[d.t].tier;
           s.feedback = {
             cls: 'no', head: 'Not that one 🙅',
-            body: guessTier < realTier
+            body: (guessTier < realTier
               ? `There is no ${esc(t.name)} available here. When the cheap techniques are dry, move <em>up</em> the ladder.`
-              : `${esc(t.name)} is heavier than this position needs. Always take the cheapest technique that works, and check the easy ones first.`
+              : `${esc(t.name)} is heavier than this position needs. Always take the cheapest technique that works, and check the easy ones first.`)
+              + `<br><br><span class="dim">What a ${esc(t.name)} looks like: ${esc(LESSONS[t.id].tell)}</span>`
           };
+          renderDrill();
+          const f = $('.fb');
+          if (f) f.scrollIntoView({ block: 'center', behavior: 'smooth' });
         }
-        renderDrill();
       });
       w.appendChild(b);
-    }
-    if (s.feedback) {
-      const f = el('div', 'fb ' + s.feedback.cls);
-      f.innerHTML = `<div class="h">${s.feedback.head}</div>${s.feedback.body}`;
-      w.appendChild(f);
     }
   }
 
@@ -2147,12 +2419,15 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     const res = grade(d, s.selCells, s.selDigits);
     if (res.ok) return reveal(d, res.move, true);
     s.tries++;
+    buzz(35);
     s.feedback = {
       cls: res.kind === 'partial' ? 'warn' : 'no',
       head: res.kind === 'partial' ? 'Sooo close 👀' : 'Not yet 🤔',
       body: res.msg
     };
     renderDrill();
+    const f = $('.fb');
+    if (f) f.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 
   function reveal(d, move, correct) {
@@ -2185,7 +2460,10 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       };
     }
     save();
+    buzz(correct ? [12, 40, 18] : 40);
     renderDrill();
+    const f = $('.fb');
+    if (f) f.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 
   function nextDrill() {
@@ -2294,7 +2572,39 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
 
   let game = null;
 
+  const encodeC = cands => Array.from(cands).map(m => m.toString(32).padStart(2, '0')).join('');
+
+  // The in-progress puzzle survives closing the app, exactly like the phone
+  // games do. Saved on every change, cleared on solve.
+  function savePlay() {
+    const g = game;
+    if (!g || !g.puz) return;
+    if (!g.grid.includes(0)) {
+      if (P.play) { delete P.play; save(); }
+      return;
+    }
+    P.play = {
+      p: g.given, s: g.puz.s, d: g.diff,
+      grid: S.toStr(g.grid), cands: encodeC(g.cands),
+      notes: g.notes, elapsed: Date.now() - g.started, mistakes: g.mistakes
+    };
+    save();
+  }
+
   routes.play = function (arg) {
+    if (arg === 'resume') {
+      const r = P.play;
+      if (!r || !r.grid) return go('playpick');
+      window.__lastPuzzleSolution = r.s;
+      game = {
+        puz: { p: r.p, s: r.s, d: r.d }, given: r.p, grid: S.parse(r.grid),
+        cands: decodeCands(r.cands), notes: !!r.notes, undo: [], hint: 0,
+        hintMove: null, cursor: null, started: Date.now() - (r.elapsed || 0),
+        diff: r.d, mistakes: r.mistakes || 0
+      };
+      renderPlay();
+      return;
+    }
     const parts = String(arg).split('|');
     const diff = parts[0];
     let puz;
@@ -2334,6 +2644,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
 
   function renderPlay() {
     const g = game;
+    savePlay();
     const w = screen(g.diff === 'seed' ? 'Daily puzzle' : g.diff[0].toUpperCase() + g.diff.slice(1), 'home');
     const filled = Array.from(g.grid).filter(Boolean).length;
     const secs = Math.round((Date.now() - g.started) / 1000);
@@ -2357,11 +2668,12 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     bw.appendChild(renderBoard({
       grid: g.grid, cands: g.cands, given: g.given, showNotes: true,
       cursor: cur, peers, sameDigit, conflicts,
+      hiNote: (cur != null && g.grid[cur]) ? g.grid[cur] : 0,
       pattern: (hm && g.hint >= 3) ? new Set(hm.cells) : null,
       units: (hm && g.hint >= 2) ? hm.units : null,
       elim: (hm && g.hint >= 3) ? hm.eliminations.map(e => [e.cell, e.digit]) : null,
       hiDigits: (hm && g.hint >= 1) ? hm.digits : null,
-      onTap: c => { g.cursor = (g.cursor === c ? null : c); g.hintMove = null; g.hint = 0; renderPlay(); }
+      onTap: c => { buzz(6); g.cursor = (g.cursor === c ? null : c); g.hintMove = null; g.hint = 0; renderPlay(); }
     }));
     w.appendChild(bw);
 
@@ -2375,28 +2687,29 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     }
     w.appendChild(pad);
 
+    // Toolbar mirrors the Easy Brain app: Undo, Erase, Notes with a visible
+    // ON/OFF state, then our extras (auto-notes and a real teaching Hint).
     const tools = el('div', 'toolrow');
-    tools.appendChild(tool('✏️', 'Notes', g.notes, () => { g.notes = !g.notes; renderPlay(); }));
-    tools.appendChild(tool('🪄', 'Fill notes', false, () => {
-      g.cands = S.computeCands(g.grid);
-      toast('Notes filled and cleaned.');
-      renderPlay();
+    tools.appendChild(tool('↩️', 'Undo', false, () => {
+      const u = g.undo.pop();
+      if (!u) return toast('Nothing to undo.');
+      g.grid = u.grid; g.cands = u.cands; renderPlay();
     }));
     tools.appendChild(tool('⌫', 'Erase', false, () => {
       if (g.cursor == null) return toast('Pick a cell first.');
       if (g.given[g.cursor] !== '.') return toast('That is a clue, it stays.');
       pushUndo(); g.grid[g.cursor] = 0; g.cands[g.cursor] = 0; renderPlay();
     }));
-    tools.appendChild(tool('↩️', 'Undo', false, () => {
-      const u = g.undo.pop();
-      if (!u) return toast('Nothing to undo.');
-      g.grid = u.grid; g.cands = u.cands; renderPlay();
+    tools.appendChild(tool('✏️', g.notes ? 'Notes ON' : 'Notes OFF', g.notes,
+      () => { g.notes = !g.notes; buzz(6); renderPlay(); }));
+    tools.appendChild(tool('🪄', 'Auto notes', false, () => {
+      pushUndo();
+      g.cands = S.computeCands(g.grid);
+      toast('Notes filled and cleaned. ✨');
+      renderPlay();
     }));
+    tools.appendChild(tool('💡', g.hint ? `Hint ${g.hint}/3` : 'Hint', !!g.hintMove, doNudge));
     w.appendChild(tools);
-
-    const nudge = el('button', 'btn primary', g.hint === 0 ? '💡 Nudge me' : `💡 More (${g.hint}/3)`);
-    nudge.addEventListener('click', doNudge);
-    w.appendChild(nudge);
 
     if (g.slip && g.slip.length) {
       const box = el('div', 'fb no');
@@ -2434,9 +2747,14 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     }
 
     if (filled === 81 && !conflicts.size) {
-      const done = el('div', 'fb ok');
-      done.innerHTML = `<div class="h">Solved. 🏆</div>${Math.floor(secs / 60)}m ${secs % 60}s, ${plural(g.mistakes, 'slip')}.`;
+      if (!g.celebrated) { g.celebrated = true; buzz([20, 60, 30, 60, 90]); }
+      const done = el('div', 'fb ok confetti');
+      done.innerHTML = `<div class="h">Solved! 🏆🎉</div>${Math.floor(secs / 60)}m ${secs % 60}s, ${plural(g.mistakes, 'slip')}. Go show the other one.`;
       w.appendChild(done);
+      const again = el('button', 'btn primary', 'Another puzzle');
+      again.style.marginTop = '11px';
+      again.addEventListener('click', () => go('playpick'));
+      w.appendChild(again);
     }
   }
 
@@ -2457,6 +2775,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     if (g.cursor == null) return toast('Pick a cell first.');
     const c = g.cursor;
     if (g.given[c] !== '.') return toast('That is one of the original clues.');
+    buzz(6);
     pushUndo();
     if (g.notes) {
       g.cands[c] ^= S.bit(dg);
