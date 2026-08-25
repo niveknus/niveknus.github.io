@@ -1412,6 +1412,15 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
   }
   const MASTER_AT = 8;
   const learnedTechs = () => TECHS.filter(t => P.lessons[t.id] || techStat(t.id).seen > 0);
+
+  // Training wheels. A new technique starts fully guided (the pattern glows,
+  // helpers are lit) and the assists fall away as correct answers stack up:
+  // 3 corrects -> only the region is lit, 6 -> bare board. Driven by CORRECT
+  // answers, not attempts, so struggling keeps the wheels on longer.
+  function autoAssist(id) {
+    const r = techStat(id).right;
+    return r < 3 ? 2 : r < 6 ? 1 : 0;
+  }
   const isMastered = id => techStat(id).firstTry >= MASTER_AT;
 
   function todayStr() {
@@ -2290,10 +2299,21 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     // (d.basic) start clean, exactly like a real phone game mid-swipe.
     if (s.showNotes === undefined) s.showNotes = !(LESSONS[d.t].tier === 1 && d.basic);
 
+    // Assists apply only to focused practice, never to the identify games.
+    const assist = (s.kind === 'drill' && !s.done)
+      ? (s.assistOverride != null ? s.assistOverride : autoAssist(d.t)) : 0;
+    s.curAssist = assist;
+
     const prompt = el('div', 'prompt');
     const range = spec.cells[0] === spec.cells[1] ? spec.cells[0] : `${spec.cells[0]}-${spec.cells[1]}`;
+    const assistNote = assist === 2
+      ? '🛟 Training wheels: the answer cells glow purple, helper cells are yellow. Work out the number(s), tap the glowing cells, hit Check.'
+      : assist === 1
+        ? '🧭 The neighborhood is lit. The pattern is somewhere inside it.'
+        : '';
     prompt.innerHTML = `<div class="q">${lesson.icon} Find the ${esc(lesson.name)}</div>
       <div class="s">${esc(spec.ask)}</div>
+      ${assistNote ? `<div class="s" style="margin-top:6px">${assistNote}</div>` : ''}
       <div class="chipline">
         <span class="chip">need <b>${range}</b> ${spec.word}</span>
         <span class="chip">need <b>${spec.digits}</b> digit${spec.digits > 1 ? 's' : ''}</span>
@@ -2302,6 +2322,12 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     const nt = el('button', 'chip', s.showNotes ? '✏️ notes on' : '✏️ notes off');
     prompt.querySelector('.chipline').appendChild(nt);
     nt.addEventListener('click', () => { s.showNotes = !s.showNotes; renderDrill(); });
+    if (s.kind === 'drill' && !s.done) {
+      const alab = assist === 2 ? '🛟 guided' : assist === 1 ? '🧭 region lit' : '🎯 solo';
+      const ac = el('button', 'chip', alab);
+      ac.addEventListener('click', () => { s.assistOverride = (assist + 2) % 3; renderDrill(); });
+      prompt.querySelector('.chipline').appendChild(ac);
+    }
     w.appendChild(prompt);
 
     const bw = el('div', 'boardwrap');
@@ -2318,10 +2344,10 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       sel: selCells, sameDigit: sameSet, hiNote: s.hiSame || 0,
       pending: (spec.cells[1] === 1 && selCells.size === 1 && selDigits.size === 1 && !s.done)
         ? { cell: selCells.values().next().value, digit: selDigits.values().next().value } : null,
-      pattern: revealed ? new Set(revealed.cells) : null,
-      units: revealed ? revealed.units : (s.hintUnits || null),
+      pattern: revealed ? new Set(revealed.cells) : (assist === 2 ? new Set(d.m.cells) : null),
+      units: revealed ? revealed.units : (assist >= 1 ? d.m.units : (s.hintUnits || null)),
       elim: revealed ? revealed.elim : null,
-      blockers: revealed ? revealed.extra : null,
+      blockers: revealed ? revealed.extra : (assist === 2 ? d.m.extra : null),
       hiDigits: [...selDigits],
       onTap: c => {
         if (s.done) return;
@@ -2491,7 +2517,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     s.revealed = move;
     const st = techStat(d.t);
     st.seen++;
-    const clean = correct && s.tries === 0 && s.hint === 0;
+    const clean = correct && s.tries === 0 && s.hint === 0 && !(s.curAssist > 0);
     s.marks = s.marks || [];
     s.marks.push(correct ? (clean ? 2 : 1) : 0);
     if (s.kind === 'vs') s.scores[s.i % 2] += clean ? 2 : (correct ? 1 : 0);
@@ -2502,7 +2528,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       if (clean) { s.firstTry++; st.firstTry++; st.streak++; st.best = Math.max(st.best || 0, st.streak); }
       s.feedback = {
         cls: 'ok',
-        head: clean ? 'Clean spot! 🎉' : 'Got it ✅',
+        head: clean ? 'Clean spot! 🎉' : (s.curAssist > 0 ? 'Got it, wheels on 🛟' : 'Got it ✅'),
         body: `${move.note}<br><br><span class="dim">${move.place && move.place.length
           ? 'Places ' + move.place.map(p => `<b>${p[1]}</b> in ${S.cellName(p[0])}`).join(', ') + '.'
           : 'Removes ' + plural(move.elim.length, 'candidate') + ': ' + move.elim.map(e => `${e[1]} from ${S.cellName(e[0])}`).join(', ') + '.'}</span>`
