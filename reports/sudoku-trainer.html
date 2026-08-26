@@ -266,6 +266,19 @@ button.chip:active{transform:scale(.95)}
 @keyframes altB{0%,42%{opacity:.1}50%,92%{opacity:1}100%{opacity:.1}}
 .demo .ringA{fill:none;stroke:#6d4df0;stroke-width:2.5}
 
+/* --------------------------------------------------------------- narration */
+.speaking{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px;
+  background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.player{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:70;
+  display:flex;gap:4px;align-items:center;background:var(--ink);color:#fff;
+  border-radius:999px;padding:8px 14px;box-shadow:0 8px 30px rgba(40,25,90,.4)}
+.player span{font-size:14px;margin-right:2px}
+.player button{color:#fff;font-size:15px;font-weight:700;padding:3px 7px}
+.fb{position:relative}
+.hintbox{position:relative}
+.fbspeak{position:absolute;top:7px;right:9px;font-size:16px;opacity:.75}
+.fbspeak:active{transform:scale(.9)}
+
 /* ------------------------------------------------------------------- misc */
 .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 8px;
@@ -1678,6 +1691,104 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
 
   const buzz = pattern => { try { navigator.vibrate && navigator.vibrate(pattern); } catch (e) { /* no-op */ } };
 
+  // ------------------------------------------------------------- narration
+  // On-device text-to-speech via the Web Speech API: free, offline, no
+  // accounts, and it keeps the app a single file. Each block is its own
+  // utterance so the page can follow along, highlighting and scrolling to
+  // whatever is being read.
+  const EMOJI_RE = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{2716}\u{2705}\u{274C}\u{2192}\u{2194}]/gu;
+  const cleanSpeech = t => String(t)
+    .replace(EMOJI_RE, ' ')
+    .replace(/[{}<>*_#`]/g, ' ')
+    .replace(/\u00B7/g, ', ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const Narrator = {
+    ok: typeof speechSynthesis !== 'undefined',
+    queue: [], idx: 0, active: false, paused: false, rate: 1,
+    voice: null,
+    pickVoice() {
+      // Prefer the phone's higher-quality installed voices when present.
+      const vs = speechSynthesis.getVoices().filter(v => (v.lang || '').startsWith('en'));
+      const score = v => (/premium|enhanced|natural|neural/i.test(v.name) ? 4 : 0)
+        + (/samantha|ava|allison|aria|zoe|google us english/i.test(v.name) ? 2 : 0)
+        + ((v.lang === 'en-US') ? 1 : 0);
+      this.voice = vs.sort((a, b) => score(b) - score(a))[0] || null;
+    },
+    start(chunks) {
+      if (!this.ok) return toast('This phone does not support speech, sorry.');
+      this.stop();
+      this.queue = chunks.filter(c => c && c.text);
+      if (!this.queue.length) return;
+      this.idx = 0; this.active = true; this.paused = false;
+      this.pickVoice();
+      this.renderPlayer();
+      this.next();
+    },
+    next() {
+      if (!this.active || this.idx >= this.queue.length) return this.stop();
+      const c = this.queue[this.idx];
+      this.highlight(c.el);
+      const u = new SpeechSynthesisUtterance(c.text);
+      if (this.voice) u.voice = this.voice;
+      u.rate = this.rate;
+      u.onend = () => { if (this.active) { this.idx++; this.next(); } };
+      u.onerror = u.onend;
+      speechSynthesis.speak(u);
+    },
+    highlight(elm) {
+      const prev = document.querySelector('.speaking');
+      if (prev) prev.classList.remove('speaking');
+      if (elm && elm.isConnected) {
+        elm.classList.add('speaking');
+        elm.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+    },
+    pauseResume() {
+      if (this.paused) { speechSynthesis.resume(); this.paused = false; }
+      else { speechSynthesis.pause(); this.paused = true; }
+      this.renderPlayer();
+    },
+    cycleRate() {
+      this.rate = this.rate === 1 ? 1.2 : this.rate === 1.2 ? 0.9 : 1;
+      // The new speed applies from the next block; skip ahead so it is heard.
+      if (!this.paused) { try { speechSynthesis.cancel(); } catch (e) {} }
+      this.renderPlayer();
+    },
+    stop() {
+      this.active = false; this.paused = false;
+      try { speechSynthesis.cancel(); } catch (e) { /* no-op */ }
+      this.highlight(null);
+      const pl = document.getElementById('player');
+      if (pl) pl.remove();
+    },
+    renderPlayer() {
+      if (!this.active) return;
+      let pl = document.getElementById('player');
+      if (!pl) { pl = el('div', 'player'); pl.id = 'player'; document.body.appendChild(pl); }
+      pl.innerHTML = '<span>🔊</span>';
+      const pb = el('button', null, this.paused ? '▶️' : '⏸️');
+      pb.addEventListener('click', () => this.pauseResume());
+      const rb = el('button', null, this.rate + 'x');
+      rb.addEventListener('click', () => this.cycleRate());
+      const xb = el('button', null, '✕');
+      xb.addEventListener('click', () => this.stop());
+      pl.append(pb, rb, xb);
+    }
+  };
+
+  // A small speaker button that reads one box (feedback, hint) aloud.
+  function speakBtn(getText, host) {
+    if (!Narrator.ok) return null;
+    const b = el('button', 'fbspeak', '🔊');
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      Narrator.start([{ el: host, text: cleanSpeech(getText()) }]);
+    });
+    return b;
+  }
+
   let toastTimer = null;
   function toast(msg) {
     let t = $('#toast');
@@ -1994,6 +2105,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     render(hash);
   }
   function render(hash) {
+    Narrator.stop();
     current = hash || 'home';
     const i = current.indexOf(':');
     const name = i < 0 ? current : current.slice(0, i);
@@ -2169,18 +2281,37 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       <div class="muted" style="margin-top:8px;font-size:15px">${esc(l.tagline)}</div>`;
     w.appendChild(head);
 
+    // Narration chunks fill in as the page renders; the button reads them in
+    // order, highlighting each block as it goes.
+    const chunks = [{ el: head, text: cleanSpeech(`${l.name}. Also known as: ${l.alias}. ${l.tagline}`) }];
+    if (Narrator.ok) {
+      const lb = el('button', 'btn', '🔊 Listen to this lesson');
+      lb.style.marginTop = '11px';
+      lb.addEventListener('click', () => Narrator.start(chunks));
+      w.appendChild(lb);
+    }
+
     const body = el('div', 'lesson');
+    const addChunk = (node, text) => { chunks.push({ el: node, text: cleanSpeech(text) }); return node; };
     for (const blk of l.body) {
-      if (blk.h) body.appendChild(el('h4', null, esc(blk.h)));
-      else if (blk.p) body.appendChild(el('p', null, blk.p));
-      else if (blk.callout) body.appendChild(el('div', 'callout', blk.callout));
-      else if (blk.ul) body.appendChild(el('ul', null, blk.ul.map(x => `<li>${x}</li>`).join('')));
-      else if (blk.ol) body.appendChild(el('ol', null, blk.ol.map(x => `<li>${x}</li>`).join('')));
-      else if (blk.svg) body.appendChild(svgDemo(blk.svg));
+      if (blk.h) body.appendChild(addChunk(el('h4', null, esc(blk.h)), blk.h + '.'));
+      else if (blk.p) { const n = el('p', null, blk.p); body.appendChild(addChunk(n, n.textContent)); }
+      else if (blk.callout) { const n = el('div', 'callout', blk.callout); body.appendChild(addChunk(n, n.textContent)); }
+      else if (blk.ul || blk.ol) {
+        const items = blk.ul || blk.ol;
+        const n = el(blk.ul ? 'ul' : 'ol', null, items.map(x => `<li>${x}</li>`).join(''));
+        body.appendChild(addChunk(n, Array.from(n.children).map(li => li.textContent).join('. ')));
+      }
+      else if (blk.svg) {
+        const n = svgDemo(blk.svg);
+        const cap = n.querySelector('.cap');
+        body.appendChild(addChunk(n, 'Watch the little animation: ' + (cap ? cap.textContent : '')));
+      }
       else if (blk.vs) {
         const v = el('div', 'vs');
         for (const c of blk.vs) v.appendChild(el('div', null, `<div class="lbl">${esc(c.lbl)}</div><div class="txt">${c.txt}</div>`));
-        body.appendChild(v);
+        body.appendChild(addChunk(v, Array.from(v.children).map(d =>
+          d.querySelector('.lbl').textContent + ': ' + d.querySelector('.txt').textContent).join('. Compare that with. ')));
       }
     }
     w.appendChild(body);
@@ -2204,7 +2335,9 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
         <span class="chip">Shaded = the units involved</span>
         ${m.elim.length ? '<span class="chip">Red = candidates it kills</span>' : ''}`;
       worked.appendChild(legend);
-      worked.appendChild(el('div', 'callout', m.note));
+      const wnote = el('div', 'callout', m.note);
+      worked.appendChild(wnote);
+      chunks.push({ el: wnote, text: cleanSpeech('Here is a real example on the board. ' + m.note) });
       w.appendChild(worked);
 
       const tips = el('div', 'card');
@@ -2212,6 +2345,7 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
         <p class="meta-note" style="margin:0 0 12px">${esc(l.tell)}</p>
         <h4 style="margin:0 0 6px;font-size:15px">When to reach for it</h4>
         <p class="meta-note" style="margin:0">${esc(l.when)}</p>`;
+      chunks.push({ el: tips, text: cleanSpeech(`What to scan for: ${l.tell}. When to reach for it: ${l.when}`) });
       w.appendChild(tips);
 
       const go2 = el('button', 'btn primary', `Practice ${l.name} &rarr;`);
@@ -2386,6 +2520,8 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
     if (s.feedback) {
       const f = el('div', 'fb ' + s.feedback.cls);
       f.innerHTML = `<div class="h">${s.feedback.head}</div>${s.feedback.body}`;
+      const sb = speakBtn(() => f.textContent, f);
+      if (sb) f.appendChild(sb);
       w.appendChild(f);
     }
     if (s.hint > 0 && !s.done) {
@@ -2451,6 +2587,8 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
       const f = el('div', 'fb ' + s.feedback.cls);
       f.innerHTML = `<div class="h">${s.feedback.head}</div>${s.feedback.body}`;
       f.style.marginBottom = '12px';
+      const sb = speakBtn(() => f.textContent, f);
+      if (sb) f.appendChild(sb);
       w.appendChild(f);
     }
 
@@ -2911,6 +3049,8 @@ window.__DATA__ = {"generated":"2026-08-25","seedsRun":14204,"drills":{"naked-si
         lines.push(`<a href="#lesson:${m.id}">📖 Learn ${esc(m.name)} properly</a>`);
       }
       box.innerHTML = lines.map(x => `<div style="margin-bottom:6px">${x}</div>`).join('');
+      const sb = speakBtn(() => box.textContent.replace(/Learn .* properly/, ''), box);
+      if (sb) box.appendChild(sb);
       w.appendChild(box);
       if (g.hint >= 3) {
         const ap = el('button', 'btn', 'Apply it for me');
