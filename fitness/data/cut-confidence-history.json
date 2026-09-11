@@ -1174,12 +1174,12 @@
     },
     {
       "date": "2026-09-11",
-      "score": 31,
-      "band": "concern",
-      "trend": "up",
+      "score": 23,
+      "band": "reassess",
+      "trend": "flat",
       "components": {
         "adherence": 8.0,
-        "recovery": 63.3,
+        "recovery": 45.0,
         "weight_trajectory": null,
         "deficit": null
       },
