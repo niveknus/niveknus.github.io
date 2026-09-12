@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-09-11T22:03:11.310277+00:00",
-  "window_start": "2025-08-31",
-  "window_end": "2026-09-11",
+  "generated_at": "2026-09-12T12:15:37.816891+00:00",
+  "window_start": "2025-09-07",
+  "window_end": "2026-09-12",
   "weeks": 53,
   "stats": {
-    "active_days_365": 93,
-    "total_hours_365": 133.6,
+    "active_days_365": 92,
+    "total_hours_365": 133.1,
     "current_streak_days": 1,
-    "active_days_window": 99
+    "active_days_window": 94
   },
   "days": [
-    {
-      "date": "2025-08-31",
-      "count": 1,
-      "minutes": 143.4,
-      "calories": 468,
-      "dominant_type": "indoor_cardio",
-      "level": 4
-    },
-    {
-      "date": "2025-09-01",
-      "count": 1,
-      "minutes": 61.7,
-      "calories": 263,
-      "dominant_type": "indoor_cardio",
-      "level": 3
-    },
-    {
-      "date": "2025-09-02",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-03",
-      "count": 1,
-      "minutes": 47.0,
-      "calories": 241,
-      "dominant_type": "walking",
-      "level": 2
-    },
-    {
-      "date": "2025-09-04",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-05",
-      "count": 3,
-      "minutes": 267.3,
-      "calories": 1509,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-09-06",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
     {
       "date": "2025-09-07",
       "count": 2,
@@ -2973,11 +2917,11 @@
     },
     {
       "date": "2026-09-05",
-      "count": 1,
-      "minutes": 29.6,
-      "calories": 307,
-      "dominant_type": "cycling",
-      "level": 1
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     },
     {
       "date": "2026-09-06",
@@ -3026,6 +2970,14 @@
       "calories": 956,
       "dominant_type": "pickleball",
       "level": 4
+    },
+    {
+      "date": "2026-09-12",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
     }
   ]
 }
