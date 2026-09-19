@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-09-18T12:15:41.281144+00:00",
-  "window_start": "2025-09-07",
-  "window_end": "2026-09-18",
+  "generated_at": "2026-09-19T12:15:45.816559+00:00",
+  "window_start": "2025-09-14",
+  "window_end": "2026-09-19",
   "weeks": 53,
   "stats": {
-    "active_days_365": 87,
-    "total_hours_365": 125.7,
+    "active_days_365": 86,
+    "total_hours_365": 123.8,
     "current_streak_days": 0,
-    "active_days_window": 93
+    "active_days_window": 91
   },
   "days": [
-    {
-      "date": "2025-09-07",
-      "count": 2,
-      "minutes": 131.8,
-      "calories": 553,
-      "dominant_type": "indoor_cardio",
-      "level": 4
-    },
-    {
-      "date": "2025-09-08",
-      "count": 1,
-      "minutes": 121.8,
-      "calories": 838,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-09-09",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-10",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-11",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-12",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-13",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
     {
       "date": "2025-09-14",
       "count": 1,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-09-18",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-09-19",
       "count": 0,
       "minutes": 0,
       "calories": 0,
