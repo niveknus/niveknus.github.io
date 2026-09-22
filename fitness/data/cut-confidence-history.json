@@ -1377,7 +1377,7 @@
       "trend": "flat",
       "components": {
         "adherence": 8.0,
-        "recovery": 72.6,
+        "recovery": 72.0,
         "weight_trajectory": null,
         "deficit": null
       },
