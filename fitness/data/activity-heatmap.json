@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-09-25T12:15:42.665854+00:00",
-  "window_start": "2025-09-14",
-  "window_end": "2026-09-25",
+  "generated_at": "2026-09-26T12:15:45.352078+00:00",
+  "window_start": "2025-09-21",
+  "window_end": "2026-09-26",
   "weeks": 53,
   "stats": {
-    "active_days_365": 85,
-    "total_hours_365": 123.0,
+    "active_days_365": 84,
+    "total_hours_365": 119.8,
     "current_streak_days": 0,
-    "active_days_window": 91
+    "active_days_window": 85
   },
   "days": [
-    {
-      "date": "2025-09-14",
-      "count": 1,
-      "minutes": 70.2,
-      "calories": 427,
-      "dominant_type": "indoor_cardio",
-      "level": 3
-    },
-    {
-      "date": "2025-09-15",
-      "count": 1,
-      "minutes": 90.8,
-      "calories": 536,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-09-16",
-      "count": 1,
-      "minutes": 56.5,
-      "calories": 284,
-      "dominant_type": "indoor_cardio",
-      "level": 2
-    },
-    {
-      "date": "2025-09-17",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-18",
-      "count": 1,
-      "minutes": 84.7,
-      "calories": 468,
-      "dominant_type": "pickleball",
-      "level": 3
-    },
-    {
-      "date": "2025-09-19",
-      "count": 3,
-      "minutes": 110.6,
-      "calories": 573,
-      "dominant_type": "indoor_cardio",
-      "level": 4
-    },
-    {
-      "date": "2025-09-20",
-      "count": 1,
-      "minutes": 51.1,
-      "calories": 219,
-      "dominant_type": "indoor_cardio",
-      "level": 2
-    },
     {
       "date": "2025-09-21",
       "count": 0,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-09-25",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-09-26",
       "count": 0,
       "minutes": 0,
       "calories": 0,
