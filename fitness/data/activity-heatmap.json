@@ -1,72 +1,16 @@
 {
   "schema": "activity-heatmap.v1",
-  "generated_at": "2026-10-09T12:15:41.430890+00:00",
-  "window_start": "2025-09-28",
-  "window_end": "2026-10-09",
+  "generated_at": "2026-10-10T12:15:45.070484+00:00",
+  "window_start": "2025-10-05",
+  "window_end": "2026-10-10",
   "weeks": 53,
   "stats": {
     "active_days_365": 81,
     "total_hours_365": 113.9,
     "current_streak_days": 0,
-    "active_days_window": 83
+    "active_days_window": 81
   },
   "days": [
-    {
-      "date": "2025-09-28",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-29",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-09-30",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-10-01",
-      "count": 1,
-      "minutes": 60.3,
-      "calories": 287,
-      "dominant_type": "walking",
-      "level": 3
-    },
-    {
-      "date": "2025-10-02",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
-    {
-      "date": "2025-10-03",
-      "count": 1,
-      "minutes": 101.7,
-      "calories": 672,
-      "dominant_type": "pickleball",
-      "level": 4
-    },
-    {
-      "date": "2025-10-04",
-      "count": 0,
-      "minutes": 0,
-      "calories": 0,
-      "dominant_type": null,
-      "level": 0
-    },
     {
       "date": "2025-10-05",
       "count": 0,
@@ -3021,6 +2965,14 @@
     },
     {
       "date": "2026-10-09",
+      "count": 0,
+      "minutes": 0,
+      "calories": 0,
+      "dominant_type": null,
+      "level": 0
+    },
+    {
+      "date": "2026-10-10",
       "count": 0,
       "minutes": 0,
       "calories": 0,
